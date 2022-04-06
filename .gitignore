@@ -1,0 +1,8 @@
+
+*.bin
+
+*.idx
+.idea/
+.vs/
+cmake-build-debug/
+*.bak*

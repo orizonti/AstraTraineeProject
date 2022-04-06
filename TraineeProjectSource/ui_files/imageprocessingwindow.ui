@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ImageProcessingWindow</class>
+ <widget class="QWidget" name="ImageProcessingWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>222</width>
+    <height>293</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ImageProcessingWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+border: 2px solid line black;
+	background-color: rgb(148, 134, 115);
+	font: 14pt &quot;Sans Serif&quot;;
+}
+QLineEdit
+{
+border: 2px solid line black;
+	
+	background-color: rgb(227, 227, 227);
+}
+
+QLabel
+{
+border: 0px solid line black;
+	
+	background-color: rgb(170, 170, 127);
+
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <property name="spacing">
+    <number>2</number>
+   </property>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkWorkBlock1">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgb(208, 0, 0);
+}
+
+QCheckBox::checked
+{
+border: 2px solid line black;
+	
+	background-color: rgb(85, 170, 0);
+}</string>
+     </property>
+     <property name="text">
+      <string>Канал 1</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(255, 170, 0);
+}</string>
+     </property>
+     <property name="text">
+      <string>Блок обработки</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkWorkBlock3">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgb(208, 0, 0);
+}
+
+QCheckBox::checked
+{
+border: 2px solid line black;
+	
+	background-color: rgb(85, 170, 0);
+}</string>
+     </property>
+     <property name="text">
+      <string>Канал 3</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>D:/Картинки/ImageProcess.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkWorkBlock4">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgb(208, 0, 0);
+}
+
+QCheckBox::checked
+{
+border: 2px solid line black;
+	
+	background-color: rgb(85, 170, 0);
+}</string>
+     </property>
+     <property name="text">
+      <string>Канал 4</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkWorkBlock2">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgb(208, 0, 0);
+}
+
+QCheckBox::checked
+{
+border: 2px solid line black;
+	
+	background-color: rgb(85, 170, 0);
+}</string>
+     </property>
+     <property name="text">
+      <string>Канал 2</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="2">
+    <widget class="QLabel" name="labelPeriodProcess">
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(211, 211, 158);
+}</string>
+     </property>
+     <property name="text">
+      <string>Обработка   - 2.0 мс</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QLabel" name="labelPeriodReceive">
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(211, 211, 158);
+}</string>
+     </property>
+     <property name="text">
+      <string>Прием         - 2.0 мс</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/MainControllerQClass">
+        <file>TrainerPictures/ImageProcess.png</file>
+        <file>TrainerPictures/Sinus.png</file>
+        <file>TrainerPictures/Sinus2.png</file>
+        <file>TrainerPictures/Sinus3.png</file>
+        <file>TrainerPictures/Главный блок3.png</file>
+        <file>TrainerPictures/ДиодЗеленый.png</file>
+        <file>TrainerPictures/ДиодКрас100.png</file>
+        <file>TrainerPictures/ДиодКрасный.png</file>
+        <file>TrainerPictures/ДиодФиол.png</file>
+        <file>TrainerPictures/Камера.png</file>
+        <file>TrainerPictures/Контроллер.png</file>
+        <file>TrainerPictures/Контроллер2.png</file>
+        <file>TrainerPictures/Контроллер3.png</file>
+        <file>TrainerPictures/Лазер.png</file>
+        <file>TrainerPictures/лево.png</file>
+        <file>TrainerPictures/лево1.png</file>
+        <file>TrainerPictures/право.png</file>
+        <file>TrainerPictures/право1.png</file>
+    </qresource>
+</RCC>
