@@ -55,9 +55,10 @@ int offset_y = 5;
 
 GraphicWidgetNode::~GraphicWidgetNode()
 {
-   delete WindowNode;
    delete InputNode;
    delete OutputNode;
+   delete InputNodeUp;
+   delete OutputNodeDown;
 }
 
 void GraphicWidgetNode::setWidget(QWidget *widget)

@@ -14,7 +14,6 @@ CameraControlWindow::~CameraControlWindow()
 
 void CameraControlWindow::ConnectControlSignals(HandleControlInterface* Control)
 {
-	qDebug() << "CONNECT CAMERA";
 	connect(ui.ButSetParamToDevice, &QPushButton::clicked,
 		[this, Control]()
 	{

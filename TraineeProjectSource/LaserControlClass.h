@@ -13,17 +13,18 @@ class LaserControlClass: public QObject
 	Q_OBJECT
 public:
 	LaserControlClass();
+    ~LaserControlClass();
 	typeblocksenum TypeBlock = typeblocksenum::LasersBlock;
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;
 
 
 	QVector<DataLaserStruct> GetLasersState();
-	LaserPowerInterfaceClass* LPower;
-	LaserPilotInterfaceClass* LPilot1;
-	LaserPilotInterfaceClass* LPilot2;
-	LaserPilotInterfaceClass* LPilot3;
 
-	LaserPointerInterfaceClass* LaserPointer;
+	CommonLaserInterfaceClass* LPilot1;
+	CommonLaserInterfaceClass* LPilot2;
+	CommonLaserInterfaceClass* LPilot3;
+
+	CommonLaserInterfaceClass* LaserPointer;
 
 	QTimer TimerToIterateLasers;
 	QVector<CommonLaserInterfaceClass*> Lasers;

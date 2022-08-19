@@ -21,9 +21,9 @@ public:
 	void SetPIDParam(PIDParamStruct Param);
 
 
-	QString PIDLog;
-	QString PIDLog2;
-	int n_log = 0;
+	//QString PIDLog;
+	//QString PIDLog2;
+	//int n_log = 0;
 
 	friend PassTwoCoordClass& operator >>(QPair<double, double> Coord, PassTwoCoordClass& Reciever);
 	friend PassTwoCoordClass& operator >>(PassTwoCoordClass& Sender, PassTwoCoordClass& Reciever);
@@ -31,13 +31,12 @@ public:
 	friend PassTwoCoordClass& operator >> (PassTwoCoordClass& Sender, QPair<double, double>& Coord);
 
 	std::chrono::time_point<std::chrono::high_resolution_clock> TimeFromLastCommand;
-	PIDParamStruct PIDParamAxis1;
-	PIDParamStruct PIDParamAxis2;
+	PIDParamStruct PIDParam;
 	QPair<double, double> ErrorsSumm;
 private:
-	double MaxAccelAxis1;
-	double MaxAccelAxis2;
-	QPair<double, double> PIDAcelerationCoord;
+    //double MaxAccelAxis1 = 20*4.84/1000000;
+    //double MaxAccelAxis2 = 20*4.84/1000000;
+	QPair<double, double> PIDControlOutput;
 	QPair<double, double> LastErrorCoord;
-    QTime timeAiming;
+    //QTime timeAiming;
 };

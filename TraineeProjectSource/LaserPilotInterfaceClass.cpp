@@ -22,7 +22,6 @@ LaserPilotInterfaceClass::~LaserPilotInterfaceClass()
 void LaserPilotInterfaceClass::ConnectToLaserTCP(QString Address, quint16 Port)
 {
 
-	qDebug() << "ATTEMPT TO CONNECT TO - " << Address << "PORT - " << Port;
 	SocketGuidLaser->abort();
 
 	connect(SocketGuidLaser, SIGNAL(connected()),this, SLOT(slotConnected()));
@@ -41,8 +40,6 @@ void LaserPilotInterfaceClass::TurnLaserBeamOnOff(bool OnOff)
 		return;
 
 
-
-	qDebug() << "TURN LASER BEAM at LASER - " << IPLaser << OnOff;
      GUID_COMMAND_STRUCT Command;
      Command.NUMBER_CHANNEL = 0;
      if(OnOff)
@@ -57,7 +54,6 @@ void LaserPilotInterfaceClass::TurnLaserBeamOnOff(bool OnOff)
      if (SocketGuidLaser->state() == 3)
      {
      SocketGuidLaser->write(ArrayCommand);
-     qDebug() << "Command - " << ArrayCommand.toHex();
      }
 
 
@@ -76,7 +72,6 @@ DataLaserStruct LaserPilotInterfaceClass::GetState()
 
 void LaserPilotInterfaceClass::SendRequestToUpControlStatus()
 {
-	qDebug() << "SEND ACCESS LEVEL AT LASER - " << IPLaser;
 	     ACCESS_LEVEL_COMMAND Command;
      Command.CRC = this->GetCRC((unsigned char*)&Command,Command.HEADER.DATA_SIZE +8);
      QByteArray ArrayCommand((const char*)&Command,Command.HEADER.DATA_SIZE + 10);
@@ -113,8 +108,6 @@ void LaserPilotInterfaceClass::slotReadyRead()
         {
             quint16 CRC = 0;
             in >> HEADER_DATA.COMMAND >> HEADER_DATA.EXECUTION_CODE >> HEADER_DATA.DATA_SIZE >> CRC;
- //           ui->listWidget_2->addItem(QString("PILOT1 ANSWER - %1 EXEC CODE - %2 SIZE - %3").arg(HEADER_DATA.COMMAND).arg(HEADER_DATA.EXECUTION_CODE).arg(HEADER_DATA.DATA_SIZE));
-			//qDebug() <<IPLaser<< QString("ANSWER - %1 EXEC CODE - %2 SIZE - %3").arg(HEADER_DATA.COMMAND).arg(HEADER_DATA.EXECUTION_CODE).arg(HEADER_DATA.DATA_SIZE);
             SocketGuidLaser->flush();
 
         }
@@ -130,7 +123,6 @@ void LaserPilotInterfaceClass::slotError(QAbstractSocket::SocketError err)
 			"The connection was refused." :
 			QString(SocketGuidLaser->errorString())
 			);
-//	ui->listWidget->addItem(strError);
 }
 
 void LaserPilotInterfaceClass::slotConnected()
@@ -138,8 +130,6 @@ void LaserPilotInterfaceClass::slotConnected()
 
 	qDebug() << QString("CONNECTED TO HOST - %1").arg(SocketGuidLaser->peerName());
 	this->SendRequestToUpControlStatus();
-//	ui->listWidget->addItem(QString("CONNECTED TO HOST - %1").arg(SocketGuidLaser->peerName()));
-//	ui->listWidget->addItem(QString("PORT - %1").arg(SocketGuidLaser->peerPort()));
 }
 
 

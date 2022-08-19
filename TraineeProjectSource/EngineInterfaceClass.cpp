@@ -46,33 +46,6 @@ EngineInterfaceClass::~EngineInterfaceClass()
 }
 
 
-void EngineInterfaceClass::SetCoordAbs(QPair<double,double> CoordAbs)
-{
-    EngineState.SetPosAngle(CoordAbs.second, CoordAbs.first);
-
-    QByteArray Command;
-    QDataStream out(&Command, QIODevice::WriteOnly);
-
-    out.setByteOrder(QDataStream::LittleEndian);
-
-    out << EngineState;
-
-    QByteArray DataRS = Command.mid(16 + 8);
-
-    quint8 CRC = 0;
-
-    boost::crc_basic<8>  crc_ccitt1(0xD5, 0xFF, 0, false, false);
-    crc_ccitt1.process_bytes((const void*)DataRS.data(), DataRS.size());
-    CRC = crc_ccitt1.checksum();
-
-    out << CRC;
-
-    if(KLPInterface)
-    {
-        QThread::usleep(this->CommandDelayMks);
-        this->KLPInterface->WriteCommandData(Command, this->EngineChannelNumber);
-    }
-}
 
 
 void EngineInterfaceClass::SetCoord(QPair<double, double> Coord)
@@ -124,9 +97,37 @@ void EngineInterfaceClass::SetCoord(QPair<double, double> Coord)
 
 }
 
+void EngineInterfaceClass::SetCoordAbs(QPair<double,double> CoordAbs)
+{
+    ControlCoord = CoordAbs;
+    EngineState.SetPosAngle(CoordAbs.second, CoordAbs.first);
+
+    QByteArray Command;
+    QDataStream out(&Command, QIODevice::WriteOnly);
+
+    out.setByteOrder(QDataStream::LittleEndian);
+
+    out << EngineState;
+
+    QByteArray DataRS = Command.mid(16 + 8);
+
+    quint8 CRC = 0;
+
+    boost::crc_basic<8>  crc_ccitt1(0xD5, 0xFF, 0, false, false);
+    crc_ccitt1.process_bytes((const void*)DataRS.data(), DataRS.size());
+    CRC = crc_ccitt1.checksum();
+
+    out << CRC;
+
+    if(KLPInterface)
+    {
+        QThread::usleep(this->CommandDelayMks);
+        this->KLPInterface->WriteCommandData(Command, this->EngineChannelNumber);
+    }
+}
+
 void EngineInterfaceClass::SetToNull()
 {
-	qDebug() << "SET ENGINE TO NULL";
 
 	EngineState.SetPosAngle(0,0);
 
@@ -152,7 +153,14 @@ void EngineInterfaceClass::SetToNull()
 		this->ControlCoord.second = 0;
 
 	if(KLPInterface)
-	this->KLPInterface->WriteCommandData(Command,this->EngineChannelNumber);
+    {
+        QThread::usleep(350);
+        this->KLPInterface->WriteCommandData(Command,this->EngineChannelNumber);
+        QThread::usleep(350);
+        this->KLPInterface->WriteCommandData(Command,this->EngineChannelNumber);
+        QThread::usleep(350);
+        this->KLPInterface->WriteCommandData(Command,this->EngineChannelNumber);
+    }
 }
 
 void EngineInterfaceClass::ResetEngine()
@@ -167,7 +175,6 @@ void EngineInterfaceClass::ResetEngine()
               out.setByteOrder(QDataStream::LittleEndian);
               out << SendCommand;
 
-         qDebug() << "RESET ENGINE";
 		 OutFcChannelFlags fcChannels = this->EngineChannelNumber;
 		 this->KLPInterface->WriteCommandData(WriteCommand, fcChannels);
 

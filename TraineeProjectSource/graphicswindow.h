@@ -7,14 +7,6 @@
 #define CALMAN_ERROR_X 2 
 #define CALMAN_ERROR_Y 3 
 
-#define CALMAN_VELOCITY_X 4 
-#define CALMAN_VELOCITY_Y 5 
-
-#define PID_ACCELERATION_X 6
-#define PID_ACCELERATION_Y 7
-
-#define ERROR_SKO_X 8
-#define ERROR_SKO_Y 9
 
 
 #include "ui_graphicswindow.h"
@@ -22,85 +14,6 @@
 #include "qcustomplot.h"
 
 
-class DispersionCalc
-{
-public:
-	QQueue<QPair<double, double>> MeasureMassive;
-
-	QQueue<QPair<double, double>> DispValueMassive;
-
-
-	int Size = 40;
-	QPair<double, double> Avarage;
-	QPair<double, double> SKO;
-	QPair<double, double> SquareDeviant;
-
-
-	friend void operator>>(QPair<double, double> NewValue, DispersionCalc& StatObj)
-	{
-		StatObj.MeasureMassive.enqueue(NewValue);
-
-//		StatObj.Avarage.first += NewValue.first/StatObj.Size;
-//		StatObj.Avarage.second += NewValue.second/StatObj.Size;
-
-
-		if (StatObj.MeasureMassive.size() > StatObj.Size)
-		{
-		//	QPair<double,double> FirstValue =  StatObj.MeasureMassive.dequeue();
-			StatObj.MeasureMassive.dequeue();
-			
-		//StatObj.Avarage.first -= FirstValue.first/StatObj.Size;
-		//StatObj.Avarage.second -= FirstValue.second/StatObj.Size;
-		//StatObj.SquareDeviant.first = pow(NewValue.first - StatObj.Avarage.first, 2);
-		//StatObj.SquareDeviant.second = pow(NewValue.second - StatObj.Avarage.second, 2);
-		//StatObj.DispValueMassive.enqueue(StatObj.SquareDeviant);
-		StatObj.CalcAvarage();
-		StatObj.CalcSKO();
-		}
-
-//		if(StatObj.DispValueMassive.size() >= StatObj.Size)
-//		StatObj.DispValueMassive.dequeue();
-
-
-	};
-
-
-
-	QPair<double, double> GetAvarage();
-	QPair<double, double> GetDispersion();
-
-	QPair<double, double> Summ;
-
-	void CalcAvarage()
-	{
-		Summ = QPair<double, double>(0, 0);
-		for(QPair<double,double> value:MeasureMassive)
-		{
-		Summ.first += value.first;
-		Summ.second += value.second;
-		}
-
-		Avarage.first = Summ.first / MeasureMassive.size();
-		Avarage.second = Summ.second / MeasureMassive.size();
-	}
-
-	void CalcSKO()
-	{
-		
-		SKO = QPair<double, double>(0, 0);
-
-		for(QPair<double,double> value:MeasureMassive)
-		{
-			SKO.first += pow((value.first - Avarage.first), 2);
-			SKO.second += pow((value.second - Avarage.second), 2);
-		}
-
-
-		SKO.first = sqrt(SKO.first/MeasureMassive.size());
-		SKO.second = sqrt(SKO.second/MeasureMassive.size());
-	}
-
-};
 class SmootheNodeClass
 {
 public:
@@ -109,10 +22,19 @@ public:
 	int Size = 10;
 	QPair<double, double> Avarage;
 
-		QPair<double, double> GetAvarage()
-		{
-			return Avarage;
-		};
+    QPair<double, double> GetAvarage()
+    {
+        return Avarage;
+    };
+
+    int MAX_VALUE = 0;
+    void CHECK_MAX(QPair<double,double> Coord) { if(std::abs(Coord.first) > MAX_VALUE)MAX_VALUE = Coord.first;
+                                                 if(std::abs(Coord.second) > MAX_VALUE)MAX_VALUE = Coord.second;}
+
+    friend void operator>>(SmootheNodeClass& Object, QPair<double,double>& Coord)
+    {
+        Coord = Object.Avarage;
+    };
 
 	friend void operator>>(QPair<double, double> NewValue, SmootheNodeClass& StatObj)
 	{
@@ -120,6 +42,7 @@ public:
 
 		StatObj.Avarage.first += NewValue.first/StatObj.Size;
 		StatObj.Avarage.second += NewValue.second/StatObj.Size;
+        StatObj.CHECK_MAX(NewValue);
 
 
 		if (StatObj.MeasureMassive.size() > StatObj.Size)
@@ -148,11 +71,11 @@ public:
 	QTime TimeMeasurePeriod;
 	double TimeFromStartMs;
 
-	double TimePeriod;
+	double TimePeriod= 0;
+	double PlotPeriod= 0;
 	double key;
 
-	bool DisplayError = true;
-	bool DisplayKalman = false;
+	bool DisplayError = true; bool DisplayKalman = false;
 	bool DisplaySKO = false;
 	bool DisplayPID = false;
 	bool DisplayXAxes = true;
@@ -161,8 +84,8 @@ public:
 	int FreqFilterCounter = 0;
 
 	QPair<int, int> RangeY;
-	SmootheNodeClass SmootheNode;
-	DispersionCalc Dispersion;
+	SmootheNodeClass SmootheError;
+    SmootheNodeClass SmootheKalman;
 
 	public slots:
 	void DisplayGraph(DataAimingErrorStructure& Data);
@@ -182,7 +105,7 @@ public:
 
 public slots:
 	void DisplayAimingData(DataAimingErrorStructure Data);
-	void ChangeDataLimit(int Channel, int DataLimitup, int DataLimitDown);
+	void ChangeDataLimit(int Channel, double DataLimitup, double DataLimitDown);
 
 	signals:
 	void SignalNewData(DataAimingErrorStructure Data);

@@ -2,6 +2,7 @@
 #include "RotateOperationContainer.h"
 #include <DebugStream.h>
 
+using namespace torch::indexing;
 TestDataVectorsContainer::TestDataVectorsContainer()
 {
 
@@ -89,8 +90,7 @@ void AccumulateDataFilter::SetCoord(QPair<double, double> Coord)
 
 void AccumulateDataFilter::WaitCoord(QPair<double,double> coord)
 {
-  qDebug() << "FILTER WAIT NEW COORD - " << coord;
-  WaitInputCoord = coord;	
+  WaitInputCoord = coord;
   flag_filter_open = false;
   accumulate_counter = 0;
   pass_counter = 0;
@@ -541,7 +541,6 @@ RotateOperationContainer::RotateOperationContainer()
 
 void RotateOperationContainer::Reset()
 {
-	qDebug() << "                              RESET ROTATION MATRIX !!!!! ";
 	input_to_optimize_rotation.clear();
 	output_to_optimize_rotation.clear();
 	MeasureFilter.Reset();

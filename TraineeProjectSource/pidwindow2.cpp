@@ -15,9 +15,9 @@ PIDWindow2::PIDWindow2(QWidget *parent)
 	while (!in.atEnd()) 
 	{
 		QString line = in.readLine();
-		qDebug() << "Load - " << line;
 		ui.listPIDPreference->addItem(line);
 	}
+	file.close();
 }
 
 PIDWindow2::~PIDWindow2()
@@ -77,7 +77,7 @@ void PIDWindow2::ConnectControlSignals(HandleControlInterface* Control)
 			{
 					
 					qDebug() << "Load file PIDParams";
-					QFile file("E:/TrainerData/PIDParams.txt");
+					QFile file("/home/broms/TrainerData/PIDParams.txt");
 					if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 						return;
 

@@ -40,3 +40,45 @@ void PassTwoCoordClass::SetLink(PassTwoCoordClass* NewLink)
 	qDebug() << "PASS TWO COORD SET LINK"; 
 	Link = NewLink;
 }
+
+
+
+QPair<double, double> operator*(QPair<double, double>& x,const QPair<double, double>& y)
+{
+    return QPair<double,double>(x.first * y.first, x.second * y.second);
+}
+QPair<double, double> operator*(const QPair<double, double>& x, double Scale)
+{
+    return QPair<double,double>(x.first * Scale, x.second * Scale);
+}
+
+void operator+=(QPair<double, double>& x, const QPair<double, double>& y)
+{
+    x.first = x.first + y.first; x.second = x.second + y.second;
+}
+
+void operator-=(QPair<double, double>& x, const QPair<double, double>& y)
+{
+    x.first = x.first - y.first; x.second = x.second - y.second;
+}
+
+
+std::pair<double, double> operator+(const std::pair<double, double>& x, const std::pair<double, double>& y)
+{
+    return std::make_pair(x.first + y.first, x.second + y.second);
+}
+
+std::pair<double, double> operator-(const std::pair<double, double>& x, const std::pair<double, double>& y)
+{
+    return std::make_pair(x.first - y.first, x.second - y.second);
+}
+
+QPair<double, double> operator+(const QPair<double, double>& x, const QPair<double, double>& y)
+{
+    return QPair<double,double>(x.first + y.first, x.second + y.second);
+}
+
+QPair<double, double> operator-(const QPair<double, double>& x, const QPair<double, double>& y)
+{
+    return QPair<double,double>(x.first - y.first, x.second - y.second);
+}

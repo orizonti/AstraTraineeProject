@@ -1,8 +1,8 @@
 #pragma once
 enum stateblocksenum {
-	BlockReadyToWork, BlockFault, BlockDisable, BlockAtWork, BlockAtInitializaiton
+	BlockReadyToWork =0 , BlockFault = 1, BlockDisable = 2, BlockAtWork = 3, BlockAtInitializaiton = 4
 };
 
 enum AimingStateEnum {
-	SpotNoFoundState, AimingInFullImage, AimingInStrob
+	SpotNoFoundState, AimingInFullImage, AimingInStrob, NotAiming
 };

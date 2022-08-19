@@ -10,7 +10,6 @@ KalmanWindow::KalmanWindow(QWidget *parent)
 
 KalmanWindow::~KalmanWindow()
 {
-
 }
 
 void KalmanWindow::DisplayState(stateblocksenum State)

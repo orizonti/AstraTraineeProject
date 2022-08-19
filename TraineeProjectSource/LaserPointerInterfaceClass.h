@@ -86,6 +86,8 @@ private:
 	stateblocksenum StateBlock;
 public:
 	LaserPointerInterfaceClass();
+    LaserPointerInterfaceClass(QString PortName);
+    LaserPointerInterfaceClass(LaserPointerInterfaceClass& CopyInterface);
 	void TurnLaserBeamOnOff(bool OnOff);
 
 	DataLaserStruct GetState();
@@ -120,6 +122,8 @@ private:
 	void SetPower675();
 	void SetPower975();
 	void SetPower1065();
+
+	void ConnectToPort(QString PortName);
 };
 
 

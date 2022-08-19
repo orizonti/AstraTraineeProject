@@ -14,14 +14,12 @@ LaserBlockWindow::LaserBlockWindow(QWidget *parent)
 
 LaserBlockWindow::~LaserBlockWindow()
 {
-
 }
 
 
 
 void LaserBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
 {
-	qDebug() << "CONNECT LASERS";
 	QVector<QPushButton*> Buttons;
 	Buttons.append(ui.ButTurnToWorkLaser1);
 	Buttons.append(ui.ButTurnToWorkLaser2);

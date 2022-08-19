@@ -10,7 +10,7 @@ MainBlockWindow::MainBlockWindow(QWidget *parent)
 
 MainBlockWindow::~MainBlockWindow()
 {
-
+qDebug() << "DELETE MAIN BLOCK WINDOW";
 }
 
 void MainBlockWindow::ConnectControlSignals(HandleControlInterface* Control)

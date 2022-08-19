@@ -11,6 +11,7 @@ struct KalmanOutputData
 
 };
 
+
 class DataAimingErrorStructure : public DataToDisplayStructure
 {
 public:
@@ -21,4 +22,11 @@ public:
 
 	stateblocksenum PIDState = BlockDisable;
 	stateblocksenum CalmanState = BlockDisable;
+
+	std::tuple<float,float,float> PIDParam;
+    TypeAiming AimingState;
+    std::vector<QPair<double,double>>::iterator BeginError;
+    std::vector<QPair<double,double>>::iterator EndError;
+
+
 };

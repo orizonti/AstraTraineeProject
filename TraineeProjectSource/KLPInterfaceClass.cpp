@@ -30,20 +30,6 @@ mppd_wrap* KLPInterfaceClass::CardModule = 0;
 void KLPInterfaceClass::CardSoftReset()
 {
 	qDebug() << "CARD SOFT RESET";
-//	QThread::msleep(50);
-//
-//	this->DeinitializeInterface();
-//
-//	sCardPublic MoiCards[MAX_NUMBER_CARDS_IN_SYSTEM];
-//	// переменная для количества установленных плат МОИ-КЛП в системе
-//	uint8_t numCards;
-//	uint8_t error = OpenDriver(MoiCards, numCards);
-//	//qDebug() << "NUM CARDS - " << numCards;
-//	//qDebug() << "OPEN DRIVER ERROR - " << error;
-//
-//	this->BusFC = MoiCards[0].Bus;
-//	this->SlotFC = MoiCards[0].Slot;
-//	this->InitialaizeInterface();
 }
 
 
@@ -82,9 +68,18 @@ void operator<<(QDataStream& out, Regim_CommutatorCommand& SendPocket)
 
 KLPInterfaceClass::~KLPInterfaceClass() 
 {
-	//this->DeinitializeInterface();
     this->StateBlock = BlockDisable;
-    qDebug() << "KLP interface work stop";
+}
+void KLPInterfaceClass::DeinitializeInterface()
+{
+    this->StateBlock = BlockDisable;
+    qDebug() << "======================================";
+                                  qDebug() << "DEINITALIZE KLP INTERFACE";
+
+    CardModule->AbortGetResult(); qDebug() << "ABORT GET RESULT"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    CardModule->ResetCard();      qDebug() << "RESET CARD"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    CardModule->CloseDevice();    qDebug() << "CLOSE DEVICE"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    qDebug() << "======================================";
 }
 
 //struct dma_next_write_buffer_params2
@@ -144,9 +139,9 @@ uint8_t KLPInterfaceClass::WriteCommandData(QByteArray CommandData, OutFcChannel
 
 
 	if(current_write_buffer)
-	memcpy(WriteDataBuffer2, CommandData.data(), CommandData.size());
+    memcpy(WriteDataBuffer1, CommandData.data(), CommandData.size());
 	else
-	memcpy(WriteDataBuffer1, CommandData.data(), CommandData.size());
+    memcpy(WriteDataBuffer2, CommandData.data(), CommandData.size());
 
 	uint16_t bufferSize = CommandData.size();
     uint8_t errorCode;
@@ -163,14 +158,12 @@ uint8_t KLPInterfaceClass::WriteCommandData(QByteArray CommandData, OutFcChannel
 
 void KLPInterfaceClass::SetSateCommutator(Regim_CommutatorCommand State)
 {
-	qDebug() << "SET STATE COMMUTATOR";
 	QByteArray Command;
 	QDataStream out(&Command, QIODevice::WriteOnly);
 	out.setByteOrder(QDataStream::LittleEndian);
 	out << State;
+
 	this->WriteCommandData(Command,ChannelNone);
-    //this->WriteCommandData(Command,ChannelFc2);
-    //this->WriteCommandData(Command,ChannelFc3);
 }
 
 
@@ -186,9 +179,7 @@ void KLPInterfaceClass::InitialaizeInterface()
     uint8_t error;
     CardModule = new mppd_wrap();
     CardModule->OpenDevice("/dev/mppd0");
-    qDebug() << "DEVICE OPEN - " << CardModule->IsOpen();
     CardModule->ResetCard();
-    CardModule->AbortGetResult();
 
     error = CardModule->DMAOpenReadBuffers(&ReadDataBuffer1, &ReadDataBuffer2); qDebug() << "OPEN READ BUFFER - "<< hex << error;
 	error = CardModule->DMAOpenWriteBuffers(&WriteDataBuffer1, &WriteDataBuffer2); qDebug() << "OPEN WRITE BUFFER - "<< hex << error;
@@ -198,12 +189,17 @@ void KLPInterfaceClass::InitialaizeInterface()
 
     CreateVirtualChannel();
 	sPortStatus portStatus;
-    error = CardModule->GetPortState(Fc1,portStatus); qDebug() << "Port 1 status - " << portStatus.IsFreqLocked << portStatus.DataTraffic;
-    error = CardModule->GetPortState(Fc2,portStatus); qDebug() << "Port 2 status - " << portStatus.IsFreqLocked << portStatus.DataTraffic;
-    error = CardModule->GetPortState(Fc3,portStatus); qDebug() << "Port 3 status - " << portStatus.IsFreqLocked << portStatus.DataTraffic;
-    error = CardModule->GetPortState(Fc4,portStatus); qDebug() << "Port 4 status - " << portStatus.IsFreqLocked << portStatus.DataTraffic;
-    error = CardModule->GetPortState(Fc5,portStatus); qDebug() << "Port 5 status - " << portStatus.IsFreqLocked << portStatus.DataTraffic;
-    error = CardModule->GetPortState(Fc6,portStatus); qDebug() << "Port 6 status - " << portStatus.IsFreqLocked << portStatus.DataTraffic;
+
+    qDebug() << "=====================================================";
+	qDebug() << "KLP INTERFACE ";
+    qDebug() << "DEVICE OPEN - " << CardModule->IsOpen();
+    error = CardModule->GetPortState(Fc1,portStatus); qDebug() << "Port 1 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
+    error = CardModule->GetPortState(Fc2,portStatus); qDebug() << "Port 2 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
+    error = CardModule->GetPortState(Fc3,portStatus); qDebug() << "Port 3 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
+    error = CardModule->GetPortState(Fc4,portStatus); qDebug() << "Port 4 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
+    error = CardModule->GetPortState(Fc5,portStatus); qDebug() << "Port 5 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
+    error = CardModule->GetPortState(Fc6,portStatus); qDebug() << "Port 6 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
+    qDebug() << "=====================================================";
 
 
 
@@ -255,17 +251,6 @@ void KLPInterfaceClass::InitialaizeInterface()
         //MOI_VIRTUAL_READ_CHANNEL_NOT_INIT = 0x2C,
         //MOI_OUTPUT_CHANNEL_NOT_INIT = 0x2D,
 
-void KLPInterfaceClass::StopTransmition()
-{
-}
-void KLPInterfaceClass::StartTransmition()
-{
-	//DMANextReadBuffer(this->SlotFC, this->BusFC, 1);
-}
-void KLPInterfaceClass::DeinitializeInterface()
-{
-	StopTransmition();
-}
 
 
 
@@ -325,21 +310,14 @@ void KLPInterfaceClass::CreateVirtualChannel()
     channelsParams[6] = StateCamera;
 
 
+    qDebug() << "=====================================================";
     uint8_t error = 0;
-	error = CardModule->SetVirtualChannelsParams(channelsParams,7); qDebug() << "SET VIRTUAL CHANNELS PARAM - " << error;
+	error = CardModule->SetVirtualChannelsParams(channelsParams,7);
+	qDebug() << "SET VIRTUAL CHANNELS PARAM - " << error;
     //error = CardModule->EnableReadVirtChannels(0b111111100000000000000000111111); qDebug() << "ENABLE READ VIRTCHANNELS" << error;
-    error = CardModule->EnableReadVirtChannels(0xFFFFFFFF); qDebug() << "ENABLE READ VIRTCHANNELS" << error;
-}
-void KLPInterfaceClass::CreateOutputChannel()
-{
-	//sOutChannelParamsInfo outParamsInfo;
-	//outParamsInfo.Length = 16777216; outParamsInfo.MemAddressBank2 = 0x20000000; outParamsInfo.MemAddressBank1 = 0x10000000; 
-	//CardModule->LoadOutChannelParams(outParamsInfo);
-
-	//sRegisterFrameHeader1 reg;  reg.destinationId = 0x04; reg.cs_Ctl = 0; reg.r_Ctl = 0; reg.sourceId = 0;
-	//sRegisterFrameHeader2 reg2; reg2.Data = 0; sRegisterFrameHeader3 reg3; reg3.Data = 0;
-
-	//SetOutFcChannelParams(SlotFC, BusFC, reg, reg2, reg3);
+    error = CardModule->EnableReadVirtChannels(0xFFFFFFFF);
+    qDebug() << "ENABLE READ VIRTCHANNELS" << error;
+    qDebug() << "=====================================================";
 }
 
 
@@ -478,7 +456,7 @@ void KLPInterfaceClass::ResetCommutator()
 
 void KLPInterfaceClass::append_new_interruption(InterruptData interrupt)
 {
-   interruptions_lock.lock(); 
+   interruptions_lock.lock();
    available_interruptions.push(interrupt);
    interruptions_lock.unlock();
 }
@@ -641,6 +619,6 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
 
 
     }
-    qDebug() << "PERF INTERRUPT THREAD END";
+    qDebug() << "PERF INTERRUPT THREAD END DEINITIALIZE KLP INTERFACE";
     return;
 }

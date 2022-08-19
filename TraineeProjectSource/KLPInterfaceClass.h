@@ -161,10 +161,7 @@ void InitialaizeInterface();
 
 // TO DELETE
 void DeinitializeInterface();
-void StopTransmition();
-void StartTransmition();
 void CardSoftReset();
-void CreateOutputChannel();
 //======================
 
 void CreateVirtualChannel();

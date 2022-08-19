@@ -24,7 +24,6 @@ ErrorPortControl::ErrorPortControl(QWidget *parent)
 
 ErrorPortControl::~ErrorPortControl()
 {
-	qDebug() << "DELETE ERROR PORT CONTROL WINDOW";
 }
 
 

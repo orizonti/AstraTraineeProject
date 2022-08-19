@@ -201,19 +201,17 @@ QPair<double,double> EngineControlClass::SetToStartPos()
 
 void EngineControlClass::SlotMoveOnStep(QPair<double, double> StepVector)
 {
+
 	std::chrono::time_point<std::chrono::high_resolution_clock> TimePoint = std::chrono::high_resolution_clock::now();
 	StepPeriod = std::chrono::duration<double>((TimePoint - TimeFromLastCommand)).count();
-	//qDebug() << "CONTROL PERIOD  - " << StepPeriod << "secs";
+
 	TimeFromLastCommand = TimePoint;
 	QPair<double, double> Step;
 	StepVector >> RotationAxis >> *EngineInterface;
-	//StepVector >> *EngineInterface;
-	qDebug() << "Move engine number - " << this->EngineNumber;
 }
-
-void EngineControlClass::ResetToLastSavePosition()
+void EngineControlClass::SavePosition()
 {
-   EngineInterface->SetCoordAbs(LastSavePosition);
+    if(!isEngineFault()) LastSavePosition = EngineInterface->ControlCoord;
 }
 
 void EngineControlClass::SlotMoveWithVelocity(QPair<double, double> VelVector)
@@ -223,18 +221,33 @@ void EngineControlClass::SlotMoveWithVelocity(QPair<double, double> VelVector)
 	StepPeriod = std::chrono::duration<double>((TimePoint - TimeFromLastCommand)).count();
 	TimeFromLastCommand = TimePoint;
 
-    auto SavePeriod = std::chrono::duration<double>((TimePoint - TimeSavePosition)).count();
 
-    if( SavePeriod > 1)
-        LastSavePosition = EngineInterface->ControlCoord;
 
-	//if (StepPeriod > 0.2)
-	//	return;
-
-	//qDebug() << "MOVE VELOCITY X: "<< VelVector.first <<"Y: "<<VelVector.second << "PERIOD: " << StepPeriod << "mcs" << " Engine - " << EngineNumber;
 	QPair<double, double> StepVector(VelVector.first*StepPeriod, VelVector.second*StepPeriod);
 
-	StepVector >> RotationAxis >> *EngineInterface;
+	if(!isEngineFault()) { StepVector >> RotationAxis >> *EngineInterface; };
+}
+
+bool EngineControlClass::isEngineFault()
+{
+    QPair<double,double> AbsCoord;
+
+    AbsCoord.first = abs(this->EngineInterface->ControlCoord.first*1000000/4.848);
+    AbsCoord.second = abs(this->EngineInterface->ControlCoord.second*1000000/4.848);
+
+    if(AbsCoord.first > 450 || AbsCoord.second > 450)
+    {
+        qDebug() << "ENGINE FAULT - " << AbsCoord << "CHANNEL - " << this->EngineNumber;
+        return true;
+    }
+
+  return false;
+}
+
+void EngineControlClass::ResetToLastSavePosition()
+{
+    qDebug() << "ENGINE - " << this->EngineNumber << " RESTORE FROM FAULT";
+    EngineInterface->SetCoordAbs(LastSavePosition);
 }
 
 void EngineControlClass::SlotMoveWithAcceleration(QPair<double, double> AccelVector)
@@ -244,9 +257,6 @@ void EngineControlClass::SlotMoveWithAcceleration(QPair<double, double> AccelVec
 	StepPeriod = std::chrono::duration<double>((TimePoint - TimeFromLastCommand)).count();
 	TimeFromLastCommand = TimePoint;
 
-
-	if (StepPeriod > 0.004)
-		return;
 
 	VelVector.first += AccelVector.first*StepPeriod;
 	VelVector.second += AccelVector.second*StepPeriod;

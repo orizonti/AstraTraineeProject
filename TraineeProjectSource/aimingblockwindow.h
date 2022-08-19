@@ -18,7 +18,7 @@ public:
 	~AimingBlockWindow();
 
 	int NumberChannel = 1;
-	void DisplayState(stateblocksenum State);
+    void DisplayState(stateblocksenum State, TypeAiming AimingType, std::tuple<float,float,float> PID);
 	void ConnectControlSignals(HandleControlInterface* Control);
 private:
 	Ui::AimingBlockWindow ui;

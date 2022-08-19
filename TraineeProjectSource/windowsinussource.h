@@ -15,7 +15,7 @@ public:
 	WindowSinusSource(QWidget *parent = 0);
 	~WindowSinusSource();
 
-	void MoveToScene(QGraphicsScene* Scene);
+	void MoveToScene(QGraphicsScene* Scene,int POSX, int POSY);
 	void MoveToPos(int X_POS, int Y_POS);
 	void ConnectToWidgetOnScene(GraphicWidgetNode* Node);
 	int X_POS = 1970;

@@ -11,6 +11,8 @@
 #include <functional>
 #include <opencv2/opencv.hpp>
 #include <QQueue>
+#include "PassTwoCoordClass.h"
+#include <QDebug>
 
 
 struct ROI_Coord
@@ -83,8 +85,10 @@ public:
 
 	int Size = 10;
 	QPair<double, double> AvarageCoord;
-	QPair<double, double> SKOCoord;
 	QPair<double, double> DispersionCoord;
+
+	double DispersionCoordDistance = 0;
+	double AmplitudeCoordDeviation = 0;
 	int Counter = 0;
 
 	void CalcDispersion();
@@ -118,7 +122,6 @@ public:
 
 	friend void operator>>(QPair<double, double> NewValue, Statistic& StatObj)
 	{
-
 		if (StatObj.IsCoordLoaded())
 		{
 		QPair<double,double> FirstValue =  StatObj.CoordMassive.dequeue();
@@ -152,7 +155,41 @@ public:
 
 	void SetSize(int SizeStat){ this->Size = SizeStat;};
 
+
 };
+
+class StatisticGroup
+{
+public:
+    StatisticGroup(int Count, int WindowSize);
+    StatisticGroup(const StatisticGroup& Group);
+    void operator=(const StatisticGroup& Group);
+    std::map<int,Statistic> Statistics;
+
+    bool IsStatisticsLoaded() { return Statistics[Statistics.size()-1].IsCoordLoaded();};
+    void PerformAvailableData();
+
+    friend void operator>>(double NewValue, StatisticGroup& StatObj);
+    friend void operator>>(QPair<double, double> NewValue, StatisticGroup& StatObj);
+
+
+    int BestStatNumberCoord = 0;
+    int BestStatNumberValue = 0;
+    std::map<int,Statistic>::iterator CurrentStatistic;
+    std::map<int,Statistic>::iterator EndStatistic;
+    std::map<int,Statistic>::iterator BeginStatistic;
+
+    std::function<int (std::map<int,Statistic>::iterator,std::map<int,Statistic>::iterator)> FindBestStatisticValue;
+    std::function<int (std::map<int,Statistic>::iterator,std::map<int,Statistic>::iterator)> FindBestStatisticCoord;
+private:
+    int GetBestStatisticsCoord();
+    int GetBestStatisticsValue();
+
+
+};
+
+
+
 
 class OptimizationThreshold
 {
@@ -206,6 +243,7 @@ public:
 	void SwitchToAimingInStrob();
 	void SwitchToAimingInFullImage();
 	void SwitchToFindSpotInFullImage();
+	void StopProcessing(bool OnOff);
 
 	void Binarization(cv::Mat& Image, int Threshold);
 
@@ -228,6 +266,10 @@ public:
 
 	//==================================================
 	Statistic StatProcessor;
+    Statistic StatProcessorLong;
+	StatisticGroup StatProcessorTable = StatisticGroup(20,100);
+
+
 	double AvarageBackground = 150;
 	int Threshold;
 	double FrameFilterProcentage = 0.9;
@@ -292,4 +334,6 @@ public:
 
     
 };
+
+
 

@@ -4,21 +4,25 @@
 LaserControlClass::LaserControlClass()
 {
     	
-	LPower = new LaserPowerInterfaceClass;
-	LPilot1 = new LaserPilotInterfaceClass("192.168.101.1", 5100);
-	LPilot2 = new LaserPilotInterfaceClass("192.168.102.1", 5100);
-	LPilot3 = new LaserPilotInterfaceClass("192.168.103.1", 5100);
+	//LPilot1 = new LaserPilotInterfaceClass("192.168.101.1", 5100);
+	//LPilot2 = new LaserPilotInterfaceClass("192.168.102.1", 5100);
+	//LPilot3 = new LaserPilotInterfaceClass("192.168.103.1", 5100);
+
+    LPilot1 = new LaserPointerInterfaceClass("ttyUSB0");
+    LPilot2 = new LaserPointerInterfaceClass(*dynamic_cast<LaserPointerInterfaceClass*>(LPilot1));
+    LPilot3 = new LaserPointerInterfaceClass(*dynamic_cast<LaserPointerInterfaceClass*>(LPilot1));
+
+    LaserPointer = new LaserPointerInterfaceClass("ttyXRUSB0");
 
 	LPilot1->NumberLaser = 1;
 	LPilot2->NumberLaser = 2;
 	LPilot3->NumberLaser = 3;
-	 LaserPointer = new LaserPointerInterfaceClass;
-	 LaserPointer->NumberLaser = 4;
+	LaserPointer->NumberLaser = 4;
 
+     Lasers.append(LaserPointer);
 	 Lasers.append(LPilot2);
 	 Lasers.append(LPilot1);
 	 Lasers.append(LPilot3);
-	 Lasers.append(LaserPointer);
 
 	 TimerToIterateLasers.setInterval(12000);
 	 QObject::connect(&TimerToIterateLasers, SIGNAL(timeout()), this, SLOT(IterateWorkingLaser()));
@@ -29,7 +33,9 @@ LaserControlClass::LaserControlClass()
 
 void LaserControlClass::SlotSwitchFireBeam(bool OnOff)
 {
-		LPower->TurnLaserBeamOnOff(OnOff);
+}
+LaserControlClass::~LaserControlClass()
+{
 }
 
 void LaserControlClass::SlotSwitchPointerBeam(bool OnOff)
@@ -42,15 +48,12 @@ void LaserControlClass::SlotSwitchPilotBeam(int Channel, bool OnOff)
 		switch (Channel) 
 		{
 		case 1:
-				//LPilot1->TurnLaserBeamOnOff(OnOff);
 			emit SignalTurnLaser1(OnOff);
 			break;
 		case 2:
-				//LPilot2->TurnLaserBeamOnOff(OnOff);
 			emit SignalTurnLaser2(OnOff);
 			break;
 		case 3:
-				//LPilot3->TurnLaserBeamOnOff(OnOff);
 			emit SignalTurnLaser3(OnOff);
 			break;
 		}
@@ -88,8 +91,6 @@ void LaserControlClass::SlotSwitchAllLasers(bool OnOff)
 	this->thread()->msleep(50);
 	this->LPilot3->TurnLaserBeamOnOff(OnOff);
 
-	this->thread()->msleep(50);
-	this->LPower->TurnLaserBeamOnOff(OnOff);
 	this->thread()->msleep(50);
 }
 

@@ -5,7 +5,13 @@
 #include "mainwindowqclass.h"
 #include "QProcess"
 
-#pragma comment(lib,"DriverMoiKlp.lib")
+QString print_thread_id()
+{
+  auto id = std::this_thread::get_id();
+  stringstream ss;
+  ss << id;
+  return QString(ss.str().c_str());
+}
 
 int main(int argc, char *argv[])
 {
@@ -15,18 +21,16 @@ int main(int argc, char *argv[])
 		int block;
 		int block2;
 	}
+	qDebug() << "current stream - " << print_thread_id();
 
 	GraphicsWindow* GraphicsDisplay = new GraphicsWindow;
-	MainWindowQClass* WindowDisplay = new MainWindowQClass(GraphicsDisplay);	
-	WindowDisplay->setAttribute(Qt::WA_DeleteOnClose);
+	MainWindowQClass* WindowDisplay = new MainWindowQClass(GraphicsDisplay);
 	GraphicsDisplay->setAttribute(Qt::WA_DeleteOnClose);
-
 
 	MainControllerQClass* MainController = new MainControllerQClass(WindowDisplay,GraphicsDisplay);
 
-	QObject::connect(WindowDisplay, &QMainWindow::destroyed, MainController, &QObject::deleteLater);
-	QObject::connect(MainController, &QObject::destroyed, GraphicsDisplay, &QWidget::close);
-	 
+	QObject::connect(WindowDisplay, &MainWindowQClass::SignalMainWindowClosed, MainController, &MainControllerQClass::SlotFinishWork);
+
 
 
 	WindowDisplay->show();

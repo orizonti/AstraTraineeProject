@@ -31,6 +31,11 @@ void ImageProcessingDisplayWindow::DisplayROIPos(QVector<QPair<double, double> >
 	pen.setColor(Qt::red);
 	pen.setWidth(2);
 	QPainter paint;
+	auto RelativeCoord = Coords;
+	for(int n = 0; n < 3; n++)
+    {
+	   RelativeCoord[n] = RelativeCoord[n] - RelativeCoord[3];
+    }
 
 	int n = 1;
 	paint.begin(&LabelImage);
@@ -50,7 +55,7 @@ void ImageProcessingDisplayWindow::DisplayROIPos(QVector<QPair<double, double> >
 	QVector<QColor>::Iterator ItColor = Colors.begin();
 
 	QString CoordText;
-	for (QPair<double, double> Coord : Coords)
+	for (QPair<double, double> Coord : RelativeCoord)
 	{
 	paint.drawEllipse(Coord.first / 4, Coord.second / 4, 5, 5);
 	CoordText = QString("x - %1 y - %2").arg(Coord.first,0,'g',4).arg(Coord.second,0,'g',4);
@@ -74,7 +79,6 @@ void ImageProcessingDisplayWindow::DisplayROIPos(QVector<QPair<double, double> >
 void ImageProcessingDisplayWindow::ConnectControlSignals(HandleControlInterface* Control)
 {
 
-	qDebug() << "CONNECT IMAGE";
 	for (int n = 1; n <= 4; n++)
 	{
 		LabelImage* ClickLabel = Labels.at(n - 1);

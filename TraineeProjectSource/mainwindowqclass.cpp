@@ -16,6 +16,7 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	//QObject::connect(ui.laserButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
 	//
 
+
 	LabelImage = new QLabel("Image");
 	GraphicsDisplay = GraphicsWidget;
 	 MainBlockDisplay              = new MainBlockWindow;
@@ -155,19 +156,19 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 MainWindowQClass::~MainWindowQClass()
 {
 
-	QObject::disconnect(this, SIGNAL(SignalNewImage(DataImageProcStructure)),       this, SLOT(DisplayImage(DataImageProcStructure)));
-	QObject::disconnect(this, SIGNAL(SignalNewAirData(DataTemperatureStructure)),   this, SLOT(DisplayAirData(DataTemperatureStructure)));
-	QObject::disconnect(this, SIGNAL(SignalNewCameraData(DataCamerasStructure)),    this, SLOT(DisplayCameraData(DataCamerasStructure)));
-	QObject::disconnect(this, SIGNAL(SignalNewChillData(DataTemperatureStructure)), this, SLOT(DisplayChillData(DataTemperatureStructure)));
+    qDebug() << "MAIN WINDOW DELETED";
+	//QObject::disconnect(this, SIGNAL(SignalNewImage(DataImageProcStructure)),       this, SLOT(DisplayImage(DataImageProcStructure)));
+	//QObject::disconnect(this, SIGNAL(SignalNewAirData(DataTemperatureStructure)),   this, SLOT(DisplayAirData(DataTemperatureStructure)));
+	//QObject::disconnect(this, SIGNAL(SignalNewCameraData(DataCamerasStructure)),    this, SLOT(DisplayCameraData(DataCamerasStructure)));
+	//QObject::disconnect(this, SIGNAL(SignalNewChillData(DataTemperatureStructure)), this, SLOT(DisplayChillData(DataTemperatureStructure)));
 
-	QObject::disconnect(this, SIGNAL(SignalNewEngineData(DataEngineStructure)), this, SLOT(DisplayEngineData(DataEngineStructure)));
+	//QObject::disconnect(this, SIGNAL(SignalNewEngineData(DataEngineStructure)), this, SLOT(DisplayEngineData(DataEngineStructure)));
 
-	QObject::disconnect(this, SIGNAL(SignalNewAimingData(DataAimingErrorStructure)), this, SLOT(DisplayAimingData(DataAimingErrorStructure)));
-	QObject::disconnect(this, SIGNAL(SignalNewAimingData(DataAimingErrorStructure)), GraphicsDisplay, SLOT(DisplayAimingData(DataAimingErrorStructure)));
+	//QObject::disconnect(this, SIGNAL(SignalNewAimingData(DataAimingErrorStructure)), this, SLOT(DisplayAimingData(DataAimingErrorStructure)));
+	//QObject::disconnect(this, SIGNAL(SignalNewAimingData(DataAimingErrorStructure)), GraphicsDisplay, SLOT(DisplayAimingData(DataAimingErrorStructure)));
 
 
-	QObject::disconnect(this, SIGNAL(SignalNewCoordsData(DataCoordStructure)),this,SLOT(DisplayCoordData(DataCoordStructure)));
-	qDebug() << "DELETE MAIN WINDOW";
+	//QObject::disconnect(this, SIGNAL(SignalNewCoordsData(DataCoordStructure)),this,SLOT(DisplayCoordData(DataCoordStructure)));
 }
 
 
@@ -254,13 +255,13 @@ void MainWindowQClass::DisplayLaserStateDisplay(DataLaserStruct Data)
 void MainWindowQClass::DisplayAimingData(DataAimingErrorStructure DataStructure)
 {
 	if (DataStructure.NumberBlock == 1)
-	this->AimingBlockDisplay1->DisplayState(DataStructure.State);
+	this->AimingBlockDisplay1->DisplayState(DataStructure.State,DataStructure.AimingState,DataStructure.PIDParam);
 
 	if (DataStructure.NumberBlock == 2)
-	this->AimingBlockDisplay2->DisplayState(DataStructure.State);
+	this->AimingBlockDisplay2->DisplayState(DataStructure.State,DataStructure.AimingState,DataStructure.PIDParam);
 
 	if (DataStructure.NumberBlock == 3)
-	this->AimingBlockDisplay3->DisplayState(DataStructure.State);
+	this->AimingBlockDisplay3->DisplayState(DataStructure.State,DataStructure.AimingState,DataStructure.PIDParam);
 
 	this->PIDControl->DisplayState(DataStructure.PIDState);
 	//this->KalmanControl->DisplayState(DataStructure.CalmanState);
@@ -391,4 +392,13 @@ void MainWindowQClass::ConvertImage(QImage& GrayImage, QImage& ColorImage)
 			 *B = *gray_pixel/256;
 		}
 	}
+}
+void MainWindowQClass::closeEvent(QCloseEvent *event)
+{
+qDebug() << "MAIN WINDOW CLOSED";
+emit SignalMainWindowClosed();
+QThread::msleep(2000);
+Scene->clear();
+QMainWindow::closeEvent(event);
+Scene->deleteLater();
 }

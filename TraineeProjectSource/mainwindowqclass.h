@@ -76,6 +76,8 @@ public:
 	CameraControlWindow* CameraControlParamDisplay;
 
 	QGraphicsScene* Scene;
+protected:
+    void closeEvent(QCloseEvent *event) override;
 private:
 	//���������� (��������� ������ QImage) ��� �������� � ������ ����������� 
 	QImage ImageToDisplay;
@@ -120,6 +122,7 @@ signals:
 	void SignalNewCoordsData(DataCoordStructure Data);
 	void SignalLaserStateDisplay(DataLaserStruct Data);
 	void SignalDispalyFullImage(QImage Image);
+	void SignalMainWindowClosed();
 };
 
 #endif // MAINWINDOWQCLASS_H

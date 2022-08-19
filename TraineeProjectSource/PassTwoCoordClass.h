@@ -1,6 +1,14 @@
 #pragma once
 #include <QPair>
 
+std::pair<double, double> operator+(const std::pair<double, double>& x, const std::pair<double, double>& y);
+std::pair<double, double> operator-(const std::pair<double, double>& x, const std::pair<double, double>& y);
+QPair<double, double> operator+(const QPair<double, double>& x, const QPair<double, double>& y);
+QPair<double, double> operator-(const QPair<double, double>& x, const QPair<double, double>& y);
+QPair<double, double> operator*(const QPair<double, double>& x, double Scale);
+void operator+=(QPair<double, double>& x, const QPair<double, double>& y);
+void operator-=(QPair<double, double>& x, const QPair<double, double>& y);
+
 
 class PassTwoCoordClass
 {

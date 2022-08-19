@@ -6,10 +6,11 @@
 ErrorRecieverClass::ErrorRecieverClass()
 {
 
-    RemoteToBaseTransform.LoadRotationFromFile("E:/TrainerData/RotateMatrixOutput1.txt");
+    RemoteToBaseTransform.LoadRotationFromFile("/home/broms/TrainerData/RotateMatrixOutput1.txt");
     RemoteToBaseTransform.Inverse();
 
-    TCPServer.StartLocalServer();
+    //TCPServer.SetPort(2323);
+    //TCPServer.StartLocalServer();
     ErrorPortWindowControl = new ErrorPortControl;
     ErrorPortWindowControl->SetHandleControl(this);
 }
@@ -50,9 +51,13 @@ void ErrorRecieverClass::SetCoord(QPair<double, double> Coord)
 	qDebug() << "			ERROR RECIEVER SETCOORD MUST BE IMPLEMENTED";
 }
 
-TCPServerEngine::TCPServerEngine(int LocalPort ,QObject *parent) : QObject(parent)
+void TCPServerEngine::SetPort(int port)
 {
-    Port = LocalPort;
+   Port = port;
+}
+
+TCPServerEngine::TCPServerEngine(QObject *parent) : QObject(parent)
+{
     DataValues = {0,0,0,0,0,0};
 }
 
@@ -68,18 +73,20 @@ TCPServerEngine::TCPServerEngine(TCPServerEngine& server)
 void TCPServerEngine::StartLocalServer()
 {
        Server = new QTcpServer(this);
+       connect(Server, &QTcpServer::newConnection,
+               this,   &TCPServerEngine::SlotNewConnection
+       );
 
-      qDebug() << "Start local server at port - " << Port;
+    qDebug() << "Start local server at port - " << Port;
       if (!Server->listen(QHostAddress::Any,Port))
       {
           qDebug() << "Unable to start server";
           Server->close();
           return;
       }
-      qDebug() << "Server connect to " << Server->serverAddress().toString();
-      connect(Server, &QTcpServer::newConnection,
-              this,   &TCPServerEngine::SlotNewConnection
-             );
+      qDebug() << "is Server listen - "  << Server->isListening();
+
+     //Server->waitForNewConnection(30000);
 
 }
 void TCPServerEngine::sendToClient(QTcpSocket* Socket, const QString &str)

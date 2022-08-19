@@ -40,7 +40,6 @@ class HandleControlInterface: public QObject
 	virtual void SetCameraParam(Control_Camera_Command Command) = 0;
 	virtual void SetCameraROI(ROI_Channels_Command ROI) = 0;
 	virtual void SlotSetAimingCoord(int x, int y, int NumberChannel) = 0;
-	virtual void ChangeAimingType(TypeAiming Aiming,int Channel) = 0;
 	virtual void ChangeCalmanParam(double Qe,double Qn) = 0;
 	virtual void SaveEnginePosToFile() = 0;
 	virtual void SetAdjustModeWithCrossHair(bool OnOff) = 0;
@@ -50,6 +49,9 @@ class HandleControlInterface: public QObject
 	virtual void StartSystemRotationCalibration() = 0;
 	virtual void LoadPreference() = 0;
     virtual void SetEngineCommandDelay(int DelayMks, int NumberChannel) = 0;
+
+    virtual void ChangeAimingType(TypeAiming Aiming,int Channel) = 0;
+    virtual void TurnOnOffKalmanFilter(bool OnOff, int Channel) = 0;
 
 };
 

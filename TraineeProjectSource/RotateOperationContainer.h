@@ -8,7 +8,6 @@
 #define slots Q_SLOTS
 
 using namespace std;
-using namespace torch::indexing;
 enum RotateAxis {x_axis = 0, y_axis = 1, z_axis = 2};
 class RotateOperationContainer;
 

@@ -72,7 +72,9 @@ public:
 	void SetCoord(QPair<double, double> Coord);
 	QPair<double,double> GetCoord();
 
+    void SavePosition();
     void ResetToLastSavePosition();
+    bool isEngineFault();
 
 
 	EngineInterfaceClass* EngineInterface;
@@ -92,13 +94,12 @@ private:
 
 	double StepPeriod = 0;
 	QPair<double, double> StepChannel;
+
 	QPair<double, double> VelVector;
 	QPair<double, double> LastSavePosition;
 
 	std::chrono::time_point<std::chrono::high_resolution_clock> TimeFromLastCommand;
     std::chrono::time_point<std::chrono::high_resolution_clock> TimeSavePosition;
-
-
 	public slots:
 	void SlotMoveOnStep(QPair<double, double> StepVector);
 

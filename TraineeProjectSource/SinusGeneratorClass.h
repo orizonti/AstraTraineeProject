@@ -18,24 +18,24 @@ public:
 
 
 	WindowSinusSource* WindowControl = 0;
-	
+	bool RELATIVE_OUTPUT = true;
+
 	double CurrentStepSecondsX = 0;
 	double CurrentStepSecondsY = 0;
+	QPair<double, double> CurrentPos;
+	QPair<double, double> LastPos;
+    QPair<double, double> StepPos;
+    QPair<double, double> Noize;
+	double StepSecondsX = 1; // 0.5 Hz with 1ms sample period
+	double StepSecondsY = 1; // 0.5 Hz with 1ms sample period
+	double AmplitudeToAngleSeconds = 4.84 / 1000000;
 
-	QPair<double, double> StepInRadian;
-	QPair<double, double> CurrentPosRadian;
-	QPair<double, double> CurrentPosSeconds;
-	QPair<double, double> LastPosRadian;
-	QPair<double, double> LastPosSeconds;
+	bool ENABLE_CHANNEL1 = true;
+    bool ENABLE_CHANNEL2 = true;
+    bool ENABLE_NOIZE = false;
 
-	double StepSecondsX = 1300; // 0.5 Hz with 1ms sample period
-	double StepSecondsY = 1300; // 0.5 Hz with 1ms sample period
-
-	double BiasDegreeX = 0;
-	double BiasDegreeY = 0;
-
-	double AmplitudeRadianX = 0.0005;
-	double AmplitudeRadianY = 0.0005;
+	double Amplitude = 30;
+    double AmplitudeNoize = 3;
 
 	QTimer TimerGenerateSinus;
 
@@ -43,9 +43,16 @@ public:
 	QPair<double,double> GetCoord();
 
 	public slots:
-	void SlotSetFrequency(double FreqX,double FreqY);
-	void SlotSetAmplitudeSeconds(double AmplX, double AmplY);
+    void SetRelativeOutput(bool flag) {RELATIVE_OUTPUT = flag;}
+	void SlotSetFrequency(double Freq);
+	void SlotSetAmplitude(double Ampl);
+    void SlotSetAmplitudeNoize(double Ampl);
+    void SlotEnableChannel(bool Enable , int Channel);
+
 	void SlotCalculateNewValue();
 	void SlotStartGenerate(bool StartStop);
+
+	signals:
+    void SignalNewDataAvailable();
 };
 

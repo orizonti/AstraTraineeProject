@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
-    <height>339</height>
+    <width>864</width>
+    <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,21 +16,48 @@
   <property name="styleSheet">
    <string notr="true">QWidget
 {
-border: 2px solid line black;
+border: 0px solid line black;
 	background-color: rgb(148, 134, 115);
 	font: 14pt &quot;Sans Serif&quot;;
+}
+
+QDoubleSpinBox
+{
+	background-color: rgb(202, 200, 163);
+	font: 12pt &quot;Sans Serif&quot;;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_7">
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <property name="spacing">
+    <number>2</number>
+   </property>
    <item row="0" column="0">
-    <widget class="QStackedWidget" name="checkShowErrorSKO3">
+    <widget class="QStackedWidget" name="stackedWidget">
      <property name="styleSheet">
       <string notr="true">QStackedWidget
 {
-border: 2px solid line black;
+border: 0px solid line black;
 
 	
 
+}
+
+QDoubleSpinBox
+{
+	background-color: rgb(202, 200, 163);
+	font: 75 18pt &quot;PT Serif&quot;;
 }</string>
      </property>
      <property name="currentIndex">
@@ -49,6 +76,9 @@ border: 2px solid line black;
            <bold>false</bold>
           </font>
          </property>
+         <property name="toolTipDuration">
+          <number>0</number>
+         </property>
          <property name="styleSheet">
           <string notr="true">QGroupBox
 {
@@ -65,211 +95,21 @@ border: 2px solid line black;
           <set>Qt::AlignCenter</set>
          </property>
          <layout class="QGridLayout" name="gridLayout">
+          <property name="leftMargin">
+           <number>2</number>
+          </property>
           <property name="topMargin">
            <number>23</number>
           </property>
           <property name="rightMargin">
-           <number>4</number>
+           <number>2</number>
           </property>
-          <item row="0" column="0">
-           <widget class="QCustomPlot" name="graphWidget1" native="true">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-              <horstretch>44</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QWidget
-{
-	border: 1px solid rgb(110, 5, 136);
-	background-color: rgb(199, 199, 199);
-}</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QGroupBox" name="groupBox_2">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-border: 0px solid line black;
-
-}</string>
-            </property>
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_2">
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="checkShowError1">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgba(170, 85, 255, 200);
-}</string>
-               </property>
-               <property name="text">
-                <string>Ошибка наведения</string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-               <property name="tristate">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QCheckBox" name="checkShowKalman1">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	
-	background-color: rgba(0, 170, 0, 200);
-}</string>
-               </property>
-               <property name="text">
-                <string>Выход Калмана</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="3">
-              <widget class="QCheckBox" name="checkShowPID1">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgba(255, 170, 0, 200);
-}</string>
-               </property>
-               <property name="text">
-                <string>Выход ПИД</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="4">
-              <widget class="QPushButton" name="ButStopGraph">
-               <property name="styleSheet">
-                <string notr="true">QPushButton
-{
-background-color: rgb(0, 170, 127);
-
-	selection-background-color: rgb(255, 85, 0);
-}</string>
-               </property>
-               <property name="text">
-                <string>Стоп</string>
-               </property>
-               <property name="checkable">
-                <bool>true</bool>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QCheckBox" name="checkShowErrorSKO1">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgba(170, 85, 255, 200);
-}</string>
-               </property>
-               <property name="text">
-                <string>СКО</string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="checked">
-                <bool>false</bool>
-               </property>
-               <property name="tristate">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QGroupBox" name="groupBox_7">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-border: 0px solid line black;
-
-	
-	background-color: rgb(137, 141, 132);
-}</string>
-            </property>
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <property name="leftMargin">
-              <number>2</number>
-             </property>
-             <property name="rightMargin">
-              <number>2</number>
-             </property>
-            </layout>
-           </widget>
-          </item>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <property name="spacing">
+           <number>2</number>
+          </property>
           <item row="0" column="1">
            <widget class="QGroupBox" name="groupBox_10">
             <property name="sizePolicy">
@@ -312,32 +152,53 @@ border: 1px solid line black;
              <property name="spacing">
               <number>2</number>
              </property>
-             <item row="0" column="0">
-              <widget class="QLineEdit" name="lineEditMaxValUp1">
+             <item row="4" column="0">
+              <widget class="QDoubleSpinBox" name="spinEditMinValDown1">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <family>PT Serif</family>
+                 <pointsize>18</pointsize>
+                 <weight>9</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::PlusMinus</enum>
+               </property>
+               <property name="minimum">
+                <double>-40.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.200000000000000</double>
+               </property>
+               <property name="value">
+                <double>-1.200000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkXShow1">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>40</width>
+                 <width>16777215</width>
                  <height>16777215</height>
                 </size>
-               </property>
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="checkXShow1">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
                </property>
                <property name="font">
                 <font>
@@ -365,13 +226,19 @@ border: 2px solid line black;
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+             <item row="3" column="0">
               <widget class="QCheckBox" name="checkYShow1">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
                </property>
                <property name="font">
                 <font>
@@ -398,22 +265,182 @@ border: 2px solid line black;
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLineEdit" name="lineEditMaxValDown1">
+             <item row="5" column="0">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="0">
+              <widget class="QDoubleSpinBox" name="spinEditMaxValUp1">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="maximumSize">
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>18</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QDoubleSpinBox
+{
+	background-color: rgb(202, 200, 163);
+	font: 18pt &quot;Sans Serif&quot;;
+}</string>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::PlusMinus</enum>
+               </property>
+               <property name="maximum">
+                <double>40.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.200000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.200000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
                 <size>
-                 <width>40</width>
-                 <height>16777215</height>
+                 <width>20</width>
+                 <height>40</height>
                 </size>
                </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QCustomPlot" name="graphWidget1" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+              <horstretch>44</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QWidget
+{
+	border: 1px solid rgb(110, 5, 136);
+	background-color: rgb(199, 199, 199);
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="styleSheet">
+             <string notr="true">QGroupBox
+{
+border: 0px solid line black;
+
+}</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <property name="leftMargin">
+              <number>1</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>1</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <item row="1" column="1">
+              <widget class="QCheckBox" name="checkShowKalman1">
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgba(0, 170, 0, 200);
+}</string>
+               </property>
                <property name="text">
-                <string>-1</string>
+                <string>Фильтрованная ошибка</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="checkShowError1">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	background-color: rgba(170, 85, 255, 200);
+}</string>
+               </property>
+               <property name="text">
+                <string>Ошибка наведения</string>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <property name="tristate">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -454,30 +481,34 @@ border: 2px solid line black;
           <set>Qt::AlignCenter</set>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <property name="leftMargin">
+           <number>2</number>
+          </property>
           <property name="topMargin">
            <number>23</number>
           </property>
-          <item row="0" column="1">
-           <widget class="QGroupBox" name="groupBox_11">
+          <property name="rightMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="groupBox_4">
             <property name="styleSheet">
              <string notr="true">QGroupBox
 {
 border: 0px solid line black;
 
-	
-	background-color: rgb(137, 141, 132);
-}
-
-QLineEdit
-{
-border: 1px solid line black;
-	background-color: rgb(227, 227, 170);
 }</string>
             </property>
             <property name="title">
              <string/>
             </property>
-            <layout class="QGridLayout" name="gridLayout_10">
+            <layout class="QGridLayout" name="gridLayout_4">
              <property name="leftMargin">
               <number>2</number>
              </property>
@@ -493,27 +524,8 @@ border: 1px solid line black;
              <property name="spacing">
               <number>2</number>
              </property>
-             <item row="0" column="0">
-              <widget class="QLineEdit" name="lineEditMaxValUp2">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="checkXShow2">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>16777215</height>
-                </size>
-               </property>
+             <item row="1" column="1">
+              <widget class="QCheckBox" name="checkShowKalman2">
                <property name="font">
                 <font>
                  <family>Sans Serif</family>
@@ -529,96 +541,14 @@ border: 1px solid line black;
 border: 2px solid line black;
 	
 	
-	background-color: rgb(234, 0, 0);
+	background-color: rgba(0, 170, 0, 200);
 }</string>
                </property>
                <property name="text">
-                <string>X</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
+                <string>Фильтрованная ошибка</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QCheckBox" name="checkYShow2">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgb(0, 170, 255);
-}</string>
-               </property>
-               <property name="text">
-                <string>Y</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLineEdit" name="lineEditMaxValDown2">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>-1</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QCustomPlot" name="graphWidget2" native="true">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-              <horstretch>44</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QWidget
-{
-	border: 1px solid rgb(110, 5, 136);
-	background-color: rgb(199, 199, 199);
-}</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QGroupBox" name="groupBox_4">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-border: 0px solid line black;
-
-}</string>
-            </property>
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_4">
              <item row="1" column="0">
               <widget class="QCheckBox" name="checkShowError2">
                <property name="font">
@@ -658,90 +588,213 @@ border: 2px solid line black;
                </property>
               </widget>
              </item>
-             <item row="1" column="2">
-              <widget class="QCheckBox" name="checkShowKalman2">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QCustomPlot" name="graphWidget2" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+              <horstretch>44</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QWidget
 {
-border: 2px solid line black;
-	
-	
-	background-color: rgba(0, 170, 0, 200);
+	border: 1px solid rgb(110, 5, 136);
+	background-color: rgb(199, 199, 199);
 }</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QGroupBox" name="groupBox_11">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QGroupBox
+{
+border: 0px solid line black;
+
+	
+	background-color: rgb(137, 141, 132);
+}
+
+QLineEdit
+{
+border: 1px solid line black;
+	background-color: rgb(227, 227, 170);
+}</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_14">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <item row="4" column="0">
+              <widget class="QDoubleSpinBox" name="spinEditMinValDown2">
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::PlusMinus</enum>
                </property>
-               <property name="text">
-                <string>Выход Калмана</string>
+               <property name="minimum">
+                <double>-40.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.200000000000000</double>
+               </property>
+               <property name="value">
+                <double>-1.200000000000000</double>
                </property>
               </widget>
              </item>
-             <item row="1" column="3">
-              <widget class="QCheckBox" name="checkShowPID2">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkXShow2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgba(255, 170, 0, 200);
-}</string>
-               </property>
-               <property name="text">
-                <string>Выход ПИД</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QCheckBox" name="checkShowErrorSKO2">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgba(170, 85, 255, 200);
-}</string>
-               </property>
-               <property name="text">
-                <string>СКО</string>
-               </property>
-               <property name="iconSize">
+               <property name="maximumSize">
                 <size>
-                 <width>30</width>
-                 <height>30</height>
+                 <width>16777215</width>
+                 <height>16777215</height>
                 </size>
                </property>
-               <property name="checked">
-                <bool>false</bool>
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
                </property>
-               <property name="tristate">
-                <bool>false</bool>
+               <property name="styleSheet">
+                <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgb(234, 0, 0);
+}</string>
+               </property>
+               <property name="text">
+                <string>X</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QCheckBox" name="checkYShow2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	background-color: rgb(0, 170, 255);
+}</string>
+               </property>
+               <property name="text">
+                <string>Y</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <spacer name="verticalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="0">
+              <widget class="QDoubleSpinBox" name="spinEditMaxValUp2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::PlusMinus</enum>
+               </property>
+               <property name="maximum">
+                <double>40.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.200000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.200000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <spacer name="verticalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </widget>
@@ -780,208 +833,21 @@ border: 2px solid line black;
           <set>Qt::AlignCenter</set>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>2</number>
+          </property>
           <property name="topMargin">
            <number>23</number>
           </property>
-          <item row="0" column="1">
-           <widget class="QGroupBox" name="groupBox_9">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-border: 0px solid line black;
-
-	
-	background-color: rgb(137, 141, 132);
-}
-
-QLineEdit
-{
-border: 1px solid line black;
-}</string>
-            </property>
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <property name="spacing">
-              <number>2</number>
-             </property>
-             <property name="leftMargin">
-              <number>2</number>
-             </property>
-             <property name="topMargin">
-              <number>2</number>
-             </property>
-             <property name="rightMargin">
-              <number>2</number>
-             </property>
-             <property name="bottomMargin">
-              <number>2</number>
-             </property>
-             <item>
-              <widget class="QGroupBox" name="groupBox_12">
-               <property name="styleSheet">
-                <string notr="true">QGroupBox
-{
-border: 0px solid line black;
-
-	
-	background-color: rgb(137, 141, 132);
-}
-
-QLineEdit
-{
-border: 1px solid line black;
-	background-color: rgb(227, 227, 170);
-}</string>
-               </property>
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_9">
-                <property name="leftMargin">
-                 <number>2</number>
-                </property>
-                <property name="topMargin">
-                 <number>2</number>
-                </property>
-                <property name="rightMargin">
-                 <number>2</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>2</number>
-                </property>
-                <property name="spacing">
-                 <number>2</number>
-                </property>
-                <item row="0" column="0">
-                 <widget class="QLineEdit" name="lineEditMaxValUp3">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>40</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>1</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QCheckBox" name="checkXShow3">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>40</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Sans Serif</family>
-                    <pointsize>14</pointsize>
-                    <weight>50</weight>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	
-	background-color: rgb(234, 0, 0);
-}</string>
-                  </property>
-                  <property name="text">
-                   <string>X</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QCheckBox" name="checkYShow3">
-                  <property name="maximumSize">
-                   <size>
-                    <width>40</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Sans Serif</family>
-                    <pointsize>14</pointsize>
-                    <weight>50</weight>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgb(0, 170, 255);
-}</string>
-                  </property>
-                  <property name="text">
-                   <string>Y</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLineEdit" name="lineEditMaxValDown3">
-                  <property name="maximumSize">
-                   <size>
-                    <width>40</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>-1</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QCustomPlot" name="graphWidget3" native="true">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-              <horstretch>44</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QWidget
-{
-	border: 1px solid rgb(110, 5, 136);
-	background-color: rgb(199, 199, 199);
-}</string>
-            </property>
-           </widget>
-          </item>
+          <property name="rightMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <property name="spacing">
+           <number>2</number>
+          </property>
           <item row="1" column="0">
            <widget class="QGroupBox" name="groupBox_6">
             <property name="styleSheet">
@@ -995,30 +861,21 @@ border: 0px solid line black;
              <string/>
             </property>
             <layout class="QGridLayout" name="gridLayout_6">
-             <item row="1" column="3">
-              <widget class="QCheckBox" name="checkShowPID3">
-               <property name="font">
-                <font>
-                 <family>Sans Serif</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	background-color: rgba(255, 170, 0, 200);
-}</string>
-               </property>
-               <property name="text">
-                <string>Выход ПИД</string>
-               </property>
-              </widget>
-             </item>
+             <property name="leftMargin">
+              <number>1</number>
+             </property>
+             <property name="topMargin">
+              <number>1</number>
+             </property>
+             <property name="rightMargin">
+              <number>1</number>
+             </property>
+             <property name="bottomMargin">
+              <number>1</number>
+             </property>
+             <property name="spacing">
+              <number>1</number>
+             </property>
              <item row="1" column="0">
               <widget class="QCheckBox" name="checkShowError3">
                <property name="font">
@@ -1055,7 +912,7 @@ border: 2px solid line black;
                </property>
               </widget>
              </item>
-             <item row="1" column="2">
+             <item row="1" column="1">
               <widget class="QCheckBox" name="checkShowKalman3">
                <property name="font">
                 <font>
@@ -1076,12 +933,105 @@ border: 2px solid line black;
 }</string>
                </property>
                <property name="text">
-                <string>Выход Калмана</string>
+                <string>Фильтрованная ошибка</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QCheckBox" name="checkShowErrorSKO_3">
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QCustomPlot" name="graphWidget3" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+              <horstretch>44</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QWidget
+{
+	border: 1px solid rgb(110, 5, 136);
+	background-color: rgb(199, 199, 199);
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QGroupBox" name="groupBox_12">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QGroupBox
+{
+border: 0px solid line black;
+
+	
+	background-color: rgb(137, 141, 132);
+}
+
+QLineEdit
+{
+border: 1px solid line black;
+	background-color: rgb(227, 227, 170);
+}</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_15">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <item row="4" column="0">
+              <widget class="QDoubleSpinBox" name="spinEditMinValDown3">
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::PlusMinus</enum>
+               </property>
+               <property name="minimum">
+                <double>-40.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.200000000000000</double>
+               </property>
+               <property name="value">
+                <double>-1.200000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkXShow3">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <property name="font">
                 <font>
                  <family>Sans Serif</family>
@@ -1096,25 +1046,104 @@ border: 2px solid line black;
 {
 border: 2px solid line black;
 	
-	background-color: rgba(170, 85, 255, 200);
+	
+	background-color: rgb(234, 0, 0);
 }</string>
                </property>
                <property name="text">
-                <string>СКО</string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
+                <string>X</string>
                </property>
                <property name="checked">
-                <bool>false</bool>
-               </property>
-               <property name="tristate">
-                <bool>false</bool>
+                <bool>true</bool>
                </property>
               </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QCheckBox" name="checkYShow3">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	background-color: rgb(0, 170, 255);
+}</string>
+               </property>
+               <property name="text">
+                <string>Y</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <spacer name="verticalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="0">
+              <widget class="QDoubleSpinBox" name="spinEditMaxValUp3">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::PlusMinus</enum>
+               </property>
+               <property name="maximum">
+                <double>40.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.200000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.200000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <spacer name="verticalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </widget>
@@ -1129,7 +1158,7 @@ border: 2px solid line black;
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_8">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -1137,7 +1166,7 @@ border: 2px solid line black;
      <property name="styleSheet">
       <string notr="true">QGroupBox
 {
-border: 2px solid line black;
+border: 0px solid line black;
 
 	
 	background-color: rgb(137, 141, 132);
@@ -1147,6 +1176,21 @@ border: 2px solid line black;
       <string/>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="leftMargin">
+       <number>2</number>
+      </property>
+      <property name="topMargin">
+       <number>2</number>
+      </property>
+      <property name="rightMargin">
+       <number>4</number>
+      </property>
+      <property name="bottomMargin">
+       <number>2</number>
+      </property>
       <item>
        <widget class="QPushButton" name="ButGraphChannel1">
         <property name="styleSheet">
@@ -1172,6 +1216,9 @@ border: 2px solid line black;
          <bool>true</bool>
         </property>
         <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
          <bool>true</bool>
         </property>
        </widget>
@@ -1200,6 +1247,9 @@ border: 2px solid line black;
         <property name="checkable">
          <bool>true</bool>
         </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1224,6 +1274,38 @@ border: 2px solid line black;
          <string>Канал3</string>
         </property>
         <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ButStopGraph">
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgb(208, 0, 0);
+}
+
+QPushButton::checked
+{
+border: 2px solid line black;
+	
+	background-color: rgb(85, 170, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string>Стоп</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
          <bool>true</bool>
         </property>
        </widget>

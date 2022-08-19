@@ -28,9 +28,10 @@ class TCPServerEngine : public QObject
 {
     Q_OBJECT
 public:
-    explicit TCPServerEngine(int Port,QObject *parent = nullptr);
+    explicit TCPServerEngine(QObject *parent = nullptr);
 	TCPServerEngine(TCPServerEngine& server);
     void sendToClient(QTcpSocket* Socket, const QString& str);
+    void SetPort(int port);
 	
 
     int Port;
@@ -91,6 +92,6 @@ public:
 	RotateOperationContainer RemoteToBaseTransform;
 
 	QSerialPort PortToSTN;
-	TCPServerEngine&& TCPServer = TCPServerEngine(2323);
+	TCPServerEngine TCPServer;
 
 };

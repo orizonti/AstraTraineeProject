@@ -298,6 +298,17 @@ Processor::Processor(int OffsetImage)
 	ROIImage = cv::Mat(cv::Size(roi_rect_in_strob.width,roi_rect_in_strob.height), CV_16U, cv::Scalar(0));
 	ROIImageFiltered = cv::Mat(cv::Size(roi_rect_in_strob.width, roi_rect_in_strob.height), CV_16U, cv::Scalar(0));
 
+
+	//std::vector<float> disps; disps.assign(40,20); disps[15] = 4;
+
+    //for(int n = 0; n < 25000; n++)
+    //{
+
+    //    QPair<double,double> coord; coord.first = 100 + disps[StatProcessorTable.BestStatNumberCoord]*std::rand()/RAND_MAX; coord.second = coord.first/2;
+    //    coord >> StatProcessorTable;
+	//    //if(StatProcessorTable.IsStatisticsLoaded()) break;
+    //}
+
 }
 
 Processor::~Processor()
@@ -353,16 +364,23 @@ void Statistic::CalcDispersion()
 		DispersionCoord = QPair<double, double>(0, 0);
 		DispersionValue = 0;
 
+            QPair<double, double> CoordDeviation;
+            std::vector<double> DeviationMeasures;
 			for (auto Coord : CoordMassive)
 			{
 
 				DispersionCoord.first += std::pow(Coord.first - AvarageCoord.first, 2) / CoordMassive.size();
 				DispersionCoord.second += std::pow(Coord.second - AvarageCoord.second, 2) / CoordMassive.size();
+				CoordDeviation = (Coord - AvarageCoord);
+                DeviationMeasures.push_back(std::hypot(CoordDeviation.first,CoordDeviation.second));
 			}
+            DispersionCoordDistance = std::hypot(DispersionCoord.first,DispersionCoord.second);
+			AmplitudeCoordDeviation = *(std::max_element(DeviationMeasures.begin(),DeviationMeasures.end()));
 
 
 			for(auto Value: ValueMassive)
 			DispersionValue += std::pow(Value - AvarageValue, 2) / ValueMassive.size();
+
 }
 
 void OptimizationThreshold::CalcSumLD(int Number, int Threshold, cv::Mat& Image)
@@ -621,37 +639,40 @@ void Processor::SwitchToAimingInStrob()
 
 		if (sum != 0.0)
 		{
-			sum >> StatProcessor;
+            sum >> StatProcessor;
 
-				this->FlagDisplayNewImage = true;
-				this->spot_coord_abs >> StatProcessor;
-
-				this->y_pos_spot_in_roi = sum_y / sum; // get spot center coord 
-				this->x_pos_spot_in_roi = sum_x / sum;
-				this->x_pos_spot_in_strob = x_pos_spot_in_roi + roi_rect_in_strob.x;
-				this->y_pos_spot_in_strob = y_pos_spot_in_roi + roi_rect_in_strob.y;
+            if(StatProcessor.IsValueLoaded() && sum < StatProcessor.AvarageValue/10) return;
 
 
-				this->spot_coord_abs.first = x_pos_spot_in_strob + strob_coord.first;
-				this->spot_coord_abs.second = y_pos_spot_in_strob + strob_coord.second;
+            this->FlagDisplayNewImage = true;
+            this->spot_coord_abs >> StatProcessor;
 
-				this->roi_rect_in_strob.x = x_pos_spot_in_strob - roi_rect_in_strob.width / 2;
-				this->roi_rect_in_strob.y = y_pos_spot_in_strob - roi_rect_in_strob.height / 2;
-				CheckROIPos(roi_rect_in_strob);
-				//====================================================================
+            this->y_pos_spot_in_roi = sum_y / sum; // get spot center coord
+            this->x_pos_spot_in_roi = sum_x / sum;
+            this->x_pos_spot_in_strob = x_pos_spot_in_roi + roi_rect_in_strob.x;
+            this->y_pos_spot_in_strob = y_pos_spot_in_roi + roi_rect_in_strob.y;
 
-				if (StatProcessor.DispersionCoord.first < 24 && StatProcessor.DispersionCoord.second < 24 && StatProcessor.IsCoordLoaded() && roi_rect_in_strob.width != 96)
-				{
-					this->roi_rect_in_strob.width = 96;    // correct roi 
-					this->roi_rect_in_strob.height = 96;
-					this->roi_rect_in_strob.x = x_pos_spot_in_strob - roi_rect_in_strob.width / 2;
-					this->roi_rect_in_strob.y = y_pos_spot_in_strob - roi_rect_in_strob.height / 2;
-					CheckROIPos(roi_rect_in_strob);
-					//ThresholdOptimizator.Reset();
-					this->ROI_MODE = 2;
 
-					this->FlagDisplayNewImage = false;
-				}
+            this->spot_coord_abs.first = x_pos_spot_in_strob + strob_coord.first;
+            this->spot_coord_abs.second = y_pos_spot_in_strob + strob_coord.second;
+
+            this->roi_rect_in_strob.x = x_pos_spot_in_strob - roi_rect_in_strob.width / 2;
+            this->roi_rect_in_strob.y = y_pos_spot_in_strob - roi_rect_in_strob.height / 2;
+            CheckROIPos(roi_rect_in_strob);
+            //====================================================================
+
+            if (StatProcessor.DispersionCoord.first < 24 && StatProcessor.DispersionCoord.second < 24 && StatProcessor.IsCoordLoaded() && roi_rect_in_strob.width != 96)
+            {
+                this->roi_rect_in_strob.width = 96;    // correct roi
+                this->roi_rect_in_strob.height = 96;
+                this->roi_rect_in_strob.x = x_pos_spot_in_strob - roi_rect_in_strob.width / 2;
+                this->roi_rect_in_strob.y = y_pos_spot_in_strob - roi_rect_in_strob.height / 2;
+                CheckROIPos(roi_rect_in_strob);
+                //ThresholdOptimizator.Reset();
+                this->ROI_MODE = 2;
+
+                this->FlagDisplayNewImage = false;
+            }
 		}
 
 	};
@@ -719,12 +740,27 @@ void Processor::SwitchToAimingInFullImage()
 			Y_START = 2;
 
 	};
+    //auto GetBestThresholdRange = [](std::map<int,Statistic>::iterator begin, std::map<int,Statistic>::iterator end) -> int
+    //{
 
-	auto CalcThresholdlByLuminosity = [=](cv::Mat& Image) -> int
-	{
-		double max_pixel = 0;
-		double min_pixel = 0;
-		double avg_pixel = 0;
+    //    auto current_stat = begin;
+    //    std::vector<float> dispersions;
+
+    //    while(current_stat != end) {dispersions.push_back(current_stat->second.DispersionCoordDistance); current_stat++;};
+
+    //    auto min_element = std::min_element(dispersions.begin(), dispersions.end());
+    //    auto min_pos = std::distance(dispersions.begin(),min_element);
+    //    qDebug() << "BEST THRESHOLD RANGE FOUND " << 0.7 + float(min_pos)/10;
+
+    //    return min_pos;
+
+    //};
+
+    auto CalcThresholdlByLuminosity = [=](cv::Mat& Image, float Range) -> int
+    {
+        double max_pixel = 0;
+        double min_pixel = 0;
+        double avg_pixel = 0;
 		double sum_all = 0;
 
 		for (short row = 0; row < Image.rows; row++)
@@ -743,12 +779,12 @@ void Processor::SwitchToAimingInFullImage()
 		}
 
 		avg_pixel = sum_all / (Image.rows * Image.cols);
-		return (avg_pixel + (max_pixel - avg_pixel) * 0.5); // return threshold
+		return (avg_pixel + (max_pixel - avg_pixel) * Range); // return threshold
 	};
 
 	//qDebug() << "Switch to aiming in FULL Image";
 	this->StatProcessor.Reset();
-	this->StatProcessor.Size = 400;
+	this->StatProcessor.Size = 600;
 	ProcessImagePoly = [this, CheckROIPos, CheckStrobPos, CalcThresholdlByLuminosity](uchar* ImageToProcess, int Width, int Height) -> void  //FUNCTION THAT FIND SPOT IN WHOLE IMAGE
 	{
 
@@ -764,15 +800,17 @@ void Processor::SwitchToAimingInFullImage()
 		ROIImage = StrobImage(this->roi_rect_in_strob);
 
 
+
 		if (this->FlagThresholdAutoControl)
 		{
-			//ROIImage >> this->ThresholdOptimizator;
-			//Threshold = ThresholdOptimizator.BestThreshold;
-			Threshold = CalcThresholdlByLuminosity(ROIImage);
+		    float ThresholdRange = 0.75 + float(StatProcessorTable.BestStatNumberCoord)/100.0;
+            Threshold = CalcThresholdlByLuminosity(ROIImage, ThresholdRange);
 		}
-		cv::medianBlur(ROIImage, ROIImageFiltered, 5);
-		cv::medianBlur(ROIImageFiltered, ROIImageFiltered, 5);
-		Binarization(ROIImageFiltered, Threshold);
+
+        cv::medianBlur(ROIImage, ROIImageFiltered, 5);
+        cv::medianBlur(ROIImageFiltered, ROIImageFiltered, 5);
+        cv::medianBlur(ROIImageFiltered, ROIImageFiltered, 5);
+        Binarization(ROIImageFiltered, Threshold);
 
 
 		for (short row = 0; row < ROIImageFiltered.rows; row++)
@@ -794,9 +832,10 @@ void Processor::SwitchToAimingInFullImage()
 			sum >> StatProcessor;
 			this->FlagDisplayNewImage = false;
 			if (StatProcessor.IsValueLoaded() && sum <= (StatProcessor.MinValue + (StatProcessor.MaxValue - StatProcessor.MinValue) * FrameFilterProcentage))  // filter overexposed images if stat data available
-			{
+            {
 
-				this->spot_coord_abs >> StatProcessor;
+                this->spot_coord_abs >> StatProcessor;
+                this->spot_coord_abs >> StatProcessorTable;
 
 				this->y_pos_spot_in_roi = sum_y / sum; // get spot center coord 
 				this->x_pos_spot_in_roi = sum_x / sum;
@@ -812,7 +851,9 @@ void Processor::SwitchToAimingInFullImage()
 				this->FlagDisplayNewImage = true;
 
 				int roi_size = 96;
-				if (StatProcessor.DispersionCoord.first < roi_size && StatProcessor.DispersionCoord.second < roi_size && StatProcessor.IsCoordLoaded() && roi_rect_in_strob.width != roi_size)
+				if (StatProcessor.IsCoordLoaded() && StatProcessor.DispersionCoord.first < roi_size &&
+				                                     StatProcessor.DispersionCoord.second < roi_size &&
+				                                     roi_rect_in_strob.width != roi_size)
 				{
 					//qDebug() << "SET ROI SIZE 96X96";
 					ThresholdOptimizator.Reset();
@@ -829,26 +870,6 @@ void Processor::SwitchToAimingInFullImage()
 				this->roi_rect_in_strob.y = y_pos_spot_in_strob - roi_rect_in_strob.height / 2;
 				CheckROIPos(roi_rect_in_strob);
 
-				/// ==============================================
-				int offset = std::sqrt(std::pow(x_pos_spot_in_strob - 128, 2) + std::pow(y_pos_spot_in_strob - 128, 2));
-				int strob_coord_x_new, strob_coord_y_new;
-				int step_strob_x, step_strob_y;
-
-				//if (this->NumberChannel == 4)
-				//	return;
-
-				//if (ROI_MODE == 2 && offset > 80)
-				//{
-				//	strob_coord_x_new = spot_coord_abs.first - strob_width / 2;
-				//	strob_coord_y_new = spot_coord_abs.second - strob_height / 2;
-				//	CheckStrobPos(strob_coord_x_new, strob_coord_y_new, 256, 256);
-				//	qDebug() << "JUMP STROB";
-				//	step_strob_x = strob_coord_x_new - strob_coord.first;
-				//	step_strob_y = strob_coord_y_new - strob_coord.second;
-				//	strob_coord.first += step_strob_x; roi_rect_in_strob.x -= step_strob_x;
-				//	strob_coord.second += step_strob_y; roi_rect_in_strob.y -= step_strob_y;
-				//}
-				// ==============================================
 			}
 
 		}
@@ -858,9 +879,10 @@ void Processor::SwitchToAimingInFullImage()
 void Processor::SwitchToFindSpotInFullImage()
 {
 	
-	qDebug() << "Switch to Find spoit in FULL Image";
 	this->StatProcessor.Reset();
+    this->StatProcessorLong.Reset();
 	this->StatProcessor.Size = 30;
+    this->StatProcessorLong.Size = 200;
 	auto CheckROIPos = [=](int& X_START, int& Y_START, int X_ROI, int Y_ROI)
 	{
 		//qDebug() << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
@@ -984,7 +1006,8 @@ void Processor::SwitchToFindSpotInFullImage()
 		{
 			sum >> StatProcessor;
 
-			if (StatProcessor.IsValueLoaded() && sum <= StatProcessor.AvarageValue) //if sum pixels > 10% from min sum pixels then image overexposed
+            //if (sum <= StatProcessor.AvarageValue) //if sum pixels > 10% from min sum pixels then image overexposed
+            if (StatProcessor.IsValueLoaded() && sum <= StatProcessor.AvarageValue) //if sum pixels > 10% from min sum pixels then image overexposed
 			{
 			this->spot_coord_abs.first = sum_x / sum;
 			this->spot_coord_abs.second = sum_y / sum;
@@ -993,10 +1016,18 @@ void Processor::SwitchToFindSpotInFullImage()
 			this->spot_coord_abs >> StatProcessor;                                      //to find spot and calc center
 			}
 
-			if (StatProcessor.IsCoordLoaded() && StatProcessor.DispersionCoord.first < 32 && StatProcessor.DispersionCoord.second < 32)
+            if (StatProcessor.IsCoordLoaded() && StatProcessor.DispersionCoord.first < 32 &&
+                                                 StatProcessor.DispersionCoord.second < 32)
+            {
+                this->FlagSpotFound = true;
+                CheckROIPos(strob_coord.first, strob_coord.second, 256, 256);
+                this->spot_coord_abs >> StatProcessorLong;                                      //to find spot and calc center
+            }
+
+
+			if (StatProcessorLong.IsCoordLoaded() && StatProcessorLong.DispersionCoord.first < 32 &&
+			                                         StatProcessorLong.DispersionCoord.second < 32)
 			{
-			    //qDebug() << "SPOT FOUND !!!" << this->NumberChannel << "Coord - " << spot_coord_abs.first << spot_coord_abs.second;
-				this->FlagSpotFound = true;
 				this->AimingState = AimingInFullImage;
 			    CheckROIPos(strob_coord.first, strob_coord.second, 256, 256);
 			}
@@ -1019,8 +1050,17 @@ void Statistic::Reset()
 	this->AvarageCoord = QPair<double, double>(0, 0);
 	this->DispersionCoord = QPair<double,double>(0,0);
 	this->MinValue = 0; this->MaxValue = 0; this->AvarageValue = 0;
+	this->Counter = 0;
 }
 
+
+void Processor::StopProcessing(bool OnOff)
+{
+  if(!OnOff)
+      this->StateBlock = BlockDisable;
+  else
+     QTimer::singleShot(300,[this](){this->StateBlock = BlockAtWork;});
+}
 
 void Processor::ProcessImage(uchar* ImageToProcess, int Width, int Height)
 {
@@ -1149,3 +1189,113 @@ DataImageProcStructure Processor::GetImageToDisplay()
 
 
 
+int StatisticGroup::GetBestStatisticsCoord()
+{
+    return FindBestStatisticCoord(this->BeginStatistic,this->EndStatistic);
+};
+int StatisticGroup::GetBestStatisticsValue()
+{
+   return FindBestStatisticValue(this->BeginStatistic, this->EndStatistic);
+};
+
+void operator>>(double NewValue, StatisticGroup& StatObj)
+{
+    Statistic& CurrentStat = StatObj.CurrentStatistic->second;
+    Statistic& BeginStat = StatObj.CurrentStatistic->second;
+    Statistic& EndStat = StatObj.Statistics[StatObj.Statistics.size()];
+
+    if (!EndStat.IsValueLoaded())
+    {
+        NewValue >> CurrentStat;
+
+        if(CurrentStat.IsValueLoaded()) StatObj.CurrentStatistic++;
+
+        if(EndStat.IsValueLoaded()) StatObj.BestStatNumberValue = StatObj.GetBestStatisticsValue();
+
+    }
+};
+
+void operator>>(QPair<double, double> NewValue, StatisticGroup& StatObj)
+{
+
+if (!StatObj.IsStatisticsLoaded())
+{
+    NewValue >> StatObj.CurrentStatistic->second;
+
+    if(StatObj.CurrentStatistic->second.IsCoordLoaded())
+    {
+        qDebug() << "LOAD NEW STAT - " << StatObj.BestStatNumberCoord << " DISPERSION - " << StatObj.CurrentStatistic->second.DispersionCoordDistance
+                                                                      << " AMPLITUDE - " << StatObj.CurrentStatistic->second.AmplitudeCoordDeviation;
+        StatObj.CurrentStatistic++; StatObj.BestStatNumberCoord++;
+    };
+
+    if(StatObj.IsStatisticsLoaded()) {StatObj.BestStatNumberCoord = StatObj.GetBestStatisticsCoord(); qDebug() << "END STAT";};
+}
+};
+
+
+StatisticGroup::StatisticGroup(int Count, int WindowSize)
+{
+    for(int n = 0; n < Count; n++) Statistics.insert(std::make_pair(n,Statistic(WindowSize)));
+
+    BeginStatistic = Statistics.begin();
+    CurrentStatistic = BeginStatistic;
+    EndStatistic = Statistics.end();
+
+
+    FindBestStatisticCoord = [](std::map<int,Statistic>::iterator BeginStatistic,std::map<int,Statistic>::iterator EndStatistic) -> int
+    {
+        auto current_stat = BeginStatistic;
+        std::vector<float> dispersions;
+
+        while(current_stat != EndStatistic) {dispersions.push_back(current_stat->second.DispersionCoordDistance); current_stat++;};
+
+        auto min_element = std::min_element(dispersions.begin(), dispersions.end());
+        auto min_pos = std::distance(dispersions.begin(),min_element);
+        qDebug() << "BEST THRESHOLD RANGE FOUND " << 0.6 + float(min_pos)/100 << " POSITION - " << min_pos;
+
+        return min_pos;
+    };
+
+    FindBestStatisticValue = [](std::map<int,Statistic>::iterator BeginStatistic,std::map<int,Statistic>::iterator EndStatistic) -> int
+    {
+            auto current_stat = BeginStatistic;
+            std::vector<float> dispersions;
+
+            while (current_stat != EndStatistic) { dispersions.push_back(current_stat->second.DispersionValue); current_stat++;};
+
+            auto min_element = std::min_element(dispersions.begin(), dispersions.end());
+            auto min_pos = std::distance(dispersions.begin(), min_element);
+
+        return min_pos;
+    };
+
+    //=======================
+};
+
+
+StatisticGroup::StatisticGroup(const StatisticGroup& Group)
+{
+Statistics = Group.Statistics;
+BeginStatistic = Statistics.begin();
+CurrentStatistic = BeginStatistic;
+EndStatistic = Statistics.end();
+};
+
+void StatisticGroup::operator=(const StatisticGroup& Group)
+{
+Statistics = Group.Statistics;
+BeginStatistic = Statistics.begin();
+CurrentStatistic = BeginStatistic;
+EndStatistic = Statistics.end();
+}
+void StatisticGroup::PerformAvailableData()
+{
+    if(Statistics.size() < 2) { BestStatNumberCoord = 0; return;};
+
+    Statistics.erase(--CurrentStatistic,EndStatistic); EndStatistic = Statistics.end();
+    qDebug() << "STOP LOAD STAT AVAILABLE - " << Statistics.size();
+
+
+    BestStatNumberCoord = GetBestStatisticsCoord();
+};

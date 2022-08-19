@@ -4,6 +4,7 @@
 #include <iostream>
 #include <streambuf>
 #include <string>
+#include <QDebug>
 
 class QDebugStream : public std::basic_streambuf<char>
 {

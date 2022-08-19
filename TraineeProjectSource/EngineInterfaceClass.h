@@ -116,14 +116,14 @@ public:
 	bool FlagChunkCommandSend = false;
 
 	void SetCoord(QPair<double, double> Coord);
-	void SetCoordAbs(QPair<double,double> CoordAbs);
+    void SetCoordAbs(QPair<double,double> CoordAbs);
 	void SetToNull();
 	void ResetEngine();
 	QPair<double,double> GetCoord();
 
 
 	int CommandDelayMks = 0;
-	QPair<double, double> ControlCoord;
+	QPair<double, double> ControlCoord = QPair<double,double>(0,0);
 private:
 	static KLPInterfaceClass* KLPInterface;
 public:

@@ -9,12 +9,11 @@ WindowSinusSource::WindowSinusSource(QWidget *parent)
 
 WindowSinusSource::~WindowSinusSource()
 {
-
 }
 
-void WindowSinusSource::MoveToScene(QGraphicsScene* Scene)
+void WindowSinusSource::MoveToScene(QGraphicsScene* Scene, int POSX, int POSY)
 {
-	Node = new GraphicWidgetNode(Scene, 300, 300, this);
+	Node = new GraphicWidgetNode(Scene, POSX, POSX, this);
 	Node->setPos(X_POS, Y_POS);
 }
 
@@ -31,36 +30,51 @@ void WindowSinusSource::ConnectSignals(SinusGeneratorClass* SinusGenerator)
 {
 
 	QVector<QSpinBox*> Spins;
-	Spins.append(ui.SpinAmpX);
-	Spins.append(ui.SpinAmpY);
-
-	QVector<QDoubleSpinBox*> SpinsDouble;
-	SpinsDouble.append(ui.SpinFreqX);
-	SpinsDouble.append(ui.SpinFreqY);
 
 
-	for (QSpinBox* Spin : Spins)
-	{
-	connect(Spin, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+    connect(ui.SpinAmp,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+    [this, SinusGenerator]()
+    {
+        SinusGenerator->SlotSetAmplitude(ui.SpinAmp->value());
+    });
+
+	connect(ui.SpinFreq, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
 		[this, SinusGenerator]()
 	    {
-		SinusGenerator->SlotSetAmplitudeSeconds(ui.SpinAmpX->value(), ui.SpinAmpY->value());
+		SinusGenerator->SlotSetFrequency(ui.SpinFreq->value());
 		});
-	}
+    connect(ui.spinNoizeAmplitude, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+            [this, SinusGenerator]()
+            {
+                SinusGenerator->SlotSetAmplitudeNoize(ui.spinNoizeAmplitude->value());
+            });
 
-	for (QDoubleSpinBox* Spin : SpinsDouble)
-	{
-	connect(Spin, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
-		[this, SinusGenerator]()
-	    {
-		SinusGenerator->SlotSetFrequency(ui.SpinFreqX->value(), ui.SpinFreqY->value());
-		});
-	}
 
-			connect(ui.checkWorkBlock, &QCheckBox::stateChanged,
-				[=]()
-			{
-				SinusGenerator->SlotStartGenerate(ui.checkWorkBlock->isChecked());
-			});
+	//SinusGenerator->SlotSetFrequency(ui.SpinFreqY->value(),ui.SpinFreq->value());
+    //SinusGenerator->SlotSetAmplitude(ui.SpinAmpY->value(),ui.SpinAmp->value());
+
+    //spinNoizeAmplitude
+
+    connect(ui.checkChannel1, &QCheckBox::stateChanged,
+            [=]()
+            {
+                SinusGenerator->SlotEnableChannel(ui.checkChannel1->isChecked(),1);
+            });
+    connect(ui.checkChannel2, &QCheckBox::stateChanged,
+            [=]()
+            {
+                SinusGenerator->SlotEnableChannel(ui.checkChannel2->isChecked(),2);
+            });
+    connect(ui.checkNoize, &QCheckBox::stateChanged,
+            [=]()
+            {
+                SinusGenerator->SlotEnableChannel(ui.checkNoize->isChecked(),3);
+            });
+
+    connect(ui.checkWorkBlock, &QCheckBox::stateChanged,
+        [=]()
+    {
+        SinusGenerator->SlotStartGenerate(ui.checkWorkBlock->isChecked());
+    });
 
 }

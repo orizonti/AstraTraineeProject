@@ -10,15 +10,15 @@ SinusGeneratorClass::SinusGeneratorClass(QObject* Obj) : QObject(Obj)
 	WindowControl = new WindowSinusSource;
 	QObject::connect(&this->TimerGenerateSinus, SIGNAL(timeout()), this, SLOT(SlotCalculateNewValue()));
 
-	 AmplitudeRadianX = 30*4.84/1000000;
-	 AmplitudeRadianY = 30*4.84/1000000;
+     qDebug() << "CREATE SINUS GENERATOR";
+	 LastPos = QPair<double, double>(0, 0);
+	 CurrentPos = QPair<double, double>(0, 0);
+     StepPos = QPair<double, double>(0, 0);
 
-	 LastPosRadian = QPair<double, double>(0, 0);
-	 LastPosSeconds = QPair<double, double>(0, 0);
-	 CurrentPosSeconds = QPair<double, double>(0, 0);
-	 CurrentPosSeconds = QPair<double, double>(0, 0);
+	    int Freq = 1;
+        StepSecondsX = (360.0/500.0) * Freq;
+        StepSecondsY = (360.0/500.0) * Freq;
 
-	 StepInRadian = QPair<double, double>(0, 0);
 
 	WindowControl->ConnectSignals(this);
 }
@@ -26,8 +26,6 @@ SinusGeneratorClass::SinusGeneratorClass(QObject* Obj) : QObject(Obj)
 
 SinusGeneratorClass::~SinusGeneratorClass()
 {
-	qDebug() << "Delete sinus generator and its window";
-	//delete WindowControl;
 }
 
 void SinusGeneratorClass::DisplayControlWindow()
@@ -37,7 +35,7 @@ void SinusGeneratorClass::DisplayControlWindow()
 
 void SinusGeneratorClass::DisplayControlWindow(QGraphicsScene* Scene)
 {
-	WindowControl->MoveToScene(Scene);
+	WindowControl->MoveToScene(Scene,300,300);
 }
 
 
@@ -47,58 +45,65 @@ void SinusGeneratorClass::SetCoord(QPair<double,double> Coord)
 
 QPair<double, double> SinusGeneratorClass::GetCoord()
 {
-	//return CurrentPosSeconds;
-	//return CurrentPosRadian;
-	return StepInRadian;
+    if(RELATIVE_OUTPUT)
+	return StepPos + Noize;
+
+    return CurrentPos + Noize;
 }
 
-void SinusGeneratorClass::SlotSetFrequency(double FreqX,double FreqY)
+void SinusGeneratorClass::SlotSetFrequency(double Freq)
 {
-	StepSecondsX = (360.0/500.0) * FreqX;
-	StepSecondsY = (360.0/500.0) * FreqY;
-	qDebug() << "Step seconds " << StepSecondsX << StepSecondsY;
+	StepSecondsX = (360.0/500.0) * Freq;
+	StepSecondsY = (360.0/500.0) * Freq;
 }
 
-void SinusGeneratorClass::SlotSetAmplitudeSeconds(double AmplX, double AmplY)
+void SinusGeneratorClass::SlotSetAmplitude(double Ampl)
 {
-	qDebug() << "Amp - " << AmplX << AmplY;
-	this->AmplitudeRadianX = AmplX*4.84 / 1000000;
-	this->AmplitudeRadianY = AmplY*4.84 / 1000000;
+	this->Amplitude = Ampl;
+}
+
+void SinusGeneratorClass::SlotSetAmplitudeNoize(double Ampl)
+{
+    qDebug() << "Noize amplitude - " << Ampl;
+    this->AmplitudeNoize = Ampl;
+}
+void SinusGeneratorClass::SlotEnableChannel(bool Enable , int Channel)
+{
+    qDebug() << "Enable channel - " << Channel << Enable;
+    if(Channel == 1) ENABLE_CHANNEL1 = Enable;
+    if(Channel == 2) ENABLE_CHANNEL2 = Enable;
+    if(Channel == 3) ENABLE_NOIZE = Enable;
 }
 
 
 void SinusGeneratorClass::SlotCalculateNewValue()
 {
-	CurrentPosRadian.first = std::sin(this->CurrentStepSecondsX * 2 * M_PI / (360.0))*AmplitudeRadianX;
-	CurrentPosRadian.second = std::cos(this->CurrentStepSecondsY*2* M_PI /(360.0))*AmplitudeRadianY*0;
-	CurrentPosSeconds.first = CurrentPosRadian.first * 1000000.0 / 4.84;
-	CurrentPosSeconds.second = CurrentPosRadian.second * 1000000.0 / 4.84;
+	CurrentPos.first = std::sin(this->CurrentStepSecondsX * 2 * M_PI / (360.0))*Amplitude;
+	CurrentPos.second = std::cos(this->CurrentStepSecondsY * 2 * M_PI /(360.0))*Amplitude;
+    StepPos = CurrentPos - LastPos; LastPos = CurrentPos;
 
-	qDebug() << "SINUS VALUE- " << CurrentStepSecondsX;
-	this->CurrentStepSecondsX += this->StepSecondsX;
-	this->CurrentStepSecondsY += this->StepSecondsY;
+    this->CurrentStepSecondsX += this->StepSecondsX; this->CurrentStepSecondsY += this->StepSecondsY;
 
-	StepInRadian.second = CurrentPosRadian.first - LastPosRadian.first;
-	StepInRadian.first = CurrentPosRadian.second - LastPosRadian.second;
+	if (CurrentStepSecondsX >= 360) { this->CurrentStepSecondsX = 0; this->CurrentStepSecondsY = 0; }
 
-	if (CurrentStepSecondsX >= 360)
-	{
-		this->CurrentStepSecondsX = 0;
-		this->CurrentStepSecondsY = 0;
-	}
+	if (Link != 0) *this >> *Link;
 
-	if (Link != 0)
-		*this >> *Link;
+	if(ENABLE_NOIZE)
+    {
+        Noize.first = AmplitudeNoize*std::rand()/RAND_MAX - AmplitudeNoize/2;
+        Noize.second = AmplitudeNoize*std::rand()/RAND_MAX - AmplitudeNoize/2;
+    }
+	else
+    {
+        Noize.first = 0; Noize.second =0;
+    }
 
-	LastPosRadian.first = CurrentPosRadian.first;
-	LastPosRadian.second = CurrentPosRadian.second;
+	emit SignalNewDataAvailable();
+
 }
 
 void SinusGeneratorClass::SlotStartGenerate(bool StartStop)
 {
-	if (StartStop)
-	this->TimerGenerateSinus.start(2);
-	else
-	this->TimerGenerateSinus.stop();
-
+	if (StartStop) this->TimerGenerateSinus.start(2);
+	else this->TimerGenerateSinus.stop();
 }

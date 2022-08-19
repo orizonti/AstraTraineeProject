@@ -15,13 +15,48 @@
 #include "SinusGeneratorClass.h"
 #include "windowsinussource.h"
 #include "RotateOperationContainer.h"
-#include <memory> 
+#include <memory>
 #include "ErrorPortControl.h"
 
 
 enum StateMainController {Init = 0,FindChannels,WorkMode};
 
+
 class MainControllerQClass;
+class TestSignals :public QObject,public PassTwoCoordClass
+{
+Q_OBJECT
+public:
+    TestSignals();
+    TestSignals(int size);
+    ~TestSignals();
+    TestSignals(const TestSignals& copy);
+    void GenerateInitSeries();
+    void StartGenerateSignal(int time_ms);
+    void StopGenerate();
+
+    QPair<double,double> GetCoord();
+    void SetCoord(QPair<double, double> coord) {};
+
+    QTimer timerSignalGenerate;
+
+
+public slots:
+    void GenerateNewData();
+public:
+    vector<float> Frequences  = {18,26};
+    int INPUT_VECTOR_SIZE = 30;
+    double Amplitude = 3;
+    double NoizeAmplitude = 0.9;
+
+    vector<qreal> time_series;
+    vector<vector<qreal>> signals_noize;
+    vector<vector<qreal>> signals_noize_free;
+    vector<vector<qreal>> derivate_noize_free;
+
+signals:
+    void SignalNewDataAvailable();
+};
 
 class MainControllerQClass
 	: public HandleControlInterface
@@ -33,7 +68,6 @@ public:
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;
 	typeblocksenum TypeBlock = MainContoller;
 
-	SinusGeneratorClass SinusControlTest;
 	QTimer timerCircle;
 	QTimer timerInnerRotateCalibration;
 	QPair<int, int> ErrorPointer = QPair<int,int>(0,0);
@@ -54,6 +88,7 @@ public:
 	int CounterTestRotateEngineAvg = 0;
 	//QTimer timer_to_test_measure_engine;
 	//=======================================================
+	SinusGeneratorClass SinusAimingBlockTest;
 
 public slots:
 	void SlotFindSpot_MoveEngineToWorkPos();  // working mode slots
@@ -61,6 +96,7 @@ public slots:
 	void SlotReceiveErrorRemoteSensor();
 	void SlotCheckDisplayDeviceModulesState();
 	void SlotInnerRotateCalibration();
+	void SlotReciveErrorTest();
 
 
 public slots:
@@ -70,6 +106,7 @@ public slots:
 	void SlotStartMoveByCircle(bool OnOff) override;
 	void SetAdjustModeWithCrossHair(bool OnOff);
 	void StartSystemRotationCalibration();
+	void SlotFinishWork();
 
 public:
     void SetEngineCommandDelay(int DelayMks, int NumberChannel);
@@ -90,7 +127,6 @@ public:
 	void SetImageThresHold(int Thres, int Channel);
 	void SetFrameFilterProcentage(int Procentage);
 
-	void TurnOnOffLaserPointer(bool OnOff);
 	void InitialaizeROIProcess();
 	void TurnOnOffChiller(bool OnOff);
 	void TurnOnOffAir(bool OnOff);
@@ -101,18 +137,22 @@ public:
 	 void SetBlockState(typeblocksenum TypeBlock, int NumberChannel, stateblocksenum State);
 	 void SetCameraParam(Control_Camera_Command Command);
      void SetCameraROI(ROI_Channels_Command ROI);
-	 void ChangeAimingType(TypeAiming Aiming,int Channel);
 	 void ChangeCalmanParam(double Qe, double Qn);
 	 void SetThresholdControlManual(bool OnOff);
 //================================================================
+    void TurnOnOffLaserPointer(bool OnOff);
 	void TurnOnOffLaserPilot(int Number, bool OnOff);
 	void TurnOnOfLaserFire(int Number, bool OnOff);
 	void TurnOnOffAllLasers(bool OnOff);
+
+    void ChangeAimingType(TypeAiming Aiming,int Channel);
+	void TurnOnOffKalmanFilter(bool OnOff, int Channel);
 
 signals:
 	void SignalImageReceived();
 	void SignalStartIterateLasers(bool);
 	void SignalSwitchAllLasers(bool);
+	void WorkFinished();
 private:
 	ImageProcessingClass &GetFreeImageProcessor();
 	bool Initialization();
@@ -148,4 +188,3 @@ private:
 	std::shared_ptr<EngineControlClass>   EngineControl3;
 	std::shared_ptr<SinusGeneratorClass>   SinusGenerator;
 };
-

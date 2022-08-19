@@ -9,7 +9,6 @@ EngineControlWindow::EngineControlWindow(QWidget *parent)
 
 EngineControlWindow::~EngineControlWindow()
 {
-
 }
 
 
@@ -27,7 +26,11 @@ void EngineControlWindow::ConnectControlSignals(HandleControlInterface* Control)
 	LinesOutput.append(ui.lineXPos1);
 	LinesOutput.append(ui.lineYPos1);
 	LinesOutput.append(ui.lineYPos1);
-	qDebug() << "CONNECT ENGINE";
+	if(NumberChannel == 3)
+	    ui.lineEditCommandDelay->setText(QString::number(100));
+	else
+        ui.lineEditCommandDelay->setText(QString::number(0));
+
 
 
     connect(ui.lineEditCommandDelay, &QLineEdit::textChanged,

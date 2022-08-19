@@ -11,10 +11,12 @@ public:
 	int NumberLaser = 1;
 
 	virtual DataLaserStruct GetState();
-	virtual void TurnLaserBeamOnOff(bool OnOff);
 	bool IsOnOff(){ return OnOff; };
 	bool OnOff = false;
 
+
+public slots:
+    virtual void TurnLaserBeamOnOff(bool OnOff);
 signals:
 	void SignalToLaser(bool OnOff);
 };

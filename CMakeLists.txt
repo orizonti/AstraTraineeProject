@@ -3,8 +3,8 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("TestCmakeProject")
+project ("AstraTraineeProject")
 
 
 # Включите подпроекты.
-add_subdirectory ("TestCmakeProject")
+add_subdirectory ("TraineeProjectSource")

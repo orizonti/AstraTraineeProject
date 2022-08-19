@@ -8,50 +8,63 @@ LaserPointerInterfaceClass::LaserPointerInterfaceClass()
     polynom = 0x9B;
     init = 0xFF;
     ComPort = new QSerialPort;
-    ComPort->setPortName("ttyXRUSB0");
+    ConnectToPort("ttyXRUSB0");
 
 
-		   bool FLAG_OPEN = false;
-             FLAG_OPEN = ComPort->open(QSerialPort::ReadWrite);
-           ComPort->setBaudRate(115200);
-           ComPort->setDataBits(QSerialPort::Data8);
-           ComPort->setParity(QSerialPort::NoParity);
-           ComPort->setStopBits(QSerialPort::OneStop);
-           ComPort->setFlowControl(QSerialPort::NoFlowControl);
 
-		   if (FLAG_OPEN)
-		   {
-			   qDebug() << "PORT OPEN - " << ComPort->portName();
-           QObject::connect(ComPort,SIGNAL(readyRead()),this,SLOT(SlotReadData()));
-		   }
+    this->Power675 = 700;
+    this->Power1064 = 700;
+    this->Power975 = 700;
+    QTimer::singleShot(500, this, SLOT(SetPower675()));
+    QTimer::singleShot(1000, this, SLOT(SetPower1065()));
+    //QTimer::singleShot(200, this, SLOT(SetPower975()));
+}
 
-           QList<QSerialPortInfo> Ports = QSerialPortInfo::availablePorts();
+LaserPointerInterfaceClass::LaserPointerInterfaceClass(LaserPointerInterfaceClass& CopyInterface)
+{
+    ComPort = CopyInterface.ComPort;
+    this->Power675 = 700;
+    this->Power1064 = 700;
+    this->Power975 = 700;
+}
 
-           for(QSerialPortInfo& Port: Ports)
-           {
-               qDebug() << "AVAILABLE PORT - " << Port.portName();
-               //ui->comboBox->addItem(Port.portName());
-           }
-    	    this->SendCommand(CODE_UMI_ON,0xFF);
-    		//	QThread::msleep(300);
-			//this->SendCommand(L1_CONTINUOUS_MODE, 0xFF);
+LaserPointerInterfaceClass::LaserPointerInterfaceClass(QString PortName)
+{
+    ComPort = new QSerialPort;
+    ConnectToPort(PortName);
+    this->Power675 = 700;
+    this->Power1064 = 700;
+    this->Power975 = 700;
+    QTimer::singleShot(500, this, SLOT(SetPower675()));
+    QTimer::singleShot(1000, this, SLOT(SetPower1065()));
+    //QTimer::singleShot(200, this, SLOT(SetPower975()));
+}
+
+void LaserPointerInterfaceClass::ConnectToPort(QString PortName)
+{
+    ComPort->setPortName(PortName);
+    bool FLAG_OPEN = false;
+    FLAG_OPEN = ComPort->open(QSerialPort::ReadWrite);
+    ComPort->setBaudRate(115200);
+    ComPort->setDataBits(QSerialPort::Data8);
+    ComPort->setParity(QSerialPort::NoParity);
+    ComPort->setStopBits(QSerialPort::OneStop);
+    ComPort->setFlowControl(QSerialPort::NoFlowControl);
+
+    if (FLAG_OPEN)
+    {
+        qDebug() << "PORT OPEN - " << ComPort->portName();
+        QObject::connect(ComPort,SIGNAL(readyRead()),this,SLOT(SlotReadData()));
+    }
+
+    QList<QSerialPortInfo> Ports = QSerialPortInfo::availablePorts();
+
+    for(QSerialPortInfo& Port: Ports)
+        qDebug() << "AVAILABLE PORT - " << Port.portName();
+
+    this->SendCommand(CODE_UMI_ON,0xFF);
 
 
-    	    qDebug() << "CUMI ON";
-    			//QThread::msleep(300);
-    		//this->SetPower1065(500);
-    		//	QThread::msleep(300);
-    		//this->SetPower975(500);
-			this->Power675 = 800;
-			this->Power1064 = 800;
-			this->Power975 = 800;
-	        QTimer::singleShot(500, this, SLOT(SetPower675()));
-	        QTimer::singleShot(1000, this, SLOT(SetPower1065()));
-	        //QTimer::singleShot(200, this, SLOT(SetPower975()));
-    		//	QThread::msleep(300);
-
-
-	            
 }
 
 void LaserPointerInterfaceClass::TurnLaserBeamOnOff(bool OnOff)
@@ -63,9 +76,6 @@ void LaserPointerInterfaceClass::TurnLaserBeamOnOff(bool OnOff)
 		return;
 
 	qDebug() << "TURN MARKER LASER - " << OnOff;
-					//QThread::msleep(150);
-					//QThread::msleep(150);
-				//this->TurnOnOff975nm(OnOff);
 	OnOff675 = OnOff;
 	OnOff1064 = OnOff;
 
@@ -139,7 +149,6 @@ void LaserPointerInterfaceClass::SetPower675()
 {
 	   //power is current, must be changed to approximation power of current value
 	   this->SendCommand(L1_CURRENT,1000 - this->Power675);
-	   qDebug() << "Set power- -" << this->Power675;
 }
 
 void LaserPointerInterfaceClass::SetPower975()
