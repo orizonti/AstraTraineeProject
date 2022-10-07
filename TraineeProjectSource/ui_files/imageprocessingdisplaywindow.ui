@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>537</width>
-    <height>370</height>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
 {
 border: 2px solid line black;
 	background-color: rgb(148, 134, 115);
-	font: 14pt &quot;Sans Serif&quot;;
+	font: 8pt &quot;Sans Serif&quot;;
 }
 QLineEdit
 {
@@ -260,9 +260,7 @@ border: 2px solid line black;
         </property>
         <property name="font">
          <font>
-          <family>MS Shell Dlg 2</family>
           <pointsize>12</pointsize>
-          <weight>9</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
@@ -295,9 +293,7 @@ background-color: rgb(200, 200, 200);
         </property>
         <property name="font">
          <font>
-          <family>MS Shell Dlg 2</family>
           <pointsize>12</pointsize>
-          <weight>9</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
@@ -330,9 +326,7 @@ background-color: rgb(200, 200, 200);
         </property>
         <property name="font">
          <font>
-          <family>MS Shell Dlg 2</family>
           <pointsize>12</pointsize>
-          <weight>9</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
@@ -365,9 +359,7 @@ background-color: rgb(200, 200, 200);
         </property>
         <property name="font">
          <font>
-          <family>MS Shell Dlg 2</family>
           <pointsize>12</pointsize>
-          <weight>9</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
@@ -405,9 +397,7 @@ background-color: rgb(200, 200, 200);
        </property>
        <property name="font">
         <font>
-         <family>Sans Serif</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
+         <pointsize>8</pointsize>
          <italic>false</italic>
          <bold>false</bold>
         </font>
@@ -458,9 +448,7 @@ border: 1px solid line black;
       <widget class="QLabel" name="label_2">
        <property name="font">
         <font>
-         <family>Sans Serif</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
+         <pointsize>8</pointsize>
          <italic>false</italic>
          <bold>false</bold>
         </font>
@@ -481,9 +469,7 @@ border: 1px solid line black;
       <widget class="QLineEdit" name="lineEditFilterProcentage">
        <property name="font">
         <font>
-         <family>Sans Serif</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
+         <pointsize>8</pointsize>
          <italic>false</italic>
          <bold>false</bold>
         </font>

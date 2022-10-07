@@ -15,7 +15,7 @@ displayData.TypeBlock = this->TypeBlock;
   displayData.OutputPID = EnginePIDRegulator.GetCoord();
   displayData.BeginError = ErrorRecord.begin();
   displayData.EndError = CurrentRecord;
-  qDebug() << "Current record - " << std::distance(ErrorRecord.begin(),CurrentRecord);
+  //qDebug() << "Current record - " << std::distance(ErrorRecord.begin(),CurrentRecord);
   CurrentRecord = ErrorRecord.begin();
 
 

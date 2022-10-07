@@ -25,10 +25,13 @@ set(QT_PRINTSUPPORT_LIB 1)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-if(EXISTS "/home/spp/PROGRAM_LIBRARY/QT5.15.2/5.15.2/gcc_64/")
-    set(CMAKE_PREFIX_PATH "/home/spp/PROGRAM_LIBRARY/QT5.15.2/5.15.2/gcc_64/")
+if(EXISTS "/home/broms/PROGRAM_LIBRARY/linux/QT5.15/5.15.2/gcc_64/")
+    set(CMAKE_PREFIX_PATH "/home/broms/PROGRAM_LIBRARY/linux/QT5.15/5.15.2/gcc_64")
 endif()
 
+if(EXISTS "/home/broms/Qt/5.15.2/gcc_64")
+    set(CMAKE_PREFIX_PATH "/home/broms/Qt/5.15.2/gcc_64")
+endif()
 
 set(Qt5Core_DIR "${CMAKE_PREFIX_PATH}/Qt5Core")
 set(Qt5Gui_DIR "${CMAKE_PREFIX_PATH}/Qt5Gui")
@@ -41,7 +44,7 @@ set(Qt5 "${CMAKE_PREFIX_PATH}/Qt5")
 
 find_package(Qt5 COMPONENTS Widgets Network Core SerialPort PrintSupport REQUIRED)
 
-set(CMAKE_PREFIX_PATH "/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/")
+set(CMAKE_PREFIX_PATH "/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/")
 find_package(Torch REQUIRED)
 
 find_package(OpenCV REQUIRED )
@@ -50,15 +53,17 @@ message("OPENCV LIBS "${OpenCV_LIBS})
 
 include_directories("/opt/nf_npkspp/ibpa.08072-01_mppd_driver/include/headers/")
 include_directories("/usr/local/include/opencv4")
+include_directories("./gui_sources")
+include_directories("/home/broms/DEVELOPMENT/AstraTraineeProject/TraineeProjectSource")
 
-include_directories("/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/include")
-include_directories("/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
-include_directories("/home/spp/PROGRAM_LIBRARY/MATH_LIBRARY")
-include_directories("/home/spp/PROGRAM_LIBRARY/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
-include_directories("/home/spp/PROGRAM_LIBRARY/MATH_LIBRARY/")
-include_directories("/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/onnxruntime/include/")
-link_directories("/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/onnxruntime/lib/")
-link_directories("/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib")
+link_directories(/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib)
+include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/include")
+include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
+include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/MATH_LIBRARY")
+include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
+include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/MATH_LIBRARY/")
+include_directories("/home/broms/PROGRAM_LIBRARY/onnxruntime/include/")
+link_directories( "/home/broms/PROGRAM_LIBRARY/onnxruntime/lib/")
 
 add_executable (TraineeProjectExecutable
         "./ui_files/aimingblockwindow.ui"
@@ -78,46 +83,50 @@ add_executable (TraineeProjectExecutable
         "./ui_files/PilotLaserWindow.ui"
         "./ui_files/windowsinussource.ui"
 
+        "./gui_sources/aimingblockwindow.cpp"
+        "./gui_sources/engineblockwindow.cpp"
+        "./gui_sources/cameracontrolwindow.cpp"
+        "./gui_sources/camerawindow.cpp"
+        "./gui_sources/graphicswindow.cpp"
+        "./gui_sources/imageprocessingdisplaywindow.cpp"
+        "./gui_sources/imageprocessingwindow.cpp"
+        "./gui_sources/mainblockwindow.cpp"
+        "./gui_sources/mainwindowqclass.cpp"
+        "./gui_sources/kalmanwindow.cpp"
+        "./gui_sources/laserblockwindow.cpp"
+        "./gui_sources/enginecontrolwindow.cpp"
+        "./gui_sources/graphicwidgetnode.cpp"
+        "./gui_sources/pidwindow2.cpp"
+        "./gui_sources/PilotLaserWindow.cpp"
+        "./gui_sources/windowsinussource.cpp"
+        "./gui_sources/AdjustableWidget.cpp"
+        "./gui_sources/ErrorPortControl.cpp"
+        "./gui_sources/labelimage.cpp"
+
         "ui_PIDWindow.h"
         "main.cpp"
-        "aimingblockwindow.cpp"
         "AimingClass.cpp"
         "AirSystemClass.cpp"
-        "cameracontrolwindow.cpp"
         "CameraInterfaceClass.cpp"
-        "camerawindow.cpp"
         "ChillSystemClass.cpp"
         "CommonLaserInterfaceClass.cpp"
         "DigitalClock.cpp"
         "edge.cpp"
-        "engineblockwindow.cpp"
         "EngineControlClass.cpp"
-        "enginecontrolwindow.cpp"
         "EngineInterfaceClass.cpp"
-        "ErrorPortControl.cpp"
         "ErrorRecieverClass.cpp"
-        "graphicswindow.cpp"
-        "graphicwidgetnode.cpp"
         "ImageProcessingClass.cpp"
-        "imageprocessingdisplaywindow.cpp"
-        "imageprocessingwindow.cpp"
-        "kalmanwindow.cpp"
         "KLPInterfaceClass.cpp"
-        "labelimage.cpp"
-        "laserblockwindow.cpp"
         "LaserControlClass.cpp"
         "LaserPilotInterfaceClass.cpp"
         "LaserPointerInterfaceClass.cpp"
         "LaserPowerInterfaceClass.cpp"
         "main.cpp"
-        "mainblockwindow.cpp"
         "maincontrollerqclass.cpp"
-        "mainwindowqclass.cpp"
+
         "node.cpp"
         "PassTwoCoordClass.cpp"
         "PIDClass.cpp"
-        "pidwindow2.cpp"
-        "PilotLaserWindow.cpp"
         "qcustomplot.cpp"
         "RemoteControlClass.cpp"
         "RotateOperationContainer.cpp"
@@ -125,7 +134,6 @@ add_executable (TraineeProjectExecutable
         "stdafx.cpp"
         "tcpclientengine.cpp"
         "TransformCoordClass.cpp"
-        "windowsinussource.cpp"
         "mppd_wrap.cpp"
         "qcustomplot.h"
         "KalmanFilterClass.cpp"
@@ -152,8 +160,8 @@ set(QtIncludeConcurrent "${CMAKE_PREFIX_PATH}/include/QtConcurrent")
 
 
 
-if(EXISTS "/home/spp/COMMON_DIR/PROGRAM_LIBRARY")
-    set(COMMON_LIBRARY_PATH "/home/spp/COMMON_DIR/PROGRAM_LIBRARY")
+if(EXISTS "/home/broms/COMMON_DIR/PROGRAM_LIBRARY")
+    set(COMMON_LIBRARY_PATH "/home/broms/COMMON_DIR/PROGRAM_LIBRARY")
 endif()
 set(IncludeBoost "${COMMON_LIBRARY_PATH}/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
 set(IncludeMath "${COMMON_LIBRARY_PATH}/PROGRAM_LIBRARY/MATH_LIBRARY")
@@ -210,7 +218,7 @@ set(IncludeTorch "${COMMON_LIBRARY_PATH}/NN_LIBRARY/libtorch/include/torch/csrc/
 #target_precompile_headers(TestCmakeProject PRIVATE ${IncludeBoost}/boost/crc.hpp)
 #target_precompile_headers(TestCmakeProject PRIVATE qcustomplot.h)
 #
-#set(IncludeMath "/home/spp/COMMON_DIR/PROGRAM_LIBRARY/MATH_LIBRARY")
+#set(IncludeMath "/home/broms/COMMON_DIR/PROGRAM_LIBRARY/MATH_LIBRARY")
 #
 #target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/Eigen)
 #target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/Dense)
