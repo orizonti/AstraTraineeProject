@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>864</width>
-    <height>472</height>
+    <width>700</width>
+    <height>550</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>550</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>GraphicsWindow</string>
@@ -69,9 +75,7 @@ QDoubleSpinBox
         <widget class="QGroupBox" name="groupBox">
          <property name="font">
           <font>
-           <family>Sans Serif</family>
            <pointsize>14</pointsize>
-           <weight>50</weight>
            <italic>false</italic>
            <bold>false</bold>
           </font>
@@ -162,9 +166,7 @@ border: 1px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>PT Serif</family>
                  <pointsize>18</pointsize>
-                 <weight>9</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -202,9 +204,7 @@ border: 1px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -242,9 +242,7 @@ border: 2px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -288,9 +286,7 @@ border: 2px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>18</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -381,9 +377,7 @@ border: 0px solid line black;
               <widget class="QCheckBox" name="checkShowKalman1">
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -412,9 +406,7 @@ border: 2px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -458,9 +450,7 @@ border: 2px solid line black;
         <widget class="QGroupBox" name="groupBox_3">
          <property name="font">
           <font>
-           <family>Sans Serif</family>
            <pointsize>14</pointsize>
-           <weight>50</weight>
            <italic>false</italic>
            <bold>false</bold>
           </font>
@@ -528,9 +518,7 @@ border: 0px solid line black;
               <widget class="QCheckBox" name="checkShowKalman2">
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -553,9 +541,7 @@ border: 2px solid line black;
               <widget class="QCheckBox" name="checkShowError2">
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -685,9 +671,7 @@ border: 1px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -725,9 +709,7 @@ border: 2px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -810,9 +792,7 @@ border: 2px solid line black;
         <widget class="QGroupBox" name="groupBox_5">
          <property name="font">
           <font>
-           <family>Sans Serif</family>
            <pointsize>14</pointsize>
-           <weight>50</weight>
            <italic>false</italic>
            <bold>false</bold>
           </font>
@@ -880,9 +860,7 @@ border: 0px solid line black;
               <widget class="QCheckBox" name="checkShowError3">
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -916,9 +894,7 @@ border: 2px solid line black;
               <widget class="QCheckBox" name="checkShowKalman3">
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -1034,9 +1010,7 @@ border: 1px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>
@@ -1074,9 +1048,7 @@ border: 2px solid line black;
                </property>
                <property name="font">
                 <font>
-                 <family>Sans Serif</family>
                  <pointsize>14</pointsize>
-                 <weight>50</weight>
                  <italic>false</italic>
                  <bold>false</bold>
                 </font>

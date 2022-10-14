@@ -27,20 +27,7 @@ ErrorPortControl::~ErrorPortControl()
 }
 
 
-void ErrorPortControl::MoveToScene(QGraphicsScene* Scene)
-{
-	Node = new GraphicWidgetNode(Scene, 300, 300, this);
-	Node->setPos(X_POS, Y_POS);
-}
 
-void ErrorPortControl::MoveToPos(int X, int Y)
-{
-	Node->setPos(X, Y);
-}
-
-void ErrorPortControl::ConnectToWidgetOnScene(GraphicWidgetNode* Node)
-{
-}
 
 void ErrorPortControl::SlotSetActiveChannel()
 {

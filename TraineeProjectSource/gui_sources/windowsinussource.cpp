@@ -11,20 +11,7 @@ WindowSinusSource::~WindowSinusSource()
 {
 }
 
-void WindowSinusSource::MoveToScene(QGraphicsScene* Scene, int POSX, int POSY)
-{
-	Node = new GraphicWidgetNode(Scene, POSX, POSX, this);
-	Node->setPos(X_POS, Y_POS);
-}
 
-void WindowSinusSource::MoveToPos(int X, int Y)
-{
-	Node->setPos(X, Y);
-}
-
-void WindowSinusSource::ConnectToWidgetOnScene(GraphicWidgetNode* Node)
-{
-}
 
 void WindowSinusSource::ConnectSignals(SinusGeneratorClass* SinusGenerator)
 {

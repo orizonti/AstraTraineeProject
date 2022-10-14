@@ -2,9 +2,6 @@
 #define AIMINGBLOCKWINDOW_H
 
 #include "pidwindow2.h"
-#include "node.h"
-#include "edge.h"
-#include "graphicwidgetnode.h"
 #include "ui_aimingblockwindow.h"
 #include "kalmanwindow.h"
 #include "HandleControlInterface.h"

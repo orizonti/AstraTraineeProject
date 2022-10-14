@@ -1,64 +1,44 @@
 
 #include "stdafx.h"
 #include "graphicwidgetnode.h"
+int GraphicWidgetNode::CounterWidget = 0;
 
 GraphicWidgetNode::GraphicWidgetNode(QGraphicsScene* Scene, int X_POS, int Y_POS,QWidget* Widget)
 {
-    this->NodePositionX = X_POS;
-    this->NodePositionY = Y_POS;
-//   wid->setWindowFlags(Qt::FramelessWindowHint);
+WindowNode = Widget; NumberWidget = CounterWidget; CounterWidget++;
 
-//    wid->setAttribute(Qt::WA_NoSystemBackground);
-//    wid->setAttribute(Qt::WA_TranslucentBackground);
-//    wid->setAttribute(Qt::WA_TransparentForMouseEvents);
-    Scene->addItem(this);
+Scene->addItem(this);
 
-     WindowNode = Widget;
+this->setWidget(WindowNode); this->setFlag(QGraphicsItem::ItemIsMovable);
 
-     this->setWidget(WindowNode);
+VisualNodes.push_back(new Node(1));
+VisualNodes.push_back(new Node(2));
+VisualNodes.push_back(new Node(3));
+VisualNodes.push_back(new Node(4));
 
+Scene->addItem(VisualNodes[0]); Scene->addItem(VisualNodes[1]); Scene->addItem(VisualNodes[2]); Scene->addItem(VisualNodes[3]);
 
- // this->setWindowFlags(Qt::Window);
-  
-  this->setFlag(QGraphicsItem::ItemIsMovable);
+this->windowFlags(); this->setPos(X_POS,Y_POS);
 
+this->NodePositionX = X_POS; this->NodePositionY = Y_POS;
+QPointF pos = this->pos(); QRectF rect = this->rect();
 
-     InputNode = new Node(1); 
-     OutputNode = new Node(2);
+int offset_x = -5; int offset_y = 5;
+QPointF InpP = QPointF(pos.x() + offset_x, pos.y() + rect.size().height() / 2);
+QPointF OutP = QPointF(pos.x() + rect.size().width() + offset_y, pos.y() + rect.size().height() / 2);
+VisualNodes[0]->setPos(InpP.x(), InpP.y());
+VisualNodes[1]->setPos(OutP.x(), OutP.y());
 
-     InputNodeUp = new Node(3);
-     OutputNodeDown = new Node(4);
-
-Scene->addItem(InputNode);
-Scene->addItem(OutputNode);
-Scene->addItem(InputNodeUp);
-Scene->addItem(OutputNodeDown);
-
-int offset_x = -5;
-int offset_y = 5;
-
-
-
-     this->windowFlags();
-     this->setPos(X_POS,Y_POS);
-	QPointF pos = this->pos();
-	QRectF rect = this->rect();
-
-	QPointF InpP = QPointF(pos.x() + offset_x, pos.y() + rect.size().height() / 2);
-	QPointF OutP = QPointF(pos.x() + rect.size().width() + offset_y, pos.y() + rect.size().height() / 2);
-	InputNode->setPos(InpP.x(), InpP.y());
-	OutputNode->setPos(OutP.x(), OutP.y());
-
-     InputNodeUp->setPos(pos.x()+this->rect().width()/2,pos.y()+offset_x);
-     OutputNodeDown->setPos(pos.x()+this->rect().width()/2,pos.y()+this->rect().height()+offset_y);
+VisualNodes[2]->setPos(pos.x()+this->rect().width()/2,pos.y()+offset_x);
+VisualNodes[3]->setPos(pos.x()+this->rect().width()/2,pos.y()+this->rect().height()+offset_y);
 }
 
 GraphicWidgetNode::~GraphicWidgetNode()
 {
-   delete InputNode;
-   delete OutputNode;
-   delete InputNodeUp;
-   delete OutputNodeDown;
+   delete VisualNodes[0];
+   delete VisualNodes[1];
+   delete VisualNodes[2];
+   delete VisualNodes[3];
 }
 
 void GraphicWidgetNode::setWidget(QWidget *widget)
@@ -68,16 +48,21 @@ void GraphicWidgetNode::setWidget(QWidget *widget)
 
 void GraphicWidgetNode::ConnectNode(GraphicWidgetNode* Node)
 {
-	if (WindowNode == 0 || InputNode == 0 || OutputNode == 0)
+	if (WindowNode == 0 || VisualNodes[0] == 0 || VisualNodes[1] == 0)
 		return;
-	Node->OutputNodeDown->ConnectNode(this->InputNodeUp);
+	Node->VisualNodes[3]->ConnectNode(this->VisualNodes[2]);
 }
 
 bool GraphicWidgetNode::sceneEvent(QEvent *event)
 {
-   this->NodePositionX = this->pos().x();
-   this->NodePositionY = this->pos().y();
-   //qDebug() << "Pos widget - " << NodePositionX << NodePositionY;
+   if(event->type() == QEvent::UngrabMouse)
+   {
+      this->NodePositionX = this->pos().x();
+      this->NodePositionY = this->pos().y();
+      qDebug() << "POS WIDGET - " << NodePositionX << NodePositionY << " NUMBER: " << NumberWidget;
+   }
+
+
    return QGraphicsProxyWidget::sceneEvent(event);
 
 }
@@ -111,17 +96,17 @@ if (this->isWindow())
 	offset_y = -10;
 }
 
-if (InputNode != 0 && OutputNode != 0)
+if (VisualNodes.size() == 4)
 {
 	QPointF pos = this->pos();
 	QRectF rect = this->rect();
 
 	QPointF InpP = QPointF(pos.x() + offset_x, pos.y() + rect.size().height() / 2);
 	QPointF OutP = QPointF(pos.x() + rect.size().width() + offset_y, pos.y() + rect.size().height() / 2);
-	InputNode->setPos(InpP.x(), InpP.y());
-	OutputNode->setPos(OutP.x(), OutP.y());
+	VisualNodes[0]->setPos(InpP.x(), InpP.y());
+	VisualNodes[1]->setPos(OutP.x(), OutP.y());
 
-     InputNodeUp->setPos(pos.x()+this->rect().width()/2,pos.y()+offset_x);
-     OutputNodeDown->setPos(pos.x()+this->rect().width()/2,pos.y()+this->rect().height()+offset_y);
+     VisualNodes[2]->setPos(pos.x()+this->rect().width()/2,pos.y()+offset_x);
+     VisualNodes[3]->setPos(pos.x()+this->rect().width()/2,pos.y()+this->rect().height()+offset_y);
 }
 }

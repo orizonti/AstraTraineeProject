@@ -48,49 +48,41 @@
 **
 ****************************************************************************/
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef LINKLINE_H
+#define LINKLINE_H
 
-#include <QGraphicsItem>
-#include <QList>
 
-class Edge;
-class GraphWidget;
-QT_BEGIN_NAMESPACE
-class QGraphicsSceneMouseEvent;
-QT_END_NAMESPACE
+class Node;
 
 //! [0]
-class Node : public QGraphicsItem
+class LinkLine : public QGraphicsItem
 {
 public:
-    Node();
-    Node(int NumberInWidget);
+    LinkLine(Node *sourceNode, Node *destNode);
+	void SetColor(QColor Color) { LinkLineColor = Color; };
 
-    int Number = 0;
-    void addEdge(Edge *edge);
-	void ConnectNode(Node* node);
-    QList<Edge *> edges() const;
+    Node *sourceNode() const;
+    Node *destNode() const;
+	QColor LinkLineColor = QColor(Qt::black);
 
-    enum { Type = UserType + 1 };
+    void adjust();
+
+    enum { Type = UserType + 2 };
     int type() const override { return Type; }
 
-    bool advance();
-
+protected:
     QRectF boundingRect() const override;
-    QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
-
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-
 private:
-    QList<Edge *> edgeList;
-    QPointF newPos;
+    Node *source, *dest;
+
+    QPainterPath Curve;
+
+    QPointF sourcePoint;
+    QPointF destPoint;
+    qreal arrowSize;
 };
 //! [0]
 
-#endif // NODE_H
+#endif // LINKLINE_H

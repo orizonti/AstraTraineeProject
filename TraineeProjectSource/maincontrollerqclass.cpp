@@ -263,13 +263,17 @@ bool MainControllerQClass::Initialization()
 	AimingBlocks.append(AimingBlock3.get());
 
 
-	SinusGenerator->WindowControl->MoveToScene(WindowDisplay->Scene,300,300);
-	SinusGenerator->WindowControl->Node->ConnectNode(WindowDisplay->EngineControlBlock3);
 	SinusGenerator->SetLink(&AimingBlock3->AimingPort);
-	SinusAimingBlockTest.WindowControl->MoveToScene(WindowDisplay->Scene,300,400);
 
-    ErrorRecievePort->ErrorPortWindowControl->MoveToScene(WindowDisplay->Scene);
-	ErrorRecievePort->ErrorPortWindowControl->Node->ConnectNode(WindowDisplay->MainBlock1);
+	//SinusGenerator->WindowControl->MoveToScene(WindowDisplay->Scene,300,300);
+	//SinusGenerator->WindowControl->Node->ConnectNode(WindowDisplay->EngineControlBlock3);
+	//SinusAimingBlockTest.WindowControl->MoveToScene(WindowDisplay->Scene,300,400);
+	 WindowDisplay->AddWidgetToDisplay(SinusGenerator->WindowControl);
+	 WindowDisplay->AddWidgetToDisplay(SinusAimingBlockTest.WindowControl);
+
+    //ErrorRecievePort->ErrorPortWindowControl->MoveToScene(WindowDisplay->Scene);
+	//ErrorRecievePort->ErrorPortWindowControl->Node->ConnectNode(WindowDisplay->MainBlock1);
+	 WindowDisplay->AddWidgetToDisplay(ErrorRecievePort->ErrorPortWindowControl);
 
 
 

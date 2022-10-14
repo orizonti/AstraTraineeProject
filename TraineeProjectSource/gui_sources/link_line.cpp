@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 #include "stdafx.h"
-#include "edge.h"
+#include "link_line.h"
 #include "node.h"
 
 #include <math.h>
@@ -60,32 +60,32 @@ static const double Pi = 3.14159265358979323846264338327950288419717;
 static double TwoPi = 2.0 * Pi;
 
 //! [0]
-Edge::Edge(Node *sourceNode, Node *destNode)
+LinkLine::LinkLine(Node *sourceNode, Node *destNode)
     : arrowSize(10)
 {
     setAcceptedMouseButtons(0);
     source = sourceNode;
     dest = destNode;
-    source->addEdge(this);
-    dest->addEdge(this);
+    source->addLinkLine(this);
+    dest->addLinkLine(this);
     adjust();
 }
 //! [0]
 
 //! [1]
-Node *Edge::sourceNode() const
+Node *LinkLine::sourceNode() const
 {
     return source;
 }
 
-Node *Edge::destNode() const
+Node *LinkLine::destNode() const
 {
     return dest;
 }
 //! [1]
 
 //! [2]
-void Edge::adjust()
+void LinkLine::adjust()
 {
     if (!source || !dest)
         return;
@@ -137,7 +137,7 @@ void Edge::adjust()
 //! [2]
 
 //! [3]
-QRectF Edge::boundingRect() const
+QRectF LinkLine::boundingRect() const
 {
     if (!source || !dest)
         return QRectF();
@@ -162,7 +162,7 @@ QRectF Edge::boundingRect() const
 //! [3]
 
 //! [4]
-void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+void LinkLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     if (!source || !dest)
         return;
@@ -174,7 +174,7 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 
 //! [5]
     // Draw the line itself
-    painter->setPen(QPen(this->EdgeColor, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    painter->setPen(QPen(this->LinkLineColor, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 //    painter->drawLine(line);
 	painter->setRenderHint(QPainter::Antialiasing);
     painter->setRenderHint(QPainter::HighQualityAntialiasing);

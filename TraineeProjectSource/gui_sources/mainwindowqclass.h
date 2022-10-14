@@ -30,6 +30,7 @@
 #include "enginecontrolwindow.h"
 #include "cameracontrolwindow.h"
 #include "imageprocessingdisplaywindow.h"
+#include "AdjustableWidget.h"
 
 
 class MainWindowQClass : public QMainWindow
@@ -47,9 +48,23 @@ public:
 	
 	QTimer TimerToCheckStateBlocks;
 
-	void ConnectControlSignals(HandleControlInterface* Control);
 	void SetWidgetToScene(QWidget* Wid);
 	void ConvertImage(QImage& GrayImage, QImage& ColorImage);
+
+	void ConnectControlSignals(HandleControlInterface* Control);
+
+	void AddWidgetToDisplay(AdjustableWidget* widget);
+	void AddWidgetToDisplay(AdjustableLabel* widget);
+
+private:
+	void SaveWidgetsPosition();
+	void LoadWidgetsPosition();
+    void SetWidgetsPosition(int group_number);
+	void SetGuiFontSize(int FontSize);
+	int CurrentGuiSize = 1;
+
+	void SaveWidgetsLinks();
+	void LoadWidgetsLinks();
 
 	MainBlockWindow* MainBlockDisplay;
 	ImageProcessingWindow* ImageProcDisplay        ;
@@ -79,7 +94,6 @@ public:
 protected:
     void closeEvent(QCloseEvent *event) override;
 private:
-	//���������� (��������� ������ QImage) ��� �������� � ������ ����������� 
 	QImage ImageToDisplay;
 	QImage ImageRGBToDisplay;
 	QImage ImageGrayToDisplay;
@@ -89,7 +103,9 @@ private:
 	GraphicsWindow* GraphicsDisplay;
 
 	QVector<QLabel*> LabelImageMass;
-	QList<GraphicWidgetNode*> WidgetNodes;
+	QVector<QVector<QPair<int,int>>> WidgetsPositionList;
+
+	QList<GraphicWidgetNode*> ModuleWidgets;
 
 private slots:
     void SlotUpdateScene(); // repaint scene when widget size has changed
@@ -100,7 +116,6 @@ public slots:
 	
 
 	void DisplayImage(DataImageProcStructure Data);
-		
 	void DisplayCoordData(DataCoordStructure Data);
 
 

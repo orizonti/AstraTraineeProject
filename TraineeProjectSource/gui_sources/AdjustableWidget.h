@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QTimer>
+#include <QGraphicsScene>
 
 
 class AdjustableWidget : public QWidget

@@ -102,6 +102,8 @@ add_executable (TraineeProjectExecutable
         "./gui_sources/AdjustableWidget.cpp"
         "./gui_sources/ErrorPortControl.cpp"
         "./gui_sources/labelimage.cpp"
+        "./gui_sources/link_line.cpp"
+        "./gui_sources/node.cpp"
 
         "ui_PIDWindow.h"
         "main.cpp"
@@ -111,7 +113,6 @@ add_executable (TraineeProjectExecutable
         "ChillSystemClass.cpp"
         "CommonLaserInterfaceClass.cpp"
         "DigitalClock.cpp"
-        "edge.cpp"
         "EngineControlClass.cpp"
         "EngineInterfaceClass.cpp"
         "ErrorRecieverClass.cpp"
@@ -124,7 +125,6 @@ add_executable (TraineeProjectExecutable
         "main.cpp"
         "maincontrollerqclass.cpp"
 
-        "node.cpp"
         "PassTwoCoordClass.cpp"
         "PIDClass.cpp"
         "qcustomplot.cpp"

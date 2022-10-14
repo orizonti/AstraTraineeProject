@@ -33,11 +33,6 @@ void SinusGeneratorClass::DisplayControlWindow()
 	WindowControl->show();
 }
 
-void SinusGeneratorClass::DisplayControlWindow(QGraphicsScene* Scene)
-{
-	WindowControl->MoveToScene(Scene,300,300);
-}
-
 
 void SinusGeneratorClass::SetCoord(QPair<double,double> Coord)
 {

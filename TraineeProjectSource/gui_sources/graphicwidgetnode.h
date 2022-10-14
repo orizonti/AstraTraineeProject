@@ -12,11 +12,8 @@ public:
     GraphicWidgetNode(QGraphicsScene* Scene, int X_POS, int Y_POS, QWidget *Widget);
     ~GraphicWidgetNode();
 
-    Node* InputNode = 0;
-    Node* OutputNode = 0;
 
-    Node* InputNodeUp = 0;
-    Node* OutputNodeDown = 0;
+    std::vector<Node*> VisualNodes;
 
     QWidget* WindowNode = 0;
     void setWidget(QWidget* widget);
@@ -31,6 +28,9 @@ public:
 
 	 void focusInEvent(QFocusEvent *event);
 	 void focusOutEvent(QFocusEvent *event);
+
+     static int CounterWidget;
+     int NumberWidget = 0;
 
 };
 

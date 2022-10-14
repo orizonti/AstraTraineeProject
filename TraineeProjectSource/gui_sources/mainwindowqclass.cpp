@@ -3,25 +3,18 @@
 #include <QAction>
 #include <QObject>
 #include <QGraphicsItem>
+#include "link_line.h"
 
 
 MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	//QObject::connect(ui.cameraButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//QObject::connect(ui.commButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//QObject::connect(ui.driversButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//QObject::connect(ui.driversControlButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//QObject::connect(ui.fiberButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//QObject::connect(ui.generalButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//QObject::connect(ui.imageButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//QObject::connect(ui.laserButton, SIGNAL(toggled(bool)), this, SLOT(SlotChangeViewWindow()));
-	//
 
-
+    WidgetsPositionList.resize(2);
 	LabelImage = new QLabel("Image");
 	GraphicsDisplay = GraphicsWidget;
+
 	 MainBlockDisplay              = new MainBlockWindow;
 	 ImageProcDisplay        = new ImageProcessingWindow;
 	 ShowImageDisplay = new ImageProcessingDisplayWindow;
@@ -60,7 +53,7 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	qRegisterMetaType<DataLaserStruct>("DataLaserStruct");
 	qRegisterMetaType<DataAimingErrorStructure>("DataAimingErrorStructure");
 	qRegisterMetaType<DataEngineStructure>("DataEngineStructure");
-	qRegisterMetaType<DataCoordStructure>("DataCoordStructure");
+	qRegisterMetaType<DataCoordStructure>("DataCoordStRucture");
 	qRegisterMetaType<QVector<QPair<double,double>>>("MassCoord");
 
 
@@ -89,104 +82,36 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	Scene->setSceneRect(0, 0, 3200, 2400);
 	
 
-	int CommonYMargin = 80;
-	GraphicWidgetNode* LableImageBlock = new GraphicWidgetNode(Scene, 14, 1323, LabelImage); WidgetNodes.append(LableImageBlock);
-	LableImageBlock->resize(1024, 256);
-	MainBlock1 = new GraphicWidgetNode(Scene, 689, 530, MainBlockDisplay); WidgetNodes.append(MainBlock1);
 
-	GraphicWidgetNode* ImageProcWindow = new GraphicWidgetNode(Scene, 344, 363, ImageProcDisplay); WidgetNodes.append(ImageProcWindow);
+    LoadWidgetsPosition();
+	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, 14, 1323, LabelImage)); ModuleWidgets[0]->resize(1024, 256);
 
-	GraphicWidgetNode* ImageProcDisplayWindow = new GraphicWidgetNode(Scene, 15, 757, ShowImageDisplay); WidgetNodes.append(ImageProcDisplayWindow);
+    this->AddWidgetToDisplay(MainBlockDisplay); this->AddWidgetToDisplay(ImageProcDisplay); this->AddWidgetToDisplay(ShowImageDisplay);
+    this->AddWidgetToDisplay(AimingBlockDisplay1); this->AddWidgetToDisplay(AimingBlockDisplay2); this->AddWidgetToDisplay(AimingBlockDisplay3);
 
-	GraphicWidgetNode* AimingBlock1 = new GraphicWidgetNode(Scene, 1010, 412,AimingBlockDisplay1); WidgetNodes.append(AimingBlock1);
-	GraphicWidgetNode* AimingBlock2 = new GraphicWidgetNode(Scene, 1184, 631,AimingBlockDisplay2); WidgetNodes.append(AimingBlock2);
-	GraphicWidgetNode* AimingBlock3 = new GraphicWidgetNode(Scene, 1321, 879,AimingBlockDisplay3); WidgetNodes.append(AimingBlock3);
+    this->AddWidgetToDisplay(PIDControl);
+    this->AddWidgetToDisplay(EngineControlDisplay1); this->AddWidgetToDisplay(EngineControlDisplay2); this->AddWidgetToDisplay(EngineControlDisplay3);
+    this->AddWidgetToDisplay(GraphicsDisplay); this->AddWidgetToDisplay(LaserControlDisplay); this->AddWidgetToDisplay(CameraControlBlockDisplay);
 
-
-	GraphicWidgetNode* PIDNode = new GraphicWidgetNode(Scene, 1204, 3,PIDControl); WidgetNodes.append(PIDNode);
-	//GraphicWidgetNode* CalmanNode = new GraphicWidgetNode(Scene, 1205, 86,KalmanControl); WidgetNodes.append(LableImageBlock);
-	
-
-	GraphicWidgetNode* EngineControlBlock1 = new GraphicWidgetNode(Scene, 1570, 426,EngineControlDisplay1); WidgetNodes.append(EngineControlBlock1);
-	GraphicWidgetNode* EngineControlBlock2 = new GraphicWidgetNode(Scene, 1570, 644,EngineControlDisplay2); WidgetNodes.append(EngineControlBlock2);
-					   EngineControlBlock3 = new GraphicWidgetNode(Scene, 1570, 891,EngineControlDisplay3); WidgetNodes.append(EngineControlBlock3);
-
-	GraphicWidgetNode* GraphicsWindowNode = new GraphicWidgetNode(Scene, 1097, 1215 + CommonYMargin,GraphicsDisplay); WidgetNodes.append(GraphicsWindowNode);
-
-	GraphicWidgetNode* LaserBlockWindow1 = new GraphicWidgetNode(Scene, 910, 40,LaserControlDisplay); WidgetNodes.append(LaserBlockWindow1);
-
-	GraphicWidgetNode* Kamera = new GraphicWidgetNode(Scene, 3, 440,CameraControlBlockDisplay); WidgetNodes.append(Kamera);
-	GraphicWidgetNode* KameraControl = new GraphicWidgetNode(Scene, 10, 45,CameraControlParamDisplay); WidgetNodes.append(KameraControl);
-
-//color: rgb(130, 91, 47);
-//color: rgb(87, 104, 50);
-//color: rgb(74, 90, 72);
-//color: rgb(56, 95, 53);
-//rgb(54, 28, 22);
-
-			Scene->addItem(new Edge(ImageProcWindow->OutputNode, MainBlock1->InputNode));
-			Scene->addItem(new Edge(LaserBlockWindow1->OutputNodeDown, MainBlock1->InputNodeUp));
-			Scene->addItem(new Edge(MainBlock1->OutputNode, AimingBlock1->InputNode));
-			Scene->addItem(new Edge(MainBlock1->OutputNode, AimingBlock2->InputNode));
-			Scene->addItem(new Edge(MainBlock1->OutputNode, AimingBlock3->InputNode));
-
-			Scene->addItem(new Edge(AimingBlock1->InputNodeUp,PIDNode->OutputNodeDown));
-	        dynamic_cast<Edge*>(Scene->items().first())->SetColor(QColor(54,28,22));
-			Scene->addItem(new Edge(AimingBlock2->InputNodeUp,PIDNode->OutputNodeDown));
-	        dynamic_cast<Edge*>(Scene->items().first())->SetColor(QColor(54,28,22));
-			Scene->addItem(new Edge(AimingBlock3->InputNodeUp,PIDNode->OutputNodeDown));
-	        dynamic_cast<Edge*>(Scene->items().first())->SetColor(QColor(54,28,22));
-
-			//Scene->addItem(new Edge(CalmanNode->OutputNode,PIDNode->InputNode));
-        	dynamic_cast<Edge*>(Scene->items().first())->SetColor(QColor(54,28,22));
-			Scene->addItem(new Edge(AimingBlock1->OutputNode, EngineControlBlock1->InputNode));
-			Scene->addItem(new Edge(AimingBlock2->OutputNode, EngineControlBlock2->InputNode));
-			Scene->addItem(new Edge(AimingBlock3->OutputNode, EngineControlBlock3->InputNode));
-			Scene->addItem(new Edge(AimingBlock3->OutputNodeDown, GraphicsWindowNode->InputNodeUp));
-
-			Scene->addItem(new Edge(Kamera->OutputNode, ImageProcWindow->InputNode));
-			Scene->addItem(new Edge(KameraControl->OutputNodeDown, Kamera->InputNodeUp));
-
-			Scene->addItem(new Edge(ImageProcWindow->OutputNodeDown, ImageProcDisplayWindow->InputNodeUp));
-			Scene->addItem(new Edge(MainBlock1->OutputNodeDown, LableImageBlock->InputNodeUp));
-			Scene->addItem(GraphicsWindowNode);
+    this->AddWidgetToDisplay(CameraControlParamDisplay);
+	SetGuiFontSize(12);
+	SetWidgetsPosition(CurrentGuiSize);
+	LoadWidgetsLinks();
+    QTimer::singleShot(30,this,&MainWindowQClass::SlotUpdateScene);
 
 
 	ui.graphicsView->setScene(Scene);
 	ui.graphicsView->centerOn(20, 20);
 
-
 }
 
 
-
-
-//����������
 MainWindowQClass::~MainWindowQClass()
 {
-
-    qDebug() << "MAIN WINDOW DELETED";
-	//QObject::disconnect(this, SIGNAL(SignalNewImage(DataImageProcStructure)),       this, SLOT(DisplayImage(DataImageProcStructure)));
-	//QObject::disconnect(this, SIGNAL(SignalNewAirData(DataTemperatureStructure)),   this, SLOT(DisplayAirData(DataTemperatureStructure)));
-	//QObject::disconnect(this, SIGNAL(SignalNewCameraData(DataCamerasStructure)),    this, SLOT(DisplayCameraData(DataCamerasStructure)));
-	//QObject::disconnect(this, SIGNAL(SignalNewChillData(DataTemperatureStructure)), this, SLOT(DisplayChillData(DataTemperatureStructure)));
-
-	//QObject::disconnect(this, SIGNAL(SignalNewEngineData(DataEngineStructure)), this, SLOT(DisplayEngineData(DataEngineStructure)));
-
-	//QObject::disconnect(this, SIGNAL(SignalNewAimingData(DataAimingErrorStructure)), this, SLOT(DisplayAimingData(DataAimingErrorStructure)));
-	//QObject::disconnect(this, SIGNAL(SignalNewAimingData(DataAimingErrorStructure)), GraphicsDisplay, SLOT(DisplayAimingData(DataAimingErrorStructure)));
-
-
-	//QObject::disconnect(this, SIGNAL(SignalNewCoordsData(DataCoordStructure)),this,SLOT(DisplayCoordData(DataCoordStructure)));
 }
 
-
-
-
-//����� �����������
 void MainWindowQClass::DisplayImage(DataImageProcStructure Data)
 {
-
 		ImageGrayToDisplay = Data.Image;
 		ImageGrayToDisplay.detach();
 		this->ConvertImage(ImageGrayToDisplay, ImageRGBToDisplay);
@@ -405,6 +330,7 @@ void MainWindowQClass::ConvertImage(QImage& GrayImage, QImage& ColorImage)
 void MainWindowQClass::closeEvent(QCloseEvent *event)
 {
 qDebug() << "MAIN WINDOW CLOSED";
+this->SaveWidgetsPosition();
 emit SignalMainWindowClosed();
 QThread::msleep(2000);
 Scene->clear();
@@ -418,32 +344,194 @@ void MainWindowQClass::SlotChangeInterfaceSize()
    QAction* Action = dynamic_cast<QAction*>(QObject::sender());
    int size = 8;
 
-   if(Action->objectName() == "actionGuiSizeSmall") size = 8;
-   if(Action->objectName() == "actionGuiSizeBig")   size = 12;
+    QList<QGraphicsItem*> items = Scene->items();
+	//qDebug() << "SAVE GROUP POSITIONS - " << CurrentGuiSize;
+	//for(auto Item: items)
+	//{
+	//	if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
+	//	{
+	//	WidgetsPositionList[CurrentGuiSize][node->NumberWidget].first = node->NodePositionX;
+	//	WidgetsPositionList[CurrentGuiSize][node->NumberWidget].second = node->NodePositionY;
 
-	QList<QGraphicsItem*> items = Scene->items();
+	//	qDebug() <<"GROUP: " << CurrentGuiSize <<"NUMBER - " << qSetFieldWidth(4) << node->NumberWidget << 
+	//	" X: " << WidgetsPositionList[CurrentGuiSize][node->NumberWidget].first  << 
+	//	" Y: " << WidgetsPositionList[CurrentGuiSize][node->NumberWidget].second;
+	//	}
+	//}
+	qDebug() << "===========================" ;
 
+   if(Action->objectName() == "actionGuiSizeSmall") {size = 8; CurrentGuiSize = 0;};
+   if(Action->objectName() == "actionGuiSizeBig")   {size = 12; CurrentGuiSize = 1;};
+
+    SetGuiFontSize(size);
+    SetWidgetsPosition(CurrentGuiSize);
+
+    QTimer::singleShot(30,this,&MainWindowQClass::SlotUpdateScene);
+}
+
+void MainWindowQClass::SetGuiFontSize(int FontSize)
+{
+    QList<QGraphicsItem*> items = Scene->items();
 	for(auto Item: items)
 	{
 		if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
 		{
-		qDebug()  << "DOWNCAST FROM ITEM TO NODE SUCCESSFUL" << node->WindowNode->objectName();
-
 			if (AdjustableWidget* widget = dynamic_cast<AdjustableWidget*>(node->WindowNode); widget != nullptr)
-			widget->SlotSetWindowSize(size);
+			widget->SlotSetWindowSize(FontSize);
 
 			if (AdjustableLabel* label = dynamic_cast<AdjustableLabel*>(node->WindowNode); label != nullptr)
-			label->SlotSetWindowSize(size);
+			label->SlotSetWindowSize(FontSize);
 		}
 	}
+}
 
-    QTimer::singleShot(10,this,&MainWindowQClass::SlotUpdateScene);
+
+void MainWindowQClass::SaveWidgetsPosition()
+{
+QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+QFile data(FileName);
+data.open(QFile::WriteOnly); data.flush();
+
+
+QString outString;
+QTextStream out(&outString);
+
+
+    QList<QGraphicsItem*> items = Scene->items();
+	for(auto Item: items)
+	{
+		if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
+		{
+		WidgetsPositionList[CurrentGuiSize][node->NumberWidget].first = node->NodePositionX;
+		WidgetsPositionList[CurrentGuiSize][node->NumberWidget].second = node->NodePositionY;
+		}
+
+	}
+
+    out <<"NUMBER:     POSITION" << endl;
+    for(auto group: WidgetsPositionList)
+	{
+      for(int n = 0; n < group.size(); n++)
+	  out << qSetFieldWidth(10) << Qt::right << n << group[n].first << group[n].second  << endl;
+
+	  out << "==============================" << endl;
+	}
+
+data.write(outString.toUtf8());
+data.close();
+}
+
+void MainWindowQClass::SetWidgetsPosition(int group_number)
+{
+
+    QList<QGraphicsItem*> items = Scene->items();
+	for(auto Item: items)
+	{
+	   if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
+	   {
+          node->setPos(WidgetsPositionList[group_number][node->NumberWidget].first,WidgetsPositionList[group_number][node->NumberWidget].second);  	
+	   }
+	}
+}
+
+void MainWindowQClass::LoadWidgetsPosition()
+{
+
+    qDebug() << "=====================================";
+	QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+	QFile file(FileName);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QTextStream in(&file);
+    QString line = in.readLine();
+
+    int positions_group = 0;
+    while (!in.atEnd())
+    {
+        QString line = in.readLine();
+        QTextStream stream(&line);
+
+        if(line.contains("==")) 
+		{
+			qDebug() << "================================";
+			positions_group++;
+			continue;
+		}
+
+        int number; int POS_X;int POS_Y;
+		stream >> number >> POS_X >> POS_Y;
+		WidgetsPositionList[positions_group].append(QPair<int,int>(POS_X,POS_Y));
+    }
 }
 
 void MainWindowQClass::SlotUpdateScene()
 {
-    for(auto Node: WidgetNodes)
+    for(auto Node: ModuleWidgets)
 		Node->UpdateWidget();
+
     Scene->update(Scene->sceneRect());
 	ui.graphicsView->repaint();
+}
+
+void MainWindowQClass::AddWidgetToDisplay(AdjustableWidget* widget)
+{
+    auto Position = WidgetsPositionList[CurrentGuiSize][this->ModuleWidgets.size()];
+	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second,widget));
+}
+
+void MainWindowQClass::AddWidgetToDisplay(AdjustableLabel* widget)
+{
+    auto Position = WidgetsPositionList[CurrentGuiSize][this->ModuleWidgets.size()];
+	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second,widget));
+}
+
+void MainWindowQClass::SaveWidgetsLinks()
+{
+
+}
+void MainWindowQClass::LoadWidgetsLinks()
+{
+
+  QString WidgetLinks = "2  1  : 1  0 \n"
+						"12 3  : 1  2 \n"
+						"1  1  : 4  0 \n"
+						"1  1  : 5  0 \n"
+						"1  1  : 6  0 \n"
+						"4  2  : 7  3 \n"
+						"5  2  : 7  3 \n"
+						"6  2  : 7  3 \n"
+						"4  1  : 8  0 \n"
+						"5  1  : 9  0 \n"
+						"6  1  : 10 0 \n"
+						"6  3  : 11 2 \n"
+						"13 1  : 2  0 \n"
+						"14 3  : 13 2 \n"
+						"2  3  : 3  2 \n"
+						"1  3  : 0  2 \n";
+            
+QString FileName = "/home/broms/TrainerData/WidgetLinks.txt";
+QFile file(FileName);
+
+if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+WidgetLinks = file.readAll();
+
+
+	QTextStream in_stream(&WidgetLinks);
+	int module1, node1 , module2 , node2;
+	QString delimeter;
+	while(!in_stream.atEnd())
+	{
+		in_stream >> module1 >> node1 >> delimeter >> module2 >> node2;	
+
+		if(delimeter == ":")
+		Scene->addItem(new LinkLine(ModuleWidgets[module1]->VisualNodes[node1], ModuleWidgets[module2]->VisualNodes[node2]));
+	}
+	
+	//dynamic_cast<LinkLine*>(Scene->items().first())->SetColor(QColor(54,28,22));
+	//dynamic_cast<LinkLine*>(Scene->items().first())->SetColor(QColor(54,28,22));
+	//dynamic_cast<LinkLine*>(Scene->items().first())->SetColor(QColor(54,28,22));
+	//dynamic_cast<LinkLine*>(Scene->items().first())->SetColor(QColor(54,28,22));
+	////Scene->addItem(GraphicsWindowNode);
 }

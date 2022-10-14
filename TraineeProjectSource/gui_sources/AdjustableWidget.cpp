@@ -48,6 +48,7 @@ void AdjustableLabel::AdjustWindow()
     this->resize(0,0);
 }
 
+
   //auto Labels = this->findChildren<QLabel*>();
   //auto Checks = this->findChildren<QCheckBox*>();
 

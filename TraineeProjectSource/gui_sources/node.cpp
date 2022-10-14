@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 #include "stdafx.h"
-#include "edge.h"
+#include "link_line.h"
 #include "node.h"
 
 #include <QGraphicsScene>
@@ -74,20 +74,20 @@ Node::Node(int NumberInWidget): Node()
 //! [0]
 
 //! [1]
-void Node::addEdge(Edge *edge)
+void Node::addLinkLine(LinkLine *link_line)
 {
-    edgeList << edge;
-    edge->adjust();
+    link_lineList << link_line;
+    link_line->adjust();
 }
 
 void Node::ConnectNode(Node* node)
 {
-	this->scene()->addItem(new Edge(node, this));
+	this->scene()->addItem(new LinkLine(node, this));
 }
 
-QList<Edge *> Node::edges() const
+QList<LinkLine *> Node::link_lines() const
 {
-    return edgeList;
+    return link_lineList;
 }
 //! [1]
 
@@ -152,8 +152,8 @@ QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     switch (change) {
     case ItemPositionHasChanged:
-        foreach (Edge *edge, edgeList)
-            edge->adjust();
+        foreach (LinkLine *link, link_lineList)
+            link->adjust();
        // graph->itemMoved();
         break;
     default:
