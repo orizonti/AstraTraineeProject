@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "ErrorPortControl.h"
-#include "ErrorRecieverClass.h"
+#include "RemoteAimingWindowControl.h"
+#include "RemoteControlClass.h"
 
-ErrorPortControl::ErrorPortControl(QWidget *parent)
+RemoteAimingWindowControl::RemoteAimingWindowControl(QWidget *parent)
 	: AdjustableWidget(parent)
 {
 	ui.setupUi(this);
@@ -22,14 +22,14 @@ ErrorPortControl::ErrorPortControl(QWidget *parent)
 	QObject::connect(ui.butDirectErrorToChannel3,SIGNAL(clicked()),this,SLOT(SlotSetActiveChannel()));
 }
 
-ErrorPortControl::~ErrorPortControl()
+RemoteAimingWindowControl::~RemoteAimingWindowControl()
 {
 }
 
 
 
 
-void ErrorPortControl::SlotSetActiveChannel()
+void RemoteAimingWindowControl::SlotSetActiveChannel()
 {
 	qDebug() << "Set direction";
 	if(ui.butDirectErrorToAll->isChecked())
@@ -42,11 +42,11 @@ void ErrorPortControl::SlotSetActiveChannel()
 	if(ui.butDirectErrorToChannel3->isChecked())
     this->ErrorPortHandleControl->SlotSetActiveChannel(3);	
 }
-void ErrorPortControl::SlotResetBlock()
+void RemoteAimingWindowControl::SlotResetBlock()
 {
 	this->ErrorPortHandleControl->SlotResetRotationBlocks();
 }
-void ErrorPortControl::SlotSetWorkMode()
+void RemoteAimingWindowControl::SlotSetWorkMode()
 {
 	if(ui.butSetRegistrationMode->isChecked())
 		this->ErrorPortHandleControl->SlotSetMode(1);

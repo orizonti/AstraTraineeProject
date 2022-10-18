@@ -2,6 +2,7 @@
 #include "typeblocksenum.h"
 #include "stateblocksenum.h"
 #include "CommonLaserInterfaceClass.h"
+#include <QSerialPort>
 
 #define CODE_UMI_ON             0x01
 #define LASERS_OFF              0x00

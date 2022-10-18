@@ -1,14 +1,13 @@
 #pragma once
 #include "ChillSystemClass.h"
 #include "AirSystemClass.h"
-#include "RemoteControlClass.h"
 #include "AimingClass.h"
 #include "LaserControlClass.h"
 #include "EngineControlClass.h"
 #include "mainwindowqclass.h"
 #include "ImageProcessingClass.h"
 #include "HandleControlInterface.h"
-#include "ErrorRecieverClass.h"
+#include "RemoteControlClass.h"
 #include "CameraInterfaceClass.h"
 #include "KLPInterfaceClass.h"
 #include "graphicswindow.h"
@@ -16,8 +15,9 @@
 #include "windowsinussource.h"
 #include "RotateOperationContainer.h"
 #include <memory>
-#include "ErrorPortControl.h"
+#include "RemoteAimingWindowControl.h"
 
+#include "RemoteControlClass.h"
 
 enum StateMainController {Init = 0,FindChannels,WorkMode};
 
@@ -173,13 +173,13 @@ private:
 
 
 	std::shared_ptr<AirSystemClass>        AirSystem;
-	std::shared_ptr<RemoteControlClass>   RemoteControl;
+	std::shared_ptr<RemoteAimingClass>   RemoteControl;
 	std::shared_ptr<AimingClass>          AimingBlock1;
 	std::shared_ptr<AimingClass>          AimingBlock2;
 	std::shared_ptr<AimingClass>          AimingBlock3;
 	std::shared_ptr<AimingClass>          AimingBlockPointer;
 	std::shared_ptr<LaserControlClass>    LaserControl;
-	std::shared_ptr<ErrorRecieverClass>   ErrorRecievePort;
+	std::shared_ptr<RemoteAimingClass>   ErrorRecievePort;
 	std::shared_ptr<KLPInterfaceClass>    KLPInterface;
 	std::shared_ptr<ImageProcessingClass> ImageProcessor;
 

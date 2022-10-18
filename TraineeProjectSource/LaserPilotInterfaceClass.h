@@ -4,6 +4,7 @@
 #include "CommonLaserInterfaceClass.h"
 #include "PilotLaserWindow.h"
 #include <QAbstractSocket>
+#include <QTcpSocket>
 
 class HEADER_LASER_CONTROL
 {

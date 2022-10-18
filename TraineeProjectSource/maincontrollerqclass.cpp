@@ -201,7 +201,7 @@ bool MainControllerQClass::Initialization()
 	
 	AirSystem   = std::shared_ptr<AirSystemClass>(new AirSystemClass);
 	
-	RemoteControl= std::shared_ptr<RemoteControlClass>(new RemoteControlClass);
+	RemoteControl= std::shared_ptr<RemoteAimingClass>(new RemoteAimingClass);
 
 	 StateBlock = stateblocksenum::BlockAtInitializaiton;
 	
@@ -235,7 +235,7 @@ bool MainControllerQClass::Initialization()
 	AimingBlockPointer= std::shared_ptr<AimingClass>(new AimingClass);
 	SinusGenerator = std::shared_ptr<SinusGeneratorClass>(new SinusGeneratorClass);
 	LaserControl    = std::shared_ptr<LaserControlClass>(new LaserControlClass);
-	ErrorRecievePort= std::shared_ptr<ErrorRecieverClass>(new ErrorRecieverClass);
+	ErrorRecievePort= std::shared_ptr<RemoteAimingClass>(new RemoteAimingClass);
 
 
 	WindowDisplay->ConnectControlSignals((HandleControlInterface*)this);

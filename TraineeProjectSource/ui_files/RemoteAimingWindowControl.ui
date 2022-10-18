@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ErrorPortControl</class>
- <widget class="QWidget" name="ErrorPortControl">
+ <class>RemoteAimingWindowControl</class>
+ <widget class="QWidget" name="RemoteAimingWindowControl">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ErrorPortControl</string>
+   <string>RemoteAimingWindowControl</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget

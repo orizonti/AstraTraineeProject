@@ -1,5 +1,6 @@
 #pragma once
 #include "DataLaserStruct.h"
+#include "QObject"
 
 
 class CommonLaserInterfaceClass : public QObject
