@@ -173,13 +173,15 @@ private:
 
 
 	std::shared_ptr<AirSystemClass>        AirSystem;
-	std::shared_ptr<RemoteAimingClass>   RemoteControl;
 	std::shared_ptr<AimingClass>          AimingBlock1;
 	std::shared_ptr<AimingClass>          AimingBlock2;
 	std::shared_ptr<AimingClass>          AimingBlock3;
 	std::shared_ptr<AimingClass>          AimingBlockPointer;
 	std::shared_ptr<LaserControlClass>    LaserControl;
+
+	std::shared_ptr<RemoteControlClass>   RemoteControl;
 	std::shared_ptr<RemoteAimingClass>   ErrorRecievePort;
+
 	std::shared_ptr<KLPInterfaceClass>    KLPInterface;
 	std::shared_ptr<ImageProcessingClass> ImageProcessor;
 

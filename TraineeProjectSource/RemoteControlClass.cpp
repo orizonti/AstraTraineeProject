@@ -19,36 +19,22 @@ RemoteAimingClass::~RemoteAimingClass()
 {
     ErrorPortWindowControl->close();
     delete ErrorPortWindowControl;
-qDebug() << "      DELETE ERROR RECIEVER CLASS";
 }
 
-void RemoteAimingClass::SlotRecieveNewSTNData()
-{
-	// TODO: Implement Method
-	throw "Not Implemented Exception: void RemoteAimingClass::SlotRecieveNewSTNData()";
-}
-
-void RemoteAimingClass::SignalNewErrorAvaible(QPair<double, double> ErrorCoords)
-{
-	// TODO: Implement Method
-	throw "Not Implemented Exception: void RemoteAimingClass::SignalNewErrorAvaible(QPair<double, double> ErrorCoords)";
-}
 
 QPair<double, double> RemoteAimingClass::GetCoord()
 {
-    QPair<double, double> Error;
-    Error.first = TCPServer.DataValues[0];
-    Error.second = TCPServer.DataValues[1];
-
-    if(work_mode == aiming_mode)
-    Error >> RemoteToBaseTransform >> Error;
-
-    return Error;
+    return RemoteAimingCoord;
 }
 
 void RemoteAimingClass::SetCoord(QPair<double, double> Coord)
 {
-	qDebug() << "			ERROR RECIEVER SETCOORD MUST BE IMPLEMENTED";
+    //QPair<double, double> Error;
+    //Error.first = TCPServer.DataValues[0];
+    //Error.second = TCPServer.DataValues[1];
+    RemoteAimingCoord = Coord;
+    if(work_mode == aiming_mode)
+    RemoteAimingCoord >> RemoteToBaseTransform >> RemoteAimingCoord;
 }
 
 void TCPServerEngine::SetPort(int port)
@@ -58,7 +44,6 @@ void TCPServerEngine::SetPort(int port)
 
 TCPServerEngine::TCPServerEngine(QObject *parent) : QObject(parent)
 {
-    DataValues = {0,0,0,0,0,0};
 }
 
 TCPServerEngine::TCPServerEngine(TCPServerEngine& server)
@@ -67,7 +52,6 @@ TCPServerEngine::TCPServerEngine(TCPServerEngine& server)
     Port = server.Port;
     Server = server.Server;
     SocketToClient = server.SocketToClient;
-    DataValues = {0,0,0,0,0,0};
 }
 
 void TCPServerEngine::StartLocalServer()
@@ -118,17 +102,8 @@ void TCPServerEngine::SlotNewConnection()
 
 void TCPServerEngine::SlotReadData()
 {
-		Header_Data header;
-        QByteArray Data = SocketToClient->readAll();
-        QDataStream in_stream(Data);
-        in_stream >> header;
-        
-
-        if (header.isValid())
-        {
-        for(float& Value: DataValues){in_stream >> Value;}
+        Data.append(SocketToClient->readAll());
         emit DataReceived();
-        }
 
 }
 
@@ -151,7 +126,6 @@ void RemoteAimingClass::SlotResetRotationBlocks()
 void RemoteAimingClass::SlotSetActiveChannel(int Channel)
 {
     error_direction = (error_port_direction)Channel;
-    qDebug() << "Current direction - " << error_direction;
 }
 
 void RemoteAimingClass::SlotLoadDataFromFile(QString FileName)
@@ -161,6 +135,25 @@ void RemoteAimingClass::SlotLoadDataFromFile(QString FileName)
 void RemoteAimingClass::SlotSetMode(int Mode)
 {
     work_mode = (error_port_work_modes)Mode;
-    qDebug() << "Work mode - " << work_mode;
 }
 
+
+void RemoteControlClass::PerformRemoteCommand()
+{
+
+    Header_Data header;
+    QDataStream in_stream(TCPServer.Data);
+    in_stream >> header;
+
+    //QPair<double,double> Coord;
+    
+    //if (header.isValid())
+    //{
+    //    in_stream >> Coord.first >> Coord.second; 
+    //}
+}
+
+void RemoteControlClass::SendStateToRemote()
+{
+
+}

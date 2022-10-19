@@ -45,7 +45,7 @@ MainControllerQClass::MainControllerQClass(MainWindowQClass* Window, GraphicsWin
 	CameraCommand.SetCommand(COMM_AUTOEXPOSE_ON);
 
 	SetCameraParam(CameraCommand);
-    QObject::connect(&ErrorRecievePort->TCPServer, SIGNAL(DataReceived()), this, SLOT(SlotReceiveErrorRemoteSensor()));
+    //QObject::connect(&ErrorRecievePort->TCPServer, SIGNAL(DataReceived()), this, SLOT(SlotReceiveErrorRemoteSensor()));
 
     QObject::connect(&SinusAimingBlockTest,SIGNAL(SignalNewDataAvailable()),this,SLOT(SlotReciveErrorTest()));
     SinusAimingBlockTest.SetRelativeOutput(false); SinusAimingBlockTest.SlotSetFrequency(2);
@@ -201,7 +201,7 @@ bool MainControllerQClass::Initialization()
 	
 	AirSystem   = std::shared_ptr<AirSystemClass>(new AirSystemClass);
 	
-	RemoteControl= std::shared_ptr<RemoteAimingClass>(new RemoteAimingClass);
+	RemoteControl= std::shared_ptr<RemoteControlClass>(new RemoteControlClass(this));
 
 	 StateBlock = stateblocksenum::BlockAtInitializaiton;
 	
