@@ -29,9 +29,6 @@ QPair<double, double> RemoteAimingClass::GetCoord()
 
 void RemoteAimingClass::SetCoord(QPair<double, double> Coord)
 {
-    //QPair<double, double> Error;
-    //Error.first = TCPServer.DataValues[0];
-    //Error.second = TCPServer.DataValues[1];
     RemoteAimingCoord = Coord;
     if(work_mode == aiming_mode)
     RemoteAimingCoord >> RemoteToBaseTransform >> RemoteAimingCoord;
@@ -61,19 +58,18 @@ void TCPServerEngine::StartLocalServer()
                this,   &TCPServerEngine::SlotNewConnection
        );
 
-    qDebug() << "Start local server at port - " << Port;
+    qDebug() << "START LOCAL SERVER AT PORT - " << Port;
       if (!Server->listen(QHostAddress::Any,Port))
       {
-          qDebug() << "Unable to start server";
+          qDebug() << "UNABLE TO START SERVER";
           Server->close();
           return;
       }
-      qDebug() << "is Server listen - "  << Server->isListening();
 
      //Server->waitForNewConnection(30000);
 
 }
-void TCPServerEngine::sendToClient(QTcpSocket* Socket, const QString &str)
+void TCPServerEngine::SendToClient(QTcpSocket* Socket, const QString &str)
 {
     QByteArray  arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
@@ -107,11 +103,6 @@ void TCPServerEngine::SlotReadData()
 
 }
 
-void operator>>(QDataStream& in_stream, Header_Data& Data)
-{
-    in_stream >> Data.HEADER1;
-    in_stream >> Data.HEADER2;
-}
 
 
 bool RemoteAimingClass::isValid()
@@ -141,19 +132,62 @@ void RemoteAimingClass::SlotSetMode(int Mode)
 void RemoteControlClass::PerformRemoteCommand()
 {
 
-    Header_Data header;
-    QDataStream in_stream(TCPServer.Data);
-    in_stream >> header;
+QDataStream in_stream(TCPServer.Data);
+uint16_t HEADER; in_stream >> HEADER;
+uint32_t ID_TASK; in_stream >> ID_TASK;
 
-    //QPair<double,double> Coord;
-    
-    //if (header.isValid())
-    //{
-    //    in_stream >> Coord.first >> Coord.second; 
-    //}
+if(HEADER == 0xC1C2)  //AIMING DATA 
+{
+    auto Message =  reinterpret_cast< MessageStruct<COMMAND_AIMING_COORD>*>(TCPServer.Data.data()); 
+    QPair<double,double>(Message->DATA.X, Message->DATA.Y) >> AimingPort;
+}
+
+
+if(HEADER == 0x8220) //COMMAND DATA
+{
+uint16_t DataReceived = 0;
+switch(ID_TASK)
+{
+    case camera_control_message:
+    {
+    auto Message =  reinterpret_cast< MessageStruct<COMMAND_ON_OFF>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
+    qDebug() << "REMOTE CAMERA CONTROL DONT WORK";
+    }
+    break;
+    case engine_control_message:
+    {
+    auto Message =  reinterpret_cast< MessageStruct<COMMAND_ON_OFF>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
+    qDebug() << "REMOTE ENGINE CONTROL DONT WORK";
+    }
+    break;
+    case marker_laser_message:
+    {
+    auto Message =  reinterpret_cast< MessageStruct<COMMAND_UMI_CONTROL>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
+         DeviceControl->TurnOnOffLaserPointer(Message->DATA.OnOff);
+    }
+    break;
+    case laser_system_message:
+    {
+    auto Message =  reinterpret_cast< MessageStruct<COMMAND_LASER_CONTROL>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
+         DeviceControl->TurnOnOfLaserFire(1, Message->DATA.OnOff);
+         DeviceControl->TurnOnOfLaserFire(2, Message->DATA.OnOff);
+         DeviceControl->TurnOnOfLaserFire(3, Message->DATA.OnOff);
+    }
+    break;
+    case calibration_message:
+    {
+    auto Message =  reinterpret_cast< MessageStruct<COMMAND_ON_OFF>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
+    qDebug() << "CALIBRATION DONT WORK";
+    }
+    break;
+}
+    TCPServer.Data.remove(0,DataReceived);
+}
+
 }
 
 void RemoteControlClass::SendStateToRemote()
 {
+    MessageStruct<DEVICE_STATE> StateMessage;
 
 }

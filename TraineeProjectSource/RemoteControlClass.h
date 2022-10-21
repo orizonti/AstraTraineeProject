@@ -11,27 +11,32 @@
 
 enum error_port_work_modes {aiming_mode = 1, registration_mode = 2};
 enum error_port_direction {direct_to_all = 0, direct_to_channel1 = 1, direct_to_channel2 = 2, direct_to_channel3 = 3};
-
+enum message_type { state_message = 0,aiming_message = 1, camera_control_message = 10, 
+                    engine_control_message = 11, marker_laser_message = 12, 
+					laser_system_message = 13, calibration_message = 20};
 class RemoteAimingWindowControl;
 
-class Header_Data
+
+template< typename T>
+class MessageStruct
 {
-public:
-	uchar HEADER1;
-	uchar HEADER2;
-	bool isValid() {return (HEADER1 == 0xC1 && HEADER2 == 0xC2); };
+	bool isAimingMessasge() {return (HEADER == 0xC1C2); };
 
-	friend void operator>>(QDataStream& in_stream, Header_Data& Data);
-
+	public:
+    uint16_t HEADER; 
+    uint32_t ID_TASK; 
+    uint8_t  TYPE_MESSAGE; 
+    uint8_t  COMMAND_ID; 
+    uint32_t DATA_SIZE; 
+    T DATA; 
+    uint8_t ERROR_ID; 
 };
-struct COMMAND_CAMERA_CONTROL
+
+struct COMMAND_ON_OFF
 {
   uint8_t OnOff;
 };
-struct COMMAND_ENGINE_CONTROL
-{
-  uint8_t OnOff;
-};
+
 struct COMMAND_UMI_CONTROL
 {
   uint8_t OnOff;
@@ -50,19 +55,35 @@ struct COMMAND_LASER_CONTROL
   uint8_t PowerOnOff;
   uint8_t PilotOnOff;
 };
-
-template< typename T>
-class MessageStruct
+struct COMMAND_AIMING_COORD
 {
-	public:
-    uint16_t HEADER; 
-    uint32_t ID_TASK; 
-    uint8_t  TYPE_MESSAGE; 
-    uint8_t  COMMAND_ID; 
-    uint32_t DATA_SIZE; 
-    T DATA; 
-    uint8_t ERROR_ID; 
+  float X;
+  float Y;
 };
+
+struct DEVICE_STATE
+{
+	uint16_t year;
+	 uint8_t month;
+	 uint8_t day;
+	uint32_t time;
+	 uint8_t mode;
+	uint16_t work_time;
+	 uint8_t camera_state;
+
+	 uint8_t UPP_state;
+	 uint8_t marker_laser_state;
+	 uint8_t power_laser_state;
+	 uint8_t cover_lid_state;
+
+	 uint8_t chiler_state;
+
+	 uint8_t air_system_state;
+	 uint8_t OMB_state;
+	 uint8_t OMB_temp;
+	 uint8_t OMP_presure;
+};
+
 
 
 
@@ -72,9 +93,8 @@ class TCPServerEngine : public QObject
 public:
     explicit TCPServerEngine(QObject *parent = nullptr);
 	TCPServerEngine(TCPServerEngine& server);
-    void sendToClient(QTcpSocket* Socket, const QString& str);
+    void SendToClient(QTcpSocket* Socket, const QString& str);
     void SetPort(int port);
-	MessageStruct<COMMAND_LASER_CONTROL> LASER_COMMAND;
 	
 
     int Port;
@@ -131,7 +151,7 @@ public:
 
 public:	
 	RotateOperationContainer RemoteToBaseTransform;
-	QSerialPort PortToSTN;
+	QSerialPort PortCommonTimeSystem;
 
 };
 
