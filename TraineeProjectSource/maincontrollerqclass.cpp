@@ -10,7 +10,7 @@ quint8* MainControllerQClass::ImageBufferFullROI = new quint8[512*2048];
 //����������� MainControllerQClass
 MainControllerQClass::MainControllerQClass(MainWindowQClass* Window, GraphicsWindow* Window2)										
 {
-	
+    qDebug() << "TEST REMOTE STRING 222";	
 	QObject::connect(&this->timerCircle, SIGNAL(timeout()), this, SLOT(SlotMoveByCircle()));
 	
 	this->StateBlock = BlockAtWork;

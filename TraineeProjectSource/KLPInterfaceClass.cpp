@@ -36,7 +36,6 @@ void KLPInterfaceClass::CardSoftReset()
 
 KLPInterfaceClass::KLPInterfaceClass() 
 {      
-
 	this->StateBlock = BlockAtWork;
 
 	this->InitialaizeInterface();
@@ -46,16 +45,12 @@ KLPInterfaceClass::KLPInterfaceClass()
 	interruptThread.detach();
 	performInterruptThread.detach();
 
-
-
 	KLPInterface = this;
-
 	
 	CameraInterface = std::shared_ptr<CameraInterfaceClass>(new CameraInterfaceClass(this));
 	EngineInterface1 = std::shared_ptr<EngineInterfaceClass>(new EngineInterfaceClass(this,0xB0,0x0A));
         EngineInterface2 = std::shared_ptr<EngineInterfaceClass>(new EngineInterfaceClass(this,0xB0,0x100000A));
         EngineInterface3 = std::shared_ptr<EngineInterfaceClass>(new EngineInterfaceClass(this,0xB0,0x200000A));
-
 }
 
 
@@ -75,27 +70,11 @@ void KLPInterfaceClass::DeinitializeInterface()
     this->StateBlock = BlockDisable;
     qDebug() << "======================================";
                                   qDebug() << "DEINITALIZE KLP INTERFACE";
-
     CardModule->AbortGetResult(); qDebug() << "ABORT GET RESULT"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
     CardModule->ResetCard();      qDebug() << "RESET CARD"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
     CardModule->CloseDevice();    qDebug() << "CLOSE DEVICE"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
     qDebug() << "======================================";
 }
-
-//struct dma_next_write_buffer_params2
-//{
-//    u32 buf_number;// Номер DMA-буфера отправки
-//    u32 length;// Размер отправляемых данных, байт
-//    u32 channels;// Каналы отправки
-//    u32 is_set_transmit_delay;// Флаг задания значения transmit_delay
-//    u64 transmit_delay;// Задание задержки между пакетами в тактах частоты 125МГц
-//    u32 is_set_frame_header// Флаг задания frame_header
-//    union sRegisterFrameHeader1 frame_header;// Параметры FrameHeader
-//    u32 is_set_frame_size;// Флаг задания first_frame_size и frame_size
-//    u64 first_frame_size;// Размер первого пакета в 32-битных словах
-//    u64 frame_size;// Размер остальных пакетов в 32-битных словах
-//
-//};
 
 uint8_t KLPInterfaceClass::WriteCommandDataEx(QByteArray CommandData,OutFcChannelFlags FCChannel)
 {
@@ -125,7 +104,7 @@ uint8_t KLPInterfaceClass::WriteCommandDataEx(QByteArray CommandData,OutFcChanne
     current_write_buffer = !current_write_buffer;
 
     if(errorCode)
-        qDebug() << "WRITE COMMAND RESULT EX - " << hex << errorCode << " write buffer - " << current_write_buffer;
+        qDebug() << "WRITE COMMAND RESULT EX - " << Qt::hex << errorCode << " write buffer - " << current_write_buffer;
 
 
     return errorCode;
@@ -135,25 +114,25 @@ uint8_t KLPInterfaceClass::WriteCommandDataEx(QByteArray CommandData,OutFcChanne
 uint8_t KLPInterfaceClass::WriteCommandData(QByteArray CommandData, OutFcChannelFlags FCCHannel)
 {
 
-	if (WriteDataBuffer1 == 0 || WriteDataBuffer2 == 0) return 0;
+if (WriteDataBuffer1 == 0 || WriteDataBuffer2 == 0) return 0;
 
 
-	if(current_write_buffer)
-    memcpy(WriteDataBuffer1, CommandData.data(), CommandData.size());
-	else
-    memcpy(WriteDataBuffer2, CommandData.data(), CommandData.size());
+if(current_write_buffer) 
+memcpy(WriteDataBuffer1, CommandData.data(), CommandData.size());
+else
+memcpy(WriteDataBuffer2, CommandData.data(), CommandData.size());
 
-	uint16_t bufferSize = CommandData.size();
-    uint8_t errorCode;
-	errorCode = CardModule->DmaNextWriteBuffer(current_write_buffer, bufferSize, FCCHannel);
+uint16_t bufferSize = CommandData.size();
+uint8_t errorCode;
+errorCode = CardModule->DmaNextWriteBuffer(current_write_buffer, bufferSize, FCCHannel);
 
-	current_write_buffer = !current_write_buffer;
+current_write_buffer = !current_write_buffer;
 
-	if(errorCode)
-	qDebug() << "WRITE COMMAND RESULT - " << hex << errorCode << " write buffer - " << current_write_buffer;
+if(errorCode)
+qDebug() << "WRITE COMMAND RESULT - " << Qt::hex << errorCode << " write buffer - " << current_write_buffer;
 
 
-	return errorCode;
+return errorCode;
 }
 
 void KLPInterfaceClass::SetSateCommutator(Regim_CommutatorCommand State)
@@ -175,34 +154,30 @@ void operator<<(QDataStream &out, AsmHeader &HEADER)
 
 void KLPInterfaceClass::InitialaizeInterface()
 {
+uint8_t error;
+CardModule = new mppd_wrap();
+CardModule->OpenDevice("/dev/mppd0");
+CardModule->ResetCard();
 
-    uint8_t error;
-    CardModule = new mppd_wrap();
-    CardModule->OpenDevice("/dev/mppd0");
-    CardModule->ResetCard();
+error = CardModule->DMAOpenReadBuffers(&ReadDataBuffer1, &ReadDataBuffer2); qDebug() << "OPEN READ BUFFER - "<< Qt::hex << error;
+error = CardModule->DMAOpenWriteBuffers(&WriteDataBuffer1, &WriteDataBuffer2); qDebug() << "OPEN WRITE BUFFER - "<< Qt::hex << error;
 
-    error = CardModule->DMAOpenReadBuffers(&ReadDataBuffer1, &ReadDataBuffer2); qDebug() << "OPEN READ BUFFER - "<< hex << error;
-	error = CardModule->DMAOpenWriteBuffers(&WriteDataBuffer1, &WriteDataBuffer2); qDebug() << "OPEN WRITE BUFFER - "<< hex << error;
+CardModule->DmaBufferFree(0);
+CardModule->DmaBufferFree(1);
 
-	CardModule->DmaBufferFree(0);
-    CardModule->DmaBufferFree(1);
+CreateVirtualChannel();
+sPortStatus portStatus;
 
-    CreateVirtualChannel();
-	sPortStatus portStatus;
-
-    qDebug() << "=====================================================";
-	qDebug() << "KLP INTERFACE ";
-    qDebug() << "DEVICE OPEN - " << CardModule->IsOpen();
-    error = CardModule->GetPortState(Fc1,portStatus); qDebug() << "Port 1 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
-    error = CardModule->GetPortState(Fc2,portStatus); qDebug() << "Port 2 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
-    error = CardModule->GetPortState(Fc3,portStatus); qDebug() << "Port 3 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
-    error = CardModule->GetPortState(Fc4,portStatus); qDebug() << "Port 4 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
-    error = CardModule->GetPortState(Fc5,portStatus); qDebug() << "Port 5 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
-    error = CardModule->GetPortState(Fc6,portStatus); qDebug() << "Port 6 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << hex << error;
-    qDebug() << "=====================================================";
-
-
-
+qDebug() << "=====================================================";
+qDebug() << "KLP INTERFACE ";
+qDebug() << "DEVICE OPEN - " << CardModule->IsOpen();
+error = CardModule->GetPortState(Fc1,portStatus); qDebug() << "Port 1 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc2,portStatus); qDebug() << "Port 2 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc3,portStatus); qDebug() << "Port 3 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc4,portStatus); qDebug() << "Port 4 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc5,portStatus); qDebug() << "Port 5 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc6,portStatus); qDebug() << "Port 6 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+qDebug() << "=====================================================";
 }
         //MOI_SUCCESS = 0x00,
         //MOI_NO_CARDS_FOUND = 0x01,
@@ -256,68 +231,68 @@ void KLPInterfaceClass::InitialaizeInterface()
 
 void KLPInterfaceClass::CreateVirtualChannel()
 {
-	sVirtChannelsParamsInfo ImageChannel;
-	sVirtChannelsParamsInfo ImageChannelWindow;
-    sVirtChannelsParamsInfo StateCamera;
-	sVirtChannelsParamsInfo StateChannel;
-	sVirtChannelsParamsInfo StateChannelEngine;
-	sVirtChannelsParamsInfo StateChannelEngine2;
-	sVirtChannelsParamsInfo StateChannelEngine3;
+sVirtChannelsParamsInfo ImageChannel;
+sVirtChannelsParamsInfo ImageChannelWindow;
+sVirtChannelsParamsInfo StateCamera;
+sVirtChannelsParamsInfo StateChannel;
+sVirtChannelsParamsInfo StateChannelEngine;
+sVirtChannelsParamsInfo StateChannelEngine2;
+sVirtChannelsParamsInfo StateChannelEngine3;
 
-	ImageChannel.DeviceId = 0x04;
-	ImageChannel.MessageId = 0x51;
-	ImageChannel.StartAddress = 0x11000000;
-	ImageChannel.Length = 16777216;
-
-
-	ImageChannelWindow.DeviceId = 0x04;
-	ImageChannelWindow.MessageId = 0x52;
-	ImageChannelWindow.StartAddress = 0x13000000;
-	ImageChannelWindow.Length = 16777216;
-
-	StateChannel.DeviceId = 0x78;
-	StateChannel.MessageId = 0x05;
-	StateChannel.StartAddress = 0x14000000;
-	StateChannel.Length = 4096;
-
-	StateChannelEngine.DeviceId = 0x0A;
-	StateChannelEngine.MessageId = 0x05;
-	StateChannelEngine.StartAddress = 0x14001000;
-	StateChannelEngine.Length = 4096;
-
-	StateChannelEngine2.DeviceId = 0x100000A;
-	StateChannelEngine2.MessageId = 0x05;
-	StateChannelEngine2.StartAddress = 0x14002000;
-	StateChannelEngine2.Length = 4096;
-
-	StateChannelEngine3.DeviceId = 0x200000A;
-	StateChannelEngine3.MessageId = 0x05;
-	StateChannelEngine3.StartAddress = 0x14003000;
-	StateChannelEngine3.Length = 4096;
-
-    StateCamera.DeviceId = 0x04;
-    StateCamera.MessageId = 0x05;
-    StateCamera.StartAddress = 0x14004000;
-    StateCamera.Length = 4096;
-
-	sVirtChannelsParamsInfo channelsParams[7];
-	channelsParams[0] = ImageChannel;
-	channelsParams[1] = ImageChannelWindow;
-	channelsParams[2] = StateChannel;
-	channelsParams[3] = StateChannelEngine;
-	channelsParams[4] = StateChannelEngine2;
-	channelsParams[5] = StateChannelEngine3;
-    channelsParams[6] = StateCamera;
+ImageChannel.DeviceId = 0x04;
+ImageChannel.MessageId = 0x51;
+ImageChannel.StartAddress = 0x11000000;
+ImageChannel.Length = 16777216;
 
 
-    qDebug() << "=====================================================";
-    uint8_t error = 0;
-	error = CardModule->SetVirtualChannelsParams(channelsParams,7);
-	qDebug() << "SET VIRTUAL CHANNELS PARAM - " << error;
-    //error = CardModule->EnableReadVirtChannels(0b111111100000000000000000111111); qDebug() << "ENABLE READ VIRTCHANNELS" << error;
-    error = CardModule->EnableReadVirtChannels(0xFFFFFFFF);
-    qDebug() << "ENABLE READ VIRTCHANNELS" << error;
-    qDebug() << "=====================================================";
+ImageChannelWindow.DeviceId = 0x04;
+ImageChannelWindow.MessageId = 0x52;
+ImageChannelWindow.StartAddress = 0x13000000;
+ImageChannelWindow.Length = 16777216;
+
+StateChannel.DeviceId = 0x78;
+StateChannel.MessageId = 0x05;
+StateChannel.StartAddress = 0x14000000;
+StateChannel.Length = 4096;
+
+StateChannelEngine.DeviceId = 0x0A;
+StateChannelEngine.MessageId = 0x05;
+StateChannelEngine.StartAddress = 0x14001000;
+StateChannelEngine.Length = 4096;
+
+StateChannelEngine2.DeviceId = 0x100000A;
+StateChannelEngine2.MessageId = 0x05;
+StateChannelEngine2.StartAddress = 0x14002000;
+StateChannelEngine2.Length = 4096;
+
+StateChannelEngine3.DeviceId = 0x200000A;
+StateChannelEngine3.MessageId = 0x05;
+StateChannelEngine3.StartAddress = 0x14003000;
+StateChannelEngine3.Length = 4096;
+
+StateCamera.DeviceId = 0x04;
+StateCamera.MessageId = 0x05;
+StateCamera.StartAddress = 0x14004000;
+StateCamera.Length = 4096;
+
+sVirtChannelsParamsInfo channelsParams[7];
+channelsParams[0] = ImageChannel;
+channelsParams[1] = ImageChannelWindow;
+channelsParams[2] = StateChannel;
+channelsParams[3] = StateChannelEngine;
+channelsParams[4] = StateChannelEngine2;
+channelsParams[5] = StateChannelEngine3;
+channelsParams[6] = StateCamera;
+
+
+qDebug() << "=====================================================";
+uint8_t error = 0;
+error = CardModule->SetVirtualChannelsParams(channelsParams,7);
+qDebug() << "SET VIRTUAL CHANNELS PARAM - " << error;
+//error = CardModule->EnableReadVirtChannels(0b111111100000000000000000111111); qDebug() << "ENABLE READ VIRTCHANNELS" << error;
+error = CardModule->EnableReadVirtChannels(0xFFFFFFFF);
+qDebug() << "ENABLE READ VIRTCHANNELS" << error;
+qDebug() << "=====================================================";
 }
 
 
@@ -402,7 +377,6 @@ void operator<<(QDataStream &out, ResetCommandCommutator &SendPocket)
 {
      //out.setByteOrder(QDataStream::BigEndian);
      out << SendPocket.FC_HEADER;
-
      //out.setByteOrder(QDataStream::LittleEndian);
      out << quint64(0);// Метка времени, не используется
      out << SendPocket.ResetRegim;
@@ -412,7 +386,6 @@ void operator<<(QDataStream &out, StatusRequestCommutator &SendPocket)
 {
      //out.setByteOrder(QDataStream::BigEndian);
      out << SendPocket.FC_HEADER;
-
      //out.setByteOrder(QDataStream::LittleEndian);
      out << quint64(0);// Метка времени, не используется
      out << SendPocket.ReqFrequency;
@@ -423,34 +396,32 @@ void operator<<(QDataStream &out, StatusRequestCommutator &SendPocket)
 void KLPInterfaceClass::StatusRequest()
 {
 	StatusRequestCommutator SendCommand;
-              QByteArray WriteCommand;
+	QByteArray WriteCommand;
 
-              QDataStream out(&WriteCommand,QIODevice::WriteOnly);
+	QDataStream out(&WriteCommand,QIODevice::WriteOnly);
 
-              out.setByteOrder(QDataStream::LittleEndian);
+	out.setByteOrder(QDataStream::LittleEndian);
 
-              out << SendCommand;
+	out << SendCommand;
 
-         qDebug() << "Status request freq - " << SendCommand.ReqFrequency;
+	qDebug() << "Status request freq - " << SendCommand.ReqFrequency;
 
-         OutFcChannelFlags fcChannels = ChannelNone;
-		 this->WriteCommandData(WriteCommand, fcChannels);
+	OutFcChannelFlags fcChannels = ChannelNone;
+	this->WriteCommandData(WriteCommand, fcChannels);
 }
 void KLPInterfaceClass::ResetCommutator()
 {
 	ResetCommandCommutator SendCommand;
-              QByteArray WriteCommand;
+	QByteArray WriteCommand;
 
-              QDataStream out(&WriteCommand,QIODevice::WriteOnly);
+	QDataStream out(&WriteCommand,QIODevice::WriteOnly);
 
-              out.setByteOrder(QDataStream::LittleEndian);
+	out.setByteOrder(QDataStream::LittleEndian);
 
-              out << SendCommand;
+	out << SendCommand;
 
-         //qDebug() << "RESET COMMUTATOR - ";
-
-         OutFcChannelFlags fcChannels = ChannelNone;
-		 this->WriteCommandData(WriteCommand, fcChannels);
+	OutFcChannelFlags fcChannels = ChannelNone;
+	this->WriteCommandData(WriteCommand, fcChannels);
 }
 
 
@@ -471,8 +442,6 @@ InterruptData KLPInterfaceClass::get_new_interruption()
        new_interruption = available_interruptions.front(); available_interruptions.pop();
    };
 
-
-
    interruptions_lock.unlock();
 
    return new_interruption;
@@ -492,8 +461,7 @@ void KLPInterfaceClass::RecieveInterruptionFunction(mppd_wrap* KLPCardHandler)
      	append_new_interruption(NewInterrupt);
 
      if(NewInterrupt.Error)
-	 qDebug() << "Error interruption from KLP" << hex << NewInterrupt.Error;
-
+	 qDebug() << "Error interruption from KLP" << Qt::hex << NewInterrupt.Error;
   }
   qDebug() << "REC INTERRUPT THREAD END";
   return;
@@ -504,17 +472,13 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
     qDebug() << "PERF INTERRUPTION FUNCTION THREAD START ";
     while(KLPInterfaceClass::StateBlock == BlockAtWork)
     {
-
         // Обработка поступивших данных с модуля
         InterruptData interrupt = get_new_interruption();
 
         //std::this_thread::sleep_for(chrono::milliseconds(500)); qDebug() << "INT COUNT"<< KLPInterfaceClass::available_interruptions.size()
         //                                                                           << "ID -     " << interrupt.DeviceId;
-
         if (interrupt.ReadDataSize == 0) continue;
         if (ReadDataBuffer1 == 0) continue;
-
-
 
         void* DataBuffer = 0;
         // Выбор следующего буфера
@@ -532,15 +496,11 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
         {
 
             ImageStruct newImage = KLPInterface->CameraInterface->GetNewImage();
-
-
             //==============================================================
             auto NewTimePoint = std::chrono::high_resolution_clock::now();
             CameraInterface->PeriodROI = std::chrono::duration<double>((NewTimePoint - CameraInterface->LastTimePointROI)).count()*1000;
             CameraInterface->LastTimePointROI = NewTimePoint;
             //==============================================================
-
-
             QByteArray info_data((const char*)DataBuffer, 2024);
             info_data.remove(0, 16);
             QDataStream in_stream2(info_data);
@@ -554,8 +514,6 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
             uchar* ROIImage = (uchar*)DataBuffer + FRAME.FILE_HEADER.ByteImageOffset + 24;
 
             CameraInterface->RecieveNewImage(ROIImage, FRAME);
-
-
         }
 
 
@@ -565,7 +523,6 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
             info_data.remove(0, 16);
             QDataStream in_stream2(info_data);
             in_stream2.setByteOrder(QDataStream::LittleEndian);
-
 
             in_stream2 >> FRAME.TIME_STAMP;
             in_stream2 >> FRAME.FILE_HEADER;
@@ -581,12 +538,11 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
             CameraInterface->PeriodFULL = std::chrono::duration<double>((NewTimePoint - CameraInterface->LastTimePointFULL)).count()*1000;
             CameraInterface->LastTimePointFULL = NewTimePoint;
             //==============================================================
-
         }
 
         if (HEADER_ASM.Message_ID == 0x5000000)
         {
-            //qDebug() << "STATUS TO DEVICE REC - "<< hex << HEADER_ASM.Device_ID;
+            //qDebug() << "STATUS TO DEVICE REC - "<< Qt::hex << HEADER_ASM.Device_ID;
             QByteArray info_data((const char*)DataBuffer, 56 + 8);
             info_data.remove(0, 16);
 
@@ -612,11 +568,9 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
                 //CameraInterface->RecieveStatusCamera(in_stream);
             }
 
-
         }
 
         KLPInterfaceClass::CardModule->DmaBufferFree(interrupt.ReadBufferNumber);
-
 
     }
     qDebug() << "PERF INTERRUPT THREAD END DEINITIALIZE KLP INTERFACE";

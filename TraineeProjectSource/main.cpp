@@ -4,7 +4,7 @@
 #include "graphicswindow.h"
 #include "mainwindowqclass.h"
 #include "QProcess"
-
+//test string
 QString print_thread_id()
 {
   auto id = std::this_thread::get_id();

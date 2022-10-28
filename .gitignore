@@ -2,9 +2,15 @@
 *.bin
 
 *.idx
+*.json
 .idea/
 .vs/
 cmake-build-debug/
 cmake-build-release/
 *.bak*
 /build
+/build/
+
+TraineeProjectSource/build/CMakeFiles/3.16.3/CompilerIdC/
+
+TraineeProjectSource/build/
