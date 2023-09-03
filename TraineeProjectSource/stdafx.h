@@ -62,7 +62,3 @@
 QString print_thread_id();
 
 #define TEST_DATA_COUT 256
-
-#undef slots
-#include <torch/torch.h>
-#define slots Q_SLOTS

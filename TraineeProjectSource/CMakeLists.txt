@@ -11,8 +11,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS ./ui_files)
 set(UNICODE 1)
-set(WIN32 1)
-set(WIN64 1)
 set(QT_NO_DEBUG 1)
 set(NDEBUG 1)
 set(QT_CORE_LIB 1)
@@ -25,46 +23,42 @@ set(QT_PRINTSUPPORT_LIB 1)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-if(EXISTS "/home/broms/PROGRAM_LIBRARY/linux/QT5.15/5.15.2/gcc_64/")
-    set(CMAKE_PREFIX_PATH "/home/broms/PROGRAM_LIBRARY/linux/QT5.15/5.15.2/gcc_64")
+#set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
+set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
+#set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
+message("LIBRARIES PATH: "${LIBRARY_DIR})
+
+set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/NN_LIBRARY/libtorch/")
+find_package(Torch REQUIRED)
+
+if(EXISTS "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
+    set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
 endif()
-
-if(EXISTS "/home/broms/Qt/5.15.2/gcc_64")
-    set(CMAKE_PREFIX_PATH "/home/broms/Qt/5.15.2/gcc_64")
-endif()
-
-set(Qt5Core_DIR "${CMAKE_PREFIX_PATH}/Qt5Core")
-set(Qt5Gui_DIR "${CMAKE_PREFIX_PATH}/Qt5Gui")
-set(Qt5Network "${CMAKE_PREFIX_PATH}/Qt5Network")
-set(Qt5PrintSupport "${CMAKE_PREFIX_PATH}/Qt5PrintSupport")
-set(Qt5SerialPort "${CMAKE_PREFIX_PATH}/Qt5SerialPort")
-set(Qt5Widgets "${CMAKE_PREFIX_PATH}/Qt5Widgets")
-set(Qt5 "${CMAKE_PREFIX_PATH}/Qt5")
-
 
 find_package(Qt5 COMPONENTS Widgets Network Core SerialPort PrintSupport REQUIRED)
 
-set(CMAKE_PREFIX_PATH "/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/")
-find_package(Torch REQUIRED)
 
 find_package(OpenCV REQUIRED )
 message("OPENCV LIBS "${OpenCV_LIBS})
-# Добавьте источник в исполняемый файл этого проекта.
+
+add_subdirectory(rotate_optimization)
+include_directories("${PROJECT_SOURCE_DIR}/rotate_optimization")
 
 include_directories("/opt/nf_npkspp/ibpa.08072-01_mppd_driver/include/headers/")
 include_directories("/usr/local/include/opencv4")
 include_directories("./gui_sources")
 include_directories("/home/broms/DEVELOPMENT/AstraTraineeProject/TraineeProjectSource")
 
-link_directories(/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib)
-include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/include")
-include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
-include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/MATH_LIBRARY")
-include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
-include_directories("/home/broms/COMMON_DIR/PROGRAM_LIBRARY/MATH_LIBRARY/")
-include_directories("/home/broms/PROGRAM_LIBRARY/onnxruntime/include/")
-link_directories( "/home/broms/PROGRAM_LIBRARY/onnxruntime/lib/")
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include")
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
+include_directories("${LIBRARY_DIR}/MATH_LIBRARY")
+include_directories("${LIBRARY_DIR}/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
+include_directories("${LIBRARY_DIR}/MATH_LIBRARY/")
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/onnxruntime/include/")
+link_directories("${LIBRARY_DIR}/NN_LIBRARY/onnxruntime/lib/")
 
+
+#include_directories("../${PROJECT_SOURCE_DIR}")
 add_executable (TraineeProjectExecutable
         "./ui_files/aimingblockwindow.ui"
         "./ui_files/cameracontrolwindow.ui"
@@ -128,7 +122,6 @@ add_executable (TraineeProjectExecutable
         "PassTwoCoordClass.cpp"
         "PIDClass.cpp"
         "qcustomplot.cpp"
-        "RotateOperationContainer.cpp"
         "SinusGeneratorClass.cpp"
         "stdafx.cpp"
         "tcpclientengine.cpp"
@@ -138,6 +131,7 @@ add_executable (TraineeProjectExecutable
         "KalmanFilterClass.cpp"
         "KalmanFilterClass.h"
         )
+message("ROTATE LIB: ${CMAKE_CURRENT_SOURCE_DIR}/build/libRotateOptimization.a")
 #target_link_libraries(TestClionQt DriverMoiKlp.lib)
 target_link_libraries(TraineeProjectExecutable ${OpenCV_LIBS})
 target_link_libraries(TraineeProjectExecutable Qt5::Widgets)
@@ -145,28 +139,31 @@ target_link_libraries(TraineeProjectExecutable Qt5::Network)
 target_link_libraries(TraineeProjectExecutable Qt5::Core)
 target_link_libraries(TraineeProjectExecutable Qt5::SerialPort)
 target_link_libraries(TraineeProjectExecutable Qt5::PrintSupport)
-target_link_libraries(TraineeProjectExecutable libtorch_cpu.so)
-target_link_libraries(TraineeProjectExecutable libtorch.so)
-target_link_libraries(TraineeProjectExecutable libc10.so)
 target_link_libraries(TraineeProjectExecutable onnxruntime.so)
-
-set(QtIncludeCore "${CMAKE_PREFIX_PATH}/include/QtCore")
-set(QtIncludeGui "${CMAKE_PREFIX_PATH}/include/QtGui")
-set(QtIncludeWidgets "${CMAKE_PREFIX_PATH}/include/QtWidgets")
-set(QtIncludeNetwork "${CMAKE_PREFIX_PATH}/include/QtNetwork")
-set(QtIncludeSerialPort "${CMAKE_PREFIX_PATH}/include/QtSerialPort")
-set(QtIncludeConcurrent "${CMAKE_PREFIX_PATH}/include/QtConcurrent")
+target_link_libraries(TraineeProjectExecutable "${CMAKE_CURRENT_SOURCE_DIR}/build/rotate_optimization/libRotateOptimization.a")
 
 
 
-if(EXISTS "/home/broms/COMMON_DIR/PROGRAM_LIBRARY")
-    set(COMMON_LIBRARY_PATH "/home/broms/COMMON_DIR/PROGRAM_LIBRARY")
-endif()
-set(IncludeBoost "${COMMON_LIBRARY_PATH}/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
-set(IncludeMath "${COMMON_LIBRARY_PATH}/PROGRAM_LIBRARY/MATH_LIBRARY")
-set(IncludeTorch "${COMMON_LIBRARY_PATH}/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
+#link_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
+target_link_libraries(TraineeProjectExecutable "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
+target_link_libraries(TraineeProjectExecutable "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch.so")
+target_link_libraries(TraineeProjectExecutable "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libc10.so")
 
 
+#set(Qt5Core_DIR "${CMAKE_PREFIX_PATH}/Qt5Core")
+#set(Qt5Gui_DIR "${CMAKE_PREFIX_PATH}/Qt5Gui")
+#set(Qt5Network "${CMAKE_PREFIX_PATH}/Qt5Network")
+#set(Qt5PrintSupport "${CMAKE_PREFIX_PATH}/Qt5PrintSupport")
+#set(Qt5SerialPort "${CMAKE_PREFIX_PATH}/Qt5SerialPort")
+#set(Qt5Widgets "${CMAKE_PREFIX_PATH}/Qt5Widgets")
+#set(Qt5 "${CMAKE_PREFIX_PATH}/Qt5")
+
+#set(QtIncludeCore "${CMAKE_PREFIX_PATH}/include/QtCore")
+#set(QtIncludeGui "${CMAKE_PREFIX_PATH}/include/QtGui")
+#set(QtIncludeWidgets "${CMAKE_PREFIX_PATH}/include/QtWidgets")
+#set(QtIncludeNetwork "${CMAKE_PREFIX_PATH}/include/QtNetwork")
+#set(QtIncludeSerialPort "${CMAKE_PREFIX_PATH}/include/QtSerialPort")
+#set(QtIncludeConcurrent "${CMAKE_PREFIX_PATH}/include/QtConcurrent")
 
 #target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeSerialPort}/QSerialPort)
 #

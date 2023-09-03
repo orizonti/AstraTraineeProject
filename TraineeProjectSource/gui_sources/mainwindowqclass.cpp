@@ -494,6 +494,7 @@ void MainWindowQClass::SaveWidgetsLinks()
 void MainWindowQClass::LoadWidgetsLinks()
 {
 
+  qDebug() << "    <<<  LOAD WIDGET LINKS";
   QString WidgetLinks = "2  1  : 1  0 \n"
 						"12 3  : 1  2 \n"
 						"1  1  : 4  0 \n"

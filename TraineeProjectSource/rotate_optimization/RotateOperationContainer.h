@@ -1,11 +1,11 @@
 #pragma once
 
 #include "SubstractPair.h"
-#include "DebugStream.h"
 
 #undef slots
 #include <torch/torch.h>
 #define slots Q_SLOTS
+#include "RotateOptimization_global.h"
 
 using namespace std;
 enum RotateAxis {x_axis = 0, y_axis = 1, z_axis = 2};
@@ -68,7 +68,8 @@ public:
 	friend void operator>>(RotateDataMeasureEngine& MeasureEngine, RotateOperationContainer& RotateContainer);
 };
 
-class RotateOperationContainer : public PassTwoCoordClass
+
+class ROTATEOPTIMIZATION_EXPORT RotateOperationContainer : public PassTwoCoordClass
 {
 public:
 	RotateOperationContainer();
@@ -91,6 +92,7 @@ public:
 
 	void AppendOperation(pair<RotateAxis,double> Operation);
 	void AppendInputData(pair<double,double> test_coord);
+	bool IsDataFull(){output_to_optimize_rotation.size() == CALIBRATION_COUNT;};
 
 
 	torch::Tensor ConvertInput(torch::Tensor& Input);
@@ -102,6 +104,7 @@ public:
 //	void operator=(RotateOperationContainer & Rotation);
 //	void operator=(RotateOperationContainer && Rotation);
 	int counter_test = 0;
+	static int CALIBRATION_COUNT;
 	bool RotationValid = true;
 	float system_transform_scale = 1;
 

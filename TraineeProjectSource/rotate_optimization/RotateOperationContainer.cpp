@@ -1,12 +1,15 @@
-#include "stdafx.h"
+
 #include "RotateOperationContainer.h"
 #include <DebugStream.h>
+#include <QFile>
 
 using namespace torch::indexing;
+
+int RotateOperationContainer::CALIBRATION_COUNT = 120;
 TestDataVectorsContainer::TestDataVectorsContainer()
 {
 
-	TestCoordVectorInput.resize(TEST_DATA_COUT+1);
+	TestCoordVectorInput.resize(RotateOperationContainer::CALIBRATION_COUNT+1);
 	TestCoordVectorInput[0] = QPair<double,double>(0,0);
 	int NumberPoints = TestCoordVectorInput.size();
 	int CurrentPoint = 0;
@@ -618,8 +621,7 @@ void RotateOperationContainer::AppendInputData(pair<double,double> test_coord)
 		  qDebug() << "append - " << output_to_optimize_rotation.back() << " counter - " << ++counter_test;
 	  }
 
-	 if(output_to_optimize_rotation.size() == TEST_DATA_COUT) 
-		 this->FindArbitraryRotationToVectors(input_to_optimize_rotation, output_to_optimize_rotation);
+	 if(IsDataFull()) this->FindArbitraryRotationToVectors(input_to_optimize_rotation, output_to_optimize_rotation);
 }
 
 
