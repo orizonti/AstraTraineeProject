@@ -14,3 +14,14 @@ cmake-build-release/
 TraineeProjectSource/build/CMakeFiles/3.16.3/CompilerIdC/
 
 TraineeProjectSource/build/
+cmake_build_Release/
+cmake_build_release/
+build_debug/
+TraineeProjectSource/TraineeProjectExecutable_autogen/
+cmake_install.cmake
+Makefile
+CMakeFiles/
+.ninja*
+*.ninja
+CMakeCache.txt
+test.txt

@@ -11,23 +11,27 @@
 #include <QThread>
 #include <QObject>
 #include <QMutex>
-
-
+#include <QFile>
 
 #define FILTER_SIZE 20
 
 class ONNXSession
 {
 public:
-    ONNXSession() {qDebug() <<  "CREATE ONNX SESSION";};
+    ONNXSession() {
+		if(QFile::exists("/home/broms/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx"))
+        modelPath = "/home/spp/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
+		if(QFile::exists("/mnt/d/DEVELOPMENT/DATA/NN_MODELS/GRU_120_3_18F.onnx"))
+        modelPath = "/mnt/d/DEVELOPMENT/DATA/NN_MODELS/GRU_120_3_18F.onnx";
+		};
     ~ONNXSession();
     int INPUT_VECTOR_SIZE = FILTER_SIZE;
     int BATCH_SIZE = 1;
 	bool SessionInit = false;
+    const ORTCHAR_T* modelPath = "/home/spp/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
 
-    //const ORTCHAR_T* modelPath = "/home/spp/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
-    //const ORTCHAR_T* modelPath = "/home/broms/Yandex.Disk/PROJECTS/MATLAB_PROJECTS/GRU_120_3_18F.onnx";
-    const ORTCHAR_T* modelPath = "/home/broms/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
+    
+
     Ort::Env env = Ort::Env(ORT_LOGGING_LEVEL_FATAL, "example-model-explorer");
     Ort::RunOptions runOptions;
     Ort::SessionOptions session_options;

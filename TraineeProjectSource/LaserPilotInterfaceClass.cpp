@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "LaserPilotInterfaceClass.h"
 
+
 LaserPilotInterfaceClass::LaserPilotInterfaceClass(QString Address, quint16 Port)
 {
 	SocketGuidLaser = new QTcpSocket;
@@ -79,6 +80,23 @@ void LaserPilotInterfaceClass::SendRequestToUpControlStatus()
      SocketGuidLaser->write(ArrayCommand);
 }
 
+void LaserPilotInterfaceClass::SendRequestGetLaserParam()
+{
+	 auto Command = GET_PARAM_COMMAND(CODE_LASER_DATA);
+     Command.CRC = this->GetCRC((unsigned char*)&Command,Command.HEADER.DATA_SIZE +8);
+     QByteArray ArrayCommand((const char*)&Command,Command.HEADER.DATA_SIZE + 10);
+     qDebug() << "GET LASER PARAM : " << ArrayCommand.toHex();
+     SocketGuidLaser->write(ArrayCommand);
+}
+void LaserPilotInterfaceClass::SendRequestGetChillerParam()
+{
+	 auto Command = GET_PARAM_COMMAND(CODE_CHILLER_DATA);
+     Command.CRC = this->GetCRC((unsigned char*)&Command,Command.HEADER.DATA_SIZE +8);
+     QByteArray ArrayCommand((const char*)&Command,Command.HEADER.DATA_SIZE + 10);
+     qDebug() << "GET CHILLER PARAM: " << ArrayCommand.toHex();
+     SocketGuidLaser->write(ArrayCommand);
+}
+
 quint16 LaserPilotInterfaceClass::GetCRC(unsigned char *data, int dataSize)
 {
 
@@ -107,7 +125,8 @@ void LaserPilotInterfaceClass::slotReadyRead()
         if (SocketGuidLaser->bytesAvailable() >= 10)
         {
             quint16 CRC = 0;
-            in >> HEADER_DATA.COMMAND >> HEADER_DATA.EXECUTION_CODE >> HEADER_DATA.DATA_SIZE >> CRC;
+            in >> HEADER_DATA.COMMAND_CODE >> HEADER_DATA.EXECUTION_CODE >> HEADER_DATA.DATA_SIZE >> CRC;
+            qDebug() << "REC REQUEST: " << HEADER_DATA.COMMAND_CODE << HEADER_DATA.EXECUTION_CODE; 
             SocketGuidLaser->flush();
 
         }
@@ -130,6 +149,8 @@ void LaserPilotInterfaceClass::slotConnected()
 
 	qDebug() << QString("CONNECTED TO HOST - %1").arg(SocketGuidLaser->peerName());
 	this->SendRequestToUpControlStatus();
+    this->SendRequestGetLaserParam();
+    this->SendRequestGetChillerParam();
 }
 
 

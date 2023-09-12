@@ -23,9 +23,16 @@ set(QT_PRINTSUPPORT_LIB 1)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-#set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
-set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
-#set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
+if(EXISTS "/home/spp/PROGRAM_LIBRARY")
+  set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
+endif()
+if(EXISTS "/home/broms/PROGRAM_LIBRARY")
+  set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
+endif()
+if(EXISTS "/mnt/d/PROGRAM_LIBRARY/linux")
+  set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
+endif()
+
 message("LIBRARIES PATH: "${LIBRARY_DIR})
 
 set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/NN_LIBRARY/libtorch/")
@@ -140,14 +147,14 @@ target_link_libraries(TraineeProjectExecutable Qt5::Core)
 target_link_libraries(TraineeProjectExecutable Qt5::SerialPort)
 target_link_libraries(TraineeProjectExecutable Qt5::PrintSupport)
 target_link_libraries(TraineeProjectExecutable onnxruntime.so)
-target_link_libraries(TraineeProjectExecutable "${CMAKE_CURRENT_SOURCE_DIR}/build/rotate_optimization/libRotateOptimization.a")
-
-
+target_link_libraries(TraineeProjectExecutable "/mnt/d/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/build/TraineeProjectSource/rotate_optimization/libRotateOptimization.so")
+#target_link_libraries(TraineeProjectExecutable "${CMAKE_CURRENT_SOURCE_DIR}/build/rotate_optimization/libRotateOptimization.a")
+#target_link_libraries(TraineeProjectExecutable "${CMAKE_CURRENT_SOURCE_DIR}/build/rotate_optimization/libRotateOptimization.so")
 
 #link_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
-target_link_libraries(TraineeProjectExecutable "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
-target_link_libraries(TraineeProjectExecutable "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch.so")
-target_link_libraries(TraineeProjectExecutable "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libc10.so")
+target_link_libraries(TraineeProjectExecutable "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
+target_link_libraries(TraineeProjectExecutable "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch.so")
+target_link_libraries(TraineeProjectExecutable "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libc10.so")
 
 
 #set(Qt5Core_DIR "${CMAKE_PREFIX_PATH}/Qt5Core")

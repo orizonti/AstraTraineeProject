@@ -3,14 +3,16 @@
 
 LaserControlClass::LaserControlClass()
 {
-    	
-	//LPilot1 = new LaserPilotInterfaceClass("192.168.101.1", 5100);
-	//LPilot2 = new LaserPilotInterfaceClass("192.168.102.1", 5100);
-	//LPilot3 = new LaserPilotInterfaceClass("192.168.103.1", 5100);
+	qDebug() << "====================================";
+    qDebug() << "                       LASERS CREATE";	
+	LPilot1 = new LaserPilotInterfaceClass("192.168.101.1", 5100);
+	LPilot2 = new LaserPilotInterfaceClass("192.168.102.1", 5100);
+	LPilot3 = new LaserPilotInterfaceClass("192.168.103.1", 5100);
+	qDebug() << "====================================";
 
-    LPilot1 = new LaserPointerInterfaceClass("ttyUSB0");
-    LPilot2 = new LaserPointerInterfaceClass(*dynamic_cast<LaserPointerInterfaceClass*>(LPilot1));
-    LPilot3 = new LaserPointerInterfaceClass(*dynamic_cast<LaserPointerInterfaceClass*>(LPilot1));
+    //LPilot1 = new LaserPointerInterfaceClass("ttyUSB0");
+    //LPilot2 = new LaserPointerInterfaceClass(*dynamic_cast<LaserPointerInterfaceClass*>(LPilot1));
+    //LPilot3 = new LaserPointerInterfaceClass(*dynamic_cast<LaserPointerInterfaceClass*>(LPilot1));
 
     LaserPointer = new LaserPointerInterfaceClass("ttyXRUSB0");
 

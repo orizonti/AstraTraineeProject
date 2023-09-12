@@ -8,14 +8,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 message("ROTATE OPTIMIZATION LIBRARY ADD")
 message("PROJECT SOURCE: "${PROJECT_SOURCE_DIR})
 
-#set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
-set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
-#set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
 
-
-if(EXISTS "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
-    set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
+if(EXISTS "/home/spp/PROGRAM_LIBRARY")
+  set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
 endif()
+if(EXISTS "/home/broms/PROGRAM_LIBRARY")
+  set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
+endif()
+if(EXISTS "/mnt/d/PROGRAM_LIBRARY/linux")
+  set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
+endif()
+
+set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
 set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/NN_LIBRARY/libtorch/")
@@ -29,9 +33,9 @@ add_library(RotateOptimization SHARED
 
 message("TORCH LINK:  ${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
 link_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
-target_link_libraries(RotateOptimization "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
-target_link_libraries(RotateOptimization "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch.so")
-target_link_libraries(RotateOptimization "/home/broms/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libc10.so")
+target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
+target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch.so")
+target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libc10.so")
 target_link_libraries(RotateOptimization Qt5::Core)
 
 target_compile_definitions(RotateOptimization PRIVATE ROTATEOPTIMIZATION_LIBRARY)
@@ -39,4 +43,5 @@ target_compile_definitions(RotateOptimization PRIVATE ROTATEOPTIMIZATION_LIBRARY
 include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include")
 include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
 include_directories("/home/broms/DEVELOPMENT/PROJECTS/AstraTraineeProject/TraineeProjectSource")
+include_directories("/home/broms/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/TraineeProjectSource")
 #include_directories("../${PROJECT_SOURCE_DIR}")
