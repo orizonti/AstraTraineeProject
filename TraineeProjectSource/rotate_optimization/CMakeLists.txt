@@ -33,15 +33,28 @@ add_library(RotateOptimization SHARED
 
 message("TORCH LINK:  ${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
 link_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
-target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
-target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch.so")
-target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libc10.so")
+
+#target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
+#target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch.so")
+#target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libc10.so")
+target_link_libraries(RotateOptimization "/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
+target_link_libraries(RotateOptimization "/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch.so")
+target_link_libraries(RotateOptimization "/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libc10.so")
+
+
+
 target_link_libraries(RotateOptimization Qt5::Core)
 
 target_compile_definitions(RotateOptimization PRIVATE ROTATEOPTIMIZATION_LIBRARY)
 
 include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include")
 include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
-include_directories("/home/broms/DEVELOPMENT/PROJECTS/AstraTraineeProject/TraineeProjectSource")
+
+if(EXISTS "/home/spp/DEVELOPMENT/AstraTraineeProject/TraineeProjectSource")
+include_directories("/home/spp/DEVELOPMENT/AstraTraineeProject/TraineeProjectSource")
+endif()
+
+if(EXISTS "/home/broms/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/TraineeProjectSource")
 include_directories("/home/broms/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/TraineeProjectSource")
+endif()
 #include_directories("../${PROJECT_SOURCE_DIR}")

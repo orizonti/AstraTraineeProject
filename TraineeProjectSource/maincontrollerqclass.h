@@ -144,6 +144,7 @@ public:
 	void TurnOnOffLaserPilot(int Number, bool OnOff);
 	void TurnOnOfLaserFire(int Number, bool OnOff);
 	void TurnOnOffAllLasers(bool OnOff);
+    void GetPowerLaserState(int Channel);
 
     void ChangeAimingType(TypeAiming Aiming,int Channel);
 	void TurnOnOffKalmanFilter(bool OnOff, int Channel);

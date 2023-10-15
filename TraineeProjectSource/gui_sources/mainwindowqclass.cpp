@@ -388,7 +388,10 @@ void MainWindowQClass::SetGuiFontSize(int FontSize)
 
 void MainWindowQClass::SaveWidgetsPosition()
 {
-QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+QString FileName = "/home/spp/TrainerData/WidgetsPosition.txt";
+
+if(QFile::exists("/home/broms/TrainerData/WidgetsPosition.txt")) 
+FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
 QFile data(FileName);
 data.open(QFile::WriteOnly); data.flush();
 
@@ -438,7 +441,12 @@ void MainWindowQClass::LoadWidgetsPosition()
 {
 
     qDebug() << "=====================================";
-	QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+	
+	QString FileName = "/home/spp/TrainerData/WidgetsPosition.txt";
+
+	if(QFile::exists("/home/broms/TrainerData/WidgetsPosition.txt")) 
+	FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+	        
 	QFile file(FileName);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))

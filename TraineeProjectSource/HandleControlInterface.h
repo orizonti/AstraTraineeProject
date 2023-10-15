@@ -52,6 +52,7 @@ class HandleControlInterface: public QObject
 
     virtual void ChangeAimingType(TypeAiming Aiming,int Channel) = 0;
     virtual void TurnOnOffKalmanFilter(bool OnOff, int Channel) = 0;
+    virtual void GetPowerLaserState(int Channel) = 0;
 
 };
 

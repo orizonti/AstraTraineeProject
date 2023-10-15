@@ -1210,4 +1210,12 @@ void TestSignals::StopGenerate()
 {
     timerSignalGenerate.stop();
 }
+
+void MainControllerQClass::GetPowerLaserState(int Channel)
+{
+   switch(Channel)
+   {
+     case 1: LaserControl->LPilot1; break;
+   }
+}
 //====================================TEST SIGNALS========================================

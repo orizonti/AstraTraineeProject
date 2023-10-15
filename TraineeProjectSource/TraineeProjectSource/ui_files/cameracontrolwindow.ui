@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CameraControlWindow</class>
+ <widget class="QWidget" name="CameraControlWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>699</width>
+    <height>216</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CameraControlWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+
+	font: 14pt &quot;Sans Serif&quot;;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <property name="spacing">
+    <number>2</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="tmkuControlBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox
+{
+border: 2px solid line black;
+
+	
+	background-color: rgb(126, 125, 112);
+}</string>
+     </property>
+     <property name="title">
+      <string>Управление Камерами</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="leftMargin">
+       <number>2</number>
+      </property>
+      <property name="topMargin">
+       <number>21</number>
+      </property>
+      <property name="rightMargin">
+       <number>2</number>
+      </property>
+      <property name="bottomMargin">
+       <number>2</number>
+      </property>
+      <property name="spacing">
+       <number>2</number>
+      </property>
+      <item row="0" column="1">
+       <widget class="QGroupBox" name="groupBox_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Sans Serif</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox
+{
+border: 2px solid line black;
+	background-color: rgb(170, 170, 127);
+}
+
+QWidget
+{
+background-color: rgb(200, 200, 200);
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_15">
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <property name="topMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>3</number>
+         </property>
+         <property name="bottomMargin">
+          <number>3</number>
+         </property>
+         <property name="horizontalSpacing">
+          <number>7</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>1</number>
+         </property>
+         <item row="10" column="0" colspan="4">
+          <widget class="QPushButton" name="ButSetROI">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton
+{
+background-color: rgb(200, 200, 200);
+}</string>
+           </property>
+           <property name="text">
+            <string>Установить</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="3">
+          <widget class="QSpinBox" name="SpinWidth3">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>256</number>
+           </property>
+           <property name="value">
+            <number>256</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_23">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Ширина</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="3">
+          <widget class="QSpinBox" name="SpinWidth2">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>256</number>
+           </property>
+           <property name="value">
+            <number>256</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_30">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color: rgb(255, 214, 110);
+border: 1px solid line black;
+}</string>
+           </property>
+           <property name="text">
+            <string>Окно 1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QSpinBox" name="SpinX3">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>1700</number>
+           </property>
+           <property name="singleStep">
+            <number>8</number>
+           </property>
+           <property name="value">
+            <number>1152</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_32">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QSpinBox" name="SpinY1">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>128</number>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color: rgb(255, 214, 110);
+border: 1px solid line black;
+}</string>
+           </property>
+           <property name="text">
+            <string>Окно 4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_31">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>X</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_33">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color: rgb(255, 214, 110);
+border: 1px solid line black;
+}</string>
+           </property>
+           <property name="text">
+            <string>Окно 3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_22">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color: rgb(255, 214, 110);
+border: 1px solid line black;
+}</string>
+           </property>
+           <property name="text">
+            <string>Окно 2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QSpinBox" name="SpinX4">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>1700</number>
+           </property>
+           <property name="singleStep">
+            <number>8</number>
+           </property>
+           <property name="value">
+            <number>1664</number>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QSpinBox" name="SpinX2">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>1700</number>
+           </property>
+           <property name="singleStep">
+            <number>8</number>
+           </property>
+           <property name="value">
+            <number>640</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QSpinBox" name="SpinWidth1">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>256</number>
+           </property>
+           <property name="value">
+            <number>256</number>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="3">
+          <widget class="QSpinBox" name="SpinWidth4">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>256</number>
+           </property>
+           <property name="value">
+            <number>256</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="SpinX1">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="maximum">
+            <number>1700</number>
+           </property>
+           <property name="singleStep">
+            <number>8</number>
+           </property>
+           <property name="value">
+            <number>128</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Sans Serif</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox
+{
+border: 2px solid line black;
+	background-color: rgb(90, 181, 134);
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <property name="leftMargin">
+          <number>8</number>
+         </property>
+         <property name="topMargin">
+          <number>7</number>
+         </property>
+         <property name="rightMargin">
+          <number>8</number>
+         </property>
+         <property name="bottomMargin">
+          <number>6</number>
+         </property>
+         <property name="horizontalSpacing">
+          <number>4</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>2</number>
+         </property>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="ButSetParamToDevice">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Установить</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="SpinExposeTimeMs">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QWidget
+{
+background-color: rgb(200, 200, 200);
+}</string>
+           </property>
+           <property name="maximum">
+            <number>4000</number>
+           </property>
+           <property name="singleStep">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>400</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color: rgb(133, 200, 0);
+border: 1px solid line black;
+}</string>
+           </property>
+           <property name="text">
+            <string>Время экспозиции мкс</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color: rgb(255, 170, 0);
+border: 1px solid line black;
+}</string>
+           </property>
+           <property name="text">
+            <string>Средний фон</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color: rgb(170, 170, 0);
+border: 1px solid line black;
+}</string>
+           </property>
+           <property name="text">
+            <string>Автоэкспозиция</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="SpinAvarageBackground">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QWidget
+{
+background-color: rgb(200, 200, 200);
+}</string>
+           </property>
+           <property name="maximum">
+            <number>1000</number>
+           </property>
+           <property name="singleStep">
+            <number>5</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="ButAutoExpose">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Sans Serif</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Вкл</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
