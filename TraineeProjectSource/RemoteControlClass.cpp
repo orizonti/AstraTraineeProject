@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "RemoteControlClass.h"
 #include <qdebug.h>
 #include "RemoteAimingWindowControl.h"
@@ -6,7 +6,7 @@
 RemoteAimingClass::RemoteAimingClass()
 {
 
-    RemoteToBaseTransform.LoadRotationFromFile("/home/broms/TrainerData/RotateMatrixOutput1.txt");
+    RemoteToBaseTransform.LoadRotationFromFile("/home/broms/DEVELOPMENT/DATA/TrainerData/RotateMatrixOutput1.txt");
     RemoteToBaseTransform.Inverse();
 
     //TCPServer.SetPort(2323);
@@ -189,5 +189,39 @@ switch(ID_TASK)
 void RemoteControlClass::SendStateToRemote()
 {
     MessageStruct<DEVICE_STATE> StateMessage;
+
+}
+
+void operator>>(DataDeviceStructure& DeviceData, RemoteControlClass& RemoteControl)
+{
+
+	switch (DeviceData.TypeBlock)
+    {
+	case EngineControlBlock:   static_cast<DataEngineStructure&>(DeviceData)  >> RemoteControl;  break;
+	case ChillControlBlock:    static_cast<DataChillerStructure&>(DeviceData) >> RemoteControl;  break;
+	case WeatherControlBlock:  static_cast<DataWeatherStructure&>(DeviceData) >> RemoteControl;  break;
+	case CamerasControlBlock:  static_cast<DataCamerasStructure&>(DeviceData) >> RemoteControl;  break;
+	case LasersBlock:          static_cast<DataLaserStruct&>(DeviceData)      >> RemoteControl;  break;
+	default: break;
+	}
+}
+
+void operator>>(DataLaserStruct& LaserData, RemoteControlClass& RemoteControl)
+{
+   //RemoteControl.DevicesStateVector.PowerLaserState = LaserData. 
+}
+void operator>>(DataEngineStructure& EngineData, RemoteControlClass& RemoteControl)
+{
+}
+void operator>>(DataCamerasStructure& CamerasData, RemoteControlClass& RemoteControl)
+{
+
+}
+void operator>>(DataWeatherStructure& WeatherData, RemoteControlClass& RemoteControl)
+{
+
+}
+void operator>>(DataChillerStructure& ChillerData, RemoteControlClass& RemoteControl)
+{
 
 }

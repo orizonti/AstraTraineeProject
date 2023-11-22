@@ -1,6 +1,5 @@
 #pragma once
 #include "ChillSystemClass.h"
-#include "AirSystemClass.h"
 #include "AimingClass.h"
 #include "LaserControlClass.h"
 #include "EngineControlClass.h"
@@ -129,7 +128,6 @@ public:
 
 	void InitialaizeROIProcess();
 	void TurnOnOffChiller(bool OnOff);
-	void TurnOnOffAir(bool OnOff);
 	void LoadPreference();
 
 
@@ -173,7 +171,6 @@ private:
 	std::shared_ptr<ChillSystemClass> ChillSystem;
 
 
-	std::shared_ptr<AirSystemClass>        AirSystem;
 	std::shared_ptr<AimingClass>          AimingBlock1;
 	std::shared_ptr<AimingClass>          AimingBlock2;
 	std::shared_ptr<AimingClass>          AimingBlock3;

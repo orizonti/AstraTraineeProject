@@ -1,5 +1,5 @@
 //	����� ��� ��������� ����������� � ��������� ��������� ����� ���������
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "ImageProcessingClass.h"
 
 void CopyDataToImage(PIXEL_WORD* Data)

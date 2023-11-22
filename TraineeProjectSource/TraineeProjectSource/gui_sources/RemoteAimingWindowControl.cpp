@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "RemoteAimingWindowControl.h"
 #include "RemoteControlClass.h"
 

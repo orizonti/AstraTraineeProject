@@ -1,12 +1,12 @@
-#include "stdafx.h"
-#include "pidwindow2.h"
+#include "CommonHeaders.h"
+#include "pidwindow.h"
 
-PIDWindow2::PIDWindow2(QWidget *parent)
+PIDWIndow::PIDWIndow(QWidget *parent)
 	: AdjustableWidget(parent)
 {
 	ui.setupUi(this);
 
-	QFile file("/home/broms/TrainerData/PIDParams.txt");
+	QFile file("/home/broms/DEVELOPMENT/DATA/TrainerData/PIDParams.txt");
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 		return;
 
@@ -20,11 +20,11 @@ PIDWindow2::PIDWindow2(QWidget *parent)
 	file.close();
 }
 
-PIDWindow2::~PIDWindow2()
+PIDWIndow::~PIDWIndow()
 {
 
 }
-void PIDWindow2::DisplayState(stateblocksenum State)
+void PIDWIndow::DisplayState(stateblocksenum State)
 {
 	ui.checkWorkBlock->blockSignals(true);
 	if (State == BlockDisable)
@@ -36,7 +36,7 @@ void PIDWindow2::DisplayState(stateblocksenum State)
 	ui.checkWorkBlock->blockSignals(false);
 }
 
-void PIDWindow2::ConnectControlSignals(HandleControlInterface* Control)
+void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
 {
 	
 			connect(ui.checkWorkBlock, &QCheckBox::stateChanged,
@@ -77,7 +77,7 @@ void PIDWindow2::ConnectControlSignals(HandleControlInterface* Control)
 			{
 					
 					qDebug() << "Load file PIDParams";
-					QFile file("/home/broms/TrainerData/PIDParams.txt");
+					QFile file("/home/broms/DEVELOPMENT/DATA/TrainerData/PIDParams.txt");
 					if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 						return;
 
@@ -95,6 +95,6 @@ void PIDWindow2::ConnectControlSignals(HandleControlInterface* Control)
 }
 
 
-void PIDWindow2::SetInitialState(double Rate, double Diff, double Int)
+void PIDWIndow::SetInitialState(double Rate, double Diff, double Int)
 {
 }

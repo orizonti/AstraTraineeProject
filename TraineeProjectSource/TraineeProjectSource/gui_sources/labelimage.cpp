@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "labelimage.h"
 #include "qevent.h"
 #include "qdebug.h"

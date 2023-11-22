@@ -2,27 +2,24 @@ cmake_minimum_required(VERSION 3.14)
 
 project(RotateOptimization LANGUAGES CXX)
 
+message("ROTATE OPTIMIZATION LIBRARY ADD")
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-message("ROTATE OPTIMIZATION LIBRARY ADD")
-message("PROJECT SOURCE: "${PROJECT_SOURCE_DIR})
 
+cmake_path(GET PROJECT_SOURCE_DIR PARENT_PATH SOURCE_DIR)
+message("MAIN PROJECT SOURCE: "${SOURCE_DIR})
 
-if(EXISTS "/home/spp/PROGRAM_LIBRARY")
-  set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
+if(NOT EXISTS "/home/${USER}/LIBRARY")
+message("LIBRARY_DIR: [ /home/${USER}/LIBRARY ] NOT FOUND")
 endif()
-if(EXISTS "/home/broms/PROGRAM_LIBRARY")
-  set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
-endif()
-if(EXISTS "/mnt/d/PROGRAM_LIBRARY/linux")
-  set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
-endif()
+set(LIBRARY_DIR "/home/${USER}/LIBRARY")
 
 set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
-set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/NN_LIBRARY/libtorch/")
+set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/")
 find_package(Torch REQUIRED)
 
 add_library(RotateOptimization SHARED
@@ -31,30 +28,16 @@ add_library(RotateOptimization SHARED
   RotateOperationContainer.h
 )
 
-message("TORCH LINK:  ${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
-link_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
-
-#target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
-#target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch.so")
-#target_link_libraries(RotateOptimization "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libc10.so")
-target_link_libraries(RotateOptimization "/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
-target_link_libraries(RotateOptimization "/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libtorch.so")
-target_link_libraries(RotateOptimization "/home/spp/PROGRAM_LIBRARY/NN_LIBRARY/libtorch/lib/libc10.so")
-
-
-
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/include")
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/include/torch/csrc/api/include")
+include_directories("${SOURCE_DIR}")
+#=====================================================================
+link_directories("${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib")
+target_link_libraries(RotateOptimization "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libtorch_cpu.so")
+target_link_libraries(RotateOptimization "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libtorch.so")
+target_link_libraries(RotateOptimization "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libc10.so")
 target_link_libraries(RotateOptimization Qt5::Core)
+#=====================================================================
 
 target_compile_definitions(RotateOptimization PRIVATE ROTATEOPTIMIZATION_LIBRARY)
 
-include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include")
-include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
-
-if(EXISTS "/home/spp/DEVELOPMENT/AstraTraineeProject/TraineeProjectSource")
-include_directories("/home/spp/DEVELOPMENT/AstraTraineeProject/TraineeProjectSource")
-endif()
-
-if(EXISTS "/home/broms/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/TraineeProjectSource")
-include_directories("/home/broms/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/TraineeProjectSource")
-endif()
-#include_directories("../${PROJECT_SOURCE_DIR}")

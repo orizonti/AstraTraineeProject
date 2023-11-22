@@ -1,7 +1,7 @@
 #ifndef AIMINGBLOCKWINDOW_H
 #define AIMINGBLOCKWINDOW_H
 
-#include "pidwindow2.h"
+#include "pidwindow.h"
 #include "ui_aimingblockwindow.h"
 #include "kalmanwindow.h"
 #include "HandleControlInterface.h"

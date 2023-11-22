@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+﻿#include "CommonHeaders.h"
 
 #include "maincontrollerqclass.h"
 #include <functional>
@@ -6,8 +6,6 @@
 quint8* MainControllerQClass::ImageBufferFullROI = new quint8[512*2048];
 
 
-
-//����������� MainControllerQClass
 MainControllerQClass::MainControllerQClass(MainWindowQClass* Window, GraphicsWindow* Window2)										
 {
     qDebug() << "TEST REMOTE STRING 222";	
@@ -55,6 +53,7 @@ MainControllerQClass::MainControllerQClass(MainWindowQClass* Window, GraphicsWin
     AimingBlock2->SetDesieredCoord(QPair<double,double>(0,0));
     AimingBlock3->SetDesieredCoord(QPair<double,double>(0,0));
 
+    this->WindowDisplay->SlotSetInterfaceSize(1);
 	//======================= test code to delete ==============================
 	return;
 	//==========================================================================
@@ -68,26 +67,21 @@ MainControllerQClass::~MainControllerQClass()	//����������
 }
 
 
-
-
 void MainControllerQClass::SlotCheckDisplayDeviceModulesState()
 {
 
 
 	DataImageProcAllChannels DataImageProc = ImageProcessor->GetDataAllChannels();
 	Substract<double> SubsPair;
-	   AimingBlock1->DesireAbsCoord >> SubsPair;
+
+	         AimingBlock1->DesireAbsCoord >> SubsPair;
 	   ImageProcessor->Proc1->strob_coord >> SubsPair >> DataImageProc.Channel1.LastAimingCoord;
-
-	   AimingBlock2->DesireAbsCoord >> SubsPair;
+	         AimingBlock2->DesireAbsCoord >> SubsPair;
 	   ImageProcessor->Proc2->strob_coord >> SubsPair >> DataImageProc.Channel2.LastAimingCoord;
-
-	   AimingBlock3->DesireAbsCoord >> SubsPair;
+	         AimingBlock3->DesireAbsCoord >> SubsPair;
 	   ImageProcessor->Proc3->strob_coord >> SubsPair >> DataImageProc.Channel3.LastAimingCoord;
 
 	   DataImageProc.Channel4.LastAimingCoord = ErrorPointer;
-
-
 
 
 	DataEngineStructure EnginesData;
@@ -171,7 +165,7 @@ bool MainControllerQClass::Initialization()
 	QString info_string;
 	QDebug  debug_out(&info_string);
 
-	//qDebug() << "                   KLP INTERFACE CREATE !!!!!";
+	qDebug() << "                   KLP INTERFACE CREATE !!!!!";
 	KLPInterface = std::shared_ptr<KLPInterfaceClass>(new KLPInterfaceClass);
 
 	Regim_CommutatorCommand CommutatorState;
@@ -199,7 +193,6 @@ bool MainControllerQClass::Initialization()
 
 	ChillSystem = std::shared_ptr<ChillSystemClass>(new ChillSystemClass);
 	
-	AirSystem   = std::shared_ptr<AirSystemClass>(new AirSystemClass);
 	
 	RemoteControl= std::shared_ptr<RemoteControlClass>(new RemoteControlClass(this));
 
@@ -277,6 +270,7 @@ bool MainControllerQClass::Initialization()
 
 
 
+    qDebug() << "END INIT";
 	//this->KLPInterface->StatusRequest();
 
 
@@ -686,11 +680,6 @@ void MainControllerQClass::TurnOnOffChiller(bool OnOff)
 	this->ChillSystem->SlotTurnOnOff(OnOff);
 }
 
-void MainControllerQClass::TurnOnOffAir(bool OnOff)
-{
-	this->AirSystem->SlotTurnOnOff(OnOff);
-}
-
 void MainControllerQClass::SlotMoveByCircle()
 {
 	CounterCircle++;
@@ -1004,11 +993,11 @@ void MainControllerQClass::LoadPreference()
 
 
     qDebug() << "================================================";
-    qDebug() << "MAIN CONTROLLER LOAD PREFERENCE";
+    qDebug() << "[ MAIN CONTROLLER LOAD PREFERENCE ]";
 	QString RotateParamPath1;
 	QString RotateParamPath2; 
 	QString RotateParamPath3; 
-			QString IniFile = "/home/broms/TrainerData/TrainerPaths.ini";
+			QString IniFile = "/home/broms/DEVELOPMENT/DATA/TrainerData/TrainerPaths.ini";
 			QSettings Settings(IniFile, QSettings::IniFormat);
 
 			Settings.beginGroup("PATHS");

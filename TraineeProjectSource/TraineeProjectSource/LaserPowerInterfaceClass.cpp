@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "LaserPowerInterfaceClass.h"
 
 LaserPowerInterfaceClass::LaserPowerInterfaceClass()

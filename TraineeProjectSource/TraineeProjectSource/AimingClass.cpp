@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "AimingClass.h"
 #include "SubstractPair.h"
 
@@ -230,7 +230,7 @@ void AimingClass::SetCoord(QPair<double, double> Coord)
 void AimingClass::LoadPIDParamFromFile()
 {
 
-    QFile file("/home/broms/TrainerData/PIDParams.txt");
+    QFile file("/home/broms/DEVELOPMENT/DATA/TrainerData/PIDParams.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 

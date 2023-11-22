@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "ChillSystemClass.h"
 
 DataTemperatureStructure ChillSystemClass::GetState()

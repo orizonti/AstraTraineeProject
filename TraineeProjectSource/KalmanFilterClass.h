@@ -19,8 +19,8 @@ class ONNXSession
 {
 public:
     ONNXSession() {
-		if(QFile::exists("/home/broms/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx"))
-        modelPath = "/home/spp/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
+		if(QFile::exists("/home/broms/DEVELOPMENT/DATA/NN_MODELS/GRU_120_3_18F.onnx"))
+        modelPath = "/home/broms/DEVELOPMENT/DATA/NN_MODELS/GRU_120_3_18F.onnx";
 		if(QFile::exists("/mnt/d/DEVELOPMENT/DATA/NN_MODELS/GRU_120_3_18F.onnx"))
         modelPath = "/mnt/d/DEVELOPMENT/DATA/NN_MODELS/GRU_120_3_18F.onnx";
 		};
@@ -28,7 +28,7 @@ public:
     int INPUT_VECTOR_SIZE = FILTER_SIZE;
     int BATCH_SIZE = 1;
 	bool SessionInit = false;
-    const ORTCHAR_T* modelPath = "/home/spp/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
+    const ORTCHAR_T* modelPath = "/home/broms/DEVELOPMENT/DATA/NN_MODELS/GRU_120_3_18F.onnx";
 
     
 

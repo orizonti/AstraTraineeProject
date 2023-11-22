@@ -1,5 +1,5 @@
 #pragma once
-#include "DataToDisplayStructure.h"
+#include "DataDeviceStructureCommon.h"
 #include "stateblocksenum.h"
 #include <QPair>
 
@@ -12,7 +12,7 @@ struct EngineData
 	stateblocksenum State = BlockDisable;
 };
 
-class DataEngineStructure : public DataToDisplayStructure
+class DataEngineStructure : public CommonDeviceStructure
 {
 public:
 

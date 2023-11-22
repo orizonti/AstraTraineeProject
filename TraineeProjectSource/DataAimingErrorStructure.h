@@ -1,5 +1,5 @@
 #pragma once
-#include "DataToDisplayStructure.h"
+#include "DataDeviceStructureCommon.h"
 
 struct KalmanOutputData
 {
@@ -12,7 +12,7 @@ struct KalmanOutputData
 };
 
 
-class DataAimingErrorStructure : public DataToDisplayStructure
+class DataAimingErrorStructure : public DataDeviceStructure
 {
 public:
 	QPair<double, double> LastError;

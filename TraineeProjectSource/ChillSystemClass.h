@@ -1,14 +1,14 @@
 #pragma once
 #include "typeblocksenum.h"
 #include "stateblocksenum.h"
-#include "DataTemperatureStructure.h"
+#include "DataChillerStructure.h"
 
 
 class ChillSystemClass
 {
 public:
 	void SlotTurnOnOff(bool OnOff);
-	DataTemperatureStructure GetState();
+	DataChillerStructure GetState();
 private:
 	typeblocksenum TypeBlock = typeblocksenum::ChillControlBlock;
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;

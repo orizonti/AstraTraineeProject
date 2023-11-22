@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "mainblockwindow.h"
 
 MainBlockWindow::MainBlockWindow(QWidget *parent)

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "tcpclientengine.h"
 
 TCPClientEngine::TCPClientEngine(QObject *parent): QObject(parent)

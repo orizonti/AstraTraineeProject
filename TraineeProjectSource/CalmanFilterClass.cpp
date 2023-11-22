@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+﻿#include "CommonHeaders.h"
 #include "CalmanFilterClass.h"
 
 CalmanFilterCoordClass::CalmanFilterCoordClass()

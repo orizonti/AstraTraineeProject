@@ -19,8 +19,51 @@
 
 #include "EngineInterfaceClass.h"
 #include "CameraInterfaceClass.h"
-#include "DebugStream.h"
 #include <memory>
+#include "DataWeatherStructure.h"
+
+class StatusCommutatorStruct
+{
+public:
+
+	StatusCommutatorStruct()
+	{
+		FC_HEADER.DeviceID = 0x78;
+		FC_HEADER.MessageId = 0x05;
+	}
+
+    AsmHeader FC_HEADER;
+    quint8 StateController;
+    quint8 TempSensorState;
+    qint8 Temeperature1;
+    qint8 Temeperature2;
+    qint8 Temeperature3;
+    qint8 Temeperature4;
+    qint8 Temeperature5;
+    qint8 Temeperature7;
+    qint8 Temeperature8;
+    qint8 Temeperature9;
+
+    quint8 SignalTTLIn;
+    quint8 SignalTTLOut;
+
+    quint16 PowerSupplyChannels;
+    quint16 Reserv;
+
+    quint8  WeTemp1;
+    quint16 WePresure1;
+    quint8  WeHumidity1;
+
+    quint8  WeTemp2;
+    quint16 WePresure2;
+    quint8  WeHumidity2;
+
+    quint32 FC1Params;
+    quint32 FC2Params;
+
+    quint32 ABCDVersion;	
+	friend void operator>>(QDataStream& in, StatusCommutatorStruct& RecievePocket);
+}; 
 
 class ResetCommandCommutator
 {
@@ -92,50 +135,6 @@ public:
 	friend void operator<<(QDataStream& out, Regim_CommutatorCommand& SendPocket);
 };
 
-class StatusCommutatorStruct
-{
-public:
-
-	StatusCommutatorStruct()
-	{
-		FC_HEADER.DeviceID = 0x78;
-		FC_HEADER.MessageId = 0x05;
-	}
-
-   AsmHeader FC_HEADER;
-    quint8 StateController;
-    quint8 TempSensorState;
-    qint8 Temeperature1;
-    qint8 Temeperature2;
-    qint8 Temeperature3;
-    qint8 Temeperature4;
-    qint8 Temeperature5;
-    qint8 Temeperature7;
-    qint8 Temeperature8;
-    qint8 Temeperature9;
-
-    quint8 SignalTTLIn;
-    quint8 SignalTTLOut;
-
-    quint16 PowerSupplyChannels;
-    quint16 Reserv;
-
-    quint8  WeTemp1;
-    quint16 WePresure1;
-    quint8  WeHumidity1;
-
-    quint8  WeTemp2;
-    quint16 WePresure2;
-    quint8  WeHumidity2;
-
-    quint32 FC1Params;
-    quint32 FC2Params;
-
-    quint32 ABCDVersion;	
-	friend void operator>>(QDataStream& in, StatusCommutatorStruct& RecievePocket);
-
-
-}; 
 
 
 
@@ -154,8 +153,8 @@ uint8_t WriteCommandDataEx(QByteArray CommandData,OutFcChannelFlags FCChannel);
 void SetSateCommutator(Regim_CommutatorCommand State);
 void ResetCommutator();
 void StatusRequest();
-
-StatusCommutatorStruct StateCommutator;
+DataWeatherStructure GetWheatherState();
+StatusCommutatorStruct DevicesState;
 
 void InitialaizeInterface();
 

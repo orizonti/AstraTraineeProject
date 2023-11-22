@@ -347,8 +347,8 @@ ButMovEng1Up	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_en
 ButMovEng1Up	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_enginecontrolwindow.h	/^    QPushButton *ButMovEng1Up;$/;"	m	class:Ui_EngineControlWindow
 ButSetAdjustMode	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QPushButton *ButSetAdjustMode;$/;"	m	class:Ui_MainBlockWindow
 ButSetAdjustMode	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QPushButton *ButSetAdjustMode;$/;"	m	class:Ui_MainBlockWindow
-ButSetPIDParam	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QPushButton *ButSetPIDParam;$/;"	m	class:Ui_PIDWindow2
-ButSetPIDParam	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QPushButton *ButSetPIDParam;$/;"	m	class:Ui_PIDWindow2
+ButSetPIDParam	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QPushButton *ButSetPIDParam;$/;"	m	class:Ui_PIDWIndow
+ButSetPIDParam	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QPushButton *ButSetPIDParam;$/;"	m	class:Ui_PIDWIndow
 ButSetParamToDevice	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_cameracontrolwindow.h	/^    QPushButton *ButSetParamToDevice;$/;"	m	class:Ui_CameraControlWindow
 ButSetParamToDevice	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_cameracontrolwindow.h	/^    QPushButton *ButSetParamToDevice;$/;"	m	class:Ui_CameraControlWindow
 ButSetPowerSupplyCommutator	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QPushButton *ButSetPowerSupplyCommutator;$/;"	m	class:Ui_MainBlockWindow
@@ -1368,7 +1368,7 @@ ConnectControlSignals	TraineeProjectSource/gui_sources/kalmanwindow.cpp	/^void K
 ConnectControlSignals	TraineeProjectSource/gui_sources/laserblockwindow.cpp	/^void LaserBlockWindow::ConnectControlSignals(HandleControlInterface* Control)$/;"	f	class:LaserBlockWindow
 ConnectControlSignals	TraineeProjectSource/gui_sources/mainblockwindow.cpp	/^void MainBlockWindow::ConnectControlSignals(HandleControlInterface* Control)$/;"	f	class:MainBlockWindow
 ConnectControlSignals	TraineeProjectSource/gui_sources/mainwindowqclass.cpp	/^void MainWindowQClass::ConnectControlSignals(HandleControlInterface* Control)$/;"	f	class:MainWindowQClass
-ConnectControlSignals	TraineeProjectSource/gui_sources/pidwindow2.cpp	/^void PIDWindow2::ConnectControlSignals(HandleControlInterface* Control)$/;"	f	class:PIDWindow2
+ConnectControlSignals	TraineeProjectSource/gui_sources/PIDWIndow.cpp	/^void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)$/;"	f	class:PIDWIndow
 ConnectNode	TraineeProjectSource/gui_sources/graphicwidgetnode.cpp	/^void GraphicWidgetNode::ConnectNode(GraphicWidgetNode* Node)$/;"	f	class:GraphicWidgetNode
 ConnectNode	TraineeProjectSource/gui_sources/node.cpp	/^void Node::ConnectNode(Node* node)$/;"	f	class:Node
 ConnectSignals	TraineeProjectSource/gui_sources/windowsinussource.cpp	/^void WindowSinusSource::ConnectSignals(SinusGeneratorClass* SinusGenerator)$/;"	f	class:WindowSinusSource
@@ -1427,7 +1427,7 @@ CurrentStepSecondsY	TraineeProjectSource/SinusGeneratorClass.h	/^	double Current
 CurrentTemperature	TraineeProjectSource/DataLaserStruct.h	/^	int CurrentTemperature;$/;"	m	class:DataLaserStruct
 CurrentTestCoord	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	std::vector<QPair<double, double>>::iterator CurrentTestCoord;$/;"	m	class:TestDataVectorsContainer
 Curve	TraineeProjectSource/gui_sources/link_line.h	/^    QPainterPath Curve;$/;"	m	class:LinkLine
-CycleInfoString	TraineeProjectSource/DataToDisplayStructure.h	/^	QString CycleInfoString;$/;"	m	class:DataToDisplayStructure
+CycleInfoString	TraineeProjectSource/CommonDeviceStructure.h	/^	QString CycleInfoString;$/;"	m	class:CommonDeviceStructure
 DATA	TraineeProjectSource/RemoteControlClass.h	/^    T DATA; $/;"	m	class:MessageStruct
 DATA_SIZE	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    quint32 DATA_SIZE = -1;$/;"	m	class:COMMAND_HEADER
 DATA_SIZE	TraineeProjectSource/RemoteControlClass.h	/^    uint32_t DATA_SIZE; $/;"	m	class:MessageStruct
@@ -1451,20 +1451,20 @@ DMAOpenWriteBuffers	TraineeProjectSource/mppd_wrap.cpp	/^int mppd_wrap::DMAOpenW
 DMAStopReadTransmission	TraineeProjectSource/mppd_wrap.cpp	/^int mppd_wrap::DMAStopReadTransmission (void* pBuffer) {    $/;"	f	class:mppd_wrap
 DMAStopWriteTransmission	TraineeProjectSource/mppd_wrap.cpp	/^int mppd_wrap::DMAStopWriteTransmission(void* pBuffer) {$/;"	f	class:mppd_wrap
 Data	TraineeProjectSource/RemoteControlClass.h	/^	QByteArray Data;$/;"	m	class:TCPServerEngine
-DataAimingErrorStructure	TraineeProjectSource/DataAimingErrorStructure.h	/^class DataAimingErrorStructure : public DataToDisplayStructure$/;"	c
-DataCamerasStructure	TraineeProjectSource/DataCamerasStructure.h	/^class DataCamerasStructure : public DataToDisplayStructure$/;"	c
+DataAimingErrorStructure	TraineeProjectSource/DataAimingErrorStructure.h	/^class DataAimingErrorStructure : public CommonDeviceStructure$/;"	c
+DataCamerasStructure	TraineeProjectSource/DataCamerasStructure.h	/^class DataCamerasStructure : public CommonDeviceStructure$/;"	c
 DataCoordStructure	TraineeProjectSource/DataImageProcStructure.h	/^class DataCoordStructure$/;"	c
 DataEngineStructure	TraineeProjectSource/DataEngineStructure.h	/^	DataEngineStructure(){};$/;"	f	class:DataEngineStructure
-DataEngineStructure	TraineeProjectSource/DataEngineStructure.h	/^class DataEngineStructure : public DataToDisplayStructure$/;"	c
+DataEngineStructure	TraineeProjectSource/DataEngineStructure.h	/^class DataEngineStructure : public CommonDeviceStructure$/;"	c
 DataFilter	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	AccumulateDataFilter DataFilter;$/;"	m	class:RotateDataMeasureEngine
-DataImageProcAllChannels	TraineeProjectSource/DataImageProcStructure.h	/^class DataImageProcAllChannels : public DataToDisplayStructure$/;"	c
-DataImageProcStructure	TraineeProjectSource/DataImageProcStructure.h	/^class DataImageProcStructure : public DataToDisplayStructure$/;"	c
-DataLaserStruct	TraineeProjectSource/DataLaserStruct.h	/^class DataLaserStruct : public DataToDisplayStructure$/;"	c
+DataImageProcAllChannels	TraineeProjectSource/DataImageProcStructure.h	/^class DataImageProcAllChannels : public CommonDeviceStructure$/;"	c
+DataImageProcStructure	TraineeProjectSource/DataImageProcStructure.h	/^class DataImageProcStructure : public CommonDeviceStructure$/;"	c
+DataLaserStruct	TraineeProjectSource/DataLaserStruct.h	/^class DataLaserStruct : public CommonDeviceStructure$/;"	c
 DataReceived	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^void TCPServerEngine::DataReceived()$/;"	f	class:TCPServerEngine
 DataReceived	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^void TCPServerEngine::DataReceived()$/;"	f	class:TCPServerEngine
 DataSocket	TraineeProjectSource/tcpclientengine.h	/^    QTcpSocket DataSocket;$/;"	m	class:TCPClientEngine
-DataTemperatureStructure	TraineeProjectSource/DataTemperatureStructure.h	/^class DataTemperatureStructure : public DataToDisplayStructure$/;"	c
-DataToDisplayStructure	TraineeProjectSource/DataToDisplayStructure.h	/^class DataToDisplayStructure$/;"	c
+DataTemperatureStructure	TraineeProjectSource/DataTemperatureStructure.h	/^class DataTemperatureStructure : public CommonDeviceStructure$/;"	c
+CommonDeviceStructure	TraineeProjectSource/CommonDeviceStructure.h	/^class CommonDeviceStructure$/;"	c
 DataVectors	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	TestDataVectorsContainer DataVectors;$/;"	m	class:RotateDataMeasureEngine
 DateStrategy	TraineeProjectSource/qcustomplot.h	/^  enum DateStrategy {dsNone, dsUniformTimeInDay, dsUniformDayInMonth} mDateStrategy;$/;"	g	class:QCPAxisTickerDateTime
 DeinitializeInterface	TraineeProjectSource/KLPInterfaceClass.cpp	/^void KLPInterfaceClass::DeinitializeInterface()$/;"	f	class:KLPInterfaceClass
@@ -1516,7 +1516,7 @@ DisplayState	TraineeProjectSource/gui_sources/enginecontrolwindow.cpp	/^void Eng
 DisplayState	TraineeProjectSource/gui_sources/imageprocessingwindow.cpp	/^void ImageProcessingWindow::DisplayState(stateblocksenum State,int NumberChannel)$/;"	f	class:ImageProcessingWindow
 DisplayState	TraineeProjectSource/gui_sources/kalmanwindow.cpp	/^void KalmanWindow::DisplayState(stateblocksenum State)$/;"	f	class:KalmanWindow
 DisplayState	TraineeProjectSource/gui_sources/laserblockwindow.cpp	/^void LaserBlockWindow::DisplayState(stateblocksenum State,int NumberChannel)$/;"	f	class:LaserBlockWindow
-DisplayState	TraineeProjectSource/gui_sources/pidwindow2.cpp	/^void PIDWindow2::DisplayState(stateblocksenum State)$/;"	f	class:PIDWindow2
+DisplayState	TraineeProjectSource/gui_sources/PIDWIndow.cpp	/^void PIDWIndow::DisplayState(stateblocksenum State)$/;"	f	class:PIDWIndow
 DisplayThreshold	TraineeProjectSource/gui_sources/imageprocessingdisplaywindow.cpp	/^void ImageProcessingDisplayWindow::DisplayThreshold(int Threshold, int NumberChannel)$/;"	f	class:ImageProcessingDisplayWindow
 DisplayXAxes	TraineeProjectSource/gui_sources/graphicswindow.h	/^	bool DisplayXAxes = true;$/;"	m	class:GraphicsInterface
 DisplayYAxes	TraineeProjectSource/gui_sources/graphicswindow.h	/^	bool DisplayYAxes = true;$/;"	m	class:GraphicsInterface
@@ -1921,7 +1921,7 @@ KalmanWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_ka
 KalmanWindow	TraineeProjectSource/gui_sources/kalmanwindow.cpp	/^KalmanWindow::KalmanWindow(QWidget *parent)$/;"	f	class:KalmanWindow
 KalmanWindow	TraineeProjectSource/gui_sources/kalmanwindow.h	/^class KalmanWindow : public AdjustableWidget$/;"	c
 KalmanWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanwindow.h	/^    class KalmanWindow: public Ui_KalmanWindow {};$/;"	c	namespace:Ui
-L	TraineeProjectSource/FC_STRUCTS.h	/^			quint32 L : 1;      \/\/флаг нулевой длины поля данных$/;"	m	struct:AsmHeader::__anon1::__anon2
+L	TraineeProjectSource/FC_STRUCTS.h	/^			quint32 L : 1;      \/\/пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ$/;"	m	struct:AsmHeader::__anon1::__anon2
 L1_CONTINUOUS_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	13;"	d
 L1_CURRENT	TraineeProjectSource/LaserPointerInterfaceClass.h	9;"	d
 L1_IMPULSE_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	14;"	d
@@ -2013,7 +2013,7 @@ LayerMode	TraineeProjectSource/qcustomplot.h	/^  enum LayerMode { lmLogical   \/
 Lenght	TraineeProjectSource/CameraInterfaceClass.h	/^	quint32 Lenght;$/;"	m	class:HEADER_ASM_STRUCT
 LenghtData	TraineeProjectSource/EngineInterfaceClass.h	/^    quint8 LenghtData;$/;"	m	struct:EngineHeader
 LenghtReserv	TraineeProjectSource/CameraInterfaceClass.h	/^	quint32 LenghtReserv = 804;$/;"	m	class:CAMERA_PARAM_STRUCT
-Length	TraineeProjectSource/FC_STRUCTS.h	/^			quint32 Length : 24;	    \/\/ длина данных сообщения$/;"	m	struct:AsmHeader::__anon1::__anon2
+Length	TraineeProjectSource/FC_STRUCTS.h	/^			quint32 Length : 24;	    \/\/ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ$/;"	m	struct:AsmHeader::__anon1::__anon2
 LineStyle	TraineeProjectSource/qcustomplot.h	/^  enum LineStyle { lsNone        \/\/\/< data points are not connected with any lines (e.g. data only represented$/;"	g	class:QCPGraph
 LineStyle	TraineeProjectSource/qcustomplot.h	/^  enum LineStyle { lsNone        \/\/\/< data points are not connected with any lines (e.g. data only represented$/;"	g	class:QCPPolarGraph
 LineStyle	TraineeProjectSource/qcustomplot.h	/^  enum LineStyle { lsNone  \/\/\/< No line is drawn between data points (e.g. only scatters)$/;"	g	class:QCPCurve
@@ -2101,7 +2101,7 @@ NoizeAmplitude	TraineeProjectSource/maincontrollerqclass.h	/^    double NoizeAmp
 NotAiming	TraineeProjectSource/stateblocksenum.h	/^	SpotNoFoundState, AimingInFullImage, AimingInStrob, NotAiming$/;"	e	enum:AimingStateEnum
 NullWorkPos	TraineeProjectSource/EngineControlClass.h	/^	QPair<double, double> NullWorkPos;$/;"	m	class:EngineControlClass
 Number	TraineeProjectSource/gui_sources/node.h	/^    int Number = 0;$/;"	m	class:Node
-NumberBlock	TraineeProjectSource/DataToDisplayStructure.h	/^	int NumberBlock;$/;"	m	class:DataToDisplayStructure
+NumberBlock	TraineeProjectSource/CommonDeviceStructure.h	/^	int NumberBlock;$/;"	m	class:CommonDeviceStructure
 NumberChannel	TraineeProjectSource/AimingClass.h	/^	int NumberChannel;$/;"	m	class:AimingClass
 NumberChannel	TraineeProjectSource/ImageProcessingClass.h	/^	int NumberChannel = 1;$/;"	m	class:Processor
 NumberChannel	TraineeProjectSource/gui_sources/aimingblockwindow.h	/^	int NumberChannel = 1;$/;"	m	class:AimingBlockWindow
@@ -2151,7 +2151,7 @@ PA	TraineeProjectSource/CameraInterfaceClass.h	/^	quint8 PA;$/;"	m	class:BITMAP_
 PIDBlock	TraineeProjectSource/typeblocksenum.h	/^	ImageProcBlock, ChillControlBlock, AirControlBlock, CamerasControlBlock, AimingBlock, RecieveErrorBlock, LasersBlock, EngineControlBlock, RemoteControlBlock, KLPInterfaeBlock, MainContoller, CalmanFilterBlock, PIDBlock,CoordData$/;"	e	enum:typeblocksenum
 PIDClass	TraineeProjectSource/PIDClass.cpp	/^PIDClass::PIDClass()$/;"	f	class:PIDClass
 PIDClass	TraineeProjectSource/PIDClass.h	/^class PIDClass : public PassTwoCoordClass$/;"	c
-PIDControl	TraineeProjectSource/gui_sources/mainwindowqclass.h	/^	PIDWindow2* PIDControl;$/;"	m	class:MainWindowQClass
+PIDControl	TraineeProjectSource/gui_sources/mainwindowqclass.h	/^	PIDWIndow* PIDControl;$/;"	m	class:MainWindowQClass
 PIDControlOutput	TraineeProjectSource/PIDClass.h	/^	QPair<double, double> PIDControlOutput;$/;"	m	class:PIDClass
 PIDParam	TraineeProjectSource/DataAimingErrorStructure.h	/^	std::tuple<float,float,float> PIDParam;$/;"	m	class:DataAimingErrorStructure
 PIDParam	TraineeProjectSource/PIDClass.h	/^	PIDParamStruct PIDParam;$/;"	m	class:PIDClass
@@ -2160,12 +2160,12 @@ PIDParamStruct	TraineeProjectSource/PIDParamStruct.h	/^    PIDParamStruct() {Rat
 PIDParamStruct	TraineeProjectSource/PIDParamStruct.h	/^    PIDParamStruct(double Rate, double Diff, double Int) { RateParam = Rate; DiffParam = Diff; IntParam = Int;};$/;"	f	class:PIDParamStruct
 PIDParamStruct	TraineeProjectSource/PIDParamStruct.h	/^class PIDParamStruct$/;"	c
 PIDState	TraineeProjectSource/DataAimingErrorStructure.h	/^	stateblocksenum PIDState = BlockDisable;$/;"	m	class:DataAimingErrorStructure
-PIDWINDOW2_H	TraineeProjectSource/gui_sources/pidwindow2.h	2;"	d
+PIDWIndow_H	TraineeProjectSource/gui_sources/PIDWIndow.h	2;"	d
 PIDWindow	TraineeProjectSource/ui_PIDWindow.h	/^    class PIDWindow: public Ui_PIDWindow {};$/;"	c	namespace:Ui
-PIDWindow2	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    class PIDWindow2: public Ui_PIDWindow2 {};$/;"	c	namespace:Ui
-PIDWindow2	TraineeProjectSource/gui_sources/pidwindow2.cpp	/^PIDWindow2::PIDWindow2(QWidget *parent)$/;"	f	class:PIDWindow2
-PIDWindow2	TraineeProjectSource/gui_sources/pidwindow2.h	/^class PIDWindow2 : public AdjustableWidget$/;"	c
-PIDWindow2	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    class PIDWindow2: public Ui_PIDWindow2 {};$/;"	c	namespace:Ui
+PIDWIndow	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    class PIDWIndow: public Ui_PIDWIndow {};$/;"	c	namespace:Ui
+PIDWIndow	TraineeProjectSource/gui_sources/PIDWIndow.cpp	/^PIDWIndow::PIDWIndow(QWidget *parent)$/;"	f	class:PIDWIndow
+PIDWIndow	TraineeProjectSource/gui_sources/PIDWIndow.h	/^class PIDWIndow : public AdjustableWidget$/;"	c
+PIDWIndow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    class PIDWIndow: public Ui_PIDWIndow {};$/;"	c	namespace:Ui
 PID_Param_Table	TraineeProjectSource/AimingClass.h	/^    std::vector<PIDParamStruct> PID_Param_Table;$/;"	m	class:AimingClass
 PIXELS_10BIT	TraineeProjectSource/ImageProcessingClass.h	/^	PIXEL_WORD_BIT* PIXELS_10BIT;$/;"	m	class:PIXEL_WORD
 PIXEL_WORD	TraineeProjectSource/ImageProcessingClass.cpp	/^PIXEL_WORD::PIXEL_WORD(PIXEL_WORD& Pixels)$/;"	f	class:PIXEL_WORD
@@ -2681,8 +2681,8 @@ QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	44;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	28;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	90;"	d	file:
-QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	28;"	d	file:
-QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	40;"	d	file:
+QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	28;"	d	file:
+QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	40;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	28;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	40;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	28;"	d	file:
@@ -2867,8 +2867,8 @@ QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEH
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	44;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	28;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	90;"	d	file:
-QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	28;"	d	file:
-QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	40;"	d	file:
+QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	28;"	d	file:
+QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	40;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	28;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	40;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	28;"	d	file:
@@ -3673,7 +3673,7 @@ SetFrameFilterProcentage	TraineeProjectSource/maincontrollerqclass.cpp	/^void Ma
 SetGuiFontSize	TraineeProjectSource/gui_sources/mainwindowqclass.cpp	/^void MainWindowQClass::SetGuiFontSize(int FontSize)$/;"	f	class:MainWindowQClass
 SetHandleControl	TraineeProjectSource/gui_sources/RemoteAimingWindowControl.h	/^	void SetHandleControl(RemoteAimingHandleInterface* HandleControlInterface) { ErrorPortHandleControl = HandleControlInterface;};$/;"	f	class:RemoteAimingWindowControl
 SetImageThresHold	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::SetImageThresHold(int Thres,int Channel)$/;"	f	class:MainControllerQClass
-SetInitialState	TraineeProjectSource/gui_sources/pidwindow2.cpp	/^void PIDWindow2::SetInitialState(double Rate, double Diff, double Int)$/;"	f	class:PIDWindow2
+SetInitialState	TraineeProjectSource/gui_sources/PIDWIndow.cpp	/^void PIDWIndow::SetInitialState(double Rate, double Diff, double Int)$/;"	f	class:PIDWIndow
 SetInput	TraineeProjectSource/KalmanFilterClass.cpp	/^void SinusFilter::SetInput(vector<vector<float>> Serieses)$/;"	f	class:SinusFilter
 SetInterval	TraineeProjectSource/CalmanFilterClass.cpp	/^void CalmanFilterClass::SetInterval(float Interval)$/;"	f	class:CalmanFilterClass
 SetInterval	TraineeProjectSource/CalmanFilterClass.cpp	/^void CalmanFilterCoordClass::SetInterval(float Interval)$/;"	f	class:CalmanFilterCoordClass
@@ -3740,8 +3740,8 @@ SignalNewCameraData	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHF
 SignalNewCameraData	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewCameraData(DataCamerasStructure _t1)$/;"	f	class:MainWindowQClass
 SignalNewChillData	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewChillData(DataTemperatureStructure _t1)$/;"	f	class:MainWindowQClass
 SignalNewChillData	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewChillData(DataTemperatureStructure _t1)$/;"	f	class:MainWindowQClass
-SignalNewControlData	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewControlData(DataToDisplayStructure _t1)$/;"	f	class:MainWindowQClass
-SignalNewControlData	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewControlData(DataToDisplayStructure _t1)$/;"	f	class:MainWindowQClass
+SignalNewControlData	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewControlData(CommonDeviceStructure _t1)$/;"	f	class:MainWindowQClass
+SignalNewControlData	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewControlData(CommonDeviceStructure _t1)$/;"	f	class:MainWindowQClass
 SignalNewCoordsData	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewCoordsData(DataCoordStructure _t1)$/;"	f	class:MainWindowQClass
 SignalNewCoordsData	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::SignalNewCoordsData(DataCoordStructure _t1)$/;"	f	class:MainWindowQClass
 SignalNewData	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_graphicswindow.cpp	/^void GraphicsWindow::SignalNewData(DataAimingErrorStructure _t1)$/;"	f	class:GraphicsWindow
@@ -3888,7 +3888,7 @@ StatProcessor	TraineeProjectSource/ImageProcessingClass.h	/^	Statistic StatProce
 StatProcessorLong	TraineeProjectSource/ImageProcessingClass.h	/^    Statistic StatProcessorLong;$/;"	m	class:Processor
 StatProcessorTable	TraineeProjectSource/ImageProcessingClass.h	/^	StatisticGroup StatProcessorTable = StatisticGroup(20,100);$/;"	m	class:Processor
 State	TraineeProjectSource/DataEngineStructure.h	/^	stateblocksenum State = BlockDisable;$/;"	m	struct:EngineData
-State	TraineeProjectSource/DataToDisplayStructure.h	/^	stateblocksenum State =BlockDisable;$/;"	m	class:DataToDisplayStructure
+State	TraineeProjectSource/CommonDeviceStructure.h	/^	stateblocksenum State =BlockDisable;$/;"	m	class:CommonDeviceStructure
 State	TraineeProjectSource/maincontrollerqclass.h	/^	StateMainController State = Init;$/;"	m	class:MainControllerQClass
 StateBlock	TraineeProjectSource/AimingClass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:AimingClass
 StateBlock	TraineeProjectSource/AirSystemClass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:AirSystemClass
@@ -4061,7 +4061,7 @@ TypeBlock	TraineeProjectSource/AirSystemClass.h	/^	typeblocksenum TypeBlock = ty
 TypeBlock	TraineeProjectSource/CameraInterfaceClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::CamerasControlBlock;$/;"	m	class:CameraInterfaceClass
 TypeBlock	TraineeProjectSource/ChillSystemClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::ChillControlBlock;$/;"	m	class:ChillSystemClass
 TypeBlock	TraineeProjectSource/CommonLaserInterfaceClass.h	/^	typeblocksenum TypeBlock = LasersBlock;$/;"	m	class:CommonLaserInterfaceClass
-TypeBlock	TraineeProjectSource/DataToDisplayStructure.h	/^	typeblocksenum TypeBlock;$/;"	m	class:DataToDisplayStructure
+TypeBlock	TraineeProjectSource/CommonDeviceStructure.h	/^	typeblocksenum TypeBlock;$/;"	m	class:CommonDeviceStructure
 TypeBlock	TraineeProjectSource/EngineControlClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::EngineControlBlock;$/;"	m	class:EngineControlClass
 TypeBlock	TraineeProjectSource/ImageProcessingClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::ImageProcBlock;$/;"	m	class:ImageProcessingClass
 TypeBlock	TraineeProjectSource/ImageProcessingClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::ImageProcBlock;$/;"	m	class:Processor
@@ -4094,8 +4094,8 @@ UI_MAINBLOCKWINDOW_H	TraineeProjectSource/TraineeProjectExecutable_autogen/inclu
 UI_MAINBLOCKWINDOW_H	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	10;"	d
 UI_MAINWINDOWQCLASS_H	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	10;"	d
 UI_MAINWINDOWQCLASS_H	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	10;"	d
-UI_PIDWINDOW2_H	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	10;"	d
-UI_PIDWINDOW2_H	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	10;"	d
+UI_PIDWIndow_H	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	10;"	d
+UI_PIDWIndow_H	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	10;"	d
 UI_PIDWINDOW_H	TraineeProjectSource/ui_PIDWindow.h	10;"	d
 UI_PILOTLASERWINDOW_H	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	10;"	d
 UI_PILOTLASERWINDOW_H	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	10;"	d
@@ -4118,7 +4118,7 @@ Ui	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanwindow
 Ui	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^namespace Ui {$/;"	n
 Ui	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^namespace Ui {$/;"	n
 Ui	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^namespace Ui {$/;"	n
-Ui	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^namespace Ui {$/;"	n
+Ui	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^namespace Ui {$/;"	n
 Ui	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^namespace Ui {$/;"	n
 Ui	TraineeProjectSource/TrainerProjectCMake.h	/^namespace Ui { class Widget; }$/;"	n
 Ui	TraineeProjectSource/ui_PIDWindow.h	/^namespace Ui {$/;"	n
@@ -4136,7 +4136,7 @@ Ui	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalman
 Ui	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^namespace Ui {$/;"	n
 Ui	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^namespace Ui {$/;"	n
 Ui	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^namespace Ui {$/;"	n
-Ui	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^namespace Ui {$/;"	n
+Ui	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^namespace Ui {$/;"	n
 Ui	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^namespace Ui {$/;"	n
 Ui_AimingBlockWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_aimingblockwindow.h	/^class Ui_AimingBlockWindow$/;"	c
 Ui_AimingBlockWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_aimingblockwindow.h	/^class Ui_AimingBlockWindow$/;"	c
@@ -4163,8 +4163,8 @@ Ui_MainBlockWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/i
 Ui_MainWindowQClass	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^class Ui_MainWindowQClass$/;"	c
 Ui_MainWindowQClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^class Ui_MainWindowQClass$/;"	c
 Ui_PIDWindow	TraineeProjectSource/ui_PIDWindow.h	/^class Ui_PIDWindow$/;"	c
-Ui_PIDWindow2	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^class Ui_PIDWindow2$/;"	c
-Ui_PIDWindow2	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^class Ui_PIDWindow2$/;"	c
+Ui_PIDWIndow	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^class Ui_PIDWIndow$/;"	c
+Ui_PIDWIndow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^class Ui_PIDWIndow$/;"	c
 Ui_PilotLaserWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^class Ui_PilotLaserWindow$/;"	c
 Ui_PilotLaserWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^class Ui_PilotLaserWindow$/;"	c
 Ui_RemoteAimingWindowControl	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_RemoteAimingWindowControl.h	/^class Ui_RemoteAimingWindowControl$/;"	c
@@ -5899,9 +5899,9 @@ butDirectErrorToChannel2	build/TraineeProjectSource/TraineeProjectExecutable_aut
 butDirectErrorToChannel3	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_RemoteAimingWindowControl.h	/^    QPushButton *butDirectErrorToChannel3;$/;"	m	class:Ui_RemoteAimingWindowControl
 butDirectErrorToChannel3	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_RemoteAimingWindowControl.h	/^    QPushButton *butDirectErrorToChannel3;$/;"	m	class:Ui_RemoteAimingWindowControl
 butLoadPreference	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QPushButton *butLoadPreference;$/;"	m	class:Ui_MainBlockWindow
-butLoadPreference	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QPushButton *butLoadPreference;$/;"	m	class:Ui_PIDWindow2
+butLoadPreference	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QPushButton *butLoadPreference;$/;"	m	class:Ui_PIDWIndow
 butLoadPreference	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QPushButton *butLoadPreference;$/;"	m	class:Ui_MainBlockWindow
-butLoadPreference	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QPushButton *butLoadPreference;$/;"	m	class:Ui_PIDWindow2
+butLoadPreference	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QPushButton *butLoadPreference;$/;"	m	class:Ui_PIDWIndow
 butLoadRotateFromFile	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_RemoteAimingWindowControl.h	/^    QPushButton *butLoadRotateFromFile;$/;"	m	class:Ui_RemoteAimingWindowControl
 butLoadRotateFromFile	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_RemoteAimingWindowControl.h	/^    QPushButton *butLoadRotateFromFile;$/;"	m	class:Ui_RemoteAimingWindowControl
 butResetAll	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QPushButton *butResetAll;$/;"	m	class:Ui_MainBlockWindow
@@ -5984,14 +5984,14 @@ checkWorkBlock	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_
 checkWorkBlock	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_enginecontrolwindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_EngineControlWindow
 checkWorkBlock	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanwindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_KalmanWindow
 checkWorkBlock	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_LaserBlockWindow
-checkWorkBlock	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_PIDWindow2
+checkWorkBlock	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_PIDWIndow
 checkWorkBlock	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_WindowSinusSource
 checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_aimingblockwindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_AimingBlockWindow
 checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_camerawindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_CameraWindow
 checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_enginecontrolwindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_EngineControlWindow
 checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanwindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_KalmanWindow
 checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_LaserBlockWindow
-checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_PIDWindow2
+checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_PIDWIndow
 checkWorkBlock	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    QCheckBox *checkWorkBlock;$/;"	m	class:Ui_WindowSinusSource
 checkWorkBlock1	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_imageprocessingwindow.h	/^    QCheckBox *checkWorkBlock1;$/;"	m	class:Ui_ImageProcessingWindow
 checkWorkBlock1	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_imageprocessingwindow.h	/^    QCheckBox *checkWorkBlock1;$/;"	m	class:Ui_ImageProcessingWindow
@@ -6129,7 +6129,7 @@ data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_labeli
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_LaserBlockWindow_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^    QByteArrayData data[4];$/;"	m	struct:qt_meta_stringdata_MainBlockWindow_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^    QByteArrayData data[35];$/;"	m	struct:qt_meta_stringdata_MainWindowQClass_t	file:
-data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_PIDWindow2_t	file:
+data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    QByteArrayData data[3];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
@@ -6231,7 +6231,7 @@ data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_LaserBlockWindow_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^    QByteArrayData data[4];$/;"	m	struct:qt_meta_stringdata_MainBlockWindow_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^    QByteArrayData data[35];$/;"	m	struct:qt_meta_stringdata_MainWindowQClass_t	file:
-data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_PIDWindow2_t	file:
+data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    QByteArrayData data[3];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
@@ -6725,7 +6725,7 @@ gridLayout	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalm
 gridLayout	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_LaserBlockWindow
 gridLayout	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_MainBlockWindow
 gridLayout	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_MainWindowQClass
-gridLayout	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_PIDWindow2
+gridLayout	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_PIDWIndow
 gridLayout	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_WindowSinusSource
 gridLayout	TraineeProjectSource/ui_PIDWindow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_PIDWindow
 gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_PilotLaserWindow
@@ -6742,7 +6742,7 @@ gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/u
 gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_LaserBlockWindow
 gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_MainBlockWindow
 gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_MainWindowQClass
-gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_PIDWindow2
+gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_PIDWIndow
 gridLayout	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    QGridLayout *gridLayout;$/;"	m	class:Ui_WindowSinusSource
 gridLayout_11	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_graphicswindow.h	/^    QGridLayout *gridLayout_11;$/;"	m	class:Ui_GraphicsWindow
 gridLayout_11	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_graphicswindow.h	/^    QGridLayout *gridLayout_11;$/;"	m	class:Ui_GraphicsWindow
@@ -7028,7 +7028,7 @@ label	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_imageproc
 label	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanwindow.h	/^    QLabel *label;$/;"	m	class:Ui_KalmanWindow
 label	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    QLabel *label;$/;"	m	class:Ui_LaserBlockWindow
 label	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QLabel *label;$/;"	m	class:Ui_MainBlockWindow
-label	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QLabel *label;$/;"	m	class:Ui_PIDWindow2
+label	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QLabel *label;$/;"	m	class:Ui_PIDWIndow
 label	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    QLabel *label;$/;"	m	class:Ui_WindowSinusSource
 label	TraineeProjectSource/qcustomplot.cpp	/^QString QCPColorScale::label() const$/;"	f	class:QCPColorScale
 label	TraineeProjectSource/qcustomplot.h	/^  QString label() const { return mLabel; }$/;"	f	class:QCPAxis
@@ -7045,7 +7045,7 @@ label	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_ima
 label	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanwindow.h	/^    QLabel *label;$/;"	m	class:Ui_KalmanWindow
 label	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    QLabel *label;$/;"	m	class:Ui_LaserBlockWindow
 label	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    QLabel *label;$/;"	m	class:Ui_MainBlockWindow
-label	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QLabel *label;$/;"	m	class:Ui_PIDWindow2
+label	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QLabel *label;$/;"	m	class:Ui_PIDWIndow
 label	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    QLabel *label;$/;"	m	class:Ui_WindowSinusSource
 labelAxisRotate1	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_RemoteAimingWindowControl.h	/^    QLabel *labelAxisRotate1;$/;"	m	class:Ui_RemoteAimingWindowControl
 labelAxisRotate1	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_RemoteAimingWindowControl.h	/^    QLabel *labelAxisRotate1;$/;"	m	class:Ui_RemoteAimingWindowControl
@@ -7228,8 +7228,8 @@ listAnswerInput	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui
 listAnswerInput	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^    QListWidget *listAnswerInput;$/;"	m	class:Ui_PilotLaserWindow
 listCommandOutput	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^    QListWidget *listCommandOutput;$/;"	m	class:Ui_PilotLaserWindow
 listCommandOutput	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^    QListWidget *listCommandOutput;$/;"	m	class:Ui_PilotLaserWindow
-listPIDPreference	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QListWidget *listPIDPreference;$/;"	m	class:Ui_PIDWindow2
-listPIDPreference	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    QListWidget *listPIDPreference;$/;"	m	class:Ui_PIDWindow2
+listPIDPreference	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QListWidget *listPIDPreference;$/;"	m	class:Ui_PIDWIndow
+listPIDPreference	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    QListWidget *listPIDPreference;$/;"	m	class:Ui_PIDWIndow
 lmBuffered	TraineeProjectSource/qcustomplot.h	/^                   ,lmBuffered \/\/\/< Layer has its own paint buffer and may be replotted individually (see \\ref replot).$/;"	e	enum:QCPLayer::LayerMode
 lmLogical	TraineeProjectSource/qcustomplot.h	/^  enum LayerMode { lmLogical   \/\/\/< Layer is used only for rendering order, and shares paint buffer with all other adjacent logical layers.$/;"	e	enum:QCPLayer::LayerMode
 lmRotated	TraineeProjectSource/qcustomplot.h	/^                   ,lmRotated \/\/\/< $/;"	e	enum:QCPPolarAxisAngular::LabelMode
@@ -7908,7 +7908,7 @@ metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^const QMetaObject *LaserBlockWindow::metaObject() const$/;"	f	class:LaserBlockWindow
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^const QMetaObject *MainBlockWindow::metaObject() const$/;"	f	class:MainBlockWindow
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^const QMetaObject *MainWindowQClass::metaObject() const$/;"	f	class:MainWindowQClass
-metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^const QMetaObject *PIDWindow2::metaObject() const$/;"	f	class:PIDWindow2
+metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^const QMetaObject *PIDWIndow::metaObject() const$/;"	f	class:PIDWIndow
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^const QMetaObject *WindowSinusSource::metaObject() const$/;"	f	class:WindowSinusSource
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^const QMetaObject *CameraInterfaceClass::metaObject() const$/;"	f	class:CameraInterfaceClass
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^const QMetaObject *CommonLaserInterfaceClass::metaObject() const$/;"	f	class:CommonLaserInterfaceClass
@@ -7987,7 +7987,7 @@ metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGB
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^const QMetaObject *LaserBlockWindow::metaObject() const$/;"	f	class:LaserBlockWindow
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^const QMetaObject *MainBlockWindow::metaObject() const$/;"	f	class:MainBlockWindow
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^const QMetaObject *MainWindowQClass::metaObject() const$/;"	f	class:MainWindowQClass
-metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^const QMetaObject *PIDWindow2::metaObject() const$/;"	f	class:PIDWindow2
+metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^const QMetaObject *PIDWIndow::metaObject() const$/;"	f	class:PIDWIndow
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^const QMetaObject *WindowSinusSource::metaObject() const$/;"	f	class:WindowSinusSource
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^const QMetaObject *CameraInterfaceClass::metaObject() const$/;"	f	class:CameraInterfaceClass
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^const QMetaObject *CommonLaserInterfaceClass::metaObject() const$/;"	f	class:CommonLaserInterfaceClass
@@ -8259,7 +8259,7 @@ operator >>	TraineeProjectSource/PassTwoCoordClass.cpp	/^PassTwoCoordClass& oper
 operator >>	TraineeProjectSource/gui_sources/graphicswindow.cpp	/^void operator>>(DataAimingErrorStructure Data, GraphicsInterface& Display)$/;"	f
 operator >>	TraineeProjectSource/gui_sources/graphicswindow.h	/^	friend void operator>>(QPair<double, double> NewValue, SmootheNodeClass& StatObj)$/;"	f	class:SmootheNodeClass
 operator >>	TraineeProjectSource/gui_sources/graphicswindow.h	/^    friend void operator>>(SmootheNodeClass& Object, QPair<double,double>& Coord)$/;"	f	class:SmootheNodeClass
-operator >>	TraineeProjectSource/gui_sources/mainwindowqclass.cpp	/^void operator>>(const DataToDisplayStructure& DataToDisplay, MainWindowQClass &MainWindow)$/;"	f
+operator >>	TraineeProjectSource/gui_sources/mainwindowqclass.cpp	/^void operator>>(const CommonDeviceStructure& DataToDisplay, MainWindowQClass &MainWindow)$/;"	f
 operator >>	TraineeProjectSource/rotate_optimization/RotateOperationContainer.cpp	/^AccumulateDataFilter& operator>>(QPair<double, double> coord, AccumulateDataFilter& Filter)$/;"	f
 operator >>	TraineeProjectSource/rotate_optimization/RotateOperationContainer.cpp	/^RotateDataMeasureEngine& operator>>(QPair<double, double> coord, RotateDataMeasureEngine& MeasureEngine)$/;"	f
 operator >>	TraineeProjectSource/rotate_optimization/RotateOperationContainer.cpp	/^void operator>>(AccumulateDataFilter& Filter, RotateOperationContainer& RotateContainer)$/;"	f
@@ -8468,8 +8468,8 @@ qt_meta_data_MainControllerQClass	TraineeProjectSource/TraineeProjectExecutable_
 qt_meta_data_MainControllerQClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^static const uint qt_meta_data_MainControllerQClass[] = {$/;"	v	file:
 qt_meta_data_MainWindowQClass	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^static const uint qt_meta_data_MainWindowQClass[] = {$/;"	v	file:
 qt_meta_data_MainWindowQClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^static const uint qt_meta_data_MainWindowQClass[] = {$/;"	v	file:
-qt_meta_data_PIDWindow2	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^static const uint qt_meta_data_PIDWindow2[] = {$/;"	v	file:
-qt_meta_data_PIDWindow2	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^static const uint qt_meta_data_PIDWindow2[] = {$/;"	v	file:
+qt_meta_data_PIDWIndow	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^static const uint qt_meta_data_PIDWIndow[] = {$/;"	v	file:
+qt_meta_data_PIDWIndow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^static const uint qt_meta_data_PIDWIndow[] = {$/;"	v	file:
 qt_meta_data_PilotLaserWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PilotLaserWindow.cpp	/^static const uint qt_meta_data_PilotLaserWindow[] = {$/;"	v	file:
 qt_meta_data_PilotLaserWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PilotLaserWindow.cpp	/^static const uint qt_meta_data_PilotLaserWindow[] = {$/;"	v	file:
 qt_meta_data_Processor	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^static const uint qt_meta_data_Processor[] = {$/;"	v	file:
@@ -8714,10 +8714,10 @@ qt_meta_stringdata_MainWindowQClass	TraineeProjectSource/TraineeProjectExecutabl
 qt_meta_stringdata_MainWindowQClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^static const qt_meta_stringdata_MainWindowQClass_t qt_meta_stringdata_MainWindowQClass = {$/;"	v	file:
 qt_meta_stringdata_MainWindowQClass_t	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^struct qt_meta_stringdata_MainWindowQClass_t {$/;"	s	file:
 qt_meta_stringdata_MainWindowQClass_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^struct qt_meta_stringdata_MainWindowQClass_t {$/;"	s	file:
-qt_meta_stringdata_PIDWindow2	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^static const qt_meta_stringdata_PIDWindow2_t qt_meta_stringdata_PIDWindow2 = {$/;"	v	file:
-qt_meta_stringdata_PIDWindow2	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^static const qt_meta_stringdata_PIDWindow2_t qt_meta_stringdata_PIDWindow2 = {$/;"	v	file:
-qt_meta_stringdata_PIDWindow2_t	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^struct qt_meta_stringdata_PIDWindow2_t {$/;"	s	file:
-qt_meta_stringdata_PIDWindow2_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^struct qt_meta_stringdata_PIDWindow2_t {$/;"	s	file:
+qt_meta_stringdata_PIDWIndow	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^static const qt_meta_stringdata_PIDWIndow_t qt_meta_stringdata_PIDWIndow = {$/;"	v	file:
+qt_meta_stringdata_PIDWIndow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^static const qt_meta_stringdata_PIDWIndow_t qt_meta_stringdata_PIDWIndow = {$/;"	v	file:
+qt_meta_stringdata_PIDWIndow_t	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^struct qt_meta_stringdata_PIDWIndow_t {$/;"	s	file:
+qt_meta_stringdata_PIDWIndow_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^struct qt_meta_stringdata_PIDWIndow_t {$/;"	s	file:
 qt_meta_stringdata_PilotLaserWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PilotLaserWindow.cpp	/^static const qt_meta_stringdata_PilotLaserWindow_t qt_meta_stringdata_PilotLaserWindow = {$/;"	v	file:
 qt_meta_stringdata_PilotLaserWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PilotLaserWindow.cpp	/^static const qt_meta_stringdata_PilotLaserWindow_t qt_meta_stringdata_PilotLaserWindow = {$/;"	v	file:
 qt_meta_stringdata_PilotLaserWindow_t	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PilotLaserWindow.cpp	/^struct qt_meta_stringdata_PilotLaserWindow_t {$/;"	s	file:
@@ -8996,7 +8996,7 @@ qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^int LaserBlockWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserBlockWindow
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^int MainBlockWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainBlockWindow
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^int MainWindowQClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainWindowQClass
-qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^int PIDWindow2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWindow2
+qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^int PIDWIndow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^int WindowSinusSource::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^int CameraInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^int CommonLaserInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
@@ -9075,7 +9075,7 @@ qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKG
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^int LaserBlockWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserBlockWindow
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^int MainBlockWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainBlockWindow
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^int MainWindowQClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainWindowQClass
-qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^int PIDWindow2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWindow2
+qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^int PIDWIndow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^int WindowSinusSource::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^int CameraInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^int CommonLaserInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
@@ -9154,7 +9154,7 @@ qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^void *LaserBlockWindow::qt_metacast(const char *_clname)$/;"	f	class:LaserBlockWindow
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^void *MainBlockWindow::qt_metacast(const char *_clname)$/;"	f	class:MainBlockWindow
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void *MainWindowQClass::qt_metacast(const char *_clname)$/;"	f	class:MainWindowQClass
-qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^void *PIDWindow2::qt_metacast(const char *_clname)$/;"	f	class:PIDWindow2
+qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void *PIDWIndow::qt_metacast(const char *_clname)$/;"	f	class:PIDWIndow
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void *WindowSinusSource::qt_metacast(const char *_clname)$/;"	f	class:WindowSinusSource
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void *CameraInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CameraInterfaceClass
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void *CommonLaserInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CommonLaserInterfaceClass
@@ -9233,7 +9233,7 @@ qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKG
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^void *LaserBlockWindow::qt_metacast(const char *_clname)$/;"	f	class:LaserBlockWindow
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^void *MainBlockWindow::qt_metacast(const char *_clname)$/;"	f	class:MainBlockWindow
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void *MainWindowQClass::qt_metacast(const char *_clname)$/;"	f	class:MainWindowQClass
-qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^void *PIDWindow2::qt_metacast(const char *_clname)$/;"	f	class:PIDWindow2
+qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void *PIDWIndow::qt_metacast(const char *_clname)$/;"	f	class:PIDWIndow
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void *WindowSinusSource::qt_metacast(const char *_clname)$/;"	f	class:WindowSinusSource
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void *CameraInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CameraInterfaceClass
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void *CommonLaserInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CommonLaserInterfaceClass
@@ -9312,7 +9312,7 @@ qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFK
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^void LaserBlockWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserBlockWindow
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^void MainBlockWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainBlockWindow
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainWindowQClass
-qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^void PIDWindow2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWindow2
+qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void PIDWIndow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void WindowSinusSource::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void CameraInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void CommonLaserInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
@@ -9391,7 +9391,7 @@ qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^void LaserBlockWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserBlockWindow
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^void MainBlockWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainBlockWindow
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^void MainWindowQClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainWindowQClass
-qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^void PIDWindow2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWindow2
+qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void PIDWIndow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void WindowSinusSource::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void CameraInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void CommonLaserInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
@@ -9584,7 +9584,7 @@ retranslateUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_k
 retranslateUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    void retranslateUi(QWidget *LaserBlockWindow)$/;"	f	class:Ui_LaserBlockWindow
 retranslateUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    void retranslateUi(QWidget *MainBlockWindow)$/;"	f	class:Ui_MainBlockWindow
 retranslateUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    void retranslateUi(QMainWindow *MainWindowQClass)$/;"	f	class:Ui_MainWindowQClass
-retranslateUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    void retranslateUi(QWidget *PIDWindow2)$/;"	f	class:Ui_PIDWindow2
+retranslateUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    void retranslateUi(QWidget *PIDWIndow)$/;"	f	class:Ui_PIDWIndow
 retranslateUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    void retranslateUi(QWidget *WindowSinusSource)$/;"	f	class:Ui_WindowSinusSource
 retranslateUi	TraineeProjectSource/ui_PIDWindow.h	/^    void retranslateUi(QWidget *PIDWindow)$/;"	f	class:Ui_PIDWindow
 retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^    void retranslateUi(QWidget *PilotLaserWindow)$/;"	f	class:Ui_PilotLaserWindow
@@ -9601,7 +9601,7 @@ retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/includ
 retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    void retranslateUi(QWidget *LaserBlockWindow)$/;"	f	class:Ui_LaserBlockWindow
 retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    void retranslateUi(QWidget *MainBlockWindow)$/;"	f	class:Ui_MainBlockWindow
 retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    void retranslateUi(QMainWindow *MainWindowQClass)$/;"	f	class:Ui_MainWindowQClass
-retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    void retranslateUi(QWidget *PIDWindow2)$/;"	f	class:Ui_PIDWindow2
+retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    void retranslateUi(QWidget *PIDWIndow)$/;"	f	class:Ui_PIDWIndow
 retranslateUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    void retranslateUi(QWidget *WindowSinusSource)$/;"	f	class:Ui_WindowSinusSource
 reversedEndings	TraineeProjectSource/qcustomplot.h	/^  bool reversedEndings;$/;"	m	class:QCPAxisPainterPrivate
 right	TraineeProjectSource/qcustomplot.h	/^  QCPItemAnchor * const right;$/;"	m	class:QCPItemEllipse
@@ -10350,7 +10350,7 @@ setupUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanw
 setupUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    void setupUi(QWidget *LaserBlockWindow)$/;"	f	class:Ui_LaserBlockWindow
 setupUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    void setupUi(QWidget *MainBlockWindow)$/;"	f	class:Ui_MainBlockWindow
 setupUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    void setupUi(QMainWindow *MainWindowQClass)$/;"	f	class:Ui_MainWindowQClass
-setupUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    void setupUi(QWidget *PIDWindow2)$/;"	f	class:Ui_PIDWindow2
+setupUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    void setupUi(QWidget *PIDWIndow)$/;"	f	class:Ui_PIDWIndow
 setupUi	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    void setupUi(QWidget *WindowSinusSource)$/;"	f	class:Ui_WindowSinusSource
 setupUi	TraineeProjectSource/ui_PIDWindow.h	/^    void setupUi(QWidget *PIDWindow)$/;"	f	class:Ui_PIDWindow
 setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PilotLaserWindow.h	/^    void setupUi(QWidget *PilotLaserWindow)$/;"	f	class:Ui_PilotLaserWindow
@@ -10367,7 +10367,7 @@ setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_k
 setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    void setupUi(QWidget *LaserBlockWindow)$/;"	f	class:Ui_LaserBlockWindow
 setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainblockwindow.h	/^    void setupUi(QWidget *MainBlockWindow)$/;"	f	class:Ui_MainBlockWindow
 setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    void setupUi(QMainWindow *MainWindowQClass)$/;"	f	class:Ui_MainWindowQClass
-setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_pidwindow2.h	/^    void setupUi(QWidget *PIDWindow2)$/;"	f	class:Ui_PIDWindow2
+setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_PIDWIndow.h	/^    void setupUi(QWidget *PIDWIndow)$/;"	f	class:Ui_PIDWIndow
 setupUi	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_windowsinussource.h	/^    void setupUi(QWidget *WindowSinusSource)$/;"	f	class:Ui_WindowSinusSource
 shape	TraineeProjectSource/gui_sources/node.cpp	/^QPainterPath Node::shape() const$/;"	f	class:Node
 shape	TraineeProjectSource/qcustomplot.h	/^  ScatterShape shape() const { return mShape; }$/;"	f	class:QCPScatterStyle
@@ -10531,7 +10531,7 @@ staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGB
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserBlockWindow::staticMetaObject = { {$/;"	m	class:LaserBlockWindow	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^QT_INIT_METAOBJECT const QMetaObject MainBlockWindow::staticMetaObject = { {$/;"	m	class:MainBlockWindow	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^QT_INIT_METAOBJECT const QMetaObject MainWindowQClass::staticMetaObject = { {$/;"	m	class:MainWindowQClass	file:
-staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^QT_INIT_METAOBJECT const QMetaObject PIDWindow2::staticMetaObject = { {$/;"	m	class:PIDWindow2	file:
+staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^QT_INIT_METAOBJECT const QMetaObject PIDWIndow::staticMetaObject = { {$/;"	m	class:PIDWIndow	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^QT_INIT_METAOBJECT const QMetaObject WindowSinusSource::staticMetaObject = { {$/;"	m	class:WindowSinusSource	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CameraInterfaceClass::staticMetaObject = { {$/;"	m	class:CameraInterfaceClass	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CommonLaserInterfaceClass::staticMetaObject = { {$/;"	m	class:CommonLaserInterfaceClass	file:
@@ -10624,7 +10624,7 @@ staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RA
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserBlockWindow::staticMetaObject = { {$/;"	m	class:LaserBlockWindow	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^QT_INIT_METAOBJECT const QMetaObject MainBlockWindow::staticMetaObject = { {$/;"	m	class:MainBlockWindow	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^QT_INIT_METAOBJECT const QMetaObject MainWindowQClass::staticMetaObject = { {$/;"	m	class:MainWindowQClass	file:
-staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^QT_INIT_METAOBJECT const QMetaObject PIDWindow2::staticMetaObject = { {$/;"	m	class:PIDWindow2	file:
+staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^QT_INIT_METAOBJECT const QMetaObject PIDWIndow::staticMetaObject = { {$/;"	m	class:PIDWIndow	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^QT_INIT_METAOBJECT const QMetaObject WindowSinusSource::staticMetaObject = { {$/;"	m	class:WindowSinusSource	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CameraInterfaceClass::staticMetaObject = { {$/;"	m	class:CameraInterfaceClass	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CommonLaserInterfaceClass::staticMetaObject = { {$/;"	m	class:CommonLaserInterfaceClass	file:
@@ -10718,7 +10718,7 @@ stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^    char stringdata0[17];$/;"	m	struct:qt_meta_stringdata_LaserBlockWindow_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^    char stringdata0[41];$/;"	m	struct:qt_meta_stringdata_MainBlockWindow_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^    char stringdata0[642];$/;"	m	struct:qt_meta_stringdata_MainWindowQClass_t	file:
-stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^    char stringdata0[11];$/;"	m	struct:qt_meta_stringdata_PIDWindow2_t	file:
+stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    char stringdata0[11];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    char stringdata0[18];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    char stringdata0[44];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    char stringdata0[66];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
@@ -10811,7 +10811,7 @@ stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKG
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_laserblockwindow.cpp	/^    char stringdata0[17];$/;"	m	struct:qt_meta_stringdata_LaserBlockWindow_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^    char stringdata0[41];$/;"	m	struct:qt_meta_stringdata_MainBlockWindow_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwindowqclass.cpp	/^    char stringdata0[642];$/;"	m	struct:qt_meta_stringdata_MainWindowQClass_t	file:
-stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_pidwindow2.cpp	/^    char stringdata0[11];$/;"	m	struct:qt_meta_stringdata_PIDWindow2_t	file:
+stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    char stringdata0[11];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    char stringdata0[18];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    char stringdata0[44];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    char stringdata0[66];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
@@ -11072,7 +11072,7 @@ ui	TraineeProjectSource/gui_sources/kalmanwindow.h	/^	Ui::KalmanWindow ui;$/;"	m
 ui	TraineeProjectSource/gui_sources/laserblockwindow.h	/^	Ui::LaserBlockWindow ui;$/;"	m	class:LaserBlockWindow
 ui	TraineeProjectSource/gui_sources/mainblockwindow.h	/^	Ui::MainBlockWindow ui;$/;"	m	class:MainBlockWindow
 ui	TraineeProjectSource/gui_sources/mainwindowqclass.h	/^	Ui::MainWindowQClass ui;$/;"	m	class:MainWindowQClass
-ui	TraineeProjectSource/gui_sources/pidwindow2.h	/^	Ui::PIDWindow2 ui;$/;"	m	class:PIDWindow2
+ui	TraineeProjectSource/gui_sources/PIDWIndow.h	/^	Ui::PIDWIndow ui;$/;"	m	class:PIDWIndow
 ui	TraineeProjectSource/gui_sources/windowsinussource.h	/^	Ui::WindowSinusSource ui;$/;"	m	class:WindowSinusSource
 ui	TraineeProjectSource/testqtwin.h	/^	Ui::TestQtWinClass ui;$/;"	m	class:TestQtWin
 undefinePen	TraineeProjectSource/qcustomplot.cpp	/^void QCPScatterStyle::undefinePen()$/;"	f	class:QCPScatterStyle
@@ -11242,7 +11242,7 @@ zoom	TraineeProjectSource/qcustomplot.cpp	/^void QCPAxisRect::zoom(const QRectF 
 ~MainWindowQClass	TraineeProjectSource/gui_sources/mainwindowqclass.cpp	/^MainWindowQClass::~MainWindowQClass()$/;"	f	class:MainWindowQClass
 ~ONNXSession	TraineeProjectSource/KalmanFilterClass.cpp	/^ONNXSession::~ONNXSession()$/;"	f	class:ONNXSession
 ~PIDClass	TraineeProjectSource/PIDClass.cpp	/^PIDClass::~PIDClass()$/;"	f	class:PIDClass
-~PIDWindow2	TraineeProjectSource/gui_sources/pidwindow2.cpp	/^PIDWindow2::~PIDWindow2()$/;"	f	class:PIDWindow2
+~PIDWIndow	TraineeProjectSource/gui_sources/PIDWIndow.cpp	/^PIDWIndow::~PIDWIndow()$/;"	f	class:PIDWIndow
 ~PilotLaserWindow	TraineeProjectSource/gui_sources/PilotLaserWindow.cpp	/^PilotLaserWindow::~PilotLaserWindow()$/;"	f	class:PilotLaserWindow
 ~Processor	TraineeProjectSource/ImageProcessingClass.cpp	/^Processor::~Processor()$/;"	f	class:Processor
 ~QCPAbstractItem	TraineeProjectSource/qcustomplot.cpp	/^QCPAbstractItem::~QCPAbstractItem()$/;"	f	class:QCPAbstractItem

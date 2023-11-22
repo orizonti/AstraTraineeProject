@@ -1,5 +1,5 @@
 //��������� ������, ���������� ����������� � ������ 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "KLPInterfaceClass.h"
 #include "CameraInterfaceClass.h"
 #include <QThread>

@@ -19,7 +19,6 @@ class HandleControlInterface: public QObject
 
 	virtual void TurnOnOffChiller(bool OnOff) = 0;
 
-	virtual void TurnOnOffAir(bool OnOff) = 0;
 	virtual void SlotStartMoveByCircle(bool OnOff) = 0;
 
 	virtual void MoveEngine(int Direction,double X_Pos,double Y_Pos, int Channel) = 0;

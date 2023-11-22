@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "maincontrollerqclass.h"
 #include <QtWidgets/QApplication>
 #include "graphicswindow.h"

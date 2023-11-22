@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "AimingClass.h"
 #include "SubstractPair.h"
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "LaserPilotInterfaceClass.h"
 
 int COMMAND_REQUEST::LaserMessageCount = 0;

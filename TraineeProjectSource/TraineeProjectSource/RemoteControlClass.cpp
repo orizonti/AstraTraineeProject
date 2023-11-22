@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "RemoteControlClass.h"
 #include <qdebug.h>
 #include "RemoteAimingWindowControl.h"
@@ -6,7 +6,7 @@
 RemoteAimingClass::RemoteAimingClass()
 {
 
-    RemoteToBaseTransform.LoadRotationFromFile("/home/broms/TrainerData/RotateMatrixOutput1.txt");
+    RemoteToBaseTransform.LoadRotationFromFile("/home/broms/DEVELOPMENT/DATA/TrainerData/RotateMatrixOutput1.txt");
     RemoteToBaseTransform.Inverse();
 
     //TCPServer.SetPort(2323);

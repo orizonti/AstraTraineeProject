@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>170</width>
-    <height>278</height>
+    <width>297</width>
+    <height>243</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,88 +37,28 @@ border: 0px solid line black;
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
-    <number>2</number>
+    <number>3</number>
    </property>
    <property name="topMargin">
-    <number>2</number>
+    <number>3</number>
    </property>
    <property name="rightMargin">
-    <number>2</number>
+    <number>3</number>
    </property>
    <property name="bottomMargin">
-    <number>2</number>
+    <number>3</number>
    </property>
    <property name="spacing">
-    <number>2</number>
+    <number>3</number>
    </property>
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="label_2">
-     <property name="font">
-      <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
+   <item row="5" column="2">
+    <widget class="QLabel" name="label_8">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel
-{
-border: 2px solid line black;
-	
-	background-color: rgb(255, 170, 0);
-}</string>
-     </property>
-     <property name="text">
-      <string>Лазерный блок</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QPushButton" name="ButTurnToWorkPointer">
-     <property name="font">
-      <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-background-color: rgb(170, 0, 0);
-}
-
-QPushButton:checked
-{
-
- 
-	background-color: rgb(85, 170, 0);
-
-}
-
-QPushButton:pressed
-{
-
- 
-	
-	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
-
-}</string>
-     </property>
-     <property name="text">
-      <string>Пуск</string>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0">
-    <widget class="QLabel" name="label_5">
      <property name="font">
       <font>
        <family>Sans Serif</family>
@@ -137,86 +77,43 @@ border: 2px solid line black;
 }</string>
      </property>
      <property name="text">
-      <string>Лазер 3</string>
+      <string>Сила 3</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="1">
-    <widget class="QPushButton" name="ButTurnToWorkLaser3">
-     <property name="font">
-      <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
+   <item row="1" column="0" colspan="4">
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-background-color: rgb(170, 0, 0);
-}
-
-QPushButton:checked
-{
-
- 
-	background-color: rgb(85, 170, 0);
-
-}
-
-QPushButton:pressed
-{
-
- 
-	
-	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
-
-}</string>
+     <property name="maximumSize">
+      <size>
+       <width>300</width>
+       <height>200</height>
+      </size>
      </property>
      <property name="text">
-      <string>Пуск</string>
+      <string/>
      </property>
-     <property name="checkable">
+     <property name="pixmap">
+      <pixmap>D:/Картинки/Лазер.png</pixmap>
+     </property>
+     <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkWorkBlock">
-     <property name="font">
-      <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
+   <item row="6" column="2">
+    <widget class="QLabel" name="label_9">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QCheckBox
-{
-border: 2px solid line black;
-	
-	
-	background-color: rgb(208, 0, 0);
-}
-
-QCheckBox::checked
-{
-border: 2px solid line black;
-	
-	background-color: rgb(85, 170, 0);
-}</string>
-     </property>
-     <property name="text">
-      <string>Работа</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="label_6">
      <property name="font">
       <font>
        <family>Sans Serif</family>
@@ -235,73 +132,7 @@ border: 2px solid line black;
 }</string>
      </property>
      <property name="text">
-      <string>Маркер</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="font">
-      <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel
-{
-border: 2px solid line black;
-	
-	background-color: rgb(170, 170, 127);
-}</string>
-     </property>
-     <property name="text">
-      <string>Лазер 2</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0" colspan="2">
-    <widget class="QPushButton" name="butStartAllLasers">
-     <property name="font">
-      <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-background-color: rgb(170, 0, 0);
-}
-
-QPushButton:checked
-{
-
- 
-	background-color: rgb(85, 170, 0);
-
-}
-
-QPushButton:pressed
-{
-
- 
-	
-	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
-
-}</string>
-     </property>
-     <property name="text">
-      <string>Пуск все</string>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
+      <string>Сила 3</string>
      </property>
     </widget>
    </item>
@@ -347,10 +178,10 @@ QPushButton:pressed
      </property>
     </widget>
    </item>
-   <item row="3" column="0" rowspan="2">
-    <widget class="QLabel" name="label_4">
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_5">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -373,36 +204,275 @@ border: 2px solid line black;
 }</string>
      </property>
      <property name="text">
-      <string>Лазер 1</string>
+      <string>Пилот 3</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QLabel" name="label">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+   <item row="6" column="3">
+    <widget class="QPushButton" name="ButTurnToWorkPower3">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
-     <property name="maximumSize">
-      <size>
-       <width>240</width>
-       <height>200</height>
-      </size>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+background-color: rgb(170, 0, 0);
+}
+
+QPushButton:checked
+{
+
+ 
+	background-color: rgb(85, 170, 0);
+
+}
+
+QPushButton:pressed
+{
+
+ 
+	
+	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
+
+}</string>
      </property>
      <property name="text">
-      <string/>
+      <string>Пуск</string>
      </property>
-     <property name="pixmap">
-      <pixmap>D:/Картинки/Лазер.png</pixmap>
-     </property>
-     <property name="scaledContents">
+     <property name="checkable">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="1" rowspan="2">
+   <item row="5" column="3">
+    <widget class="QPushButton" name="ButTurnToWorkPower2">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+background-color: rgb(170, 0, 0);
+}
+
+QPushButton:checked
+{
+
+ 
+	background-color: rgb(85, 170, 0);
+
+}
+
+QPushButton:pressed
+{
+
+ 
+	
+	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
+
+}</string>
+     </property>
+     <property name="text">
+      <string>Пуск</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QPushButton" name="ButTurnToWorkPower1">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+background-color: rgb(170, 0, 0);
+}
+
+QPushButton:checked
+{
+
+ 
+	background-color: rgb(85, 170, 0);
+
+}
+
+QPushButton:pressed
+{
+
+ 
+	
+	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
+
+}</string>
+     </property>
+     <property name="text">
+      <string>Пуск</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="0" colspan="2">
+    <widget class="QPushButton" name="ButStateRequest">
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+	background-color: qlineargradient(spread:pad, x1:0.489, y1:0, x2:0.522, y2:1, stop:0 rgba(0, 0, 0, 140), stop:1 rgba(255, 255, 255, 255));
+}
+QPushButton::pressed
+{
+	background-color: qlineargradient(spread:pad, x1:0.923, y1:0.5, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+
+}</string>
+     </property>
+     <property name="text">
+      <string>Состояние</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(170, 170, 127);
+}</string>
+     </property>
+     <property name="text">
+      <string>Маркер</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(255, 170, 0);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QPushButton" name="ButTurnToWorkLaser3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+background-color: rgb(170, 0, 0);
+}
+
+QPushButton:checked
+{
+
+ 
+	background-color: rgb(85, 170, 0);
+
+}
+
+QPushButton:pressed
+{
+
+ 
+	
+	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
+
+}</string>
+     </property>
+     <property name="text">
+      <string>Пуск</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(170, 170, 127);
+}</string>
+     </property>
+     <property name="text">
+      <string>Пилот 2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
     <widget class="QPushButton" name="ButTurnToWorkLaser1">
      <property name="font">
       <font>
@@ -444,21 +514,182 @@ QPushButton:pressed
      </property>
     </widget>
    </item>
-   <item row="10" column="0" colspan="2">
-    <widget class="QPushButton" name="ButStateRequest">
+   <item row="0" column="2" colspan="2">
+    <widget class="QCheckBox" name="checkWorkBlock">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox
+{
+border: 2px solid line black;
+	
+	
+	background-color: rgb(208, 0, 0);
+}
+
+QCheckBox::checked
+{
+border: 2px solid line black;
+	
+	background-color: rgb(85, 170, 0);
+}</string>
+     </property>
+     <property name="text">
+      <string>Работа</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QPushButton" name="ButTurnToWorkPointer">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">QPushButton
 {
-	background-color: qlineargradient(spread:pad, x1:0.489, y1:0, x2:0.522, y2:1, stop:0 rgba(0, 0, 0, 140), stop:1 rgba(255, 255, 255, 255));
+background-color: rgb(170, 0, 0);
 }
-QPushButton::pressed
+
+QPushButton:checked
 {
-	background-color: qlineargradient(spread:pad, x1:0.923, y1:0.5, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+
+ 
+	background-color: rgb(85, 170, 0);
+
+}
+
+QPushButton:pressed
+{
+
+ 
+	
+	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
 
 }</string>
      </property>
      <property name="text">
-      <string>Состояние</string>
+      <string>Пуск</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(170, 170, 127);
+}</string>
+     </property>
+     <property name="text">
+      <string>Пилот 1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QLabel" name="label_7">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel
+{
+border: 2px solid line black;
+	
+	background-color: rgb(170, 170, 127);
+}</string>
+     </property>
+     <property name="text">
+      <string>Сила 1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="2">
+    <widget class="QPushButton" name="butStartAllLasers">
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+background-color: rgb(170, 0, 0);
+}
+
+QPushButton:checked
+{
+
+ 
+	background-color: rgb(85, 170, 0);
+
+}
+
+QPushButton:pressed
+{
+
+ 
+	
+	background-color: qlineargradient(spread:pad, x1:0.025, y1:0.00568182, x2:1, y2:1, stop:0 rgba(0, 170, 18, 255), stop:1 rgba(255, 255, 255, 255));
+
+}</string>
+     </property>
+     <property name="text">
+      <string>Пуск все</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

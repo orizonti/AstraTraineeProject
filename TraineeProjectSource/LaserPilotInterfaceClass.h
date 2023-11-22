@@ -219,7 +219,6 @@ public:
 	LaserPilotInterfaceClass(QString Address, quint16 Port);
 	~LaserPilotInterfaceClass();
 
-	PilotLaserWindow* Window;
 	void ConnectToLaserTCP(QString Address, quint16 Port);
 	DataLaserStruct GetState();
 

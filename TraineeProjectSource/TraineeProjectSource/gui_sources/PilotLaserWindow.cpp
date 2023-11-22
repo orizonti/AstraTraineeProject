@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "PilotLaserWindow.h"
 
 PilotLaserWindow::PilotLaserWindow(QWidget *parent)

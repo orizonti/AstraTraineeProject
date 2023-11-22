@@ -8,6 +8,12 @@
 #include <QTcpServer>
 #include <QTimer>
 #include "HandleControlInterface.h"
+#include "DataDeviceStructureCommon.h"
+#include "DataWeatherStructure.h"
+#include "DataChillerStructure.h"
+#include "DataLaserStruct.h"
+#include "DataEngineStructure.h"
+#include "DataCamerasStructure.h"
 
 enum error_port_work_modes {aiming_mode = 1, registration_mode = 2};
 enum error_port_direction {direct_to_all = 0, direct_to_channel1 = 1, direct_to_channel2 = 2, direct_to_channel3 = 3};
@@ -16,6 +22,35 @@ enum message_type { state_message = 0,aiming_message = 1, camera_control_message
 					laser_system_message = 13, calibration_message = 20};
 class RemoteAimingWindowControl;
 
+struct STATE_STRUCT
+{
+STATE_STRUCT();
+
+struct ChannelsState {uint8_t Channel1: 1 = 0; uint8_t Channel2: 1 = 0; uint8_t Channel3: 1 = 0;};
+
+  quint8  WorkMode = 0;
+  quint16 WorkTime = 0;
+  ChannelsState CameraState;
+  ChannelsState EnginesState;
+  ChannelsState PointerLaserState;
+  ChannelsState GuidLaserState;
+  ChannelsState PowerLaserState;
+  ChannelsState PowerLaserConnectionState;
+
+  float PowerLaserTemp1 = 0;
+  float PowerLaserTemp2 = 0;
+  float PowerLaserTemp3 = 0;
+
+  uint8_t Chiller = 0;
+
+  float Temperature = 0;
+  float Moisture = 0;
+  float Pressure = 0;
+  
+  //friend void operator<<(QDataStream& out_stream, STATE_STRUCT& data);
+  //friend void operator>>(QDataStream& out_stream, STATE_STRUCT& data);
+  //void PrintStruct();
+};
 
 template< typename T>
 class MessageStruct
@@ -108,8 +143,6 @@ public slots:
     void SlotNewConnection();
     void SlotReadData();
     void StartLocalServer();
-
-
 };
 
 class RemoteAimingHandleInterface
@@ -168,7 +201,15 @@ class RemoteControlClass
 
 	void PerformRemoteCommand();
 	void SendStateToRemote();
+	//STATE_STRUCT DevicesStateVector;
 
 	HandleControlInterface* DeviceControl;
+
+	friend void operator>>(DataDeviceStructure& DeviceData, RemoteControlClass& RemoteControl);
+	friend void operator>>(DataLaserStruct& LaserData, RemoteControlClass& RemoteControl);
+	friend void operator>>(DataEngineStructure& EngineData, RemoteControlClass& RemoteControl);
+	friend void operator>>(DataCamerasStructure& CamerasData, RemoteControlClass& RemoteControl);
+	friend void operator>>(DataWeatherStructure& WeatherData, RemoteControlClass& RemoteControl);
+	friend void operator>>(DataChillerStructure& ChillerData, RemoteControlClass& RemoteControl);
 
 };

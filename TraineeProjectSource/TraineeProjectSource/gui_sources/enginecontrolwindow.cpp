@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "enginecontrolwindow.h"
 
 EngineControlWindow::EngineControlWindow(QWidget *parent)

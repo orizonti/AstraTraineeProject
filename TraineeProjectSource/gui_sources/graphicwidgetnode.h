@@ -3,7 +3,7 @@
 
 #include "node.h"
 
-#include "pidwindow2.h"
+#include "pidwindow.h"
 #include <QGraphicsProxyWidget>
 
 class GraphicWidgetNode : public QGraphicsProxyWidget
@@ -13,6 +13,7 @@ public:
     ~GraphicWidgetNode();
 
 
+    void SetScenePosition(int PosX, int PosY);
     std::vector<Node*> VisualNodes;
 
     QWidget* WindowNode = 0;

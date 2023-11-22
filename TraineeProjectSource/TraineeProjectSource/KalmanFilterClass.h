@@ -25,7 +25,7 @@ public:
     int BATCH_SIZE = 1;
 	bool SessionInit = false;
 
-    //const ORTCHAR_T* modelPath = "/home/spp/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
+    //const ORTCHAR_T* modelPath = "/home/broms/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
     //const ORTCHAR_T* modelPath = "/home/broms/Yandex.Disk/PROJECTS/MATLAB_PROJECTS/GRU_120_3_18F.onnx";
     const ORTCHAR_T* modelPath = "/home/broms/DEVELOPMENT/NN_MODELS/GRU_120_3_18F.onnx";
     Ort::Env env = Ort::Env(ORT_LOGGING_LEVEL_FATAL, "example-model-explorer");

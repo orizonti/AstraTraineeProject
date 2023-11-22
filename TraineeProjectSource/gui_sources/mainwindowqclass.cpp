@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "mainwindowqclass.h"
 #include <QAction>
 #include <QObject>
@@ -25,7 +25,7 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	 AimingBlockDisplay2->NumberChannel = 2;
 	 AimingBlockDisplay3->NumberChannel = 3;
 
-	 PIDControl = new PIDWindow2;
+	 PIDControl = new PIDWIndow;
 	 KalmanControl = new KalmanWindow;
 
 	 EngineControlDisplay1 = new EngineControlWindow;
@@ -47,8 +47,9 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	 CameraControlParamDisplay = new CameraControlWindow;
 	
 	qRegisterMetaType<DataImageProcStructure>("DataImageProcStructure");
-	qRegisterMetaType<DataToDisplayStructure>("DataToDisplayStructure");
-	qRegisterMetaType<DataTemperatureStructure>("DataTemperatureStructure");
+	qRegisterMetaType<DataDeviceStructure>("DataDeviceStructure");
+	qRegisterMetaType<DataChillerStructure>("DataChillerStructure");
+	qRegisterMetaType<DataWeatherStructure>("DataWeatherStructure");
 	qRegisterMetaType<DataCamerasStructure>("DataCamerasStructure");
 	qRegisterMetaType<DataLaserStruct>("DataLaserStruct");
 	qRegisterMetaType<DataAimingErrorStructure>("DataAimingErrorStructure");
@@ -59,7 +60,7 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 
 	QObject::connect(this, SIGNAL(SignalLaserStateDisplay(DataLaserStruct)), this, SLOT(DisplayLaserStateDisplay(DataLaserStruct)));
 	QObject::connect(this, SIGNAL(SignalNewImage(DataImageProcStructure)),       this, SLOT(DisplayImage(DataImageProcStructure)));
-	QObject::connect(this, SIGNAL(SignalNewAirData(DataTemperatureStructure)),   this, SLOT(DisplayAirData(DataTemperatureStructure)));
+	QObject::connect(this, SIGNAL(SignalNewWeatherData(DataTemperatureStructure)),   this, SLOT(DisplayWeatherData(DataTemperatureStructure)));
 	QObject::connect(this, SIGNAL(SignalNewCameraData(DataCamerasStructure)),    this, SLOT(DisplayCameraData(DataCamerasStructure)));
 	QObject::connect(this, SIGNAL(SignalNewChillData(DataTemperatureStructure)), this, SLOT(DisplayChillData(DataTemperatureStructure)));
 
@@ -94,11 +95,8 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
     this->AddWidgetToDisplay(GraphicsDisplay); this->AddWidgetToDisplay(LaserControlDisplay); this->AddWidgetToDisplay(CameraControlBlockDisplay);
 
     this->AddWidgetToDisplay(CameraControlParamDisplay);
-	SetGuiFontSize(12);
-	SetWidgetsPosition(CurrentGuiSize);
-	LoadWidgetsLinks();
-    QTimer::singleShot(30,this,&MainWindowQClass::SlotUpdateScene);
 
+	LoadWidgetsLinks();
 
 	ui.graphicsView->setScene(Scene);
 	ui.graphicsView->centerOn(20, 20);
@@ -164,20 +162,19 @@ const QString& MainWindowQClass::GetBlockState(stateblocksenum State)
 	}
 }
 
-//����� ������ � ������ �������
-void MainWindowQClass::DisplayAirData(DataTemperatureStructure DataStructure)
-{
-
-}
-
-//����� ���������� �����
 void MainWindowQClass::DisplayCameraData(DataCamerasStructure DataStructure)
 {
 	this->CameraControlBlockDisplay->DisplayState(DataStructure.State);
 }
 
-void MainWindowQClass::DisplayChillData(DataTemperatureStructure Data)
+void MainWindowQClass::DisplayWeatherData(DataWeatherStructure DataStructure)
 {
+
+}
+
+void MainWindowQClass::DisplayChillData(DataChillerStructure Data)
+{
+
 }
 
 void MainWindowQClass::DisplayLaserStateDisplay(DataLaserStruct Data)
@@ -219,7 +216,7 @@ void MainWindowQClass::DisplayFullImage(QImage Image)
 }
 
 
-void operator>>(const DataToDisplayStructure& DataToDisplay, MainWindowQClass &MainWindow)
+void operator>>(const DataDeviceStructure& DataToDisplay, MainWindowQClass &MainWindow)
 {
 
 	switch (DataToDisplay.TypeBlock){
@@ -227,10 +224,10 @@ void operator>>(const DataToDisplayStructure& DataToDisplay, MainWindowQClass &M
 		emit MainWindow.SignalNewEngineData(static_cast<const DataEngineStructure&>(DataToDisplay));
 		break;
 	case ChillControlBlock:
-		 emit MainWindow.SignalNewChillData(static_cast<const DataTemperatureStructure&>(DataToDisplay));
+		 emit MainWindow.SignalNewChillData(static_cast<const DataChillerStructure&>(DataToDisplay));
 		break;
-	case AirControlBlock:
-	 emit MainWindow.SignalNewAirData(static_cast<const DataTemperatureStructure&>(DataToDisplay));
+	case WeatherControlBlock:
+	 emit MainWindow.SignalNewWeatherData(static_cast<const DataWeatherStructure&>(DataToDisplay));
 		break;
 	case CamerasControlBlock:
 		 emit MainWindow.SignalNewCameraData(static_cast<const DataCamerasStructure&>(DataToDisplay));
@@ -263,10 +260,6 @@ void operator>>(const DataToDisplayStructure& DataToDisplay, MainWindowQClass &M
 
 
 
-void MainWindowQClass::SlotChangeViewWindow()
-{
-	
-}
 
 void MainWindowQClass::ConnectControlSignals(HandleControlInterface* Control)
 {
@@ -342,9 +335,10 @@ Scene->deleteLater();
 void MainWindowQClass::SlotChangeInterfaceSize()
 {
    QAction* Action = dynamic_cast<QAction*>(QObject::sender());
-   int size = 8;
+   if(Action->objectName() == "actionGuiSizeSmall") {SlotSetInterfaceSize(0);};
+   if(Action->objectName() == "actionGuiSizeBig")   {SlotSetInterfaceSize(1);};
 
-    QList<QGraphicsItem*> items = Scene->items();
+    //QList<QGraphicsItem*> items = Scene->items();
 	//qDebug() << "SAVE GROUP POSITIONS - " << CurrentGuiSize;
 	//for(auto Item: items)
 	//{
@@ -358,20 +352,14 @@ void MainWindowQClass::SlotChangeInterfaceSize()
 	//	" Y: " << WidgetsPositionList[CurrentGuiSize][node->NumberWidget].second;
 	//	}
 	//}
-	qDebug() << "===========================" ;
-
-   if(Action->objectName() == "actionGuiSizeSmall") {size = 8; CurrentGuiSize = 0;};
-   if(Action->objectName() == "actionGuiSizeBig")   {size = 12; CurrentGuiSize = 1;};
-
-    SetGuiFontSize(size);
-    SetWidgetsPosition(CurrentGuiSize);
-
-    QTimer::singleShot(30,this,&MainWindowQClass::SlotUpdateScene);
+	//qDebug() << "===========================" ;
 }
 
-void MainWindowQClass::SetGuiFontSize(int FontSize)
+void MainWindowQClass::SetGuiFontSize(int GuiSize)
 {
+	int FontSize = 8; if(GuiSize == 1) FontSize = 12;
     QList<QGraphicsItem*> items = Scene->items();
+	qDebug() << "SET GUID FONT SIZE FOR: " << items.count();
 	for(auto Item: items)
 	{
 		if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
@@ -385,13 +373,36 @@ void MainWindowQClass::SetGuiFontSize(int FontSize)
 	}
 }
 
+void MainWindowQClass::SlotSetInterfaceSize(int GuiSize)
+{
+	CurrentGuiSize = GuiSize;
+    SetGuiFontSize(CurrentGuiSize);
+    SetWidgetsPosition(CurrentGuiSize);
+
+    QTimer::singleShot(30,this,&MainWindowQClass::SlotUpdateScene);
+}
+
+void MainWindowQClass::SetWidgetsPosition(int group_number)
+{
+
+    QList<QGraphicsItem*> items = Scene->items();
+	for(auto Item: items)
+	{
+	   if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
+	   {
+          node->SetScenePosition(WidgetsPositionList[group_number][node->NumberWidget].first,WidgetsPositionList[group_number][node->NumberWidget].second);  	
+	   }
+	}
+}
+
 
 void MainWindowQClass::SaveWidgetsPosition()
 {
-QString FileName = "/home/spp/TrainerData/WidgetsPosition.txt";
+qDebug() << "    [  SAVE WIDGETS POSITION  ]";
+QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
 
-if(QFile::exists("/home/broms/TrainerData/WidgetsPosition.txt")) 
-FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+if(QFile::exists("/home/broms/DATA/TrainerData/WidgetsPosition.txt")) 
+FileName = "/home/broms/DATA/TrainerData/WidgetsPosition.txt";
 QFile data(FileName);
 data.open(QFile::WriteOnly); data.flush();
 
@@ -408,44 +419,39 @@ QTextStream out(&outString);
 		WidgetsPositionList[CurrentGuiSize][node->NumberWidget].first = node->NodePositionX;
 		WidgetsPositionList[CurrentGuiSize][node->NumberWidget].second = node->NodePositionY;
 		}
-
 	}
 
-    out <<"NUMBER:     POSITION" << endl;
+    int number = 0;
+	out <<"          NUMBER      POSITION" << Qt::endl;
     for(auto group: WidgetsPositionList)
 	{
+	  qDebug() << "==============================" << Qt::endl;
+	  qDebug() << "GROUP: "<< number << Qt::endl;
       for(int n = 0; n < group.size(); n++)
-	  out << qSetFieldWidth(10) << Qt::right << n << group[n].first << group[n].second  << endl;
-
-	  out << "==============================" << endl;
+	  {
+	    out << qSetFieldWidth(10) << Qt::right << n << group[n].first << group[n].second  << Qt::endl;
+        qDebug() <<"NUMBER: " << n << "POSITION: " << group[n].first << group[n].second << Qt::endl;
+	  }
+	  qDebug() << "==============================" << Qt::endl;
+      number++;
+	  out << "==============================" << Qt::endl;
 	}
 
 data.write(outString.toUtf8());
 data.close();
 }
 
-void MainWindowQClass::SetWidgetsPosition(int group_number)
-{
-
-    QList<QGraphicsItem*> items = Scene->items();
-	for(auto Item: items)
-	{
-	   if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
-	   {
-          node->setPos(WidgetsPositionList[group_number][node->NumberWidget].first,WidgetsPositionList[group_number][node->NumberWidget].second);  	
-	   }
-	}
-}
 
 void MainWindowQClass::LoadWidgetsPosition()
 {
 
     qDebug() << "=====================================";
+    qDebug() << "LOAD WIDGETS POSITION";
 	
-	QString FileName = "/home/spp/TrainerData/WidgetsPosition.txt";
+	QString FileName = "/home/broms/DATA/TrainerData/WidgetsPosition.txt";
 
-	if(QFile::exists("/home/broms/TrainerData/WidgetsPosition.txt")) 
-	FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+	if(QFile::exists("/home/broms/DATA/TrainerData/WidgetsPosition.txt")) 
+	FileName = "/home/broms/DATA/TrainerData/WidgetsPosition.txt";
 	        
 	QFile file(FileName);
 
@@ -470,6 +476,7 @@ void MainWindowQClass::LoadWidgetsPosition()
 
         int number; int POS_X;int POS_Y;
 		stream >> number >> POS_X >> POS_Y;
+        qDebug() <<"NUMBER: " << number << "POSITION: " << POS_X << POS_Y << Qt::endl;
 		WidgetsPositionList[positions_group].append(QPair<int,int>(POS_X,POS_Y));
     }
 }
@@ -520,7 +527,7 @@ void MainWindowQClass::LoadWidgetsLinks()
 						"2  3  : 3  2 \n"
 						"1  3  : 0  2 \n";
             
-QString FileName = "/home/broms/TrainerData/WidgetLinks.txt";
+QString FileName = "/home/broms/DATA/TrainerData/WidgetLinks.txt";
 QFile file(FileName);
 
 if (file.open(QIODevice::ReadOnly | QIODevice::Text))

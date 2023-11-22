@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "windowsinussource.h"
 
 WindowSinusSource::WindowSinusSource(QWidget *parent)

@@ -1,9 +1,9 @@
 #pragma once
-#include "DataToDisplayStructure.h"
+#include "DataDeviceStructureCommon.h"
 #include "QSize"
 
 
-class DataCamerasStructure : public DataToDisplayStructure
+class DataCamerasStructure : public CommonDeviceStructure
 {
 public:
 	QSize SizeROI;

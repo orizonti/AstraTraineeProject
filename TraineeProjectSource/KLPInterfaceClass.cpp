@@ -1,4 +1,5 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
+#include <mutex>
 #include <qiodevice.h>
 #include <qdir.h>
 #include <QFileDialog>
@@ -26,6 +27,7 @@ std::queue<InterruptData> KLPInterfaceClass::available_interruptions;
 stateblocksenum KLPInterfaceClass::StateBlock = stateblocksenum::BlockDisable;
 
 mppd_wrap* KLPInterfaceClass::CardModule = 0;
+std::mutex StateReadMutex;
 
 void KLPInterfaceClass::CardSoftReset()
 {
@@ -539,7 +541,6 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
             CameraInterface->LastTimePointFULL = NewTimePoint;
             //==============================================================
         }
-
         if (HEADER_ASM.Message_ID == 0x5000000)
         {
             //qDebug() << "STATUS TO DEVICE REC - "<< Qt::hex << HEADER_ASM.Device_ID;
@@ -552,7 +553,10 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
             in_stream2 >> FRAME.TIME_STAMP;
 
             if (HEADER_ASM.Device_ID == 0x78000000)
-                in_stream2 >> KLPInterface->StateCommutator;
+            {
+                const std::lock_guard<std::mutex> lock(StateReadMutex);
+                in_stream2 >> KLPInterface->DevicesState;
+            }
 
             if (HEADER_ASM.Device_ID == 0x0A000000)
                 in_stream2>>EngineInterface1->Status_Engine;
@@ -575,4 +579,15 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
     }
     qDebug() << "PERF INTERRUPT THREAD END DEINITIALIZE KLP INTERFACE";
     return;
+}
+
+DataWeatherStructure KLPInterfaceClass::GetWheatherState()
+{
+    const std::lock_guard<std::mutex> lock(StateReadMutex);
+    DataWeatherStructure Data;
+    Data.Humidity1 = DevicesState.WeHumidity1; Data.Humidity2 = DevicesState.WeHumidity2;
+    Data.Presure1  = DevicesState.WePresure1;  Data.Presure2  = DevicesState.WePresure2;
+    Data.Temp1     = DevicesState.WeTemp1;     Data.Temp2     = DevicesState.WeTemp2;
+    return Data;
+   
 }

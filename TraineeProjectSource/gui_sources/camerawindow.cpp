@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "camerawindow.h"
 
 CameraWindow::CameraWindow(QWidget *parent)

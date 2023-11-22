@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "imageprocessingwindow.h"
 
 ImageProcessingWindow::ImageProcessingWindow(QWidget *parent)

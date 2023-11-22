@@ -1,22 +1,22 @@
-#ifndef PIDWINDOW2_H
-#define PIDWINDOW2_H
+#ifndef PIDWIndow_H
+#define PIDWIndow_H
 
 #include "HandleControlInterface.h"
-#include "ui_pidwindow2.h"
+#include "ui_PIDWIndow.h"
 #include "AdjustableWidget.h"
 
-class PIDWindow2 : public AdjustableWidget
+class PIDWIndow : public AdjustableWidget
 {
 	Q_OBJECT
 
 public:
-	PIDWindow2(QWidget *parent = 0);
-	~PIDWindow2();
+	PIDWIndow(QWidget *parent = 0);
+	~PIDWIndow();
 	void DisplayState(stateblocksenum State);
 	void ConnectControlSignals(HandleControlInterface* Control);
 	void SetInitialState(double Rate, double Diff, double Int);
 private:
-	Ui::PIDWindow2 ui;
+	Ui::PIDWIndow ui;
 };
 
-#endif // PIDWINDOW2_H
+#endif // PIDWIndow_H

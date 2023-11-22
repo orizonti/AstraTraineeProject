@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include <qiodevice.h>
 #include <qdir.h>
 #include <QFileDialog>

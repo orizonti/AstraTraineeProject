@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+﻿#include "CommonHeaders.h"
 
 #include "maincontrollerqclass.h"
 #include <functional>
@@ -1008,7 +1008,7 @@ void MainControllerQClass::LoadPreference()
 	QString RotateParamPath1;
 	QString RotateParamPath2; 
 	QString RotateParamPath3; 
-			QString IniFile = "/home/broms/TrainerData/TrainerPaths.ini";
+			QString IniFile = "/home/broms/DEVELOPMENT/DATA/TrainerData/TrainerPaths.ini";
 			QSettings Settings(IniFile, QSettings::IniFormat);
 
 			Settings.beginGroup("PATHS");

@@ -1,14 +1,15 @@
 #ifndef MAINWINDOWQCLASS_H
 #define MAINWINDOWQCLASS_H
-#include "ImageStruct.h"
-#include "mainwindowqclass.h"
-#include "DataToDisplayStructure.h"
+//#include "ImageStruct.h"
+#include "DataDeviceStructureCommon.h"
 #include "DataAimingErrorStructure.h"
 #include "DataCamerasStructure.h"
 #include "DataImageProcStructure.h"
 #include "DataLaserStruct.h"
-#include "DataTemperatureStructure.h"
+#include "DataWeatherStructure.h"
 #include "DataEngineStructure.h"
+#include "DataChillerStructure.h"
+#include "DataDeviceStructureCommon.h"
 
 
 
@@ -17,7 +18,7 @@
 
 #include "graphicswindow.h"
 
-#include "pidwindow2.h"
+#include "pidwindow.h"
 #include "engineblockwindow.h"
 #include "camerawindow.h"
 #include "aimingblockwindow.h"
@@ -35,7 +36,7 @@
 
 class MainWindowQClass : public QMainWindow
 {
-	Q_OBJECT //������-�������� ��� �������������� ����������� Qt
+	Q_OBJECT 
 
 public:
 	MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *parent = 0);
@@ -44,7 +45,7 @@ public:
 public:
 	Ui::MainWindowQClass ui;
 public:
-	friend void operator>>(const DataToDisplayStructure& DataToDisplay,MainWindowQClass &MainWindow);
+	friend void operator>>(const DataDeviceStructure& DataToDisplay,MainWindowQClass &MainWindow);
 	
 	QTimer TimerToCheckStateBlocks;
 
@@ -61,7 +62,6 @@ private:
 	void LoadWidgetsPosition();
     void SetWidgetsPosition(int group_number);
 	void SetGuiFontSize(int FontSize);
-	int CurrentGuiSize = 1;
 
 	void SaveWidgetsLinks();
 	void LoadWidgetsLinks();
@@ -72,7 +72,7 @@ private:
 	AimingBlockWindow* AimingBlockDisplay1         ;
 	AimingBlockWindow* AimingBlockDisplay2         ;
 	AimingBlockWindow* AimingBlockDisplay3         ;
-	PIDWindow2* PIDControl;
+	PIDWIndow* PIDControl;
 	KalmanWindow* KalmanControl;
 
 	QLabel* LabelImage;
@@ -107,21 +107,21 @@ private:
 
 	QList<GraphicWidgetNode*> ModuleWidgets;
 
+    int CurrentGuiSize = 0;
 private slots:
     void SlotUpdateScene(); // repaint scene when widget size has changed
 
 public slots:
     void SlotChangeInterfaceSize();
-	void SlotChangeViewWindow();
-	
+    void SlotSetInterfaceSize(int GuiSize);
 
 	void DisplayImage(DataImageProcStructure Data);
 	void DisplayCoordData(DataCoordStructure Data);
 
 
-	void DisplayAirData(DataTemperatureStructure Data);
+	void DisplayWeatherData(DataWeatherStructure Data);
 	void DisplayCameraData(DataCamerasStructure Data);
-	void DisplayChillData(DataTemperatureStructure Data);
+	void DisplayChillData(DataChillerStructure Data);
 	void DisplayLaserStateDisplay(DataLaserStruct Data);
 
 	void DisplayAimingData(DataAimingErrorStructure Data);
@@ -132,11 +132,11 @@ public slots:
 
 signals:
 
-	void SignalNewControlData(DataToDisplayStructure Data);
+	void SignalNewControlData(DataDeviceStructure Data);
 	void SignalNewImage(DataImageProcStructure Data);
-	void SignalNewAirData(DataTemperatureStructure Data);
 	void SignalNewCameraData(DataCamerasStructure Data);
-	void SignalNewChillData(DataTemperatureStructure Data);
+	void SignalNewChillData(DataChillerStructure Data);
+	void SignalNewWeatherData(DataWeatherStructure Data);
 	void SignalNewAimingData(DataAimingErrorStructure Data);
 	void SignalNewEngineData(DataEngineStructure Data);
 	void SignalNewCoordsData(DataCoordStructure Data);

@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "graphicwidgetnode.h"
 int GraphicWidgetNode::CounterWidget = 0;
 

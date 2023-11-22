@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "mainwindowqclass.h"
 #include <QAction>
 #include <QObject>
@@ -25,7 +25,7 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	 AimingBlockDisplay2->NumberChannel = 2;
 	 AimingBlockDisplay3->NumberChannel = 3;
 
-	 PIDControl = new PIDWindow2;
+	 PIDControl = new PIDWIndow;
 	 KalmanControl = new KalmanWindow;
 
 	 EngineControlDisplay1 = new EngineControlWindow;
@@ -47,7 +47,7 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	 CameraControlParamDisplay = new CameraControlWindow;
 	
 	qRegisterMetaType<DataImageProcStructure>("DataImageProcStructure");
-	qRegisterMetaType<DataToDisplayStructure>("DataToDisplayStructure");
+	qRegisterMetaType<CommonDeviceStructure>("CommonDeviceStructure");
 	qRegisterMetaType<DataTemperatureStructure>("DataTemperatureStructure");
 	qRegisterMetaType<DataCamerasStructure>("DataCamerasStructure");
 	qRegisterMetaType<DataLaserStruct>("DataLaserStruct");
@@ -219,7 +219,7 @@ void MainWindowQClass::DisplayFullImage(QImage Image)
 }
 
 
-void operator>>(const DataToDisplayStructure& DataToDisplay, MainWindowQClass &MainWindow)
+void operator>>(const CommonDeviceStructure& DataToDisplay, MainWindowQClass &MainWindow)
 {
 
 	switch (DataToDisplay.TypeBlock){
@@ -388,7 +388,7 @@ void MainWindowQClass::SetGuiFontSize(int FontSize)
 
 void MainWindowQClass::SaveWidgetsPosition()
 {
-QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+QString FileName = "/home/broms/DEVELOPMENT/DATA/TrainerData/WidgetsPosition.txt";
 QFile data(FileName);
 data.open(QFile::WriteOnly); data.flush();
 
@@ -438,7 +438,7 @@ void MainWindowQClass::LoadWidgetsPosition()
 {
 
     qDebug() << "=====================================";
-	QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
+	QString FileName = "/home/broms/DEVELOPMENT/DATA/TrainerData/WidgetsPosition.txt";
 	QFile file(FileName);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -512,7 +512,7 @@ void MainWindowQClass::LoadWidgetsLinks()
 						"2  3  : 3  2 \n"
 						"1  3  : 0  2 \n";
             
-QString FileName = "/home/broms/TrainerData/WidgetLinks.txt";
+QString FileName = "/home/broms/DEVELOPMENT/DATA/TrainerData/WidgetLinks.txt";
 QFile file(FileName);
 
 if (file.open(QIODevice::ReadOnly | QIODevice::Text))

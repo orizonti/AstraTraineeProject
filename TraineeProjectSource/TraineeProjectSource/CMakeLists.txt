@@ -23,7 +23,7 @@ set(QT_PRINTSUPPORT_LIB 1)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-#set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
+#set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
 set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
 #set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
 message("LIBRARIES PATH: "${LIBRARY_DIR})
@@ -73,7 +73,7 @@ add_executable (TraineeProjectExecutable
         "./ui_files/laserblockwindow.ui"
         "./ui_files/mainblockwindow.ui"
         "./ui_files/mainwindowqclass.ui"
-        "./ui_files/pidwindow2.ui"
+        "./ui_files/PIDWIndow.ui"
         "./ui_files/PilotLaserWindow.ui"
         "./ui_files/windowsinussource.ui"
 
@@ -90,7 +90,7 @@ add_executable (TraineeProjectExecutable
         "./gui_sources/laserblockwindow.cpp"
         "./gui_sources/enginecontrolwindow.cpp"
         "./gui_sources/graphicwidgetnode.cpp"
-        "./gui_sources/pidwindow2.cpp"
+        "./gui_sources/PIDWIndow.cpp"
         "./gui_sources/PilotLaserWindow.cpp"
         "./gui_sources/windowsinussource.cpp"
         "./gui_sources/AdjustableWidget.cpp"

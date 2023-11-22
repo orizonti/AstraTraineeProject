@@ -1,10 +1,10 @@
 #pragma once
-#include "DataToDisplayStructure.h"
+#include "DataDeviceStructureCommon.h"
 
 
 
 
-class DataImageProcStructure : public DataToDisplayStructure
+class DataImageProcStructure : public CommonDeviceStructure
 {
 public:
 	QPair<double, double> LastCoord;
@@ -26,7 +26,7 @@ public:
 };
 
 
-class DataImageProcAllChannels : public DataToDisplayStructure
+class DataImageProcAllChannels : public CommonDeviceStructure
 {
 public:
 

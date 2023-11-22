@@ -7,9 +7,9 @@
 #include "QGraphicsScene"
 #include "QLabel"
 #include "QPushButton"
-#include "PIDWindow.h"
+#include "pidwindow.h"
 #include <QGraphicsProxyWidget>
-#include "PIDWindow.h"
+#include "pidwindow.h"
 #include "node.h"
 #include "edge.h"
 #include "graphicwidgetnode.h"

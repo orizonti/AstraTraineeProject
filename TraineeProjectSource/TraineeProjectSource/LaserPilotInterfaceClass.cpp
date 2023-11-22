@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "LaserPilotInterfaceClass.h"
 
 LaserPilotInterfaceClass::LaserPilotInterfaceClass(QString Address, quint16 Port)

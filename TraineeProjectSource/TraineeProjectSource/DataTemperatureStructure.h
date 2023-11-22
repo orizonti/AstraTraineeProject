@@ -1,8 +1,8 @@
 #pragma once
-#include "DataToDisplayStructure.h"
+#include "DataDeviceStructureCommon.h"
 
 
-class DataTemperatureStructure : public DataToDisplayStructure
+class DataTemperatureStructure : public CommonDeviceStructure
 {
 public:
 	int Temperature;

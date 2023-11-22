@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "EngineInterfaceClass.h"
 #include "KLPInterfaceClass.h"
 

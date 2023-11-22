@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(TestClionQt)
+project(TRAINEE_ASTRA_PROJECT)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -20,52 +20,52 @@ set(QT_SERIALPORT_LIB 1)
 set(QT_WIDGETS_LIB 1)
 set(QT_PRINTSUPPORT_LIB 1)
 
+message("MAIN PROJECT CONFIG")
 
+set(USER "broms")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(LIBRARY_DIR "/home/${USER}/LIBRARY")
+set(OPENCV_LIB_DIR  "${LIBRARY_DIR}/IMAGE_PROCESSING/OPENCV/opencv451")
 
-if(EXISTS "/home/spp/PROGRAM_LIBRARY")
-  set(LIBRARY_DIR "/home/spp/PROGRAM_LIBRARY")
-endif()
-if(EXISTS "/home/broms/PROGRAM_LIBRARY")
-  set(LIBRARY_DIR "/home/broms/PROGRAM_LIBRARY")
-endif()
-if(EXISTS "/mnt/d/PROGRAM_LIBRARY/linux")
-  set(LIBRARY_DIR "/mnt/d/PROGRAM_LIBRARY/linux")
+cmake_path(GET PROJECT_SOURCE_DIR PARENT_PATH PROJECT_DIR)
+message("PROJECT SOURCE : "${PROJECT_SOURCE_DIR})
+message("PROJECT DIR    : "${PROJECT_DIR})
+message("BUILD_DIR      : "${PROJECT_BINARY_DIR})
+message("ROTATE LIB     : ${PROJECT_BINARY_DIR}/rotate_optimization/libRotateOptimization.so")
+message("LIBRARIES      : "${LIBRARY_DIR})
+
+list(APPEND CMAKE_PREFIX_PATH "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/")
+list(APPEND CMAKE_PREFIX_PATH "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
+list(APPEND CMAKE_PREFIX_PATH "${OPENCV_LIB_DIR}")
+
+#====================================================
+if(NOT EXISTS "/home/${USER}/LIBRARY")
+message("LIBRARY: /home/${USER}/LIBRARY NOT EXIST ERROR !!!!")
 endif()
 
-message("LIBRARIES PATH: "${LIBRARY_DIR})
-
-set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/NN_LIBRARY/libtorch/")
 find_package(Torch REQUIRED)
-
-if(EXISTS "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
-    set(CMAKE_PREFIX_PATH "${LIBRARY_DIR}/QT5.15.2/5.15.2/gcc_64/")
-endif()
-
 find_package(Qt5 COMPONENTS Widgets Network Core SerialPort PrintSupport REQUIRED)
-
-
 find_package(OpenCV REQUIRED )
 message("OPENCV LIBS "${OpenCV_LIBS})
 
 add_subdirectory(rotate_optimization)
+#====================================================
 include_directories("${PROJECT_SOURCE_DIR}/rotate_optimization")
 
 include_directories("/opt/nf_npkspp/ibpa.08072-01_mppd_driver/include/headers/")
 include_directories("/usr/local/include/opencv4")
 include_directories("./gui_sources")
-include_directories("/home/broms/DEVELOPMENT/AstraTraineeProject/TraineeProjectSource")
+include_directories(${PROJECT_SOURCE_DIR})
 
-include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include")
-include_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/include/torch/csrc/api/include")
-include_directories("${LIBRARY_DIR}/MATH_LIBRARY")
 include_directories("${LIBRARY_DIR}/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
-include_directories("${LIBRARY_DIR}/MATH_LIBRARY/")
-include_directories("${LIBRARY_DIR}/NN_LIBRARY/onnxruntime/include/")
-link_directories("${LIBRARY_DIR}/NN_LIBRARY/onnxruntime/lib/")
+include_directories("${LIBRARY_DIR}/MATH_LIBRARY")
 
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/include")
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/include/torch/csrc/api/include")
+include_directories("${LIBRARY_DIR}/NN_LIBRARY/ONNX/onnxruntime/include/")
+link_directories("${LIBRARY_DIR}/NN_LIBRARY/ONNX/onnxruntime/lib/")
+#====================================================
 
-#include_directories("../${PROJECT_SOURCE_DIR}")
 add_executable (TraineeProjectExecutable
         "./ui_files/aimingblockwindow.ui"
         "./ui_files/cameracontrolwindow.ui"
@@ -80,7 +80,7 @@ add_executable (TraineeProjectExecutable
         "./ui_files/laserblockwindow.ui"
         "./ui_files/mainblockwindow.ui"
         "./ui_files/mainwindowqclass.ui"
-        "./ui_files/pidwindow2.ui"
+        "./ui_files/PIDWIndow.ui"
         "./ui_files/PilotLaserWindow.ui"
         "./ui_files/windowsinussource.ui"
 
@@ -97,7 +97,7 @@ add_executable (TraineeProjectExecutable
         "./gui_sources/laserblockwindow.cpp"
         "./gui_sources/enginecontrolwindow.cpp"
         "./gui_sources/graphicwidgetnode.cpp"
-        "./gui_sources/pidwindow2.cpp"
+        "./gui_sources/pidwindow.cpp"
         "./gui_sources/PilotLaserWindow.cpp"
         "./gui_sources/windowsinussource.cpp"
         "./gui_sources/AdjustableWidget.cpp"
@@ -106,10 +106,9 @@ add_executable (TraineeProjectExecutable
         "./gui_sources/link_line.cpp"
         "./gui_sources/node.cpp"
 
-        "ui_PIDWindow.h"
+        #"ui_PIDWindow.h"
         "main.cpp"
         "AimingClass.cpp"
-        "AirSystemClass.cpp"
         "CameraInterfaceClass.cpp"
         "ChillSystemClass.cpp"
         "CommonLaserInterfaceClass.cpp"
@@ -130,7 +129,6 @@ add_executable (TraineeProjectExecutable
         "PIDClass.cpp"
         "qcustomplot.cpp"
         "SinusGeneratorClass.cpp"
-        "stdafx.cpp"
         "tcpclientengine.cpp"
         "TransformCoordClass.cpp"
         "mppd_wrap.cpp"
@@ -138,8 +136,8 @@ add_executable (TraineeProjectExecutable
         "KalmanFilterClass.cpp"
         "KalmanFilterClass.h"
         )
-message("ROTATE LIB: ${CMAKE_CURRENT_SOURCE_DIR}/build/libRotateOptimization.a")
-#target_link_libraries(TestClionQt DriverMoiKlp.lib)
+
+#=========================================================
 target_link_libraries(TraineeProjectExecutable ${OpenCV_LIBS})
 target_link_libraries(TraineeProjectExecutable Qt5::Widgets)
 target_link_libraries(TraineeProjectExecutable Qt5::Network)
@@ -147,14 +145,13 @@ target_link_libraries(TraineeProjectExecutable Qt5::Core)
 target_link_libraries(TraineeProjectExecutable Qt5::SerialPort)
 target_link_libraries(TraineeProjectExecutable Qt5::PrintSupport)
 target_link_libraries(TraineeProjectExecutable onnxruntime.so)
-target_link_libraries(TraineeProjectExecutable "/mnt/d/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/build/TraineeProjectSource/rotate_optimization/libRotateOptimization.so")
-#target_link_libraries(TraineeProjectExecutable "${CMAKE_CURRENT_SOURCE_DIR}/build/rotate_optimization/libRotateOptimization.a")
-#target_link_libraries(TraineeProjectExecutable "${CMAKE_CURRENT_SOURCE_DIR}/build/rotate_optimization/libRotateOptimization.so")
+target_link_libraries(TraineeProjectExecutable "${PROJECT_BINARY_DIR}/rotate_optimization/libRotateOptimization.so")
 
 #link_directories("${LIBRARY_DIR}/NN_LIBRARY/libtorch/lib")
-target_link_libraries(TraineeProjectExecutable "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch_cpu.so")
-target_link_libraries(TraineeProjectExecutable "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libtorch.so")
-target_link_libraries(TraineeProjectExecutable "/mnt/d/PROGRAM_LIBRARY/linux/NN_LIBRARY/libtorch/lib/libc10.so")
+target_link_libraries(TraineeProjectExecutable "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libtorch_cpu.so")
+target_link_libraries(TraineeProjectExecutable "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libtorch.so")
+target_link_libraries(TraineeProjectExecutable "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libc10.so")
+#=========================================================
 
 
 #set(Qt5Core_DIR "${CMAKE_PREFIX_PATH}/Qt5Core")
@@ -221,7 +218,7 @@ target_link_libraries(TraineeProjectExecutable "/mnt/d/PROGRAM_LIBRARY/linux/NN_
 #target_precompile_headers(TestCmakeProject PRIVATE ${IncludeBoost}/boost/crc.hpp)
 #target_precompile_headers(TestCmakeProject PRIVATE qcustomplot.h)
 #
-#set(IncludeMath "/home/broms/COMMON_DIR/PROGRAM_LIBRARY/MATH_LIBRARY")
+#set(IncludeMath "/home/${USER}/COMMON_DIR/LIBRARY/MATH_LIBRARY")
 #
 #target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/Eigen)
 #target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/Dense)

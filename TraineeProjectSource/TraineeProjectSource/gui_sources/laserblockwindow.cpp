@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "laserblockwindow.h"
 
 LaserBlockWindow::LaserBlockWindow(QWidget *parent)

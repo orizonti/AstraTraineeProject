@@ -4,7 +4,7 @@
 #include <QString>
 
 
-class DataToDisplayStructure
+class CommonDeviceStructure
 {
 public:
 	int NumberBlock;

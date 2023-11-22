@@ -2,7 +2,7 @@
 #define MAINWINDOWQCLASS_H
 #include "ImageStruct.h"
 #include "mainwindowqclass.h"
-#include "DataToDisplayStructure.h"
+#include "DataDeviceStructureCommon.h"
 #include "DataAimingErrorStructure.h"
 #include "DataCamerasStructure.h"
 #include "DataImageProcStructure.h"
@@ -17,7 +17,7 @@
 
 #include "graphicswindow.h"
 
-#include "pidwindow2.h"
+#include "pidwindow.h"
 #include "engineblockwindow.h"
 #include "camerawindow.h"
 #include "aimingblockwindow.h"
@@ -44,7 +44,7 @@ public:
 public:
 	Ui::MainWindowQClass ui;
 public:
-	friend void operator>>(const DataToDisplayStructure& DataToDisplay,MainWindowQClass &MainWindow);
+	friend void operator>>(const CommonDeviceStructure& DataToDisplay,MainWindowQClass &MainWindow);
 	
 	QTimer TimerToCheckStateBlocks;
 
@@ -72,7 +72,7 @@ private:
 	AimingBlockWindow* AimingBlockDisplay1         ;
 	AimingBlockWindow* AimingBlockDisplay2         ;
 	AimingBlockWindow* AimingBlockDisplay3         ;
-	PIDWindow2* PIDControl;
+	PIDWIndow* PIDControl;
 	KalmanWindow* KalmanControl;
 
 	QLabel* LabelImage;
@@ -132,7 +132,7 @@ public slots:
 
 signals:
 
-	void SignalNewControlData(DataToDisplayStructure Data);
+	void SignalNewControlData(CommonDeviceStructure Data);
 	void SignalNewImage(DataImageProcStructure Data);
 	void SignalNewAirData(DataTemperatureStructure Data);
 	void SignalNewCameraData(DataCamerasStructure Data);

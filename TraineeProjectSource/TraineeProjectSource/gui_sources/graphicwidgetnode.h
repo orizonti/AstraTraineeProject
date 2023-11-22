@@ -3,7 +3,7 @@
 
 #include "node.h"
 
-#include "pidwindow2.h"
+#include "pidwindow.h"
 #include <QGraphicsProxyWidget>
 
 class GraphicWidgetNode : public QGraphicsProxyWidget

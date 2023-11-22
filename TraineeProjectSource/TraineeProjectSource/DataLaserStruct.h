@@ -1,8 +1,8 @@
 #pragma once
-#include "DataToDisplayStructure.h"
+#include "DataDeviceStructureCommon.h"
 
 
-class DataLaserStruct : public DataToDisplayStructure
+class DataLaserStruct : public CommonDeviceStructure
 {
 public:
 

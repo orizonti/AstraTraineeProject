@@ -1,5 +1,6 @@
 
-#include "stdafx.h"
+#include "node.h"
+#include "CommonHeaders.h"
 #include "graphicwidgetnode.h"
 int GraphicWidgetNode::CounterWidget = 0;
 
@@ -110,3 +111,5 @@ if (VisualNodes.size() == 4)
      VisualNodes[3]->setPos(pos.x()+this->rect().width()/2,pos.y()+this->rect().height()+offset_y);
 }
 }
+
+void GraphicWidgetNode::SetScenePosition(int PosX, int PosY) {this->setPos(PosX,PosY); NodePositionX = PosX; NodePositionY = PosY; }

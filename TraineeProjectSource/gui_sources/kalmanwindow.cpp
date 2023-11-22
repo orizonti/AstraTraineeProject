@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "kalmanwindow.h"
 
 KalmanWindow::KalmanWindow(QWidget *parent)

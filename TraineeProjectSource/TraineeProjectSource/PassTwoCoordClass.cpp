@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "PassTwoCoordClass.h"
 #include <Eigen/Dense>
 #include <Eigen/src/Core/Matrix.h>

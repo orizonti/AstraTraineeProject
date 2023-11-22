@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+﻿#include "CommonHeaders.h"
 #include "EngineControlClass.h"
 using namespace std;
 int EngineControlClass::EngineCount = 0;

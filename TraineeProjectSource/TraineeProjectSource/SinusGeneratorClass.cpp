@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CommonHeaders.h"
 #include "SinusGeneratorClass.h"
 #include "windowsinussource.h"
 #include <random>
