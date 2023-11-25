@@ -5,8 +5,7 @@
 class DataLaserStruct : public DataDeviceStructure
 {
 public:
-
-	int CurrentFrequency;
 	int CurrentPower;
 	int CurrentTemperature;
+	bool ChillerOn = false; 
 };

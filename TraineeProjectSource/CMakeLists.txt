@@ -55,6 +55,7 @@ include_directories("${PROJECT_SOURCE_DIR}/rotate_optimization")
 include_directories("/opt/nf_npkspp/ibpa.08072-01_mppd_driver/include/headers/")
 include_directories("/usr/local/include/opencv4")
 include_directories("./gui_sources")
+include_directories("./LASERS")
 include_directories(${PROJECT_SOURCE_DIR})
 
 include_directories("${LIBRARY_DIR}/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
@@ -111,17 +112,19 @@ add_executable (TraineeProjectExecutable
         "AimingClass.cpp"
         "CameraInterfaceClass.cpp"
         "ChillSystemClass.cpp"
-        "CommonLaserInterfaceClass.cpp"
         "DigitalClock.cpp"
         "EngineControlClass.cpp"
         "EngineInterfaceClass.cpp"
         "RemoteControlClass.cpp"
         "ImageProcessingClass.cpp"
         "KLPInterfaceClass.cpp"
-        "LaserControlClass.cpp"
-        "LaserPilotInterfaceClass.cpp"
-        "LaserPointerInterfaceClass.cpp"
-        "LaserPowerInterfaceClass.cpp"
+
+        "./LASERS/LaserControlClass.cpp"
+        "./LASERS/LaserCommonInterface.cpp"
+        "./LASERS/LaserPilotInterface.cpp"
+        "./LASERS/LaserPointerInterface.cpp"
+        "./LASERS/LaserPowerInterface.cpp"
+        
         "main.cpp"
         "maincontrollerqclass.cpp"
 

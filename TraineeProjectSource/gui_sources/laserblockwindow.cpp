@@ -60,18 +60,10 @@ void LaserBlockWindow::DisplayState(stateblocksenum State,int NumberChannel)
 
 	switch (NumberChannel)
 	{
-	case 1:
-	But = ui.ButTurnToWorkLaser1;
-	break;
-	case 2:
-	But = ui.ButTurnToWorkLaser2;
-	break;
-	case 3:
-	But = ui.ButTurnToWorkLaser3;
-	break;
-	case 4:
-	But = ui.ButTurnToWorkPointer;
-	break;
+	case 1: But = ui.ButTurnToWorkLaser1; break;
+	case 2: But = ui.ButTurnToWorkLaser2; break;
+	case 3: But = ui.ButTurnToWorkLaser3; break;
+	case 4: But = ui.ButTurnToWorkPointer; break;
 	}
 
 	if (But != 0)

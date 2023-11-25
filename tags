@@ -209,13 +209,13 @@ ARCHITECTURE_ID	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/CompilerIdCX
 ARCHITECTURE_ID	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp	656;"	d	file:
 ARCHITECTURE_ID	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp	659;"	d	file:
 ARCHITECTURE_ID	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp	663;"	d	file:
-A_CURRENT_IMPULSE	TraineeProjectSource/LaserPointerInterfaceClass.h	31;"	d
-A_L1_POWER	TraineeProjectSource/LaserPointerInterfaceClass.h	33;"	d
-A_L2_POWER	TraineeProjectSource/LaserPointerInterfaceClass.h	34;"	d
-A_L3_POWER	TraineeProjectSource/LaserPointerInterfaceClass.h	35;"	d
-A_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	32;"	d
-A_STATE	TraineeProjectSource/LaserPointerInterfaceClass.h	36;"	d
-A_UMI	TraineeProjectSource/LaserPointerInterfaceClass.h	30;"	d
+A_CURRENT_IMPULSE	TraineeProjectSource/LaserPointerInterface.h	31;"	d
+A_L1_POWER	TraineeProjectSource/LaserPointerInterface.h	33;"	d
+A_L2_POWER	TraineeProjectSource/LaserPointerInterface.h	34;"	d
+A_L3_POWER	TraineeProjectSource/LaserPointerInterface.h	35;"	d
+A_MODE	TraineeProjectSource/LaserPointerInterface.h	32;"	d
+A_STATE	TraineeProjectSource/LaserPointerInterface.h	36;"	d
+A_UMI	TraineeProjectSource/LaserPointerInterface.h	30;"	d
 AbortGetResult	TraineeProjectSource/mppd_wrap.cpp	/^int mppd_wrap::AbortGetResult() {$/;"	f	class:mppd_wrap
 AccelerationEstimate	TraineeProjectSource/DataAimingErrorStructure.h	/^	QPair<double, double> AccelerationEstimate;$/;"	m	struct:KalmanOutputData
 AccessLevel	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    quint16 AccessLevel = 1; \/\/Operator 1 \/\/Enginer 2 \/\/Supervisor 100$/;"	m	struct:ACCESS_LEVEL_COMMAND
@@ -224,8 +224,8 @@ AccumulateDataFilter	TraineeProjectSource/rotate_optimization/RotateOperationCon
 AccumulateImageStatistics	TraineeProjectSource/ImageProcessingClass.cpp	/^void OptimizationThreshold::AccumulateImageStatistics(cv::Mat& Image)$/;"	f	class:OptimizationThreshold
 AddWidgetToDisplay	TraineeProjectSource/gui_sources/mainwindowqclass.cpp	/^void MainWindowQClass::AddWidgetToDisplay(AdjustableLabel* widget)$/;"	f	class:MainWindowQClass
 AddWidgetToDisplay	TraineeProjectSource/gui_sources/mainwindowqclass.cpp	/^void MainWindowQClass::AddWidgetToDisplay(AdjustableWidget* widget)$/;"	f	class:MainWindowQClass
-AddressReciever	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 AddressReciever = 0x7;$/;"	m	class:LaserCommandStruct
-AddressSender	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 AddressSender = 0x1;$/;"	m	class:LaserCommandStruct
+AddressReciever	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 AddressReciever = 0x7;$/;"	m	class:LaserCommandStruct
+AddressSender	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 AddressSender = 0x1;$/;"	m	class:LaserCommandStruct
 AdjustGraph	TraineeProjectSource/gui_sources/graphicswindow.cpp	/^void GraphicsInterface::AdjustGraph()$/;"	f	class:GraphicsInterface
 AdjustWindow	TraineeProjectSource/gui_sources/AdjustableWidget.cpp	/^void AdjustableLabel::AdjustWindow()$/;"	f	class:AdjustableLabel
 AdjustWindow	TraineeProjectSource/gui_sources/AdjustableWidget.cpp	/^void AdjustableWidget::AdjustWindow()$/;"	f	class:AdjustableWidget
@@ -400,7 +400,7 @@ CODE_SET_CURRENT	TraineeProjectSource/LaserPilotInterfaceClass.h	25;"	d
 CODE_SET_FALLTIME	TraineeProjectSource/LaserPilotInterfaceClass.h	34;"	d
 CODE_SET_POWER	TraineeProjectSource/LaserPilotInterfaceClass.h	26;"	d
 CODE_SET_RISETIME	TraineeProjectSource/LaserPilotInterfaceClass.h	33;"	d
-CODE_UMI_ON	TraineeProjectSource/LaserPointerInterfaceClass.h	7;"	d
+CODE_UMI_ON	TraineeProjectSource/LaserPointerInterface.h	7;"	d
 COMMAND_AIMING_COORD	TraineeProjectSource/RemoteControlClass.h	/^struct COMMAND_AIMING_COORD$/;"	s
 COMMAND_CODE	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    quint16 COMMAND_CODE = 0;$/;"	m	class:COMMAND_HEADER
 COMMAND_HEADER	TraineeProjectSource/LaserPilotInterfaceClass.h	/^class COMMAND_HEADER$/;"	c
@@ -1343,16 +1343,16 @@ ChillSystemClass	TraineeProjectSource/ChillSystemClass.h	/^class ChillSystemClas
 ChillerData	TraineeProjectSource/LaserPilotInterfaceClass.h	/^struct ChillerData $/;"	s
 CloseDevice	TraineeProjectSource/mppd_wrap.cpp	/^void mppd_wrap::CloseDevice() {$/;"	f	class:mppd_wrap
 ColorInterpolation	TraineeProjectSource/qcustomplot.h	/^  enum ColorInterpolation { ciRGB  \/\/\/< Color channels red, green and blue are linearly interpolated$/;"	g	class:QCPColorGradient
-ComPort	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	QSerialPort* ComPort;$/;"	m	class:LaserPointerInterfaceClass
-ComPortName	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	QString ComPortName;$/;"	m	class:LaserPointerInterfaceClass
-Command	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 Command = 0x0;$/;"	m	class:LaserCommandStruct
+ComPort	TraineeProjectSource/LaserPointerInterface.h	/^	QSerialPort* ComPort;$/;"	m	class:LaserPointerInterface
+ComPortName	TraineeProjectSource/LaserPointerInterface.h	/^	QString ComPortName;$/;"	m	class:LaserPointerInterface
+Command	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 Command = 0x0;$/;"	m	class:LaserCommandStruct
 CommandAndSizeImage	TraineeProjectSource/CameraInterfaceClass.h	/^	quint32 CommandAndSizeImage = 0;$/;"	m	class:Control_Camera_Command
 CommandDelayMks	TraineeProjectSource/EngineInterfaceClass.h	/^	int CommandDelayMks = 0;$/;"	m	class:EngineInterfaceClass
-CommandToSend	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	LaserCommandStruct CommandToSend;$/;"	m	class:LaserPointerInterfaceClass
+CommandToSend	TraineeProjectSource/LaserPointerInterface.h	/^	LaserCommandStruct CommandToSend;$/;"	m	class:LaserPointerInterface
 Common	TraineeProjectSource/PIDParamStruct.h	/^	double Common;$/;"	m	class:PIDParamStruct
 CommonBuffer	TraineeProjectSource/EngineInterfaceClass.cpp	/^QByteArray EngineInterfaceClass::CommonBuffer;$/;"	m	class:EngineInterfaceClass	file:
 CommonBuffer	TraineeProjectSource/EngineInterfaceClass.h	/^	static QByteArray CommonBuffer;$/;"	m	class:EngineInterfaceClass
-CommonLaserInterfaceClass	TraineeProjectSource/CommonLaserInterfaceClass.h	/^class CommonLaserInterfaceClass : public QObject$/;"	c
+LaserCommonInterface	TraineeProjectSource/LaserCommonInterface.h	/^class LaserCommonInterface : public QObject$/;"	c
 CommonMatrix	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	torch::Tensor CommonMatrix; $/;"	m	class:RotateOperationContainer
 CommonMatrixInverse	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	torch::Tensor CommonMatrixInverse;$/;"	m	class:RotateOperationContainer
 CommonSubMatrix	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	torch::Tensor CommonSubMatrix;$/;"	m	class:RotateOperationContainer
@@ -1374,14 +1374,14 @@ ConnectNode	TraineeProjectSource/gui_sources/node.cpp	/^void Node::ConnectNode(N
 ConnectSignals	TraineeProjectSource/gui_sources/windowsinussource.cpp	/^void WindowSinusSource::ConnectSignals(SinusGeneratorClass* SinusGenerator)$/;"	f	class:WindowSinusSource
 ConnectToHost	TraineeProjectSource/tcpclientengine.cpp	/^void TCPClientEngine::ConnectToHost(QString Address, int Port)$/;"	f	class:TCPClientEngine
 ConnectToLaserTCP	TraineeProjectSource/LaserPilotInterfaceClass.cpp	/^void LaserPilotInterfaceClass::ConnectToLaserTCP(QString Address, quint16 Port)$/;"	f	class:LaserPilotInterfaceClass
-ConnectToPort	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::ConnectToPort(QString PortName)$/;"	f	class:LaserPointerInterfaceClass
+ConnectToPort	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::ConnectToPort(QString PortName)$/;"	f	class:LaserPointerInterface
 ControlCoord	TraineeProjectSource/EngineInterfaceClass.h	/^	QPair<double, double> ControlCoord = QPair<double,double>(0,0);$/;"	m	class:EngineInterfaceClass
 ControlEngineCommand	TraineeProjectSource/EngineInterfaceClass.h	/^	ControlEngineCommand()$/;"	f	class:ControlEngineCommand
 ControlEngineCommand	TraineeProjectSource/EngineInterfaceClass.h	/^class ControlEngineCommand$/;"	c
 ControlNoizeCov	TraineeProjectSource/KalmanFilterClass.h	/^	Eigen::Matrix< float, 2, 2 > ControlNoizeCov; \/\/ process noize cov$/;"	m	class:KalmanFilterClass
 ControlRegim	TraineeProjectSource/EngineInterfaceClass.h	/^	quint8 ControlRegim = 0;$/;"	m	class:ControlEngineCommand
-ControlSummHeader	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 ControlSummHeader = 0x0;$/;"	m	class:LaserCommandStruct
-ControlSummMessage	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 ControlSummMessage = 0x0;$/;"	m	class:LaserCommandStruct
+ControlSummHeader	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 ControlSummHeader = 0x0;$/;"	m	class:LaserCommandStruct
+ControlSummMessage	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 ControlSummMessage = 0x0;$/;"	m	class:LaserCommandStruct
 ControlVek	TraineeProjectSource/CalmanFilterClass.h	/^	Eigen::Matrix< float, 2, 1 > ControlVek;$/;"	m	class:CalmanFilterClass
 ControlVek	TraineeProjectSource/CalmanFilterClass.h	/^	Eigen::Matrix< float, 2, 1 > ControlVek;$/;"	m	class:CalmanFilterCoordClass
 ControlVek	TraineeProjectSource/KalmanFilterClass.h	/^	Eigen::Matrix< float, 2, 1 > ControlVek; \/\/ velocity$/;"	m	class:KalmanFilterClass
@@ -1671,7 +1671,7 @@ Frequences	TraineeProjectSource/maincontrollerqclass.h	/^    vector<float> Frequ
 Frequency	TraineeProjectSource/DataCamerasStructure.h	/^	int Frequency;$/;"	m	class:DataCamerasStructure
 GET_PARAM_COMMAND	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    GET_PARAM_COMMAND(quint16 PARAM_CODE) { HEADER.COMMAND_CODE = PARAM_CODE; HEADER.DATA_SIZE = 0;};$/;"	f	class:GET_PARAM_COMMAND
 GET_PARAM_COMMAND	TraineeProjectSource/LaserPilotInterfaceClass.h	/^class GET_PARAM_COMMAND$/;"	c
-GET_STATE	TraineeProjectSource/LaserPointerInterfaceClass.h	28;"	d
+GET_STATE	TraineeProjectSource/LaserPointerInterface.h	28;"	d
 GRAPHICSWINDOW_H	TraineeProjectSource/gui_sources/graphicswindow.h	2;"	d
 GRAPHICWIDGETNODE_H	TraineeProjectSource/gui_sources/graphicwidgetnode.h	2;"	d
 GUID_COMMAND_STRUCT	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    GUID_COMMAND_STRUCT()$/;"	f	class:GUID_COMMAND_STRUCT
@@ -1741,11 +1741,11 @@ GetState	TraineeProjectSource/AimingClass.cpp	/^DataAimingErrorStructure AimingC
 GetState	TraineeProjectSource/AirSystemClass.cpp	/^DataTemperatureStructure AirSystemClass::GetState()$/;"	f	class:AirSystemClass
 GetState	TraineeProjectSource/CameraInterfaceClass.cpp	/^DataCamerasStructure CameraInterfaceClass::GetState()$/;"	f	class:CameraInterfaceClass
 GetState	TraineeProjectSource/ChillSystemClass.cpp	/^DataTemperatureStructure ChillSystemClass::GetState()$/;"	f	class:ChillSystemClass
-GetState	TraineeProjectSource/CommonLaserInterfaceClass.cpp	/^DataLaserStruct CommonLaserInterfaceClass::GetState()$/;"	f	class:CommonLaserInterfaceClass
+GetState	TraineeProjectSource/LaserCommonInterface.cpp	/^DataLaserStruct LaserCommonInterface::GetState()$/;"	f	class:LaserCommonInterface
 GetState	TraineeProjectSource/LaserPilotInterfaceClass.cpp	/^DataLaserStruct LaserPilotInterfaceClass::GetState()$/;"	f	class:LaserPilotInterfaceClass
-GetState	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^DataLaserStruct LaserPointerInterfaceClass::GetState()$/;"	f	class:LaserPointerInterfaceClass
-GetState	TraineeProjectSource/LaserPowerInterfaceClass.cpp	/^DataLaserStruct GetState()$/;"	f
-GetState	TraineeProjectSource/LaserPowerInterfaceClass.cpp	/^DataLaserStruct LaserPowerInterfaceClass::GetState()$/;"	f	class:LaserPowerInterfaceClass
+GetState	TraineeProjectSource/LaserPointerInterface.cpp	/^DataLaserStruct LaserPointerInterface::GetState()$/;"	f	class:LaserPointerInterface
+GetState	TraineeProjectSource/LaserPilotInterface.cpp	/^DataLaserStruct GetState()$/;"	f
+GetState	TraineeProjectSource/LaserPilotInterface.cpp	/^DataLaserStruct LaserPilotInterface::GetState()$/;"	f	class:LaserPilotInterface
 GetStrobFromRowImage	TraineeProjectSource/ImageProcessingClass.cpp	/^cv::Mat Processor::GetStrobFromRowImage(PIXEL_WORD NEW_PIXELS,int Width,int Height,int Offset)$/;"	f	class:Processor
 GetSyncMode	TraineeProjectSource/mppd_wrap.cpp	/^int mppd_wrap::GetSyncMode(union sSync& data) {$/;"	f	class:mppd_wrap
 GetSyncState	TraineeProjectSource/mppd_wrap.cpp	/^int mppd_wrap::GetSyncState(union sSync& data) {$/;"	f	class:mppd_wrap
@@ -1893,7 +1893,7 @@ Inverse	TraineeProjectSource/rotate_optimization/RotateOperationContainer.cpp	/^
 IrisEnginePos	TraineeProjectSource/CameraInterfaceClass.h	/^	quint16 IrisEnginePos = 0;$/;"	m	class:Control_Camera_Command
 IsCoordLoaded	TraineeProjectSource/ImageProcessingClass.h	/^	bool IsCoordLoaded() { if (CoordMassive.size() == Size) { return true; } else { return false; } };$/;"	f	class:Statistic
 IsDataFull	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	bool IsDataFull(){output_to_optimize_rotation.size() == CALIBRATION_COUNT;};$/;"	f	class:RotateOperationContainer
-IsOnOff	TraineeProjectSource/CommonLaserInterfaceClass.h	/^	bool IsOnOff(){ return OnOff; };$/;"	f	class:CommonLaserInterfaceClass
+IsOnOff	TraineeProjectSource/LaserCommonInterface.h	/^	bool IsOnOff(){ return OnOff; };$/;"	f	class:LaserCommonInterface
 IsOpen	TraineeProjectSource/mppd_wrap.cpp	/^bool mppd_wrap::IsOpen() {$/;"	f	class:mppd_wrap
 IsStatisticLoaded	TraineeProjectSource/ImageProcessingClass.h	/^	bool IsStatisticLoaded() { return (Statistics.back().IsCoordLoaded()); };$/;"	f	class:OptimizationThreshold
 IsStatisticsLoaded	TraineeProjectSource/ImageProcessingClass.h	/^    bool IsStatisticsLoaded() { return Statistics[Statistics.size()-1].IsCoordLoaded();};$/;"	f	class:StatisticGroup
@@ -1922,32 +1922,32 @@ KalmanWindow	TraineeProjectSource/gui_sources/kalmanwindow.cpp	/^KalmanWindow::K
 KalmanWindow	TraineeProjectSource/gui_sources/kalmanwindow.h	/^class KalmanWindow : public AdjustableWidget$/;"	c
 KalmanWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_kalmanwindow.h	/^    class KalmanWindow: public Ui_KalmanWindow {};$/;"	c	namespace:Ui
 L	TraineeProjectSource/FC_STRUCTS.h	/^			quint32 L : 1;      \/\/���� ������� ����� ���� ������$/;"	m	struct:AsmHeader::__anon1::__anon2
-L1_CONTINUOUS_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	13;"	d
-L1_CURRENT	TraineeProjectSource/LaserPointerInterfaceClass.h	9;"	d
-L1_IMPULSE_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	14;"	d
-L1_IMPULSE_VALUE	TraineeProjectSource/LaserPointerInterfaceClass.h	10;"	d
-L1_POWER_OFF	TraineeProjectSource/LaserPointerInterfaceClass.h	12;"	d
-L1_POWER_ON	TraineeProjectSource/LaserPointerInterfaceClass.h	11;"	d
-L2_CONTINUOUS_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	19;"	d
-L2_CURRENT	TraineeProjectSource/LaserPointerInterfaceClass.h	15;"	d
-L2_IMPULSE_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	20;"	d
-L2_IMPULSE_VALUE	TraineeProjectSource/LaserPointerInterfaceClass.h	16;"	d
-L2_POWER_OFF	TraineeProjectSource/LaserPointerInterfaceClass.h	18;"	d
-L2_POWER_ON	TraineeProjectSource/LaserPointerInterfaceClass.h	17;"	d
-L3_CONTINUOUS_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	25;"	d
-L3_CURRENT	TraineeProjectSource/LaserPointerInterfaceClass.h	21;"	d
-L3_IMPULSE_MODE	TraineeProjectSource/LaserPointerInterfaceClass.h	26;"	d
-L3_IMPULSE_VALUE	TraineeProjectSource/LaserPointerInterfaceClass.h	22;"	d
-L3_POWER_OFF	TraineeProjectSource/LaserPointerInterfaceClass.h	24;"	d
-L3_POWER_ON	TraineeProjectSource/LaserPointerInterfaceClass.h	23;"	d
+L1_CONTINUOUS_MODE	TraineeProjectSource/LaserPointerInterface.h	13;"	d
+L1_CURRENT	TraineeProjectSource/LaserPointerInterface.h	9;"	d
+L1_IMPULSE_MODE	TraineeProjectSource/LaserPointerInterface.h	14;"	d
+L1_IMPULSE_VALUE	TraineeProjectSource/LaserPointerInterface.h	10;"	d
+L1_POWER_OFF	TraineeProjectSource/LaserPointerInterface.h	12;"	d
+L1_POWER_ON	TraineeProjectSource/LaserPointerInterface.h	11;"	d
+L2_CONTINUOUS_MODE	TraineeProjectSource/LaserPointerInterface.h	19;"	d
+L2_CURRENT	TraineeProjectSource/LaserPointerInterface.h	15;"	d
+L2_IMPULSE_MODE	TraineeProjectSource/LaserPointerInterface.h	20;"	d
+L2_IMPULSE_VALUE	TraineeProjectSource/LaserPointerInterface.h	16;"	d
+L2_POWER_OFF	TraineeProjectSource/LaserPointerInterface.h	18;"	d
+L2_POWER_ON	TraineeProjectSource/LaserPointerInterface.h	17;"	d
+L3_CONTINUOUS_MODE	TraineeProjectSource/LaserPointerInterface.h	25;"	d
+L3_CURRENT	TraineeProjectSource/LaserPointerInterface.h	21;"	d
+L3_IMPULSE_MODE	TraineeProjectSource/LaserPointerInterface.h	26;"	d
+L3_IMPULSE_VALUE	TraineeProjectSource/LaserPointerInterface.h	22;"	d
+L3_POWER_OFF	TraineeProjectSource/LaserPointerInterface.h	24;"	d
+L3_POWER_ON	TraineeProjectSource/LaserPointerInterface.h	23;"	d
 LABELIMAGE_H	TraineeProjectSource/gui_sources/labelimage.h	2;"	d
 LASERBLOCKWINDOW_H	TraineeProjectSource/gui_sources/laserblockwindow.h	2;"	d
-LASERS_OFF	TraineeProjectSource/LaserPointerInterfaceClass.h	8;"	d
+LASERS_OFF	TraineeProjectSource/LaserPointerInterface.h	8;"	d
 LASER_PARAM_STRUCT	TraineeProjectSource/LaserPilotInterfaceClass.h	/^struct LASER_PARAM_STRUCT$/;"	s
 LINKLINE_H	TraineeProjectSource/gui_sources/link_line.h	52;"	d
-LPilot1	TraineeProjectSource/LaserControlClass.h	/^	CommonLaserInterfaceClass* LPilot1;$/;"	m	class:LaserControlClass
-LPilot2	TraineeProjectSource/LaserControlClass.h	/^	CommonLaserInterfaceClass* LPilot2;$/;"	m	class:LaserControlClass
-LPilot3	TraineeProjectSource/LaserControlClass.h	/^	CommonLaserInterfaceClass* LPilot3;$/;"	m	class:LaserControlClass
+LPilot1	TraineeProjectSource/LaserControlClass.h	/^	LaserCommonInterface* LPilot1;$/;"	m	class:LaserControlClass
+LPilot2	TraineeProjectSource/LaserControlClass.h	/^	LaserCommonInterface* LPilot2;$/;"	m	class:LaserControlClass
+LPilot3	TraineeProjectSource/LaserControlClass.h	/^	LaserCommonInterface* LPilot3;$/;"	m	class:LaserControlClass
 LabelCurrentXPos1	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_enginecontrolwindow.h	/^    QLabel *LabelCurrentXPos1;$/;"	m	class:Ui_EngineControlWindow
 LabelCurrentXPos1	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_enginecontrolwindow.h	/^    QLabel *LabelCurrentXPos1;$/;"	m	class:Ui_EngineControlWindow
 LabelCurrentYPos1	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_enginecontrolwindow.h	/^    QLabel *LabelCurrentYPos1;$/;"	m	class:Ui_EngineControlWindow
@@ -1967,27 +1967,27 @@ LaserBlockWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/include/u
 LaserBlockWindow	TraineeProjectSource/gui_sources/laserblockwindow.cpp	/^LaserBlockWindow::LaserBlockWindow(QWidget *parent)$/;"	f	class:LaserBlockWindow
 LaserBlockWindow	TraineeProjectSource/gui_sources/laserblockwindow.h	/^class LaserBlockWindow : public AdjustableWidget$/;"	c
 LaserBlockWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_laserblockwindow.h	/^    class LaserBlockWindow: public Ui_LaserBlockWindow {};$/;"	c	namespace:Ui
-LaserCommandStruct	TraineeProjectSource/LaserPointerInterfaceClass.h	/^    LaserCommandStruct()$/;"	f	class:LaserCommandStruct
-LaserCommandStruct	TraineeProjectSource/LaserPointerInterfaceClass.h	/^class LaserCommandStruct$/;"	c
+LaserCommandStruct	TraineeProjectSource/LaserPointerInterface.h	/^    LaserCommandStruct()$/;"	f	class:LaserCommandStruct
+LaserCommandStruct	TraineeProjectSource/LaserPointerInterface.h	/^class LaserCommandStruct$/;"	c
 LaserControl	TraineeProjectSource/maincontrollerqclass.h	/^	std::shared_ptr<LaserControlClass>    LaserControl;$/;"	m	class:MainControllerQClass
 LaserControlClass	TraineeProjectSource/LaserControlClass.cpp	/^LaserControlClass::LaserControlClass()$/;"	f	class:LaserControlClass
 LaserControlClass	TraineeProjectSource/LaserControlClass.h	/^class LaserControlClass: public QObject$/;"	c
 LaserControlDisplay	TraineeProjectSource/gui_sources/mainwindowqclass.h	/^	LaserBlockWindow* LaserControlDisplay;$/;"	m	class:MainWindowQClass
-LaserHandle	TraineeProjectSource/LaserPowerInterfaceClass.h	/^	unsigned long LaserHandle;$/;"	m	class:LaserPowerInterfaceClass
+LaserHandle	TraineeProjectSource/LaserPilotInterface.h	/^	unsigned long LaserHandle;$/;"	m	class:LaserPilotInterface
 LaserIterateCounter	TraineeProjectSource/LaserControlClass.h	/^	quint8 LaserIterateCounter = 0;$/;"	m	class:LaserControlClass
 LaserPilotInterfaceClass	TraineeProjectSource/LaserPilotInterfaceClass.cpp	/^LaserPilotInterfaceClass::LaserPilotInterfaceClass(QString Address, quint16 Port)$/;"	f	class:LaserPilotInterfaceClass
-LaserPilotInterfaceClass	TraineeProjectSource/LaserPilotInterfaceClass.h	/^class LaserPilotInterfaceClass : public CommonLaserInterfaceClass$/;"	c
-LaserPointer	TraineeProjectSource/LaserControlClass.h	/^	CommonLaserInterfaceClass* LaserPointer;$/;"	m	class:LaserControlClass
-LaserPointerInterfaceClass	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^LaserPointerInterfaceClass::LaserPointerInterfaceClass()$/;"	f	class:LaserPointerInterfaceClass
-LaserPointerInterfaceClass	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^LaserPointerInterfaceClass::LaserPointerInterfaceClass(LaserPointerInterfaceClass& CopyInterface)$/;"	f	class:LaserPointerInterfaceClass
-LaserPointerInterfaceClass	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^LaserPointerInterfaceClass::LaserPointerInterfaceClass(QString PortName)$/;"	f	class:LaserPointerInterfaceClass
-LaserPointerInterfaceClass	TraineeProjectSource/LaserPointerInterfaceClass.h	/^class LaserPointerInterfaceClass : public CommonLaserInterfaceClass$/;"	c
-LaserPowerInterfaceClass	TraineeProjectSource/LaserPowerInterfaceClass.cpp	/^LaserPowerInterfaceClass::LaserPowerInterfaceClass()$/;"	f	class:LaserPowerInterfaceClass
-LaserPowerInterfaceClass	TraineeProjectSource/LaserPowerInterfaceClass.h	/^class LaserPowerInterfaceClass : public CommonLaserInterfaceClass$/;"	c
-LaserState	TraineeProjectSource/CommonLaserInterfaceClass.h	/^	stateblocksenum LaserState = BlockDisable;$/;"	m	class:CommonLaserInterfaceClass
+LaserPilotInterfaceClass	TraineeProjectSource/LaserPilotInterfaceClass.h	/^class LaserPilotInterfaceClass : public LaserCommonInterface$/;"	c
+LaserPointer	TraineeProjectSource/LaserControlClass.h	/^	LaserCommonInterface* LaserPointer;$/;"	m	class:LaserControlClass
+LaserPointerInterface	TraineeProjectSource/LaserPointerInterface.cpp	/^LaserPointerInterface::LaserPointerInterface()$/;"	f	class:LaserPointerInterface
+LaserPointerInterface	TraineeProjectSource/LaserPointerInterface.cpp	/^LaserPointerInterface::LaserPointerInterface(LaserPointerInterface& CopyInterface)$/;"	f	class:LaserPointerInterface
+LaserPointerInterface	TraineeProjectSource/LaserPointerInterface.cpp	/^LaserPointerInterface::LaserPointerInterface(QString PortName)$/;"	f	class:LaserPointerInterface
+LaserPointerInterface	TraineeProjectSource/LaserPointerInterface.h	/^class LaserPointerInterface : public LaserCommonInterface$/;"	c
+LaserPilotInterface	TraineeProjectSource/LaserPilotInterface.cpp	/^LaserPilotInterface::LaserPilotInterface()$/;"	f	class:LaserPilotInterface
+LaserPilotInterface	TraineeProjectSource/LaserPilotInterface.h	/^class LaserPilotInterface : public LaserCommonInterface$/;"	c
+LaserState	TraineeProjectSource/LaserCommonInterface.h	/^	stateblocksenum LaserState = BlockDisable;$/;"	m	class:LaserCommonInterface
 LaserWaterPres	TraineeProjectSource/LaserPilotInterfaceClass.h	/^	quint16 LaserWaterPres;$/;"	m	struct:ChillerData
 LaserWaterTemp	TraineeProjectSource/LaserPilotInterfaceClass.h	/^	quint16 LaserWaterTemp;$/;"	m	struct:ChillerData
-Lasers	TraineeProjectSource/LaserControlClass.h	/^	QVector<CommonLaserInterfaceClass*> Lasers;$/;"	m	class:LaserControlClass
+Lasers	TraineeProjectSource/LaserControlClass.h	/^	QVector<LaserCommonInterface*> Lasers;$/;"	m	class:LaserControlClass
 LasersBlock	TraineeProjectSource/typeblocksenum.h	/^	ImageProcBlock, ChillControlBlock, AirControlBlock, CamerasControlBlock, AimingBlock, RecieveErrorBlock, LasersBlock, EngineControlBlock, RemoteControlBlock, KLPInterfaeBlock, MainContoller, CalmanFilterBlock, PIDBlock,CoordData$/;"	e	enum:typeblocksenum
 LastAccelerationVector	TraineeProjectSource/AimingClass.h	/^	QPair<double, double> LastAccelerationVector;$/;"	m	class:AimingClass
 LastAimingCoord	TraineeProjectSource/DataImageProcStructure.h	/^	QPair<double, double> LastAimingCoord;$/;"	m	class:DataImageProcStructure
@@ -2062,10 +2062,10 @@ MeasureNoizeCov	TraineeProjectSource/KalmanFilterClass.h	/^	Eigen::Matrix< float
 MeasureVec	TraineeProjectSource/KalmanFilterClass.h	/^	Eigen::Matrix< float, 2, 1 > MeasureVec; \/\/Measures$/;"	m	class:KalmanFilterClass
 MeasureVecError	TraineeProjectSource/KalmanFilterClass.h	/^	Eigen::Matrix< float, 2, 1 > MeasureVecError; \/\/Measures$/;"	m	class:KalmanFilterClass
 MedianFilterFunction	TraineeProjectSource/ImageProcessingClass.h	/^	std::function<void(const uint16_t * Image, size_t width, size_t height, uint16_t * FilteredImage, int FilterWidth)> MedianFilterFunction;$/;"	m	class:Processor
-MessageCode	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 MessageCode = 0x47;$/;"	m	class:LaserCommandStruct
+MessageCode	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 MessageCode = 0x47;$/;"	m	class:LaserCommandStruct
 MessageID	TraineeProjectSource/EngineInterfaceClass.h	/^    quint8 MessageID;$/;"	m	struct:EngineHeader
 MessageId	TraineeProjectSource/FC_STRUCTS.h	/^	quint32 MessageId;$/;"	m	struct:AsmHeader
-MessageLength	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 MessageLength = 0x4;$/;"	m	class:LaserCommandStruct
+MessageLength	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 MessageLength = 0x4;$/;"	m	class:LaserCommandStruct
 MessageStruct	TraineeProjectSource/RemoteControlClass.h	/^class MessageStruct$/;"	c
 Message_ID	TraineeProjectSource/CameraInterfaceClass.h	/^	quint32 Message_ID;$/;"	m	class:HEADER_ASM_STRUCT
 MinPosition	TraineeProjectSource/DataEngineStructure.h	/^	QPair<double, double> MinPosition;$/;"	m	struct:EngineData
@@ -2106,7 +2106,7 @@ NumberChannel	TraineeProjectSource/AimingClass.h	/^	int NumberChannel;$/;"	m	cla
 NumberChannel	TraineeProjectSource/ImageProcessingClass.h	/^	int NumberChannel = 1;$/;"	m	class:Processor
 NumberChannel	TraineeProjectSource/gui_sources/aimingblockwindow.h	/^	int NumberChannel = 1;$/;"	m	class:AimingBlockWindow
 NumberChannel	TraineeProjectSource/gui_sources/enginecontrolwindow.h	/^	int NumberChannel = 1;$/;"	m	class:EngineControlWindow
-NumberLaser	TraineeProjectSource/CommonLaserInterfaceClass.h	/^	int NumberLaser = 1;$/;"	m	class:CommonLaserInterfaceClass
+NumberLaser	TraineeProjectSource/LaserCommonInterface.h	/^	int NumberLaser = 1;$/;"	m	class:LaserCommonInterface
 NumberWidget	TraineeProjectSource/gui_sources/graphicwidgetnode.h	/^     int NumberWidget = 0;$/;"	m	class:GraphicWidgetNode
 OMB_state	TraineeProjectSource/RemoteControlClass.h	/^	 uint8_t OMB_state;$/;"	m	struct:DEVICE_STATE
 OMB_temp	TraineeProjectSource/RemoteControlClass.h	/^	 uint8_t OMB_temp;$/;"	m	struct:DEVICE_STATE
@@ -2116,15 +2116,15 @@ ONNXSession	TraineeProjectSource/KalmanFilterClass.h	/^class ONNXSession$/;"	c
 ON_OFF	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    quint16 ON_OFF; \/\/0 - off 1 - on$/;"	m	class:GUID_COMMAND_STRUCT
 OUTPUT_AMPLITUDE	TraineeProjectSource/KalmanFilterClass.h	/^	int OUTPUT_AMPLITUDE = 16;$/;"	m	class:SignalNormalization
 Offset	TraineeProjectSource/ImageProcessingClass.h	/^	int Offset = 0;$/;"	m	class:Processor
-OnOff	TraineeProjectSource/CommonLaserInterfaceClass.h	/^	bool OnOff = false;$/;"	m	class:CommonLaserInterfaceClass
+OnOff	TraineeProjectSource/LaserCommonInterface.h	/^	bool OnOff = false;$/;"	m	class:LaserCommonInterface
 OnOff	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    quint16 OnOff;$/;"	m	class:ANALOG_CTRL_COMMAND
 OnOff	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    quint16 OnOff;$/;"	m	class:EMISSION_TURN_COMMAND
 OnOff	TraineeProjectSource/RemoteControlClass.h	/^  uint8_t OnOff;$/;"	m	struct:COMMAND_LASER_CONTROL
 OnOff	TraineeProjectSource/RemoteControlClass.h	/^  uint8_t OnOff;$/;"	m	struct:COMMAND_ON_OFF
 OnOff	TraineeProjectSource/RemoteControlClass.h	/^  uint8_t OnOff;$/;"	m	struct:COMMAND_UMI_CONTROL
-OnOff1064	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	bool OnOff1064 = false;$/;"	m	class:LaserPointerInterfaceClass
-OnOff675	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	bool OnOff675 = false;$/;"	m	class:LaserPointerInterfaceClass
-OnOff975	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	bool OnOff975 = false;$/;"	m	class:LaserPointerInterfaceClass
+OnOff1064	TraineeProjectSource/LaserPointerInterface.h	/^	bool OnOff1064 = false;$/;"	m	class:LaserPointerInterface
+OnOff675	TraineeProjectSource/LaserPointerInterface.h	/^	bool OnOff675 = false;$/;"	m	class:LaserPointerInterface
+OnOff975	TraineeProjectSource/LaserPointerInterface.h	/^	bool OnOff975 = false;$/;"	m	class:LaserPointerInterface
 OpenDevice	TraineeProjectSource/mppd_wrap.cpp	/^void mppd_wrap::OpenDevice(char* fileName) {$/;"	f	class:mppd_wrap
 OppDetectorData	TraineeProjectSource/CameraInterfaceClass.h	/^	quint64 OppDetectorData;$/;"	m	class:BITMAP_INFO_HEADER
 OpticCenter_X	TraineeProjectSource/CameraInterfaceClass.h	/^	quint32 OpticCenter_X;$/;"	m	class:CAMERA_PARAM_STRUCT
@@ -2374,8 +2374,8 @@ PTN	TraineeProjectSource/CameraInterfaceClass.h	/^	quint8 PTN;$/;"	m	class:BITMA
 PainterMode	TraineeProjectSource/qcustomplot.h	/^  enum PainterMode { pmDefault       = 0x00   \/\/\/< <tt>0x00<\/tt> Default mode for painting on screen devices$/;"	g	class:QCPPainter
 Param	TraineeProjectSource/KLPInterfaceClass.h	/^    quint8 Param = 0;$/;"	m	class:StatusRequestCommutator
 ParamCompensation	TraineeProjectSource/CameraInterfaceClass.h	/^	quint8 ParamCompensation;$/;"	m	class:Status_CameraStruct
-ParamHightByte	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 ParamHightByte = 0x0;$/;"	m	class:LaserCommandStruct
-ParamLowByte	TraineeProjectSource/LaserPointerInterfaceClass.h	/^        quint8 ParamLowByte = 0x0;$/;"	m	class:LaserCommandStruct
+ParamHightByte	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 ParamHightByte = 0x0;$/;"	m	class:LaserCommandStruct
+ParamLowByte	TraineeProjectSource/LaserPointerInterface.h	/^        quint8 ParamLowByte = 0x0;$/;"	m	class:LaserCommandStruct
 PassTwoCoordClass	TraineeProjectSource/PassTwoCoordClass.h	/^class PassTwoCoordClass$/;"	c
 Passwd	TraineeProjectSource/LaserPilotInterfaceClass.h	/^    quint8  Passwd[10] = {0};$/;"	m	struct:ACCESS_LEVEL_COMMAND
 PerformAvailableData	TraineeProjectSource/ImageProcessingClass.cpp	/^void StatisticGroup::PerformAvailableData()$/;"	f	class:StatisticGroup
@@ -2411,9 +2411,9 @@ Pos_Y_Angle	TraineeProjectSource/EngineInterfaceClass.h	/^	float Pos_Y_Angle = 0
 Pos_Y_DAC	TraineeProjectSource/EngineInterfaceClass.h	/^	quint16 Pos_Y_DAC = 0;$/;"	m	class:ControlEngineCommand
 Position	TraineeProjectSource/ImageProcessingClass.h	/^	QPair<int, int> Position;$/;"	m	struct:ROI_Coord
 PositionType	TraineeProjectSource/qcustomplot.h	/^  enum PositionType { ptAbsolute        \/\/\/< Static positioning in pixels, starting from the top left corner of the viewport\/widget.$/;"	g	class:QCPItemPosition
-Power1064	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	double Power1064 = 0;$/;"	m	class:LaserPointerInterfaceClass
-Power675	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	double Power675 = 0;$/;"	m	class:LaserPointerInterfaceClass
-Power975	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	double Power975 = 0;$/;"	m	class:LaserPointerInterfaceClass
+Power1064	TraineeProjectSource/LaserPointerInterface.h	/^	double Power1064 = 0;$/;"	m	class:LaserPointerInterface
+Power675	TraineeProjectSource/LaserPointerInterface.h	/^	double Power675 = 0;$/;"	m	class:LaserPointerInterface
+Power975	TraineeProjectSource/LaserPointerInterface.h	/^	double Power975 = 0;$/;"	m	class:LaserPointerInterface
 PowerOnOff	TraineeProjectSource/RemoteControlClass.h	/^  uint8_t PowerOnOff;$/;"	m	struct:COMMAND_LASER_CONTROL
 PowerSupplyChannels	TraineeProjectSource/KLPInterfaceClass.h	/^    quint16 PowerSupplyChannels;$/;"	m	class:StatusCommutatorStruct
 PredictStateError	TraineeProjectSource/KalmanFilterClass.h	/^	Eigen::Matrix< float, 2, 1 > PredictStateError;$/;"	m	class:KalmanFilterClass
@@ -2687,8 +2687,8 @@ QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	40;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	28;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	43;"	d	file:
-QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	28;"	d	file:
-QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	45;"	d	file:
+QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	28;"	d	file:
+QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	45;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	28;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	42;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	28;"	d	file:
@@ -2707,8 +2707,8 @@ QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	57;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	28;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	49;"	d	file:
-QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	28;"	d	file:
-QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	53;"	d	file:
+QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	28;"	d	file:
+QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	53;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	28;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	47;"	d	file:
 QT_MOC_LITERAL	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	28;"	d	file:
@@ -2873,8 +2873,8 @@ QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEH
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	40;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	28;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	43;"	d	file:
-QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	28;"	d	file:
-QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	45;"	d	file:
+QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	28;"	d	file:
+QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	45;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	28;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	42;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	28;"	d	file:
@@ -2893,8 +2893,8 @@ QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEG
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	57;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	28;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	49;"	d	file:
-QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	28;"	d	file:
-QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	53;"	d	file:
+QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	28;"	d	file:
+QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	53;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	28;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	47;"	d	file:
 QT_MOC_LITERAL	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	28;"	d	file:
@@ -3613,7 +3613,7 @@ SelectablePart	TraineeProjectSource/qcustomplot.h	/^  enum SelectablePart { spNo
 SelectionRectMode	TraineeProjectSource/qcustomplot.h	/^enum SelectionRectMode { srmNone    \/\/\/< The selection rect is disabled, and all mouse events are forwarded to the underlying objects, e.g. for axis range dragging$/;"	g	namespace:QCP
 SelectionType	TraineeProjectSource/qcustomplot.h	/^enum SelectionType { stNone                \/\/\/< The plottable is not selectable$/;"	g	namespace:QCP
 SendCommand	TraineeProjectSource/CameraInterfaceClass.cpp	/^void CameraInterfaceClass::SendCommand(Control_Camera_Command SettingsCamera)$/;"	f	class:CameraInterfaceClass
-SendCommand	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::SendCommand(quint8 code, int value)$/;"	f	class:LaserPointerInterfaceClass
+SendCommand	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::SendCommand(quint8 code, int value)$/;"	f	class:LaserPointerInterface
 SendCoordToPerform	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^void Derivative::SendCoordToPerform(QPair<double,double> _t1)$/;"	f	class:Derivative
 SendCoordToPerform	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^void KalmanFilterClass::SendCoordToPerform(QPair<double,double> _t1)$/;"	f	class:KalmanFilterClass
 SendCoordToPerform	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^void Derivative::SendCoordToPerform(QPair<double,double> _t1)$/;"	f	class:Derivative
@@ -3683,7 +3683,7 @@ SetLink	TraineeProjectSource/PassTwoCoordClass.cpp	/^void PassTwoCoordClass::Set
 SetMeasureErrorVariance	TraineeProjectSource/CalmanFilterClass.cpp	/^void CalmanFilterClass::SetMeasureErrorVariance(float X_E, float Y_E)$/;"	f	class:CalmanFilterClass
 SetMeasureErrorVariance	TraineeProjectSource/CalmanFilterClass.cpp	/^void CalmanFilterCoordClass::SetMeasureErrorVariance(float X_E, float Y_E)$/;"	f	class:CalmanFilterCoordClass
 SetMeasureErrorVariance	TraineeProjectSource/KalmanFilterClass.cpp	/^void KalmanFilterClass::SetMeasureErrorVariance(float variance)$/;"	f	class:KalmanFilterClass
-SetMessage	TraineeProjectSource/LaserPointerInterfaceClass.h	/^    void SetMessage(quint8 code, int value)$/;"	f	class:LaserCommandStruct
+SetMessage	TraineeProjectSource/LaserPointerInterface.h	/^    void SetMessage(quint8 code, int value)$/;"	f	class:LaserCommandStruct
 SetModelErrorVariance	TraineeProjectSource/CalmanFilterClass.cpp	/^void CalmanFilterClass::SetModelErrorVariance(float X_V, float Y_V, float Vx_V, float Vy_V)$/;"	f	class:CalmanFilterClass
 SetModelErrorVariance	TraineeProjectSource/CalmanFilterClass.cpp	/^void CalmanFilterCoordClass::SetModelErrorVariance(float X_V, float Y_V)$/;"	f	class:CalmanFilterCoordClass
 SetNumberChannel	TraineeProjectSource/gui_sources/enginecontrolwindow.cpp	/^void EngineControlWindow::SetNumberChannel(int NumberChannel)$/;"	f	class:EngineControlWindow
@@ -3692,9 +3692,9 @@ SetPIDParam	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQ
 SetPort	TraineeProjectSource/RemoteControlClass.cpp	/^void TCPServerEngine::SetPort(int port)$/;"	f	class:TCPServerEngine
 SetPosAngle	TraineeProjectSource/EngineInterfaceClass.cpp	/^void ControlEngineCommand::SetPosAngle(float X_Rad, float Y_Rad)$/;"	f	class:ControlEngineCommand
 SetPower	TraineeProjectSource/LaserPilotInterfaceClass.h	/^	quint32  SetPower;$/;"	m	struct:LASER_PARAM_STRUCT
-SetPower1065	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::SetPower1065()$/;"	f	class:LaserPointerInterfaceClass
-SetPower675	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::SetPower675()$/;"	f	class:LaserPointerInterfaceClass
-SetPower975	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::SetPower975()$/;"	f	class:LaserPointerInterfaceClass
+SetPower1065	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::SetPower1065()$/;"	f	class:LaserPointerInterface
+SetPower675	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::SetPower675()$/;"	f	class:LaserPointerInterface
+SetPower975	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::SetPower975()$/;"	f	class:LaserPointerInterface
 SetPowerSupplyOnCommutator	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::SetPowerSupplyOnCommutator(bool OnOff)$/;"	f	class:MainControllerQClass
 SetROI	TraineeProjectSource/CameraInterfaceClass.cpp	/^bool CameraInterfaceClass::SetROI(ROI_Channels_Command ROI)$/;"	f	class:CameraInterfaceClass
 SetReadControl	TraineeProjectSource/CameraInterfaceClass.cpp	/^void Control_Camera_Command::SetReadControl(quint32 Command)$/;"	f	class:Control_Camera_Command
@@ -3771,8 +3771,8 @@ SignalSwitchAllLasers	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIE
 SignalSwitchAllLasers	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^void MainControllerQClass::SignalSwitchAllLasers(bool _t1)$/;"	f	class:MainControllerQClass
 SignalTTLIn	TraineeProjectSource/KLPInterfaceClass.h	/^    quint8 SignalTTLIn;$/;"	m	class:StatusCommutatorStruct
 SignalTTLOut	TraineeProjectSource/KLPInterfaceClass.h	/^    quint8 SignalTTLOut;$/;"	m	class:StatusCommutatorStruct
-SignalToLaser	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void CommonLaserInterfaceClass::SignalToLaser(bool _t1)$/;"	f	class:CommonLaserInterfaceClass
-SignalToLaser	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void CommonLaserInterfaceClass::SignalToLaser(bool _t1)$/;"	f	class:CommonLaserInterfaceClass
+SignalToLaser	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^void LaserCommonInterface::SignalToLaser(bool _t1)$/;"	f	class:LaserCommonInterface
+SignalToLaser	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^void LaserCommonInterface::SignalToLaser(bool _t1)$/;"	f	class:LaserCommonInterface
 SignalTurnLaser1	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^void LaserControlClass::SignalTurnLaser1(bool _t1)$/;"	f	class:LaserControlClass
 SignalTurnLaser1	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^void LaserControlClass::SignalTurnLaser1(bool _t1)$/;"	f	class:LaserControlClass
 SignalTurnLaser2	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^void LaserControlClass::SignalTurnLaser2(bool _t1)$/;"	f	class:LaserControlClass
@@ -3815,7 +3815,7 @@ SlotMoveOnStep	TraineeProjectSource/EngineControlClass.cpp	/^void EngineControlC
 SlotMoveWithAcceleration	TraineeProjectSource/EngineControlClass.cpp	/^void EngineControlClass::SlotMoveWithAcceleration(QPair<double, double> AccelVector)$/;"	f	class:EngineControlClass
 SlotMoveWithVelocity	TraineeProjectSource/EngineControlClass.cpp	/^void EngineControlClass::SlotMoveWithVelocity(QPair<double, double> VelVector)$/;"	f	class:EngineControlClass
 SlotNewConnection	TraineeProjectSource/RemoteControlClass.cpp	/^void TCPServerEngine::SlotNewConnection()$/;"	f	class:TCPServerEngine
-SlotReadData	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::SlotReadData()$/;"	f	class:LaserPointerInterfaceClass
+SlotReadData	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::SlotReadData()$/;"	f	class:LaserPointerInterface
 SlotReadData	TraineeProjectSource/RemoteControlClass.cpp	/^void TCPServerEngine::SlotReadData()$/;"	f	class:TCPServerEngine
 SlotReadDataFromHost	TraineeProjectSource/tcpclientengine.cpp	/^void TCPClientEngine::SlotReadDataFromHost()$/;"	f	class:TCPClientEngine
 SlotReceiveErrorRemoteSensor	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::SlotReceiveErrorRemoteSensor()$/;"	f	class:MainControllerQClass
@@ -3904,8 +3904,8 @@ StateBlock	TraineeProjectSource/KLPInterfaceClass.cpp	/^stateblocksenum KLPInter
 StateBlock	TraineeProjectSource/KLPInterfaceClass.h	/^static stateblocksenum StateBlock;$/;"	m	class:KLPInterfaceClass
 StateBlock	TraineeProjectSource/LaserControlClass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:LaserControlClass
 StateBlock	TraineeProjectSource/LaserPilotInterfaceClass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:LaserPilotInterfaceClass
-StateBlock	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	stateblocksenum StateBlock;$/;"	m	class:LaserPointerInterfaceClass
-StateBlock	TraineeProjectSource/LaserPowerInterfaceClass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:LaserPowerInterfaceClass
+StateBlock	TraineeProjectSource/LaserPointerInterface.h	/^	stateblocksenum StateBlock;$/;"	m	class:LaserPointerInterface
+StateBlock	TraineeProjectSource/LaserPilotInterface.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:LaserPilotInterface
 StateBlock	TraineeProjectSource/PIDClass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:PIDClass
 StateBlock	TraineeProjectSource/RemoteControlClass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:RemoteAimingClass
 StateBlock	TraineeProjectSource/maincontrollerqclass.h	/^	stateblocksenum StateBlock = stateblocksenum::BlockDisable;$/;"	m	class:MainControllerQClass
@@ -4034,15 +4034,15 @@ TransFocusPos	TraineeProjectSource/CameraInterfaceClass.h	/^	quint16 TransFocusP
 TransformCoord	TraineeProjectSource/TransformCoordClass.h	/^	std::function<void(QPair<double,double>)> TransformCoord;$/;"	m	class:TransformCoordClass
 TransformCoordClass	TraineeProjectSource/TransformCoordClass.h	/^class  TransformCoordClass : public PassTwoCoordClass$/;"	c
 TransformedCoord	TraineeProjectSource/TransformCoordClass.h	/^	QPair<double, double> TransformedCoord;$/;"	m	class:TransformCoordClass
-TurnLaserBeamOnOff	TraineeProjectSource/CommonLaserInterfaceClass.cpp	/^void CommonLaserInterfaceClass::TurnLaserBeamOnOff(bool OnOff)$/;"	f	class:CommonLaserInterfaceClass
+TurnLaserBeamOnOff	TraineeProjectSource/LaserCommonInterface.cpp	/^void LaserCommonInterface::TurnLaserBeamOnOff(bool OnOff)$/;"	f	class:LaserCommonInterface
 TurnLaserBeamOnOff	TraineeProjectSource/LaserPilotInterfaceClass.cpp	/^void LaserPilotInterfaceClass::TurnLaserBeamOnOff(bool OnOff)$/;"	f	class:LaserPilotInterfaceClass
-TurnLaserBeamOnOff	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::TurnLaserBeamOnOff(bool OnOff)$/;"	f	class:LaserPointerInterfaceClass
-TurnLaserBeamOnOff	TraineeProjectSource/LaserPowerInterfaceClass.cpp	/^void LaserPowerInterfaceClass::TurnLaserBeamOnOff(bool OnOff)$/;"	f	class:LaserPowerInterfaceClass
+TurnLaserBeamOnOff	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::TurnLaserBeamOnOff(bool OnOff)$/;"	f	class:LaserPointerInterface
+TurnLaserBeamOnOff	TraineeProjectSource/LaserPilotInterface.cpp	/^void LaserPilotInterface::TurnLaserBeamOnOff(bool OnOff)$/;"	f	class:LaserPilotInterface
 TurnOffAxisEngine	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::TurnOffAxisEngine(bool state,int axis, int channel)$/;"	f	class:MainControllerQClass
 TurnOnOfLaserFire	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::TurnOnOfLaserFire(int Number, bool OnOff)$/;"	f	class:MainControllerQClass
-TurnOnOff1064nm	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::TurnOnOff1064nm()$/;"	f	class:LaserPointerInterfaceClass
-TurnOnOff675nm	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::TurnOnOff675nm()$/;"	f	class:LaserPointerInterfaceClass
-TurnOnOff975nm	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::TurnOnOff975nm()$/;"	f	class:LaserPointerInterfaceClass
+TurnOnOff1064nm	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::TurnOnOff1064nm()$/;"	f	class:LaserPointerInterface
+TurnOnOff675nm	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::TurnOnOff675nm()$/;"	f	class:LaserPointerInterface
+TurnOnOff975nm	TraineeProjectSource/LaserPointerInterface.cpp	/^void LaserPointerInterface::TurnOnOff975nm()$/;"	f	class:LaserPointerInterface
 TurnOnOffAir	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::TurnOnOffAir(bool OnOff)$/;"	f	class:MainControllerQClass
 TurnOnOffAllLasers	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::TurnOnOffAllLasers(bool OnOff)$/;"	f	class:MainControllerQClass
 TurnOnOffChiller	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::TurnOnOffChiller(bool OnOff)$/;"	f	class:MainControllerQClass
@@ -4050,8 +4050,8 @@ TurnOnOffKalmanFilter	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainC
 TurnOnOffLaserPilot	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::TurnOnOffLaserPilot(int Number, bool OnOff)$/;"	f	class:MainControllerQClass
 TurnOnOffLaserPointer	TraineeProjectSource/maincontrollerqclass.cpp	/^void MainControllerQClass::TurnOnOffLaserPointer(bool OnOff)$/;"	f	class:MainControllerQClass
 TurnOnOffSupply	TraineeProjectSource/KLPInterfaceClass.h	/^	void TurnOnOffSupply(bool OnOff)$/;"	f	class:Regim_CommutatorCommand
-TurnPowerLaserBeamOff	TraineeProjectSource/LaserPowerInterfaceClass.cpp	/^void LaserPowerInterfaceClass::TurnPowerLaserBeamOff()$/;"	f	class:LaserPowerInterfaceClass
-TurnPowerLaserBeamOn	TraineeProjectSource/LaserPowerInterfaceClass.cpp	/^void LaserPowerInterfaceClass::TurnPowerLaserBeamOn()$/;"	f	class:LaserPowerInterfaceClass
+TurnPowerLaserBeamOff	TraineeProjectSource/LaserPilotInterface.cpp	/^void LaserPilotInterface::TurnPowerLaserBeamOff()$/;"	f	class:LaserPilotInterface
+TurnPowerLaserBeamOn	TraineeProjectSource/LaserPilotInterface.cpp	/^void LaserPilotInterface::TurnPowerLaserBeamOn()$/;"	f	class:LaserPilotInterface
 TwoPi	TraineeProjectSource/gui_sources/link_line.cpp	/^static double TwoPi = 2.0 * Pi;$/;"	v	file:
 Type	TraineeProjectSource/gui_sources/link_line.h	/^    enum { Type = UserType + 2 };$/;"	e	enum:LinkLine::__anon3
 Type	TraineeProjectSource/gui_sources/node.h	/^    enum { Type = UserType + 1 };$/;"	e	enum:Node::__anon4
@@ -4060,14 +4060,14 @@ TypeBlock	TraineeProjectSource/AimingClass.h	/^	typeblocksenum TypeBlock = typeb
 TypeBlock	TraineeProjectSource/AirSystemClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::AirControlBlock;$/;"	m	class:AirSystemClass
 TypeBlock	TraineeProjectSource/CameraInterfaceClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::CamerasControlBlock;$/;"	m	class:CameraInterfaceClass
 TypeBlock	TraineeProjectSource/ChillSystemClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::ChillControlBlock;$/;"	m	class:ChillSystemClass
-TypeBlock	TraineeProjectSource/CommonLaserInterfaceClass.h	/^	typeblocksenum TypeBlock = LasersBlock;$/;"	m	class:CommonLaserInterfaceClass
+TypeBlock	TraineeProjectSource/LaserCommonInterface.h	/^	typeblocksenum TypeBlock = LasersBlock;$/;"	m	class:LaserCommonInterface
 TypeBlock	TraineeProjectSource/CommonDeviceStructure.h	/^	typeblocksenum TypeBlock;$/;"	m	class:CommonDeviceStructure
 TypeBlock	TraineeProjectSource/EngineControlClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::EngineControlBlock;$/;"	m	class:EngineControlClass
 TypeBlock	TraineeProjectSource/ImageProcessingClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::ImageProcBlock;$/;"	m	class:ImageProcessingClass
 TypeBlock	TraineeProjectSource/ImageProcessingClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::ImageProcBlock;$/;"	m	class:Processor
 TypeBlock	TraineeProjectSource/KLPInterfaceClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::KLPInterfaeBlock;$/;"	m	class:KLPInterfaceClass
 TypeBlock	TraineeProjectSource/LaserControlClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::LasersBlock;$/;"	m	class:LaserControlClass
-TypeBlock	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	typeblocksenum TypeBlock;$/;"	m	class:LaserPointerInterfaceClass
+TypeBlock	TraineeProjectSource/LaserPointerInterface.h	/^	typeblocksenum TypeBlock;$/;"	m	class:LaserPointerInterface
 TypeBlock	TraineeProjectSource/RemoteControlClass.h	/^	typeblocksenum TypeBlock = typeblocksenum::RecieveErrorBlock;$/;"	m	class:RemoteAimingClass
 TypeBlock	TraineeProjectSource/maincontrollerqclass.h	/^	typeblocksenum TypeBlock = MainContoller;$/;"	m	class:MainControllerQClass
 UI_AIMINGBLOCKWINDOW_H	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_aimingblockwindow.h	10;"	d
@@ -6087,8 +6087,8 @@ copyFrom	TraineeProjectSource/qcustomplot.cpp	/^void QCPSelectionDecorator::copy
 count	TraineeProjectSource/EngineInterfaceClass.h	/^	int count = 0;$/;"	m	class:EngineInterfaceClass
 counter_test	TraineeProjectSource/rotate_optimization/RotateOperationContainer.h	/^	int counter_test = 0;$/;"	m	class:RotateOperationContainer
 cover_lid_state	TraineeProjectSource/RemoteControlClass.h	/^	 uint8_t cover_lid_state;$/;"	m	struct:DEVICE_STATE
-crcCalc	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^unsigned char LaserCommandStruct::crcCalc(char * pcBlock, unsigned int len)$/;"	f	class:LaserCommandStruct
-crcCalc	TraineeProjectSource/LaserPointerInterfaceClass.cpp	/^unsigned char LaserPointerInterfaceClass::crcCalc(char * pcBlock, unsigned int len)$/;"	f	class:LaserPointerInterfaceClass
+crcCalc	TraineeProjectSource/LaserPointerInterface.cpp	/^unsigned char LaserCommandStruct::crcCalc(char * pcBlock, unsigned int len)$/;"	f	class:LaserCommandStruct
+crcCalc	TraineeProjectSource/LaserPointerInterface.cpp	/^unsigned char LaserPointerInterface::crcCalc(char * pcBlock, unsigned int len)$/;"	f	class:LaserPointerInterface
 createAlpha	TraineeProjectSource/qcustomplot.cpp	/^bool QCPColorMapData::createAlpha(bool initializeOpaque)$/;"	f	class:QCPColorMapData
 createAnchor	TraineeProjectSource/qcustomplot.cpp	/^QCPItemAnchor *QCPAbstractItem::createAnchor(const QString &name, int anchorId)$/;"	f	class:QCPAbstractItem
 createCachedLabel	TraineeProjectSource/qcustomplot.cpp	/^QCPLabelPainterPrivate::CachedLabel *QCPLabelPainterPrivate::createCachedLabel(const LabelData &labelData) const$/;"	f	class:QCPLabelPainterPrivate
@@ -6110,7 +6110,7 @@ current_write_buffer	TraineeProjectSource/KLPInterfaceClass.h	/^int current_writ
 current_x_pos	TraineeProjectSource/gui_sources/enginecontrolwindow.h	/^	int current_x_pos;$/;"	m	class:EngineControlWindow
 current_y_pos	TraineeProjectSource/gui_sources/enginecontrolwindow.h	/^	int current_y_pos;$/;"	m	class:EngineControlWindow
 customPath	TraineeProjectSource/qcustomplot.h	/^  QPainterPath customPath() const { return mCustomPath; }$/;"	f	class:QCPScatterStyle
-data	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	QByteArray data, message, rx;$/;"	m	class:LaserPointerInterfaceClass
+data	TraineeProjectSource/LaserPointerInterface.h	/^	QByteArray data, message, rx;$/;"	m	class:LaserPointerInterface
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_AdjustableWidget.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_AdjustableLabel_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_AdjustableWidget.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_AdjustableWidget_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PilotLaserWindow.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_PilotLaserWindow_t	file:
@@ -6132,7 +6132,7 @@ data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainwi
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    QByteArrayData data[3];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
-data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
+data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_LaserCommonInterface_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^    QByteArrayData data[3];$/;"	m	struct:qt_meta_stringdata_DigitalClock_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^    QByteArrayData data[9];$/;"	m	struct:qt_meta_stringdata_EngineControlClass_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_ImageProcessingClass_t	file:
@@ -6142,7 +6142,7 @@ data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_Kalman
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^    QByteArrayData data[6];$/;"	m	struct:qt_meta_stringdata_SinusFilter_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^    QByteArrayData data[13];$/;"	m	struct:qt_meta_stringdata_LaserControlClass_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^    QByteArrayData data[8];$/;"	m	struct:qt_meta_stringdata_LaserPilotInterfaceClass_t	file:
-data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^    QByteArrayData data[11];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterfaceClass_t	file:
+data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^    QByteArrayData data[11];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterface_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^    QByteArrayData data[6];$/;"	m	struct:qt_meta_stringdata_TCPServerEngine_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^    QByteArrayData data[16];$/;"	m	struct:qt_meta_stringdata_SinusGeneratorClass_t	file:
 data	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^    QByteArrayData data[24];$/;"	m	struct:qt_meta_stringdata_MainControllerQClass_t	file:
@@ -6234,7 +6234,7 @@ data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    QByteArrayData data[3];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
-data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
+data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^    QByteArrayData data[5];$/;"	m	struct:qt_meta_stringdata_LaserCommonInterface_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^    QByteArrayData data[3];$/;"	m	struct:qt_meta_stringdata_DigitalClock_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^    QByteArrayData data[9];$/;"	m	struct:qt_meta_stringdata_EngineControlClass_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^    QByteArrayData data[1];$/;"	m	struct:qt_meta_stringdata_ImageProcessingClass_t	file:
@@ -6244,7 +6244,7 @@ data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^    QByteArrayData data[6];$/;"	m	struct:qt_meta_stringdata_SinusFilter_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^    QByteArrayData data[13];$/;"	m	struct:qt_meta_stringdata_LaserControlClass_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^    QByteArrayData data[8];$/;"	m	struct:qt_meta_stringdata_LaserPilotInterfaceClass_t	file:
-data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^    QByteArrayData data[11];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterfaceClass_t	file:
+data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^    QByteArrayData data[11];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterface_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^    QByteArrayData data[6];$/;"	m	struct:qt_meta_stringdata_TCPServerEngine_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^    QByteArrayData data[16];$/;"	m	struct:qt_meta_stringdata_SinusGeneratorClass_t	file:
 data	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^    QByteArrayData data[24];$/;"	m	struct:qt_meta_stringdata_MainControllerQClass_t	file:
@@ -6931,8 +6931,8 @@ info_version_internal	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/Compil
 info_version_internal	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";$/;"	v
 info_version_internal	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	cmake_build_Release/CMakeFiles/3.23.22060601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";$/;"	v
-init	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	unsigned char polynom, init;$/;"	m	class:LaserPointerInterfaceClass
-init	TraineeProjectSource/LaserPointerInterfaceClass.h	/^    unsigned char polynom, init;$/;"	m	class:LaserCommandStruct
+init	TraineeProjectSource/LaserPointerInterface.h	/^	unsigned char polynom, init;$/;"	m	class:LaserPointerInterface
+init	TraineeProjectSource/LaserPointerInterface.h	/^    unsigned char polynom, init;$/;"	m	class:LaserCommandStruct
 initializeParentPlot	TraineeProjectSource/qcustomplot.cpp	/^void QCPLayerable::initializeParentPlot(QCustomPlot *parentPlot)$/;"	f	class:QCPLayerable
 input_node_dims	TraineeProjectSource/KalmanFilterClass.h	/^    std::vector<int64_t> input_node_dims;$/;"	m	class:ONNXSession
 input_node_names	TraineeProjectSource/KalmanFilterClass.h	/^    std::vector<const char*> input_node_names;$/;"	m	class:ONNXSession
@@ -7888,7 +7888,7 @@ menu_2	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwind
 menu_2	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    QMenu *menu_2;$/;"	m	class:Ui_MainWindowQClass
 menubar	TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    QMenuBar *menubar;$/;"	m	class:Ui_MainWindowQClass
 menubar	build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/ui_mainwindowqclass.h	/^    QMenuBar *menubar;$/;"	m	class:Ui_MainWindowQClass
-message	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	QByteArray data, message, rx;$/;"	m	class:LaserPointerInterfaceClass
+message	TraineeProjectSource/LaserPointerInterface.h	/^	QByteArray data, message, rx;$/;"	m	class:LaserPointerInterface
 message_type	TraineeProjectSource/RemoteControlClass.h	/^enum message_type { state_message = 0,aiming_message = 1, camera_control_message = 10, $/;"	g
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_AdjustableWidget.cpp	/^const QMetaObject *AdjustableLabel::metaObject() const$/;"	f	class:AdjustableLabel
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_AdjustableWidget.cpp	/^const QMetaObject *AdjustableWidget::metaObject() const$/;"	f	class:AdjustableWidget
@@ -7911,7 +7911,7 @@ metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^const QMetaObject *PIDWIndow::metaObject() const$/;"	f	class:PIDWIndow
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^const QMetaObject *WindowSinusSource::metaObject() const$/;"	f	class:WindowSinusSource
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^const QMetaObject *CameraInterfaceClass::metaObject() const$/;"	f	class:CameraInterfaceClass
-metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^const QMetaObject *CommonLaserInterfaceClass::metaObject() const$/;"	f	class:CommonLaserInterfaceClass
+metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^const QMetaObject *LaserCommonInterface::metaObject() const$/;"	f	class:LaserCommonInterface
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^const QMetaObject *DigitalClock::metaObject() const$/;"	f	class:DigitalClock
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^const QMetaObject *EngineControlClass::metaObject() const$/;"	f	class:EngineControlClass
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^const QMetaObject *ImageProcessingClass::metaObject() const$/;"	f	class:ImageProcessingClass
@@ -7921,7 +7921,7 @@ metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^const QMetaObject *SinusFilter::metaObject() const$/;"	f	class:SinusFilter
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^const QMetaObject *LaserControlClass::metaObject() const$/;"	f	class:LaserControlClass
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^const QMetaObject *LaserPilotInterfaceClass::metaObject() const$/;"	f	class:LaserPilotInterfaceClass
-metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^const QMetaObject *LaserPointerInterfaceClass::metaObject() const$/;"	f	class:LaserPointerInterfaceClass
+metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^const QMetaObject *LaserPointerInterface::metaObject() const$/;"	f	class:LaserPointerInterface
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^const QMetaObject *TCPServerEngine::metaObject() const$/;"	f	class:TCPServerEngine
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^const QMetaObject *SinusGeneratorClass::metaObject() const$/;"	f	class:SinusGeneratorClass
 metaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^const QMetaObject *MainControllerQClass::metaObject() const$/;"	f	class:MainControllerQClass
@@ -7990,7 +7990,7 @@ metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGB
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^const QMetaObject *PIDWIndow::metaObject() const$/;"	f	class:PIDWIndow
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^const QMetaObject *WindowSinusSource::metaObject() const$/;"	f	class:WindowSinusSource
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^const QMetaObject *CameraInterfaceClass::metaObject() const$/;"	f	class:CameraInterfaceClass
-metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^const QMetaObject *CommonLaserInterfaceClass::metaObject() const$/;"	f	class:CommonLaserInterfaceClass
+metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^const QMetaObject *LaserCommonInterface::metaObject() const$/;"	f	class:LaserCommonInterface
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^const QMetaObject *DigitalClock::metaObject() const$/;"	f	class:DigitalClock
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^const QMetaObject *EngineControlClass::metaObject() const$/;"	f	class:EngineControlClass
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^const QMetaObject *ImageProcessingClass::metaObject() const$/;"	f	class:ImageProcessingClass
@@ -8000,7 +8000,7 @@ metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46W
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^const QMetaObject *SinusFilter::metaObject() const$/;"	f	class:SinusFilter
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^const QMetaObject *LaserControlClass::metaObject() const$/;"	f	class:LaserControlClass
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^const QMetaObject *LaserPilotInterfaceClass::metaObject() const$/;"	f	class:LaserPilotInterfaceClass
-metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^const QMetaObject *LaserPointerInterfaceClass::metaObject() const$/;"	f	class:LaserPointerInterfaceClass
+metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^const QMetaObject *LaserPointerInterface::metaObject() const$/;"	f	class:LaserPointerInterface
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^const QMetaObject *TCPServerEngine::metaObject() const$/;"	f	class:TCPServerEngine
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^const QMetaObject *SinusGeneratorClass::metaObject() const$/;"	f	class:SinusGeneratorClass
 metaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^const QMetaObject *MainControllerQClass::metaObject() const$/;"	f	class:MainControllerQClass
@@ -8389,8 +8389,8 @@ pointDistance	TraineeProjectSource/qcustomplot.cpp	/^double QCPErrorBars::pointD
 pointDistance	TraineeProjectSource/qcustomplot.cpp	/^double QCPGraph::pointDistance(const QPointF &pixelPoint, QCPGraphDataContainer::const_iterator &closestData) const$/;"	f	class:QCPGraph
 pointDistance	TraineeProjectSource/qcustomplot.cpp	/^double QCPPolarGraph::pointDistance(const QPointF &pixelPoint, QCPGraphDataContainer::const_iterator &closestData) const$/;"	f	class:QCPPolarGraph
 polarGraph	TraineeProjectSource/qcustomplot.h	/^  QCPPolarGraph *polarGraph() { return mPolarGraph; }$/;"	f	class:QCPPolarLegendItem
-polynom	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	unsigned char polynom, init;$/;"	m	class:LaserPointerInterfaceClass
-polynom	TraineeProjectSource/LaserPointerInterfaceClass.h	/^    unsigned char polynom, init;$/;"	m	class:LaserCommandStruct
+polynom	TraineeProjectSource/LaserPointerInterface.h	/^	unsigned char polynom, init;$/;"	m	class:LaserPointerInterface
+polynom	TraineeProjectSource/LaserPointerInterface.h	/^    unsigned char polynom, init;$/;"	m	class:LaserCommandStruct
 position	TraineeProjectSource/qcustomplot.cpp	/^QCPItemPosition *QCPAbstractItem::position(const QString &name) const$/;"	f	class:QCPAbstractItem
 position	TraineeProjectSource/qcustomplot.h	/^  QCPItemPosition * const position;$/;"	m	class:QCPItemText
 position	TraineeProjectSource/qcustomplot.h	/^  QCPItemPosition * const position;$/;"	m	class:QCPItemTracer
@@ -8426,8 +8426,8 @@ qt_meta_data_CameraInterfaceClass	TraineeProjectSource/TraineeProjectExecutable_
 qt_meta_data_CameraInterfaceClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^static const uint qt_meta_data_CameraInterfaceClass[] = {$/;"	v	file:
 qt_meta_data_CameraWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_camerawindow.cpp	/^static const uint qt_meta_data_CameraWindow[] = {$/;"	v	file:
 qt_meta_data_CameraWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_camerawindow.cpp	/^static const uint qt_meta_data_CameraWindow[] = {$/;"	v	file:
-qt_meta_data_CommonLaserInterfaceClass	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^static const uint qt_meta_data_CommonLaserInterfaceClass[] = {$/;"	v	file:
-qt_meta_data_CommonLaserInterfaceClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^static const uint qt_meta_data_CommonLaserInterfaceClass[] = {$/;"	v	file:
+qt_meta_data_LaserCommonInterface	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^static const uint qt_meta_data_LaserCommonInterface[] = {$/;"	v	file:
+qt_meta_data_LaserCommonInterface	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^static const uint qt_meta_data_LaserCommonInterface[] = {$/;"	v	file:
 qt_meta_data_Derivative	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^static const uint qt_meta_data_Derivative[] = {$/;"	v	file:
 qt_meta_data_Derivative	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^static const uint qt_meta_data_Derivative[] = {$/;"	v	file:
 qt_meta_data_DigitalClock	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^static const uint qt_meta_data_DigitalClock[] = {$/;"	v	file:
@@ -8460,8 +8460,8 @@ qt_meta_data_LaserControlClass	TraineeProjectSource/TraineeProjectExecutable_aut
 qt_meta_data_LaserControlClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^static const uint qt_meta_data_LaserControlClass[] = {$/;"	v	file:
 qt_meta_data_LaserPilotInterfaceClass	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^static const uint qt_meta_data_LaserPilotInterfaceClass[] = {$/;"	v	file:
 qt_meta_data_LaserPilotInterfaceClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^static const uint qt_meta_data_LaserPilotInterfaceClass[] = {$/;"	v	file:
-qt_meta_data_LaserPointerInterfaceClass	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^static const uint qt_meta_data_LaserPointerInterfaceClass[] = {$/;"	v	file:
-qt_meta_data_LaserPointerInterfaceClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^static const uint qt_meta_data_LaserPointerInterfaceClass[] = {$/;"	v	file:
+qt_meta_data_LaserPointerInterface	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^static const uint qt_meta_data_LaserPointerInterface[] = {$/;"	v	file:
+qt_meta_data_LaserPointerInterface	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^static const uint qt_meta_data_LaserPointerInterface[] = {$/;"	v	file:
 qt_meta_data_MainBlockWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^static const uint qt_meta_data_MainBlockWindow[] = {$/;"	v	file:
 qt_meta_data_MainBlockWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^static const uint qt_meta_data_MainBlockWindow[] = {$/;"	v	file:
 qt_meta_data_MainControllerQClass	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^static const uint qt_meta_data_MainControllerQClass[] = {$/;"	v	file:
@@ -8630,10 +8630,10 @@ qt_meta_stringdata_CameraWindow	TraineeProjectSource/TraineeProjectExecutable_au
 qt_meta_stringdata_CameraWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_camerawindow.cpp	/^static const qt_meta_stringdata_CameraWindow_t qt_meta_stringdata_CameraWindow = {$/;"	v	file:
 qt_meta_stringdata_CameraWindow_t	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_camerawindow.cpp	/^struct qt_meta_stringdata_CameraWindow_t {$/;"	s	file:
 qt_meta_stringdata_CameraWindow_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_camerawindow.cpp	/^struct qt_meta_stringdata_CameraWindow_t {$/;"	s	file:
-qt_meta_stringdata_CommonLaserInterfaceClass	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^static const qt_meta_stringdata_CommonLaserInterfaceClass_t qt_meta_stringdata_CommonLaserInterfaceClass = {$/;"	v	file:
-qt_meta_stringdata_CommonLaserInterfaceClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^static const qt_meta_stringdata_CommonLaserInterfaceClass_t qt_meta_stringdata_CommonLaserInterfaceClass = {$/;"	v	file:
-qt_meta_stringdata_CommonLaserInterfaceClass_t	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^struct qt_meta_stringdata_CommonLaserInterfaceClass_t {$/;"	s	file:
-qt_meta_stringdata_CommonLaserInterfaceClass_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^struct qt_meta_stringdata_CommonLaserInterfaceClass_t {$/;"	s	file:
+qt_meta_stringdata_LaserCommonInterface	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^static const qt_meta_stringdata_LaserCommonInterface_t qt_meta_stringdata_LaserCommonInterface = {$/;"	v	file:
+qt_meta_stringdata_LaserCommonInterface	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^static const qt_meta_stringdata_LaserCommonInterface_t qt_meta_stringdata_LaserCommonInterface = {$/;"	v	file:
+qt_meta_stringdata_LaserCommonInterface_t	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^struct qt_meta_stringdata_LaserCommonInterface_t {$/;"	s	file:
+qt_meta_stringdata_LaserCommonInterface_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^struct qt_meta_stringdata_LaserCommonInterface_t {$/;"	s	file:
 qt_meta_stringdata_Derivative	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^static const qt_meta_stringdata_Derivative_t qt_meta_stringdata_Derivative = {$/;"	v	file:
 qt_meta_stringdata_Derivative	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^static const qt_meta_stringdata_Derivative_t qt_meta_stringdata_Derivative = {$/;"	v	file:
 qt_meta_stringdata_Derivative_t	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^struct qt_meta_stringdata_Derivative_t {$/;"	s	file:
@@ -8698,10 +8698,10 @@ qt_meta_stringdata_LaserPilotInterfaceClass	TraineeProjectSource/TraineeProjectE
 qt_meta_stringdata_LaserPilotInterfaceClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^static const qt_meta_stringdata_LaserPilotInterfaceClass_t qt_meta_stringdata_LaserPilotInterfaceClass = {$/;"	v	file:
 qt_meta_stringdata_LaserPilotInterfaceClass_t	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^struct qt_meta_stringdata_LaserPilotInterfaceClass_t {$/;"	s	file:
 qt_meta_stringdata_LaserPilotInterfaceClass_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^struct qt_meta_stringdata_LaserPilotInterfaceClass_t {$/;"	s	file:
-qt_meta_stringdata_LaserPointerInterfaceClass	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^static const qt_meta_stringdata_LaserPointerInterfaceClass_t qt_meta_stringdata_LaserPointerInterfaceClass = {$/;"	v	file:
-qt_meta_stringdata_LaserPointerInterfaceClass	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^static const qt_meta_stringdata_LaserPointerInterfaceClass_t qt_meta_stringdata_LaserPointerInterfaceClass = {$/;"	v	file:
-qt_meta_stringdata_LaserPointerInterfaceClass_t	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^struct qt_meta_stringdata_LaserPointerInterfaceClass_t {$/;"	s	file:
-qt_meta_stringdata_LaserPointerInterfaceClass_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^struct qt_meta_stringdata_LaserPointerInterfaceClass_t {$/;"	s	file:
+qt_meta_stringdata_LaserPointerInterface	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^static const qt_meta_stringdata_LaserPointerInterface_t qt_meta_stringdata_LaserPointerInterface = {$/;"	v	file:
+qt_meta_stringdata_LaserPointerInterface	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^static const qt_meta_stringdata_LaserPointerInterface_t qt_meta_stringdata_LaserPointerInterface = {$/;"	v	file:
+qt_meta_stringdata_LaserPointerInterface_t	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^struct qt_meta_stringdata_LaserPointerInterface_t {$/;"	s	file:
+qt_meta_stringdata_LaserPointerInterface_t	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^struct qt_meta_stringdata_LaserPointerInterface_t {$/;"	s	file:
 qt_meta_stringdata_MainBlockWindow	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^static const qt_meta_stringdata_MainBlockWindow_t qt_meta_stringdata_MainBlockWindow = {$/;"	v	file:
 qt_meta_stringdata_MainBlockWindow	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^static const qt_meta_stringdata_MainBlockWindow_t qt_meta_stringdata_MainBlockWindow = {$/;"	v	file:
 qt_meta_stringdata_MainBlockWindow_t	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_mainblockwindow.cpp	/^struct qt_meta_stringdata_MainBlockWindow_t {$/;"	s	file:
@@ -8999,7 +8999,7 @@ qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^int PIDWIndow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^int WindowSinusSource::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^int CameraInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
-qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^int CommonLaserInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
+qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^int LaserCommonInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserCommonInterface
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^int DigitalClock::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:DigitalClock
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^int EngineControlClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:EngineControlClass
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^int ImageProcessingClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:ImageProcessingClass
@@ -9009,7 +9009,7 @@ qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^int SinusFilter::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusFilter
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^int LaserControlClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserControlClass
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^int LaserPilotInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPilotInterfaceClass
-qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^int LaserPointerInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterfaceClass
+qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^int LaserPointerInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterface
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^int TCPServerEngine::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:TCPServerEngine
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^int SinusGeneratorClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusGeneratorClass
 qt_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^int MainControllerQClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainControllerQClass
@@ -9078,7 +9078,7 @@ qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKG
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^int PIDWIndow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^int WindowSinusSource::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^int CameraInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
-qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^int CommonLaserInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
+qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^int LaserCommonInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserCommonInterface
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^int DigitalClock::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:DigitalClock
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^int EngineControlClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:EngineControlClass
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^int ImageProcessingClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:ImageProcessingClass
@@ -9088,7 +9088,7 @@ qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^int SinusFilter::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusFilter
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^int LaserControlClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserControlClass
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^int LaserPilotInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPilotInterfaceClass
-qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^int LaserPointerInterfaceClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterfaceClass
+qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^int LaserPointerInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterface
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^int TCPServerEngine::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:TCPServerEngine
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^int SinusGeneratorClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusGeneratorClass
 qt_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^int MainControllerQClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainControllerQClass
@@ -9157,7 +9157,7 @@ qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void *PIDWIndow::qt_metacast(const char *_clname)$/;"	f	class:PIDWIndow
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void *WindowSinusSource::qt_metacast(const char *_clname)$/;"	f	class:WindowSinusSource
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void *CameraInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CameraInterfaceClass
-qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void *CommonLaserInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CommonLaserInterfaceClass
+qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^void *LaserCommonInterface::qt_metacast(const char *_clname)$/;"	f	class:LaserCommonInterface
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^void *DigitalClock::qt_metacast(const char *_clname)$/;"	f	class:DigitalClock
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^void *EngineControlClass::qt_metacast(const char *_clname)$/;"	f	class:EngineControlClass
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^void *ImageProcessingClass::qt_metacast(const char *_clname)$/;"	f	class:ImageProcessingClass
@@ -9167,7 +9167,7 @@ qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^void *SinusFilter::qt_metacast(const char *_clname)$/;"	f	class:SinusFilter
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^void *LaserControlClass::qt_metacast(const char *_clname)$/;"	f	class:LaserControlClass
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^void *LaserPilotInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:LaserPilotInterfaceClass
-qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^void *LaserPointerInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:LaserPointerInterfaceClass
+qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^void *LaserPointerInterface::qt_metacast(const char *_clname)$/;"	f	class:LaserPointerInterface
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^void *TCPServerEngine::qt_metacast(const char *_clname)$/;"	f	class:TCPServerEngine
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^void *SinusGeneratorClass::qt_metacast(const char *_clname)$/;"	f	class:SinusGeneratorClass
 qt_metacast	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^void *MainControllerQClass::qt_metacast(const char *_clname)$/;"	f	class:MainControllerQClass
@@ -9236,7 +9236,7 @@ qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKG
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void *PIDWIndow::qt_metacast(const char *_clname)$/;"	f	class:PIDWIndow
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void *WindowSinusSource::qt_metacast(const char *_clname)$/;"	f	class:WindowSinusSource
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void *CameraInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CameraInterfaceClass
-qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void *CommonLaserInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:CommonLaserInterfaceClass
+qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^void *LaserCommonInterface::qt_metacast(const char *_clname)$/;"	f	class:LaserCommonInterface
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^void *DigitalClock::qt_metacast(const char *_clname)$/;"	f	class:DigitalClock
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^void *EngineControlClass::qt_metacast(const char *_clname)$/;"	f	class:EngineControlClass
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^void *ImageProcessingClass::qt_metacast(const char *_clname)$/;"	f	class:ImageProcessingClass
@@ -9246,7 +9246,7 @@ qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^void *SinusFilter::qt_metacast(const char *_clname)$/;"	f	class:SinusFilter
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^void *LaserControlClass::qt_metacast(const char *_clname)$/;"	f	class:LaserControlClass
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^void *LaserPilotInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:LaserPilotInterfaceClass
-qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^void *LaserPointerInterfaceClass::qt_metacast(const char *_clname)$/;"	f	class:LaserPointerInterfaceClass
+qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^void *LaserPointerInterface::qt_metacast(const char *_clname)$/;"	f	class:LaserPointerInterface
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^void *TCPServerEngine::qt_metacast(const char *_clname)$/;"	f	class:TCPServerEngine
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^void *SinusGeneratorClass::qt_metacast(const char *_clname)$/;"	f	class:SinusGeneratorClass
 qt_metacast	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^void *MainControllerQClass::qt_metacast(const char *_clname)$/;"	f	class:MainControllerQClass
@@ -9315,7 +9315,7 @@ qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFK
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void PIDWIndow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void WindowSinusSource::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void CameraInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
-qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void CommonLaserInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
+qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^void LaserCommonInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserCommonInterface
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^void DigitalClock::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:DigitalClock
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^void EngineControlClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:EngineControlClass
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^void ImageProcessingClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:ImageProcessingClass
@@ -9325,7 +9325,7 @@ qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA4
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^void SinusFilter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusFilter
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^void LaserControlClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserControlClass
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^void LaserPilotInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPilotInterfaceClass
-qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterfaceClass
+qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^void LaserPointerInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterface
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^void TCPServerEngine::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:TCPServerEngine
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^void SinusGeneratorClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusGeneratorClass
 qt_static_metacall	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^void MainControllerQClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainControllerQClass
@@ -9394,7 +9394,7 @@ qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^void PIDWIndow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:PIDWIndow
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^void WindowSinusSource::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:WindowSinusSource
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^void CameraInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CameraInterfaceClass
-qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^void CommonLaserInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:CommonLaserInterfaceClass
+qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^void LaserCommonInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserCommonInterface
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^void DigitalClock::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:DigitalClock
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^void EngineControlClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:EngineControlClass
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^void ImageProcessingClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:ImageProcessingClass
@@ -9404,7 +9404,7 @@ qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/E
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^void SinusFilter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusFilter
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^void LaserControlClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserControlClass
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^void LaserPilotInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPilotInterfaceClass
-qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^void LaserPointerInterfaceClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterfaceClass
+qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^void LaserPointerInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:LaserPointerInterface
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^void TCPServerEngine::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:TCPServerEngine
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^void SinusGeneratorClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:SinusGeneratorClass
 qt_static_metacall	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^void MainControllerQClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainControllerQClass
@@ -9631,7 +9631,7 @@ ruDotsPerCentimeter	TraineeProjectSource/qcustomplot.h	/^                      ,
 ruDotsPerInch	TraineeProjectSource/qcustomplot.h	/^                      ,ruDotsPerInch       \/\/\/< Resolution is given in dots per inch (DPI\/PPI)$/;"	e	enum:QCP::ResolutionUnit
 ruDotsPerMeter	TraineeProjectSource/qcustomplot.h	/^enum ResolutionUnit { ruDotsPerMeter       \/\/\/< Resolution is given in dots per meter (dpm)$/;"	e	enum:QCP::ResolutionUnit
 runOptions	TraineeProjectSource/KalmanFilterClass.h	/^    Ort::RunOptions runOptions;$/;"	m	class:ONNXSession
-rx	TraineeProjectSource/LaserPointerInterfaceClass.h	/^	QByteArray data, message, rx;$/;"	m	class:LaserPointerInterfaceClass
+rx	TraineeProjectSource/LaserPointerInterface.h	/^	QByteArray data, message, rx;$/;"	m	class:LaserPointerInterface
 rx	TraineeProjectSource/qcustomplot.h	/^  double &rx() { return mX; }$/;"	f	class:QCPVector2D
 ry	TraineeProjectSource/qcustomplot.h	/^  double &ry() { return mY; }$/;"	f	class:QCPVector2D
 sanitizedForLinScale	TraineeProjectSource/qcustomplot.cpp	/^QCPRange QCPRange::sanitizedForLinScale() const$/;"	f	class:QCPRange
@@ -10534,7 +10534,7 @@ staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGB
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^QT_INIT_METAOBJECT const QMetaObject PIDWIndow::staticMetaObject = { {$/;"	m	class:PIDWIndow	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^QT_INIT_METAOBJECT const QMetaObject WindowSinusSource::staticMetaObject = { {$/;"	m	class:WindowSinusSource	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CameraInterfaceClass::staticMetaObject = { {$/;"	m	class:CameraInterfaceClass	file:
-staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CommonLaserInterfaceClass::staticMetaObject = { {$/;"	m	class:CommonLaserInterfaceClass	file:
+staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserCommonInterface::staticMetaObject = { {$/;"	m	class:LaserCommonInterface	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^QT_INIT_METAOBJECT const QMetaObject DigitalClock::staticMetaObject = { {$/;"	m	class:DigitalClock	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject EngineControlClass::staticMetaObject = { {$/;"	m	class:EngineControlClass	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject ImageProcessingClass::staticMetaObject = { {$/;"	m	class:ImageProcessingClass	file:
@@ -10544,7 +10544,7 @@ staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46W
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject SinusFilter::staticMetaObject = { {$/;"	m	class:SinusFilter	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserControlClass::staticMetaObject = { {$/;"	m	class:LaserControlClass	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserPilotInterfaceClass::staticMetaObject = { {$/;"	m	class:LaserPilotInterfaceClass	file:
-staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserPointerInterfaceClass::staticMetaObject = { {$/;"	m	class:LaserPointerInterfaceClass	file:
+staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserPointerInterface::staticMetaObject = { {$/;"	m	class:LaserPointerInterface	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject TCPServerEngine::staticMetaObject = { {$/;"	m	class:TCPServerEngine	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject SinusGeneratorClass::staticMetaObject = { {$/;"	m	class:SinusGeneratorClass	file:
 staticMetaObject	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^QT_INIT_METAOBJECT const QMetaObject MainControllerQClass::staticMetaObject = { {$/;"	m	class:MainControllerQClass	file:
@@ -10627,7 +10627,7 @@ staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RA
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^QT_INIT_METAOBJECT const QMetaObject PIDWIndow::staticMetaObject = { {$/;"	m	class:PIDWIndow	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^QT_INIT_METAOBJECT const QMetaObject WindowSinusSource::staticMetaObject = { {$/;"	m	class:WindowSinusSource	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CameraInterfaceClass::staticMetaObject = { {$/;"	m	class:CameraInterfaceClass	file:
-staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject CommonLaserInterfaceClass::staticMetaObject = { {$/;"	m	class:CommonLaserInterfaceClass	file:
+staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserCommonInterface::staticMetaObject = { {$/;"	m	class:LaserCommonInterface	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^QT_INIT_METAOBJECT const QMetaObject DigitalClock::staticMetaObject = { {$/;"	m	class:DigitalClock	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject EngineControlClass::staticMetaObject = { {$/;"	m	class:EngineControlClass	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject ImageProcessingClass::staticMetaObject = { {$/;"	m	class:ImageProcessingClass	file:
@@ -10637,7 +10637,7 @@ staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWI
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject SinusFilter::staticMetaObject = { {$/;"	m	class:SinusFilter	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserControlClass::staticMetaObject = { {$/;"	m	class:LaserControlClass	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserPilotInterfaceClass::staticMetaObject = { {$/;"	m	class:LaserPilotInterfaceClass	file:
-staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserPointerInterfaceClass::staticMetaObject = { {$/;"	m	class:LaserPointerInterfaceClass	file:
+staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^QT_INIT_METAOBJECT const QMetaObject LaserPointerInterface::staticMetaObject = { {$/;"	m	class:LaserPointerInterface	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject TCPServerEngine::staticMetaObject = { {$/;"	m	class:TCPServerEngine	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^QT_INIT_METAOBJECT const QMetaObject SinusGeneratorClass::staticMetaObject = { {$/;"	m	class:SinusGeneratorClass	file:
 staticMetaObject	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^QT_INIT_METAOBJECT const QMetaObject MainControllerQClass::staticMetaObject = { {$/;"	m	class:MainControllerQClass	file:
@@ -10721,7 +10721,7 @@ stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    char stringdata0[11];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    char stringdata0[18];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    char stringdata0[44];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
-stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    char stringdata0[66];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
+stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^    char stringdata0[66];$/;"	m	struct:qt_meta_stringdata_LaserCommonInterface_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^    char stringdata0[23];$/;"	m	struct:qt_meta_stringdata_DigitalClock_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^    char stringdata0[135];$/;"	m	struct:qt_meta_stringdata_EngineControlClass_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^    char stringdata0[10];$/;"	m	struct:qt_meta_stringdata_Processor_t	file:
@@ -10731,7 +10731,7 @@ stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^    char stringdata0[77];$/;"	m	struct:qt_meta_stringdata_Derivative_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^    char stringdata0[208];$/;"	m	struct:qt_meta_stringdata_LaserControlClass_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^    char stringdata0[118];$/;"	m	struct:qt_meta_stringdata_LaserPilotInterfaceClass_t	file:
-stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^    char stringdata0[147];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterfaceClass_t	file:
+stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^    char stringdata0[147];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterface_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^    char stringdata0[78];$/;"	m	struct:qt_meta_stringdata_TCPServerEngine_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^    char stringdata0[216];$/;"	m	struct:qt_meta_stringdata_SinusGeneratorClass_t	file:
 stringdata0	TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^    char stringdata0[446];$/;"	m	struct:qt_meta_stringdata_MainControllerQClass_t	file:
@@ -10814,7 +10814,7 @@ stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKG
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_PIDWIndow.cpp	/^    char stringdata0[11];$/;"	m	struct:qt_meta_stringdata_PIDWIndow_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/7RAEHFKGBG/moc_windowsinussource.cpp	/^    char stringdata0[18];$/;"	m	struct:qt_meta_stringdata_WindowSinusSource_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CameraInterfaceClass.cpp	/^    char stringdata0[44];$/;"	m	struct:qt_meta_stringdata_CameraInterfaceClass_t	file:
-stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_CommonLaserInterfaceClass.cpp	/^    char stringdata0[66];$/;"	m	struct:qt_meta_stringdata_CommonLaserInterfaceClass_t	file:
+stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserCommonInterface.cpp	/^    char stringdata0[66];$/;"	m	struct:qt_meta_stringdata_LaserCommonInterface_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_DigitalClock.cpp	/^    char stringdata0[23];$/;"	m	struct:qt_meta_stringdata_DigitalClock_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_EngineControlClass.cpp	/^    char stringdata0[135];$/;"	m	struct:qt_meta_stringdata_EngineControlClass_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_ImageProcessingClass.cpp	/^    char stringdata0[10];$/;"	m	struct:qt_meta_stringdata_Processor_t	file:
@@ -10824,7 +10824,7 @@ stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_KalmanFilterClass.cpp	/^    char stringdata0[77];$/;"	m	struct:qt_meta_stringdata_Derivative_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserControlClass.cpp	/^    char stringdata0[208];$/;"	m	struct:qt_meta_stringdata_LaserControlClass_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPilotInterfaceClass.cpp	/^    char stringdata0[118];$/;"	m	struct:qt_meta_stringdata_LaserPilotInterfaceClass_t	file:
-stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterfaceClass.cpp	/^    char stringdata0[147];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterfaceClass_t	file:
+stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_LaserPointerInterface.cpp	/^    char stringdata0[147];$/;"	m	struct:qt_meta_stringdata_LaserPointerInterface_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_RemoteControlClass.cpp	/^    char stringdata0[78];$/;"	m	struct:qt_meta_stringdata_TCPServerEngine_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_SinusGeneratorClass.cpp	/^    char stringdata0[216];$/;"	m	struct:qt_meta_stringdata_SinusGeneratorClass_t	file:
 stringdata0	build/TraineeProjectSource/TraineeProjectExecutable_autogen/EWIEGA46WW/moc_maincontrollerqclass.cpp	/^    char stringdata0[446];$/;"	m	struct:qt_meta_stringdata_MainControllerQClass_t	file:
