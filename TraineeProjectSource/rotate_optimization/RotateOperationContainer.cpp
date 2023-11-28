@@ -5,6 +5,7 @@
 
 using namespace torch::indexing;
 
+#define TAG "[ ROTATE CALC  ]" 
 int RotateOperationContainer::CALIBRATION_COUNT = 120;
 TestDataVectorsContainer::TestDataVectorsContainer()
 {
@@ -51,7 +52,7 @@ void AccumulateDataFilter::SetCoord(QPair<double, double> Coord)
 			{
 				AvarageOutputFirst.first += Coord.first/avarage_window_size;
 				AvarageOutputFirst.second += Coord.second/avarage_window_size;
-			    qDebug()<<"Input - " << Coord << "Avarage - " << AvarageOutputFirst << " counter - " << accumulate_counter;
+			    qDebug() << TAG<<"Input - " << Coord << "Avarage - " << AvarageOutputFirst << " counter - " << accumulate_counter;
 			    channel_counter++;
 			}
 
@@ -140,11 +141,11 @@ void operator>>(AccumulateDataFilter& Filter, RotateOperationContainer& RotateCo
 {
 	if (Filter.flag_filter_open)
 	{
-	//qDebug() << "Pass";
+	//qDebug() << TAG << "Pass";
 		if(Filter.WaitInputCoord == QPair<double,double>(0,0))
 		{
-			qDebug() << "Center point 1 - " << Filter.OutputFirstCenter;
-			qDebug() << "Center point 2 - " << Filter.OutputSecondCenter;
+			qDebug() << TAG << "Center point 1 - " << Filter.OutputFirstCenter;
+			qDebug() << TAG << "Center point 2 - " << Filter.OutputSecondCenter;
 			Filter.pass_counter++; Filter.flag_filter_open = false;
 			return;
 		}; // when pass_counter > 0 measures switch to next coord
@@ -214,12 +215,8 @@ bool AccumulateDataFilter::CheckCoordMatch(QPair<double, double> Coord,QPair<dou
 		double diff_x = Coord.first - AimCoord.first;
 		double diff_y = Coord.second - AimCoord.second;
 		double norm = std::hypot(diff_x, diff_y);
-		//qDebug() << "Check coord in filter - " << Coord << " aim coord - " << AimCoord << " norm - " << norm;
-
-		if (norm < 1)
-			return true;
-		else
-			return false;
+		//qDebug() << TAG << "Check coord in filter - " << Coord << " aim coord - " << AimCoord << " norm - " << norm;
+		if (norm < 1) return true; else return false;
 
 }
 
@@ -254,14 +251,14 @@ void RotateOperationContainer::AppendOperation(pair<RotateAxis,double> Operation
 pair<torch::Tensor,torch::Tensor> RotateOperationContainer::ConvertInputCoord(vector<pair<double,double>> test_input ,vector<pair<double,double>> test_output, bool z_signs_inverse)
 {
 	int measure_count = test_input.size();
-    //qDebug() << "Measure count - " << measure_count;
+    //qDebug() << TAG << "Measure count - " << measure_count;
 	vector<float> norms; norms.resize(measure_count); auto current_norm = norms.begin(); 
 
 	int counter = 0;
 	for(auto& coord: test_output)
 	{
 	   *current_norm = pow(coord.first,2) + pow(coord.second,2);
-	   //qDebug() << "Norm - " << *current_norm << " | " << counter++ << " coord " << coord;
+	   //qDebug() << TAG << "Norm - " << *current_norm << " | " << counter++ << " coord " << coord;
 	   current_norm++;
 	}
 
@@ -270,7 +267,7 @@ pair<torch::Tensor,torch::Tensor> RotateOperationContainer::ConvertInputCoord(ve
 	vector<float>::iterator max_element_first = max_element(norms.begin(), norms.end() - norms.size()/2);
 	vector<float>::iterator min_element_first = min_element(max_element_first, max_element_first + norms.size()/4);
 	vector<float>::iterator max_element_second = max_element(min_element_first, min_element_first + norms.size()/4);
-	//qDebug() << "Max norm1 - " << *max_element_first << " max norm2 - " << *max_element_second;
+	//qDebug() << TAG << "Max norm1 - " << *max_element_first << " max norm2 - " << *max_element_second;
 	int pos_max_norm1 = distance(norms.begin(),max_element_first);
 	int pos_max_norm2 = distance(norms.begin(),max_element_second);
 
@@ -286,13 +283,13 @@ pair<torch::Tensor,torch::Tensor> RotateOperationContainer::ConvertInputCoord(ve
 	  int length2 = std::abs(pos_max_norm2 - n);
 
 	      //if(length < 2 || length2 < 2)
-		  //qDebug() << "NORM - " << norms[n]<< n << " - ";
+		  //qDebug() << TAG << "NORM - " << norms[n]<< n << " - ";
 
 		if(n > pos_max_norm1 && n < pos_max_norm2 && (length > 2 && length2 > 2))
 		{
 	      input_filtered_positive.push_back(test_input[n]);
 	      output_filtered_positive.push_back(test_output[n]);
-		  //qDebug() << "NORM - " << norms[n]<< n << " * ";
+		  //qDebug() << TAG << "NORM - " << norms[n]<< n << " * ";
 		}
 
 		if(n < pos_max_norm1 || n > pos_max_norm2 && (length > 2 && length2 > 2))
@@ -300,7 +297,7 @@ pair<torch::Tensor,torch::Tensor> RotateOperationContainer::ConvertInputCoord(ve
 	      input_filtered_negative.push_back(test_input[n]);
 	      output_filtered_negative.push_back(test_output[n]);
 
-		  //qDebug() << "NORM - " << norms[n] << n;
+		  //qDebug() << TAG << "NORM - " << norms[n] << n;
 		}
 	}
 
@@ -317,7 +314,7 @@ pair<torch::Tensor,torch::Tensor> RotateOperationContainer::ConvertInputCoord(ve
 	torch::Tensor input_matrix = torch::ones({3,measure_count});
 	torch::Tensor output_matrix = torch::ones({3,measure_count});
 
-	//qDebug() << "START - " << pos_max_norm1 << " END - " << pos_max_norm2 << "COUNT - " << measure_count;
+	//qDebug() << TAG << "START - " << pos_max_norm1 << " END - " << pos_max_norm2 << "COUNT - " << measure_count;
 
 	              for(int n = 0; n < measure_count; n++)
 	              {
@@ -327,7 +324,7 @@ pair<torch::Tensor,torch::Tensor> RotateOperationContainer::ConvertInputCoord(ve
                       //calc vector z component manually because from camera gets only x y  
                       float norm = *torch::norm(input_matrix.index({Slice(None),Slice(n,n+1)}),2,0).data_ptr<float>(); 
                       double z_component =  std::sqrt(std::pow(norm,2) - std::pow(processed_output[n].first,2) - std::pow(processed_output[n].second,2)); 
-                      //qDebug() << "Z component - " << floor(z_component*3) << n+1;
+                      //qDebug() << TAG << "Z component - " << floor(z_component*3) << n+1;
 					  float vector_output[3] = {processed_output[n].first, processed_output[n].second, z_component};
 					  output_matrix.index({Slice(None),Slice(n,n+1)}) = torch::from_blob(vector_output,{3,1});
 	              }
@@ -389,19 +386,19 @@ torch::Tensor RotateOperationContainer::FitToTestVectors(torch::Tensor test_inpu
 
 
 
-//	qDebug() << "Output test vectors - " << output_to_optimize_rotation;
+//	qDebug() << TAG << "Output test vectors - " << output_to_optimize_rotation;
 
 
 void RotateOperationContainer::FindArbitraryRotationToVectors(vector<pair<double,double>> test_input, vector<pair<double,double>> test_output)
 {
 	QDebugStream cout(std::cout);
-	qDebug() << "FIND ARBITRARY ROTATION TO VECTORS";
+	qDebug() << TAG << "FIND ARBITRARY ROTATION TO VECTORS";
 	vector<RotateOperationContainer> RotateVariants;
 
-			qDebug() << "===============================================";
-			qDebug() << "Base test points - " << test_input;
-			qDebug() << "Remote test points - " << test_output;
-			qDebug() << "===============================================";
+			qDebug() << TAG << "===============================================";
+			qDebug() << TAG << "Base test points - " << test_input;
+			qDebug() << TAG << "Remote test points - " << test_output;
+			qDebug() << TAG << "===============================================";
 
 
 		auto CalcCoordSystemScaleParameter = [](vector<pair<double,double>> test_input, vector<pair<double,double>> test_output) -> double
@@ -419,7 +416,7 @@ void RotateOperationContainer::FindArbitraryRotationToVectors(vector<pair<double
 
 		pixel_scale_remote_to_local = CalcCoordSystemScaleParameter(test_input, test_output);
 		this->system_transform_scale = pixel_scale_remote_to_local;
-		qDebug() << "        SYSTEM SCALE " << pixel_scale_remote_to_local;
+		qDebug() << TAG << "        SYSTEM SCALE " << pixel_scale_remote_to_local;
 		////convert remote coord to base coord system scale
 
 		for (auto& Coord : test_output)
@@ -446,10 +443,10 @@ void RotateOperationContainer::FindArbitraryRotationToVectors(vector<pair<double
 	auto test_data_inverse_z = ConvertInputCoord(test_input,test_output,true);
 
 
-	//qDebug() << "====================================";
+	//qDebug() << TAG << "====================================";
 	//std::cout << "Tensor input - "<< std::endl << test_data.first << std::endl;
 	//std::cout << "Tensor output - " << std::endl<< setprecision(3) << test_data.second<< std::endl;
-	//qDebug() << "====================================";
+	//qDebug() << TAG << "====================================";
 
 
 	for(auto Sequence: Sequenses)
@@ -464,7 +461,7 @@ void RotateOperationContainer::FindArbitraryRotationToVectors(vector<pair<double
 
 							 RotateVariants.push_back(Rotate);
 
-		qDebug() << "CHECK - " << RotateVariants.back().RotationToString().c_str();
+		qDebug() << TAG << "CHECK - " << RotateVariants.back().RotationToString().c_str();
 	    auto Loss = RotateVariants.back().FitToTestVectors(test_data.first,test_data.second,momentum,speed, number_iteration);
 		Losses.push_back(*Loss.data_ptr<float>());
 		RotateVariants.back().system_transform_scale = pixel_scale_remote_to_local;
@@ -476,19 +473,19 @@ void RotateOperationContainer::FindArbitraryRotationToVectors(vector<pair<double
 	}
 
 	for(int n = 0; n<Losses.size(); n++)
-		qDebug() << "Loss - " << Losses[n] << QString(RotateVariants[n].RotationToString().c_str());
+		qDebug() << TAG << "Loss - " << Losses[n] << QString(RotateVariants[n].RotationToString().c_str());
 
 	auto min = min_element(Losses.begin(),Losses.end());
 	int number_min_loss = distance(Losses.begin(),min);
 
 
 	this->CopyRotation(RotateVariants[number_min_loss]);
-	qDebug()  << "OPT MATRIX BEST ROTATION" << endl;
-	std::cout  << RotationToString() << endl;
-	std::cout  << MatrixToString() << endl;
+	qDebug() << TAG  << "OPT MATRIX BEST ROTATION" << endl;
+	std::cout  << TAG << RotationToString() << endl;
+	std::cout  << TAG << MatrixToString() << endl;
 	
 	SaveMeasureDataToFile(QString("E:/TrainerData/RotateMatrixOutput.txt"));
-	qDebug()  << "=================================================================================" << endl;
+	qDebug() << TAG  << "=================================================================================" << endl;
 
 	RotationValid = true;
 	this->Inverse();
@@ -612,13 +609,13 @@ void RotateOperationContainer::AppendInputData(pair<double,double> test_coord)
 	  {
 		 //input_to_optimize_rotation.push_back(std::make_pair(std::round(test_coord.first),std::round(test_coord.second)));
 		 input_to_optimize_rotation.push_back(std::make_pair(test_coord.first,test_coord.second));
-		  qDebug() << "append - " << input_to_optimize_rotation.back();
+		  qDebug() << TAG << "append - " << input_to_optimize_rotation.back();
 	  }
 	  else
 	  {
 		 output_to_optimize_rotation.push_back(test_coord);
 
-		  qDebug() << "append - " << output_to_optimize_rotation.back() << " counter - " << ++counter_test;
+		  qDebug() << TAG << "append - " << output_to_optimize_rotation.back() << " counter - " << ++counter_test;
 	  }
 
 	 if(IsDataFull()) this->FindArbitraryRotationToVectors(input_to_optimize_rotation, output_to_optimize_rotation);
@@ -637,9 +634,9 @@ void RotateOperationContainer::SetCoord(QPair<double, double> Coord)
 
                                
 							   //QDebugStream cout(std::cout);
-							   //qDebug() << "Rotate vector input ";
+							   //qDebug() << TAG << "Rotate vector input ";
 							   //std::cout << InputVector << endl;
-							   //qDebug() << "Z_Coeff - " << Z_Coeff;
+							   //qDebug() << TAG << "Z_Coeff - " << Z_Coeff;
          OutputCoord = this->ConvertInput(InputCoord);
 
 		 if(!is_rotation_inverse)
@@ -655,10 +652,10 @@ void RotateOperationContainer::SetCoord(QPair<double, double> Coord)
 		 //float norm = sqrt(x*x + y*y);
 
 //		 if(z > 0)
-//	     qDebug()<< "Set coord z - "  << std::floor(z)<<" number -"  << ++counter_test;
+//	     qDebug() << TAG<< "Set coord z - "  << std::floor(z)<<" number -"  << ++counter_test;
 //
 //		 if(z < 0)
-//	     qDebug()<< "Set coord z - "  << std::floor(z)<<" number -"  << ++counter_test << " * ";
+//	     qDebug() << TAG<< "Set coord z - "  << std::floor(z)<<" number -"  << ++counter_test << " * ";
 
 }
 
@@ -693,7 +690,7 @@ double RotateOperationContainer::CalcVirtualZComponent(QPair<double,double> Inpu
 	OutputCoordTensor = torch::matmul(CommonMatrix,OutputCoordTensor);
 	auto VectorValues = OutputCoordTensor.data_ptr<float>();
 
-	//qDebug() << "Input coord inverse - " << VectorValues[0] << VectorValues[1] << VectorValues[2];
+	//qDebug() << TAG << "Input coord inverse - " << VectorValues[0] << VectorValues[1] << VectorValues[2];
 	return OutputCoordTensor.data_ptr<float>()[2];
 }
 
@@ -707,7 +704,7 @@ void RotateOperationContainer::SetRotateMatrix(torch::Tensor RotateMatrix)
 
 void RotateOperationContainer::SaveMeasureDataToFile(QString FileName)
 {
-    qDebug() << "Save data to file - " << FileName ;
+    qDebug() << TAG << "Save data to file - " << FileName ;
     QFile data(FileName);
     data.open(QFile::WriteOnly); data.flush();
 
@@ -787,8 +784,6 @@ void RotateOperationContainer::LoadRotationFromFile(QString FileName)
         in_stream >> output_measures[n].first; in_stream >> output_measures[n].second;
 	 }
 
-	 qDebug() << "===================================================";
-	 qDebug() << "                  LOAD ROTATION FROM FILE - " << FileName << endl;
 
 	 CommonMatrix = torch::from_blob(rotate_matrix,{3,3}); 
 	 CommonMatrixInverse = torch::inverse(CommonMatrix);
@@ -796,13 +791,15 @@ void RotateOperationContainer::LoadRotationFromFile(QString FileName)
 	 CommonSubMatrixInverse = torch::inverse(CommonSubMatrix);
 	 RotationValid = true;
 
-     std::cout << "SCALE - " << system_transform_scale << endl;
-	 std::cout << "ROTATION - " << RotationToString(rotate_operation).c_str() << endl;
-	 std::cout << "MATRIX - " << endl << this->MatrixToString().c_str() << endl;
-	 //std::cout << "NUMBER MEASURE - " << number_measure << endl;
-	 //std::cout << "LOAD MEASURES INPUT  - " << input_measures  << endl;
-	 //std::cout << "LOAD MEASURES OUTPUT - " << output_measures << endl;
-	 qDebug() << "===================================================";
+	 qDebug() << TAG << "===================================================" << Qt::endl;
+	 qDebug() << TAG << "                  LOAD ROTATION FROM FILE - " << FileName;
+	std::cout << TAG << "SCALE    - " << system_transform_scale << endl;
+	std::cout << TAG << "ROTATION - " << RotationToString(rotate_operation).c_str() << endl;
+	//std::cout << TAG << "MATRIX - " << endl << this->MatrixToString().c_str() << endl;
+	//std::cout << TAG << "NUMBER MEASURE - " << number_measure << endl;
+	//std::cout << TAG << "LOAD MEASURES INPUT  - " << input_measures  << endl;
+	//std::cout << TAG << "LOAD MEASURES OUTPUT - " << output_measures << endl;
+	 qDebug() << TAG << "===================================================" << Qt::endl;
 }
 
 bool RotateOperationContainer::isValid()

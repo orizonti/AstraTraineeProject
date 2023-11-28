@@ -263,7 +263,7 @@ public:
 		HEADER.MessageId = 0x22;
 		HEADER.Length = sizeof(ROI_Channels_Command)+sizeof(quint64)-16;
 
-		//qDebug() << "HEADER LENGHT ROI PARAM - " << sizeof(ROI_Channels_Command)-16;
+		//qDebug() << TAG << "HEADER LENGHT ROI PARAM - " << sizeof(ROI_Channels_Command)-16;
 	}
 
 	AsmHeader HEADER;

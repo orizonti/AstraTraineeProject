@@ -1,6 +1,7 @@
 ﻿#include "CommonHeaders.h"
 #include "EngineControlClass.h"
 using namespace std;
+#define TAG "[ ENGINE CTRL ]" 
 int EngineControlClass::EngineCount = 0;
 void CalcRotateAxis::SetCoord(QPair<double, double> Coord)
 {
@@ -35,7 +36,7 @@ RotateVectorClass::RotateVectorClass(double DegreeAngleX, double DegreeAngleY, d
 //}
 void RotateVectorClass::SetRotateVector(double DegreeAngleX, double DegreeAngleY, double DegreeAngleZ)
 {
-	//qDebug() << "Set rotate vector - " << DegreeAngleX << DegreeAngleY << DegreeAngleZ;
+	//qDebug() << TAG << "Set rotate vector - " << DegreeAngleX << DegreeAngleY << DegreeAngleZ;
 		this->RotateMatrix << 1, 0 ,0,
 						      0, 1 ,0,
 							  0, 0, 1;
@@ -79,11 +80,11 @@ void RotateVectorClass::SetCoord(QPair<double, double> Coord)
 
                                
 							   //QDebugStream cout(std::cout);
-							   //qDebug() << "Rotate vector input ";
+							   //qDebug() << TAG << "Rotate vector input ";
 							   //std::cout << InputVector << endl;
-							   //qDebug() << "Z_Coeff - " << Z_Coeff;
+							   //qDebug() << TAG << "Z_Coeff - " << Z_Coeff;
     OutputVector = SystemScale * RotateMatrix * InputVector;
-							   //qDebug() << "Rotate vector output ";
+							   //qDebug() << TAG << "Rotate vector output ";
 							   //std::cout << OutputVector << endl;
 
 }
@@ -102,7 +103,7 @@ RotateVectorClass RotateVectorClass::Inverse()
 	TempRotateObject.Z_Coeff = cos(M_PI / 2 - M_PI / 180 * RotateVector(0, 0)) / cos(M_PI / 180 * RotateVector(0, 0));;
 
 							   //QDebugStream cout(std::cout);
-							   //qDebug() << "Inverse matrix ";
+							   //qDebug() << TAG << "Inverse matrix ";
 							   //std::cout << TempRotateObject.RotateMatrix;
 	return TempRotateObject;
 }
@@ -115,7 +116,7 @@ Rotate1.RotateVector = Rotate1.RotateVector + Rotate2.RotateVector;
 Rotate1.Z_Coeff = 0;
 	
 				///			   QDebugStream cout(std::cout);
-				///			   qDebug() << "Rotate matrix ";
+				///			   qDebug() << TAG << "Rotate matrix ";
 				///			   std::cout << Rotate1.RotateMatrix;
 return Rotate1;
 }
@@ -190,7 +191,7 @@ QPair<double, double> EngineControlClass::GetCoord()
 
 QPair<double,double> EngineControlClass::SetToStartPos()
 {
-	qDebug() << "SET TO START POS- " << this->NullWorkPos;
+	qDebug() << TAG << "SET TO START POS- " << this->NullWorkPos;
 	this->EngineInterface->SetToNull();
 	this->thread()->msleep(200);
 	this->EngineInterface->SetCoord(this->NullWorkPos);
@@ -237,7 +238,7 @@ bool EngineControlClass::isEngineFault()
 
     if(AbsCoord.first > 450 || AbsCoord.second > 450)
     {
-        qDebug() << "ENGINE FAULT - " << AbsCoord << "CHANNEL - " << this->EngineNumber;
+        qDebug() << TAG << "ENGINE FAULT - " << AbsCoord << "CHANNEL - " << this->EngineNumber;
         return true;
     }
 
@@ -246,7 +247,7 @@ bool EngineControlClass::isEngineFault()
 
 void EngineControlClass::ResetToLastSavePosition()
 {
-    qDebug() << "ENGINE - " << this->EngineNumber << " RESTORE FROM FAULT";
+    qDebug() << TAG << "ENGINE - " << this->EngineNumber << " RESTORE FROM FAULT";
     EngineInterface->SetCoordAbs(LastSavePosition);
 }
 
@@ -262,7 +263,7 @@ void EngineControlClass::SlotMoveWithAcceleration(QPair<double, double> AccelVec
 	VelVector.second += AccelVector.second*StepPeriod;
 
 	
-	//qDebug() << "CONVERT ACCELERATION - " <<AccelVector.first << VelVector.first <<"STEP_PERIOD - " << StepPeriod;
+	//qDebug() << TAG << "CONVERT ACCELERATION - " <<AccelVector.first << VelVector.first <<"STEP_PERIOD - " << StepPeriod;
 
 	QPair<double, double> StepVector(VelVector.first*StepPeriod, VelVector.second*StepPeriod); // CALCULATION PROLONGATION STEP TO MOVE ENGINE
 	StepVector >> RotationAxis >> *EngineInterface;

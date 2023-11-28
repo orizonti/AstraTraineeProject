@@ -1,6 +1,7 @@
 
 #include "CommonHeaders.h"
 #include "mainblockwindow.h"
+#define TAG "[ MAINBLK WIND]" 
 
 MainBlockWindow::MainBlockWindow(QWidget *parent)
 	: AdjustableWidget(parent)
@@ -10,7 +11,7 @@ MainBlockWindow::MainBlockWindow(QWidget *parent)
 
 MainBlockWindow::~MainBlockWindow()
 {
-qDebug() << "DELETE MAIN BLOCK WINDOW";
+qInfo() << TAG << "DELETE MAIN BLOCK WINDOW";
 }
 
 void MainBlockWindow::ConnectControlSignals(HandleControlInterface* Control)

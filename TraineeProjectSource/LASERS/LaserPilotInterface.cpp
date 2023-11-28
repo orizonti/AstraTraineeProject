@@ -1,11 +1,13 @@
 #include "CommonHeaders.h"
 #include "LaserPilotInterface.h"
 
+#define TAG "[ LASER PILOT ]" 
+
 LaserPilotInterface::LaserPilotInterface(LaserPowerInterface* PowerLaser)
 {
+    //qDebug() << TAG << "QT MESSAGE WARN: " << QT_NO_WARNING_OUTPUT;
     socketLaser = PowerLaser->socketLaser;
     this->NumberLaser = PowerLaser->NumberLaser + 10;
-    this->LaserState = PowerLaser->LaserState;
 }
 
 LaserPilotInterface::~LaserPilotInterface()
@@ -29,6 +31,8 @@ void LaserPilotInterface::TurnLaserBeamOnOff(bool OnOff)
 
 	 if(OnOff)   this->LaserState = stateblocksenum::BlockAtWork;
 	 if(!OnOff)  this->LaserState = stateblocksenum::BlockDisable;
+
+     LaserCommonInterface::TurnLaserBeamOnOff(OnOff);
 }
 
 DataLaserStruct LaserPilotInterface::GetState()

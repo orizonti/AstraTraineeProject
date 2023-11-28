@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include "link_line.h"
+#define TAG "[ MAIN   WIND ]" 
 
 
 MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
@@ -322,7 +323,7 @@ void MainWindowQClass::ConvertImage(QImage& GrayImage, QImage& ColorImage)
 }
 void MainWindowQClass::closeEvent(QCloseEvent *event)
 {
-qDebug() << "MAIN WINDOW CLOSED";
+qInfo() << TAG << "MAIN WINDOW CLOSED";
 this->SaveWidgetsPosition();
 emit SignalMainWindowClosed();
 QThread::msleep(2000);
@@ -339,7 +340,7 @@ void MainWindowQClass::SlotChangeInterfaceSize()
    if(Action->objectName() == "actionGuiSizeBig")   {SlotSetInterfaceSize(1);};
 
     //QList<QGraphicsItem*> items = Scene->items();
-	//qDebug() << "SAVE GROUP POSITIONS - " << CurrentGuiSize;
+	//qInfo() << TAG << "SAVE GROUP POSITIONS - " << CurrentGuiSize;
 	//for(auto Item: items)
 	//{
 	//	if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
@@ -347,19 +348,19 @@ void MainWindowQClass::SlotChangeInterfaceSize()
 	//	WidgetsPositionList[CurrentGuiSize][node->NumberWidget].first = node->NodePositionX;
 	//	WidgetsPositionList[CurrentGuiSize][node->NumberWidget].second = node->NodePositionY;
 
-	//	qDebug() <<"GROUP: " << CurrentGuiSize <<"NUMBER - " << qSetFieldWidth(4) << node->NumberWidget << 
+	//	qInfo() <<"GROUP: " << CurrentGuiSize <<"NUMBER - " << qSetFieldWidth(4) << node->NumberWidget << 
 	//	" X: " << WidgetsPositionList[CurrentGuiSize][node->NumberWidget].first  << 
 	//	" Y: " << WidgetsPositionList[CurrentGuiSize][node->NumberWidget].second;
 	//	}
 	//}
-	//qDebug() << "===========================" ;
+	//qInfo() << TAG << "===========================" ;
 }
 
 void MainWindowQClass::SetGuiFontSize(int GuiSize)
 {
 	int FontSize = 8; if(GuiSize == 1) FontSize = 12;
     QList<QGraphicsItem*> items = Scene->items();
-	qDebug() << "SET GUID FONT SIZE FOR: " << items.count();
+	qInfo() << TAG << "SET GUID FONT SIZE FOR: " << items.count();
 	for(auto Item: items)
 	{
 		if (GraphicWidgetNode* node = dynamic_cast<GraphicWidgetNode*>(Item); node != nullptr)
@@ -398,7 +399,7 @@ void MainWindowQClass::SetWidgetsPosition(int group_number)
 
 void MainWindowQClass::SaveWidgetsPosition()
 {
-qDebug() << "    [  SAVE WIDGETS POSITION  ]";
+qInfo() << TAG << "    [  SAVE WIDGETS POSITION  ]";
 QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
 
 if(QFile::exists("/home/broms/DATA/TrainerData/WidgetsPosition.txt")) 
@@ -425,14 +426,14 @@ QTextStream out(&outString);
 	out <<"          NUMBER      POSITION" << Qt::endl;
     for(auto group: WidgetsPositionList)
 	{
-	  qDebug() << "==============================" << Qt::endl;
-	  qDebug() << "GROUP: "<< number << Qt::endl;
+	  qInfo() << TAG << "==============================" << Qt::endl;
+	  qInfo() << TAG << "GROUP: "<< number << Qt::endl;
       for(int n = 0; n < group.size(); n++)
 	  {
 	    out << qSetFieldWidth(10) << Qt::right << n << group[n].first << group[n].second  << Qt::endl;
-        qDebug() <<"NUMBER: " << n << "POSITION: " << group[n].first << group[n].second << Qt::endl;
+        qInfo() << TAG <<"NUMBER: " << n << "POSITION: " << group[n].first << group[n].second << Qt::endl;
 	  }
-	  qDebug() << "==============================" << Qt::endl;
+	  qInfo() << TAG << "==============================" << Qt::endl;
       number++;
 	  out << "==============================" << Qt::endl;
 	}
@@ -445,8 +446,8 @@ data.close();
 void MainWindowQClass::LoadWidgetsPosition()
 {
 
-    qDebug() << "=====================================";
-    qDebug() << "LOAD WIDGETS POSITION";
+    qInfo() << TAG << "=====================================";
+    qInfo() << TAG << "LOAD WIDGETS POSITION";
 	
 	QString FileName = "/home/broms/DATA/TrainerData/WidgetsPosition.txt";
 
@@ -469,14 +470,14 @@ void MainWindowQClass::LoadWidgetsPosition()
 
         if(line.contains("==")) 
 		{
-			qDebug() << "================================";
+			qInfo() << TAG << "================================";
 			positions_group++;
 			continue;
 		}
 
         int number; int POS_X;int POS_Y;
 		stream >> number >> POS_X >> POS_Y;
-        qDebug() <<"NUMBER: " << number << "POSITION: " << POS_X << POS_Y << Qt::endl;
+        qInfo() << TAG <<"NUMBER: " << number << "POSITION: " << POS_X << POS_Y << Qt::endl;
 		WidgetsPositionList[positions_group].append(QPair<int,int>(POS_X,POS_Y));
     }
 }
@@ -509,7 +510,7 @@ void MainWindowQClass::SaveWidgetsLinks()
 void MainWindowQClass::LoadWidgetsLinks()
 {
 
-  qDebug() << "    <<<  LOAD WIDGET LINKS";
+  qInfo() << TAG << "    <<<  LOAD WIDGET LINKS";
   QString WidgetLinks = "2  1  : 1  0 \n"
 						"12 3  : 1  2 \n"
 						"1  1  : 4  0 \n"

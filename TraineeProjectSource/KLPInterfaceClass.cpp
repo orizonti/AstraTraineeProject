@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTime>
 
+#define TAG "[ KLP INTEFACE]" 
 #include "KLPInterfaceClass.h"
 void* KLPInterfaceClass::ReadDataBuffer1 = 0;
 void* KLPInterfaceClass::ReadDataBuffer2 = 0;
@@ -31,7 +32,7 @@ std::mutex StateReadMutex;
 
 void KLPInterfaceClass::CardSoftReset()
 {
-	qDebug() << "CARD SOFT RESET";
+	qDebug() << TAG << "CARD SOFT RESET";
 }
 
 
@@ -70,12 +71,12 @@ KLPInterfaceClass::~KLPInterfaceClass()
 void KLPInterfaceClass::DeinitializeInterface()
 {
     this->StateBlock = BlockDisable;
-    qDebug() << "======================================";
-                                  qDebug() << "DEINITALIZE KLP INTERFACE";
-    CardModule->AbortGetResult(); qDebug() << "ABORT GET RESULT"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    CardModule->ResetCard();      qDebug() << "RESET CARD"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    CardModule->CloseDevice();    qDebug() << "CLOSE DEVICE"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    qDebug() << "======================================";
+    qDebug() << TAG << "======================================";
+                                  qDebug() << TAG << "DEINITALIZE KLP INTERFACE";
+    CardModule->AbortGetResult(); qDebug() << TAG << "ABORT GET RESULT"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    CardModule->ResetCard();      qDebug() << TAG << "RESET CARD"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    CardModule->CloseDevice();    qDebug() << TAG << "CLOSE DEVICE"; std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    qDebug() << TAG << "======================================";
 }
 
 uint8_t KLPInterfaceClass::WriteCommandDataEx(QByteArray CommandData,OutFcChannelFlags FCChannel)
@@ -106,7 +107,7 @@ uint8_t KLPInterfaceClass::WriteCommandDataEx(QByteArray CommandData,OutFcChanne
     current_write_buffer = !current_write_buffer;
 
     if(errorCode)
-        qDebug() << "WRITE COMMAND RESULT EX - " << Qt::hex << errorCode << " write buffer - " << current_write_buffer;
+        qDebug() << TAG << "WRITE COMMAND RESULT EX - " << Qt::hex << errorCode << " write buffer - " << current_write_buffer;
 
 
     return errorCode;
@@ -131,7 +132,7 @@ errorCode = CardModule->DmaNextWriteBuffer(current_write_buffer, bufferSize, FCC
 current_write_buffer = !current_write_buffer;
 
 if(errorCode)
-qDebug() << "WRITE COMMAND RESULT - " << Qt::hex << errorCode << " write buffer - " << current_write_buffer;
+qDebug() << TAG << "WRITE COMMAND RESULT - " << Qt::hex << errorCode << " write buffer - " << current_write_buffer;
 
 
 return errorCode;
@@ -161,8 +162,8 @@ CardModule = new mppd_wrap();
 CardModule->OpenDevice("/dev/mppd0");
 CardModule->ResetCard();
 
-error = CardModule->DMAOpenReadBuffers(&ReadDataBuffer1, &ReadDataBuffer2); qDebug() << "OPEN READ BUFFER - "<< Qt::hex << error;
-error = CardModule->DMAOpenWriteBuffers(&WriteDataBuffer1, &WriteDataBuffer2); qDebug() << "OPEN WRITE BUFFER - "<< Qt::hex << error;
+error = CardModule->DMAOpenReadBuffers(&ReadDataBuffer1, &ReadDataBuffer2); qDebug() << TAG << "OPEN READ BUFFER - "<< Qt::hex << error;
+error = CardModule->DMAOpenWriteBuffers(&WriteDataBuffer1, &WriteDataBuffer2); qDebug() << TAG << "OPEN WRITE BUFFER - "<< Qt::hex << error;
 
 CardModule->DmaBufferFree(0);
 CardModule->DmaBufferFree(1);
@@ -170,16 +171,16 @@ CardModule->DmaBufferFree(1);
 CreateVirtualChannel();
 sPortStatus portStatus;
 
-qDebug() << "=====================================================";
-qDebug() << "KLP INTERFACE ";
-qDebug() << "DEVICE OPEN - " << CardModule->IsOpen();
-error = CardModule->GetPortState(Fc1,portStatus); qDebug() << "Port 1 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
-error = CardModule->GetPortState(Fc2,portStatus); qDebug() << "Port 2 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
-error = CardModule->GetPortState(Fc3,portStatus); qDebug() << "Port 3 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
-error = CardModule->GetPortState(Fc4,portStatus); qDebug() << "Port 4 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
-error = CardModule->GetPortState(Fc5,portStatus); qDebug() << "Port 5 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
-error = CardModule->GetPortState(Fc6,portStatus); qDebug() << "Port 6 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
-qDebug() << "=====================================================";
+qDebug() << TAG << "=====================================================";
+qDebug() << TAG << "KLP INTERFACE ";
+qDebug() << TAG << "DEVICE OPEN - " << CardModule->IsOpen();
+error = CardModule->GetPortState(Fc1,portStatus); qDebug() << TAG << "Port 1 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc2,portStatus); qDebug() << TAG << "Port 2 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc3,portStatus); qDebug() << TAG << "Port 3 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc4,portStatus); qDebug() << TAG << "Port 4 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc5,portStatus); qDebug() << TAG << "Port 5 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+error = CardModule->GetPortState(Fc6,portStatus); qDebug() << TAG << "Port 6 status - "<< portStatus.IsFcErrorDetected<< portStatus.IsFreqLocked << portStatus.ErrorCount << "ERROR - " << Qt::hex << error;
+qDebug() << TAG << "=====================================================";
 }
         //MOI_SUCCESS = 0x00,
         //MOI_NO_CARDS_FOUND = 0x01,
@@ -287,14 +288,14 @@ channelsParams[5] = StateChannelEngine3;
 channelsParams[6] = StateCamera;
 
 
-qDebug() << "=====================================================";
+qDebug() << TAG << "=====================================================";
 uint8_t error = 0;
 error = CardModule->SetVirtualChannelsParams(channelsParams,7);
-qDebug() << "SET VIRTUAL CHANNELS PARAM - " << error;
-//error = CardModule->EnableReadVirtChannels(0b111111100000000000000000111111); qDebug() << "ENABLE READ VIRTCHANNELS" << error;
+qDebug() << TAG << "SET VIRTUAL CHANNELS PARAM - " << error;
+//error = CardModule->EnableReadVirtChannels(0b111111100000000000000000111111); qDebug() << TAG << "ENABLE READ VIRTCHANNELS" << error;
 error = CardModule->EnableReadVirtChannels(0xFFFFFFFF);
-qDebug() << "ENABLE READ VIRTCHANNELS" << error;
-qDebug() << "=====================================================";
+qDebug() << TAG << "ENABLE READ VIRTCHANNELS" << error;
+qDebug() << TAG << "=====================================================";
 }
 
 
@@ -342,27 +343,27 @@ void operator>>(QDataStream &in, StatusCommutatorStruct &RecievePocket)
 	bool CRCError2 = (RecievePocket.FC2Params >> 3) & 1;
 	quint8 CRCCountError2 = (RecievePocket.FC2Params >> 12) & 7;
 
-//	qDebug() << "=========================================================================";
+//	qDebug() << TAG << "=========================================================================";
 
-   // qDebug() << "CONTROLLER STATUS - ";
-   // qDebug()     << "PowerSupplyChannels - " << bin << RecievePocket.PowerSupplyChannels;
-   // qDebug()     << "FC1 Param - " << bin << RecievePocket.FC1Params;
-   // qDebug()     << "FC2 Param - " << bin << RecievePocket.FC2Params;
+   // qDebug() << TAG << "CONTROLLER STATUS - ";
+   // qDebug() << TAG     << "PowerSupplyChannels - " << bin << RecievePocket.PowerSupplyChannels;
+   // qDebug() << TAG     << "FC1 Param - " << bin << RecievePocket.FC1Params;
+   // qDebug() << TAG     << "FC2 Param - " << bin << RecievePocket.FC2Params;
 
-//  qDebug() << "---------WEATHER DATA ------- ";
-//  qDebug() << "TEMPERATURE1 - " << RecievePocket.WeTemp1;
-//  qDebug() << "PRESURE    1 - " << RecievePocket.WePresure1;
-//  qDebug() << "HUMIDITY   1 - " << RecievePocket.WeHumidity1;
-//  qDebug() << "---------------------------------------------";
+//  qDebug() << TAG << "---------WEATHER DATA ------- ";
+//  qDebug() << TAG << "TEMPERATURE1 - " << RecievePocket.WeTemp1;
+//  qDebug() << TAG << "PRESURE    1 - " << RecievePocket.WePresure1;
+//  qDebug() << TAG << "HUMIDITY   1 - " << RecievePocket.WeHumidity1;
+//  qDebug() << TAG << "---------------------------------------------";
 
-//  qDebug() << "---------WEATHER DATA ------- ";
-//  qDebug() << "TEMPERATURE2 - " << RecievePocket.WeTemp2;
-//  qDebug() << "PRESURE    2 - " << RecievePocket.WePresure2;
-//  qDebug() << "HUMIDITY   2 - " << RecievePocket.WeHumidity2;
-//  qDebug() << "---------------------------------------------";
+//  qDebug() << TAG << "---------WEATHER DATA ------- ";
+//  qDebug() << TAG << "TEMPERATURE2 - " << RecievePocket.WeTemp2;
+//  qDebug() << TAG << "PRESURE    2 - " << RecievePocket.WePresure2;
+//  qDebug() << TAG << "HUMIDITY   2 - " << RecievePocket.WeHumidity2;
+//  qDebug() << TAG << "---------------------------------------------";
 
 	if (ErrorFC1 || ErrorFC2)
-		//qDebug() << "ERROR FC CHANNELS";
+		//qDebug() << TAG << "ERROR FC CHANNELS";
 
 	if (CRCError || CRCError2)
 	{
@@ -406,7 +407,7 @@ void KLPInterfaceClass::StatusRequest()
 
 	out << SendCommand;
 
-	qDebug() << "Status request freq - " << SendCommand.ReqFrequency;
+	qDebug() << TAG << "Status request freq - " << SendCommand.ReqFrequency;
 
 	OutFcChannelFlags fcChannels = ChannelNone;
 	this->WriteCommandData(WriteCommand, fcChannels);
@@ -453,7 +454,7 @@ InterruptData KLPInterfaceClass::get_new_interruption()
 using namespace std;
 void KLPInterfaceClass::RecieveInterruptionFunction(mppd_wrap* KLPCardHandler)
 {
-  qDebug() << "RECIEVE INTERRUPTION FUNCTION THREAD START ";
+  qDebug() << TAG << "RECIEVE INTERRUPTION FUNCTION THREAD START ";
   InterruptData NewInterrupt;
   while(KLPInterfaceClass::StateBlock == BlockAtWork)
   {
@@ -463,15 +464,15 @@ void KLPInterfaceClass::RecieveInterruptionFunction(mppd_wrap* KLPCardHandler)
      	append_new_interruption(NewInterrupt);
 
      if(NewInterrupt.Error)
-	 qDebug() << "Error interruption from KLP" << Qt::hex << NewInterrupt.Error;
+	 qDebug() << TAG << "Error interruption from KLP" << Qt::hex << NewInterrupt.Error;
   }
-  qDebug() << "REC INTERRUPT THREAD END";
+  qDebug() << TAG << "REC INTERRUPT THREAD END";
   return;
 }
 
 void   KLPInterfaceClass::PerformInterruptionFunction()
 {
-    qDebug() << "PERF INTERRUPTION FUNCTION THREAD START ";
+    qDebug() << TAG << "PERF INTERRUPTION FUNCTION THREAD START ";
     while(KLPInterfaceClass::StateBlock == BlockAtWork)
     {
         // Обработка поступивших данных с модуля
@@ -543,7 +544,7 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
         }
         if (HEADER_ASM.Message_ID == 0x5000000)
         {
-            //qDebug() << "STATUS TO DEVICE REC - "<< Qt::hex << HEADER_ASM.Device_ID;
+            //qDebug() << TAG << "STATUS TO DEVICE REC - "<< Qt::hex << HEADER_ASM.Device_ID;
             QByteArray info_data((const char*)DataBuffer, 56 + 8);
             info_data.remove(0, 16);
 
@@ -577,7 +578,7 @@ void   KLPInterfaceClass::PerformInterruptionFunction()
         KLPInterfaceClass::CardModule->DmaBufferFree(interrupt.ReadBufferNumber);
 
     }
-    qDebug() << "PERF INTERRUPT THREAD END DEINITIALIZE KLP INTERFACE";
+    qDebug() << TAG << "PERF INTERRUPT THREAD END DEINITIALIZE KLP INTERFACE";
     return;
 }
 

@@ -18,7 +18,7 @@ public:
 	{
 		// output anything that is left
 		if (!m_string.empty())
-			qDebug(m_string.c_str());
+			qDebug() << (m_string.c_str());
 
 		m_stream.rdbuf(m_old_buf);
 	}
@@ -28,7 +28,7 @@ protected:
 	{
 		if (v == '\n')
 		{
-			qDebug(m_string.c_str());
+			qDebug() << (m_string.c_str());
 			m_string.clear();
 		}
 		else
@@ -48,7 +48,7 @@ protected:
 			if (pos != std::string::npos)
 			{
 				std::string tmp(m_string.begin(), m_string.begin() + pos);
-				qDebug(tmp.c_str());
+				qDebug() << (tmp.c_str());
 				m_string.erase(m_string.begin(), m_string.begin() + pos + 1);
 			}
 		}

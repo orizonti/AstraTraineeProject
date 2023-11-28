@@ -18,7 +18,7 @@ void LabelImage::mouseMoveEvent(QMouseEvent * ev)
 	
 	double x = ev->x();
 	double y = ev->y();
-	qDebug() << "POS MOVE - " << x << y;
+	qInfo()<<"[LABEL   ]" << "POS MOVE - " << x << y;
 
 	emit SignalMovePos(x,y);
 	
@@ -29,7 +29,7 @@ void LabelImage::mousePressEvent(QMouseEvent * ev)
 	
 	X_Pressed = ev->x()*2;
 	Y_Pressed = ev->y()*2;
-	qDebug() << "POS PRESS - " << X_Pressed << Y_Pressed;
+	qInfo() <<"[LABEL    ]"<< "POS PRESS - " << X_Pressed << Y_Pressed;
 
 	emit SignalPressedPos(X_Pressed,Y_Pressed);
 	

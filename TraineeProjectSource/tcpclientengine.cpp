@@ -1,5 +1,6 @@
 #include "CommonHeaders.h"
 #include "tcpclientengine.h"
+#define TAG "[ TCP CLIENT ]" 
 
 TCPClientEngine::TCPClientEngine(QObject *parent): QObject(parent)
 {
@@ -29,10 +30,10 @@ void TCPClientEngine::SlotSendData(QVector<double> Data)
 		if (DataSocket.isOpen() && DataSocket.isValid())
 		{
 			DataSocket.write(DataInString.toUtf8());
-			//qDebug() << DataInString << " sent to host";
+			//qDebug() << TAG << DataInString << " sent to host";
 		}
 		else
-			qDebug() << "Socket no valid";
+			qDebug() << TAG << "Socket no valid";
 
 		   //emit OutputSignal("Socket not valid");
 		   //emit OutputSignal("From server: " + DataInString + "sent");
@@ -47,9 +48,9 @@ void TCPClientEngine::ConnectToHost(QString Address, int Port)
         this->DataSocket.connectToHost(Address,Port);
 
 		if (DataSocket.isOpen())
-		qDebug() << "Socket connected to " << Address << " Port - " << Port;
+		qDebug() << TAG << "Socket connected to " << Address << " Port - " << Port;
         else
-		qDebug() << "Socket not connected";
+		qDebug() << TAG << "Socket not connected";
 
         //emit OutputSignal("Socket not connected");
         //emit OutputSignal("Socket connected to - " + DataSocket.peerAddress().toString());

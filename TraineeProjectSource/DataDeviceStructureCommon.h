@@ -6,6 +6,7 @@
 #include <QPair>
 #include <QImage>
 
+
 class DataDeviceStructure
 {
 public:

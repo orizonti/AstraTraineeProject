@@ -64,6 +64,7 @@ public:
 	typeblocksenum TypeBlock = typeblocksenum::EngineControlBlock;
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;
 
+
 	EngineControlClass(EngineInterfaceClass* KLP, QObject* parrent = 0);
 	~EngineControlClass();
 	EngineData GetEnginesState();

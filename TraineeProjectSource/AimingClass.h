@@ -36,7 +36,6 @@ public:
 	AimingClass();
 	~AimingClass();
 
-
 	int NumberChannel;
 	typeblocksenum TypeBlock = typeblocksenum::AimingBlock;
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;

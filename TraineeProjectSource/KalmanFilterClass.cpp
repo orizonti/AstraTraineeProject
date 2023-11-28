@@ -1,6 +1,7 @@
 ﻿#include "KalmanFilterClass.h"
 
 ONNXSession SinusFilter::ProcessSession;
+#define TAG "[ KALMAN FILT ]" 
 
 using namespace std;
 std::string tensor_type_names[20] = {
@@ -116,7 +117,7 @@ void KalmanFilterClass::AppendOutputToStore(float first, float second)
 void KalmanFilterClass::SetCoord(QPair<double,double> Coord)
 {
 
-    //qDebug() << "KALMAN FILTER THREAD - " << this->thread();
+    //qDebug() << TAG << "KALMAN FILTER THREAD - " << this->thread();
     Eigen::Matrix<float, 2, 1> MeasureVec;
     MeasureVec << Coord.first, Coord.second;
 
@@ -254,7 +255,7 @@ void Derivative::SetCoord(QPair<double,double> Coord)
 	 std::chrono::time_point<std::chrono::high_resolution_clock> TimePoint = std::chrono::high_resolution_clock::now();
 	 double StepPeriod = std::chrono::duration<double>((TimePoint - TimeFromLastCommand)).count();
 	 TimeFromLastCommand = TimePoint;
-	 //qDebug() << "DERIVATIVE SET COORD PERIOD - " << StepPeriod*1000 << " ms " << StepPeriod << "s";
+	 //qDebug() << TAG << "DERIVATIVE SET COORD PERIOD - " << StepPeriod*1000 << " ms " << StepPeriod << "s";
 
 	 INPUT_COORD = Coord;
 	 StepPeriod = 0.0025;
@@ -288,7 +289,7 @@ void Derivative::SetCoord(QPair<double,double> Coord)
 void SinusFilter::SlotSetCoord(QPair<double,double> Coord) {SetCoord(Coord);};
 void Derivative::SlotGetOutputCoord(QPair<double,double> Coord)
 {
-  //qDebug() << "SLOT GET COORD FROM FILTER";
+  //qDebug() << TAG << "SLOT GET COORD FROM FILTER";
   Coord >> AmplitudeNormalization.inverse() >> Coord;
   InputSeriesesFiltered[0].push_back(DerivativeCoord.first);  InputSeriesesFiltered[1].push_back(DerivativeCoord.second);
 
@@ -336,8 +337,8 @@ QPair<double,double> Derivative::GetCoord()
 
 void ONNXSession::InitONNXSession(int input_size, int batch_size)
 {
-    qDebug() << "================================";
-    qDebug() << "ONNX SESSION INIT";
+    qDebug() << TAG << "================================";
+    qDebug() << TAG << "ONNX SESSION INIT";
     SessionInit = true;
     INPUT_VECTOR_SIZE = input_size;
     BATCH_SIZE = batch_size;
@@ -353,7 +354,7 @@ void ONNXSession::InitONNXSession(int input_size, int batch_size)
 
 
     auto providers = Ort::GetAvailableProviders();
-    for(std::string& provider: providers) qDebug() << "AVAILABLE PROVIDER  - " << QString::fromStdString(provider);
+    for(std::string& provider: providers) qDebug() << TAG << "AVAILABLE PROVIDER  - " << QString::fromStdString(provider);
 
 
     // print number of model input nodes
@@ -363,19 +364,19 @@ void ONNXSession::InitONNXSession(int input_size, int batch_size)
     for (int i = 0; i < num_input_nodes; i++)
     {
         // print input node names
-        char* input_name = session.GetInputName(i, allocator);  qDebug() << QString("Input %1 : name=%2 ").arg(i).arg(input_name);
+        char* input_name = session.GetInputName(i, allocator);  qDebug() << TAG << QString("Input %1 : name=%2 ").arg(i).arg(input_name);
         input_node_names.push_back(input_name);
 
         // print input node types
         Ort::TypeInfo type_info = session.GetInputTypeInfo(i); auto tensor_info = type_info.GetTensorTypeAndShapeInfo();
 
         ONNXTensorElementDataType type = tensor_info.GetElementType();
-        qDebug() << QString("Input %1 : type=%2 :name=%3 ").arg(i).arg(type).arg(tensor_type_names[type].c_str());
+        qDebug() << TAG << QString("Input %1 : type=%2 :name=%3 ").arg(i).arg(type).arg(tensor_type_names[type].c_str());
 
         // print input shapes/dims
-        input_node_dims = tensor_info.GetShape(); qDebug() << QString("Input %1 : num_dims=%2 ").arg(i).arg(input_node_dims.size());
+        input_node_dims = tensor_info.GetShape(); qDebug() << TAG << QString("Input %1 : num_dims=%2 ").arg(i).arg(input_node_dims.size());
 
-        for (size_t j = 0; j < input_node_dims.size(); j++) qDebug() << QString("Input %1 : dim %2 = %3").arg(i).arg(j).arg(input_node_dims[j]);
+        for (size_t j = 0; j < input_node_dims.size(); j++) qDebug() << TAG << QString("Input %1 : dim %2 = %3").arg(i).arg(j).arg(input_node_dims[j]);
 
     }
 
@@ -383,12 +384,12 @@ void ONNXSession::InitONNXSession(int input_size, int batch_size)
     input_node_dims[1] = BATCH_SIZE;
     input_node_dims[2] = 1;
     input_tensor_size = INPUT_VECTOR_SIZE * BATCH_SIZE * 1;   // use OrtGetTensorShapeElementCount() to get official size!
-    qDebug() << "================================";
+    qDebug() << TAG << "================================";
 }
 
 void SinusFilter::SetInput(vector<vector<float>> Serieses)
 {
-    //qDebug() << "SINUS FILTER SET INPUT SIZE - " << Serieses[0].size();
+    //qDebug() << TAG << "SINUS FILTER SET INPUT SIZE - " << Serieses[0].size();
     InputSerieses = Serieses;
     auto& input_tensor_size = ProcessSession.input_tensor_size;
     auto& dims = ProcessSession.input_node_dims;
@@ -408,7 +409,7 @@ void SinusFilter::SetInput(vector<vector<float>> Serieses)
 void SinusFilter::SetCoord(QPair<double,double> Coord)
 {
 
-    //qDebug() << "SINUS FILTER THREAD - " << this->thread();
+    //qDebug() << TAG << "SINUS FILTER THREAD - " << this->thread();
     InputSerieses[0].push_back(Coord.first);
     InputSerieses[1].push_back(Coord.second);
     if (InputSerieses[0].size() < INPUT_SIZE) return;
@@ -430,7 +431,7 @@ void SinusFilter::SetCoord(QPair<double,double> Coord)
     }
 	catch (const Ort::Exception& exception)
     {
-        qDebug() << "ERROR RUN - :" << exception.what() << " " << exception.GetOrtErrorCode() << endl;
+        qDebug() << TAG << "ERROR RUN - :" << exception.what() << " " << exception.GetOrtErrorCode() << endl;
     }
 
 
@@ -491,7 +492,7 @@ vector<Ort::Value> ONNXSession::Process(const Ort::Value& InputTensor)
 
 void SinusFilter::InitFilter(int size)
 {
-	qDebug() << "INIT SINUS FILTER" << size;
+	qDebug() << TAG << "INIT SINUS FILTER" << size;
     INPUT_SIZE = size;
 	InputSerieses.push_back(vector<float>());
 	InputSerieses.push_back(vector<float>());

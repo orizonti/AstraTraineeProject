@@ -1,5 +1,6 @@
 ﻿#include "CommonHeaders.h"
 #include "CalmanFilterClass.h"
+#define TAG "[   KALMAN   ]" 
 
 CalmanFilterCoordClass::CalmanFilterCoordClass()
 {
@@ -70,11 +71,11 @@ void CalmanFilterCoordClass::SetMeasureErrorVariance(float X_E, float Y_E)
 	KK(0, 1) = 0;
 	KK(1, 1) = 0;
 
-	//qDebug() << "===========================";
+	//qDebug() << TAG << "===========================";
 	//std::cout << "--- NewKK ---- \n";
 	//std::cout << KK <<"\n";
 	//std::cout << "-------------\n";
-	//qDebug() << "===========================";
+	//qDebug() << TAG << "===========================";
 }
 
 void CalmanFilterCoordClass::Initialaize()
@@ -131,7 +132,7 @@ void CalmanFilterCoordClass::Initialaize()
 	//std::cout << Sk <<"\n";
 	//std::cout << "-------------\n";
 
-	//qDebug() << "===========================";
+	//qDebug() << TAG << "===========================";
 	StateBlock = BlockAtWork;
 }
 
@@ -244,7 +245,7 @@ QPair<double, double> CalmanFilterClass::GetExtrapolateStep()
 
 void CalmanFilterClass::SetModelErrorVariance(float X_V, float Y_V, float Vx_V, float Vy_V)
 {
-	//qDebug() << "Set model error variance in calman";
+	//qDebug() << TAG << "Set model error variance in calman";
 	Qnx = X_V;
 	Qny = Y_V;
 	Qvx = Vx_V;
@@ -258,11 +259,11 @@ void CalmanFilterClass::SetModelErrorVariance(float X_V, float Y_V, float Vx_V, 
 	          0,0,0,Qvy;
 	 Rn = NewRn;
 
-	//qDebug() << "===========================";
+	//qDebug() << TAG << "===========================";
 	//std::cout << "--- Re ---- \n";
 	//std::cout << Rn <<"\n";
 	//std::cout << "-------------\n";
-	//qDebug() << "===========================";
+	//qDebug() << TAG << "===========================";
 
 	CalmanCoordState.SetModelErrorVariance(X_V, Y_V);
 
@@ -271,7 +272,7 @@ void CalmanFilterClass::SetMeasureErrorVariance(float X_E, float Y_E)
 {
 	QDebugStream cout(std::cout);
 
-	//qDebug() << "Set measure error variance in calman";
+	//qDebug() << TAG << "Set measure error variance in calman";
 	Qex = X_E;
 	Qey = Y_E;
 	CalmanCoordState.SetMeasureErrorVariance(X_E, Y_E);
@@ -281,11 +282,11 @@ void CalmanFilterClass::SetMeasureErrorVariance(float X_E, float Y_E)
 	         0  ,Qey;
 	Re = NewRe;
 
-	//qDebug() << "===========================";
+	//qDebug() << TAG << "===========================";
 	//std::cout << "--- Re ---- \n";
 	//std::cout << Re <<"\n";
 	//std::cout << "-------------\n";
-	//qDebug() << "===========================";
+	//qDebug() << TAG << "===========================";
 
 	Eigen::Matrix< float, 4, 2 > NewKK;
 
@@ -297,7 +298,7 @@ void CalmanFilterClass::SetMeasureErrorVariance(float X_E, float Y_E)
 }
 void CalmanFilterClass::Initialaize()
 {
-//	qDebug() << "INITIALIZATION CALMAN";
+//	qDebug() << TAG << "INITIALIZATION CALMAN";
 
 	 F1 << 1, 0, Tp, 0,
 	       0, 1, 0, Tp,

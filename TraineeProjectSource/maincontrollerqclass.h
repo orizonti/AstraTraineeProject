@@ -114,7 +114,6 @@ public:
 	void MoveEngineToNull(int Channel);
 	void TurnOffAxisEngine(bool state,int axis, int channel);
 
-	void SetLaserFireFrequency(int Channel, int Frequency);
 	void ResetAll();
 	void SetPowerSupplyOnCommutator(bool OnOff);
 
@@ -122,11 +121,9 @@ public:
 	QPair<double,double> MoveEnginesToStartPos(int Channel);
 
 	void SetPIDParam(double Common,double Rate, double Int, double diff);
-	void SetCalmanParam(double Qnx, double Qex,double Qvex);
 	void SetImageThresHold(int Thres, int Channel);
 	void SetFrameFilterProcentage(int Procentage);
 
-	void InitialaizeROIProcess();
 	void TurnOnOffChiller(bool OnOff);
 	void LoadPreference();
 
@@ -138,11 +135,9 @@ public:
 	 void ChangeCalmanParam(double Qe, double Qn);
 	 void SetThresholdControlManual(bool OnOff);
 //================================================================
-    void TurnOnOffLaserPointer(bool OnOff);
-	void TurnOnOffLaserPilot(int Number, bool OnOff);
-	void TurnOnOfLaserFire(int Number, bool OnOff);
+	void TurnOnOffLaser(int NumberLaser, bool OnOff);
 	void TurnOnOffAllLasers(bool OnOff);
-    void GetPowerLaserState(int Channel);
+
 
     void ChangeAimingType(TypeAiming Aiming,int Channel);
 	void TurnOnOffKalmanFilter(bool OnOff, int Channel);

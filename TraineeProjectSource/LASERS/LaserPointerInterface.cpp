@@ -2,9 +2,10 @@
 #include "LaserPointerInterface.h"
 #include "QSerialPortInfo"
 
+#define TAG "[ LASER POINT ]" 
 LaserPointerInterface::LaserPointerInterface()
 {
-    qDebug() << "LASER POINTER INTERFACE OPEN PORT - ttyXRUSB0";
+    qDebug() << TAG << "LASER POINTER INTERFACE OPEN PORT - ttyXRUSB0";
     polynom = 0x9B;
     init = 0xFF;
     ComPort = new QSerialPort;
@@ -53,14 +54,14 @@ void LaserPointerInterface::ConnectToPort(QString PortName)
 
     if (FLAG_OPEN)
     {
-        qDebug() << "PORT OPEN - " << ComPort->portName();
+        qDebug() << TAG << "PORT OPEN - " << ComPort->portName();
         QObject::connect(ComPort,SIGNAL(readyRead()),this,SLOT(SlotReadData()));
     }
 
     QList<QSerialPortInfo> Ports = QSerialPortInfo::availablePorts();
 
     for(QSerialPortInfo& Port: Ports)
-        qDebug() << "AVAILABLE PORT - " << Port.portName();
+        qDebug() << TAG << "AVAILABLE PORT - " << Port.portName();
 
     this->SendCommand(CODE_UMI_ON,0xFF);
 
@@ -69,13 +70,11 @@ void LaserPointerInterface::ConnectToPort(QString PortName)
 
 void LaserPointerInterface::TurnLaserBeamOnOff(bool OnOff)
 {
-
 	if (this->OnOff != OnOff)
 		this->OnOff = OnOff;
 	else
 		return;
 
-	qDebug() << "TURN MARKER LASER - " << OnOff;
 	OnOff675 = OnOff;
 	OnOff1064 = OnOff;
 
@@ -87,6 +86,7 @@ void LaserPointerInterface::TurnLaserBeamOnOff(bool OnOff)
 		else
 			this->LaserState = BlockDisable;
 
+     LaserCommonInterface::TurnLaserBeamOnOff(OnOff);
 }
 
 DataLaserStruct LaserPointerInterface::GetState()
@@ -122,7 +122,7 @@ void LaserPointerInterface::TurnOnOff675nm()
 	 if(this->OnOff675)
 	 {
      this->SendCommand(L1_POWER_ON,0xFF);
-	 qDebug() << "Turn 675 on !!!!!!";
+	 qDebug() << TAG << "Turn 675 on !!!!!!";
 	 }
     else
     this->SendCommand(L1_POWER_OFF,0xFF);
@@ -199,6 +199,6 @@ unsigned char LaserPointerInterface::crcCalc(char * pcBlock, unsigned int len)
 
 void LaserPointerInterface::SlotReadData()
 {
-	qDebug() << "READ DATA FROM COM PORT MARKER LASER IS NOT IMPLEMENTED";
+	qDebug() << TAG << "READ DATA FROM COM PORT MARKER LASER IS NOT IMPLEMENTED";
 }
 

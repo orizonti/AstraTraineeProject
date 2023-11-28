@@ -2,6 +2,7 @@
 #include "CommonHeaders.h"
 #include "ImageProcessingClass.h"
 
+#define TAG "[ IMAGE PROC  ]" 
 void CopyDataToImage(PIXEL_WORD* Data)
 {
 
@@ -313,7 +314,7 @@ Processor::Processor(int OffsetImage)
 
 Processor::~Processor()
 {
-	qDebug() << "Destructor Processor do nothing";
+	qDebug() << TAG << "Destructor Processor do nothing";
 
 }
 
@@ -454,19 +455,19 @@ void OptimizationThreshold::AccumulateImageStatistics(cv::Mat& Image)
 			this->pixel_sum_minimum_dispersion = LuminosityResults[index_min_element_dispersion];
 			this->BestThreshold = ThresholdVector[index_min_element_dispersion];
 
-			qDebug() << "THRESHOLD PARAMETERS";
-			qDebug() << "Min dispersion - " << *min_element_it << "Max dispersion - " << *max_element_it;
-			qDebug() << "Pixel sum minimum disperions - " << pixel_sum_minimum_dispersion;
-			qDebug() << "Best threshold - " << BestThreshold;
-			qDebug() << "====================================";
-			qDebug() << "THRESHOLDS";
-			qDebug() << ThresholdVector;
-			qDebug() << "COORD DISPERSION RESULTS";
-			qDebug() << CoordDispersionResults;
-			qDebug() << "====================================";
-			qDebug() << "LUMINOSITY RESULTS";
-			qDebug() << LuminosityResults;
-			qDebug() << "====================================";
+			qDebug() << TAG << "THRESHOLD PARAMETERS";
+			qDebug() << TAG << "Min dispersion - " << *min_element_it << "Max dispersion - " << *max_element_it;
+			qDebug() << TAG << "Pixel sum minimum disperions - " << pixel_sum_minimum_dispersion;
+			qDebug() << TAG << "Best threshold - " << BestThreshold;
+			qDebug() << TAG << "====================================";
+			qDebug() << TAG << "THRESHOLDS";
+			qDebug() << TAG << ThresholdVector;
+			qDebug() << TAG << "COORD DISPERSION RESULTS";
+			qDebug() << TAG << CoordDispersionResults;
+			qDebug() << TAG << "====================================";
+			qDebug() << TAG << "LUMINOSITY RESULTS";
+			qDebug() << TAG << LuminosityResults;
+			qDebug() << TAG << "====================================";
 		}
 
 }
@@ -505,7 +506,7 @@ void OptimizationThreshold::FindThreshold(cv::Mat& Image)
 		int Direction = -1*sum_offset/abs(sum_offset);
 		int ThresholdStep = 15*Direction;
 	
-		qDebug() << "--------------------------------------";
+		qDebug() << TAG << "--------------------------------------";
 
 		int sum_offset_last = std::abs(sum_offset);
 		int last_sum = sum;
@@ -517,7 +518,7 @@ void OptimizationThreshold::FindThreshold(cv::Mat& Image)
 
 		
 
-		qDebug() << "CHECK - " << new_threshold << "sum % " << 100*sum/pixel_sum_minimum_dispersion;
+		qDebug() << TAG << "CHECK - " << new_threshold << "sum % " << 100*sum/pixel_sum_minimum_dispersion;
 		     if(counter > 10) break;
 
 			 if (sum_offset_last < sum_offset) { BestThreshold = Threshold; break; };
@@ -531,7 +532,7 @@ void OptimizationThreshold::FindThreshold(cv::Mat& Image)
          
 
 
-		qDebug() << "NEW - " << BestThreshold << "sum % " << 100*sum/pixel_sum_minimum_dispersion;
+		qDebug() << TAG << "NEW - " << BestThreshold << "sum % " << 100*sum/pixel_sum_minimum_dispersion;
 		
 
 }
@@ -555,11 +556,11 @@ double OptimizationThreshold::FindPixelsSum(cv::Mat& Image, int Threshold)
 void Processor::SwitchToAimingInStrob()
 {
 
-	//qDebug() << "Switch to aiming in strob";
+	//qDebug() << TAG << "Switch to aiming in strob";
 	this->AimingState = AimingInStrob;
 	auto CheckROIPos = [=](cv::Rect& Roi)
 	{
-		//qDebug() << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
+		//qDebug() << TAG << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
 		const int X_RIGHT_EDGE = Roi.x + Roi.width;
 		const int Y_BOTTOM_EDGE = Roi.y + Roi.height;
 
@@ -698,7 +699,7 @@ void Processor::SwitchToAimingInFullImage()
 {
 	auto CheckROIPos = [=](cv::Rect& Roi)
 	{
-		//qDebug() << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
+		//qDebug() << TAG << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
 		const int X_RIGHT_EDGE = Roi.x + Roi.width;
 		const int Y_BOTTOM_EDGE = Roi.y + Roi.height;
 
@@ -720,7 +721,7 @@ void Processor::SwitchToAimingInFullImage()
 
 	auto CheckStrobPos = [=](int& X_START, int& Y_START, int X_ROI, int Y_ROI)
 	{
-		//qDebug() << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
+		//qDebug() << TAG << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
 		const int X_RIGHT_EDGE = X_START + X_ROI;
 		const int Y_BOTTOM_EDGE = Y_START + Y_ROI;
 
@@ -750,7 +751,7 @@ void Processor::SwitchToAimingInFullImage()
 
     //    auto min_element = std::min_element(dispersions.begin(), dispersions.end());
     //    auto min_pos = std::distance(dispersions.begin(),min_element);
-    //    qDebug() << "BEST THRESHOLD RANGE FOUND " << 0.7 + float(min_pos)/10;
+    //    qDebug() << TAG << "BEST THRESHOLD RANGE FOUND " << 0.7 + float(min_pos)/10;
 
     //    return min_pos;
 
@@ -782,7 +783,7 @@ void Processor::SwitchToAimingInFullImage()
 		return (avg_pixel + (max_pixel - avg_pixel) * Range); // return threshold
 	};
 
-	//qDebug() << "Switch to aiming in FULL Image";
+	//qDebug() << TAG << "Switch to aiming in FULL Image";
 	this->StatProcessor.Reset();
 	this->StatProcessor.Size = 600;
 	ProcessImagePoly = [this, CheckROIPos, CheckStrobPos, CalcThresholdlByLuminosity](uchar* ImageToProcess, int Width, int Height) -> void  //FUNCTION THAT FIND SPOT IN WHOLE IMAGE
@@ -855,7 +856,7 @@ void Processor::SwitchToAimingInFullImage()
 				                                     StatProcessor.DispersionCoord.second < roi_size &&
 				                                     roi_rect_in_strob.width != roi_size)
 				{
-					//qDebug() << "SET ROI SIZE 96X96";
+					//qDebug() << TAG << "SET ROI SIZE 96X96";
 					ThresholdOptimizator.Reset();
 
 					this->roi_rect_in_strob.width = roi_size;    // correct roi 
@@ -885,7 +886,7 @@ void Processor::SwitchToFindSpotInFullImage()
     this->StatProcessorLong.Size = 200;
 	auto CheckROIPos = [=](int& X_START, int& Y_START, int X_ROI, int Y_ROI)
 	{
-		//qDebug() << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
+		//qDebug() << TAG << "CHECK ROI POS X START - " << X_START << "Y START - " << Y_START;
 		const int X_RIGHT_EDGE = X_START + X_ROI;
 		const int Y_BOTTOM_EDGE = Y_START + Y_ROI;
 
@@ -1039,7 +1040,7 @@ void Processor::ResizeProcessStrob(int X_SIZE, int Y_SIZE)
 {
 	this->strob_width = X_SIZE;
 	this->strob_height = Y_SIZE;
-	qDebug() << "Resize display image";
+	qDebug() << TAG << "Resize display image";
 
 }
 
@@ -1229,7 +1230,7 @@ if (!StatObj.IsStatisticsLoaded())
         StatObj.CurrentStatistic++; StatObj.BestStatNumberCoord++;
     };
 
-    if(StatObj.IsStatisticsLoaded()) {StatObj.BestStatNumberCoord = StatObj.GetBestStatisticsCoord(); qDebug() << "END STAT";};
+    if(StatObj.IsStatisticsLoaded()) {StatObj.BestStatNumberCoord = StatObj.GetBestStatisticsCoord(); qDebug() << TAG << "END STAT";};
 }
 };
 
@@ -1252,7 +1253,7 @@ StatisticGroup::StatisticGroup(int Count, int WindowSize)
 
         auto min_element = std::min_element(dispersions.begin(), dispersions.end());
         auto min_pos = std::distance(dispersions.begin(),min_element);
-        qDebug() << "BEST THRESHOLD RANGE FOUND " << 0.6 + float(min_pos)/100 << " POSITION - " << min_pos;
+        qDebug() << TAG << "BEST THRESHOLD RANGE FOUND " << 0.6 + float(min_pos)/100 << " POSITION - " << min_pos;
 
         return min_pos;
     };
@@ -1294,7 +1295,7 @@ void StatisticGroup::PerformAvailableData()
     if(Statistics.size() < 2) { BestStatNumberCoord = 0; return;};
 
     Statistics.erase(--CurrentStatistic,EndStatistic); EndStatistic = Statistics.end();
-    qDebug() << "STOP LOAD STAT AVAILABLE - " << Statistics.size();
+    qDebug() << TAG << "STOP LOAD STAT AVAILABLE - " << Statistics.size();
 
 
     BestStatNumberCoord = GetBestStatisticsCoord();

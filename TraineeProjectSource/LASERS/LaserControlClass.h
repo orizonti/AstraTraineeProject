@@ -5,6 +5,8 @@
 //#include "functional"
 #include <QTimer>
 
+
+
 class LaserControlClass: public QObject
 {
 	Q_OBJECT
@@ -30,12 +32,12 @@ public:
 	QVector<LaserCommonInterface*> Lasers;
 	quint8 LaserIterateCounter = 0;
 
+
 	public slots:
 	void IterateWorkingLaser();
-	void SlotSwitchFireBeam(bool OnOff);
 	void SlotSwitchPointerBeam(bool OnOff);
+	void SlotSwitchPowerBeam(int Channel, bool OnOff);
 	void SlotSwitchPilotBeam(int Channel, bool OnOff);
-	//void SlotSetBeamModulationFrequency(int Frequency);
 
 	void SlotSwitchAllLasers(bool OnOff);
 	void SlotStartIterateLasers(bool OnOff);

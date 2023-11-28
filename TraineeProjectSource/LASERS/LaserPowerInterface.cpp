@@ -4,6 +4,7 @@
 int COMMAND_REQUEST::LaserMessageCount = 0;
 
 
+#define TAG "[ LASER POWER ]" 
 LaserPowerInterface::LaserPowerInterface(QString Address, quint16 Port)
 {
 	qRegisterMetaType<LASER_MESSAGE>("LASER_MESSAGE");
@@ -20,7 +21,7 @@ LaserPowerInterface::~LaserPowerInterface()
 
    // SocketGuidLaser->abort();
    //       if(SocketGuidLaser->waitForDisconnected(4000))
-            //qDebug() << "SOCKET CONNECTED - " << Address << Port;
+            //qDebug() << TAG << "SOCKET CONNECTED - " << Address << Port;
 
          delete socketLaser;
 }
@@ -42,19 +43,20 @@ void LaserPowerInterface::TurnLaserBeamOnOff(bool OnOff)
 {
     if(this->OnOff != OnOff) this->OnOff = OnOff; else return;
 
-    GUID_COMMAND_STRUCT Command; Command.NUMBER_CHANNEL = 0;
+    //GUID_COMMAND_STRUCT Command; Command.NUMBER_CHANNEL = 0;
 
-    if( OnOff) Command.ON_OFF = 1;
-    if(!OnOff) Command.ON_OFF = 0;
+    //if( OnOff) Command.ON_OFF = 1;
+    //if(!OnOff) Command.ON_OFF = 0;
 
-    Command.CRC = GetCRC((unsigned char*)&Command,Command.DATA_SIZE +8);
-    QByteArray ArrayCommand((const char*)&Command,Command.DATA_SIZE + 10);
+    //Command.CRC = GetCRC((unsigned char*)&Command,Command.DATA_SIZE +8);
+    //QByteArray ArrayCommand((const char*)&Command,Command.DATA_SIZE + 10);
 
-    if (socketLaser->state() == 3) { socketLaser->write(ArrayCommand); }
+    //if (socketLaser->state() == 3) { socketLaser->write(ArrayCommand); }
 
     if( OnOff) this->LaserState = stateblocksenum::BlockAtWork;
     if(!OnOff) this->LaserState = stateblocksenum::BlockDisable;
 
+    LaserCommonInterface::TurnLaserBeamOnOff(OnOff);
 }
 
 DataLaserStruct LaserPowerInterface::GetState()
@@ -76,7 +78,7 @@ void LaserPowerInterface::SendRequestGetLaserParam()
 	 auto Command = GET_PARAM_COMMAND(CODE_LASER_DATA);
      Command.CRC = GetCRC((unsigned char*)&Command,Command.DATA_SIZE +8);
      QByteArray ArrayCommand((const char*)&Command,Command.DATA_SIZE + 10);
-     //qDebug() << "GET LASER PARAM : " << ArrayCommand.toHex();
+     //qDebug() << TAG << "GET LASER PARAM : " << ArrayCommand.toHex();
      socketLaser->write(ArrayCommand);
 }
 void LaserPowerInterface::SendRequestGetChillerParam()
@@ -84,12 +86,12 @@ void LaserPowerInterface::SendRequestGetChillerParam()
 	 auto Command = GET_PARAM_COMMAND(CODE_CHILLER_DATA);
      Command.CRC = GetCRC((unsigned char*)&Command,Command.DATA_SIZE +8);
      QByteArray ArrayCommand((const char*)&Command,Command.DATA_SIZE + 10);
-     //qDebug() << "GET CHILLER PARAM: " << ArrayCommand.toHex();
+     //qDebug() << TAG << "GET CHILLER PARAM: " << ArrayCommand.toHex();
      socketLaser->write(ArrayCommand);
 }
 void LaserPowerInterface::SendRequestReset()
 {
-     qDebug() << "SEND RESET TO LASER";
+     qDebug() << TAG << "SEND RESET TO LASER";
 	 auto Command = RESET_COMMAND();
      Command.CRC = GetCRC((unsigned char*)&Command,Command.DATA_SIZE +8);
      QByteArray ArrayCommand((const char*)&Command,Command.DATA_SIZE + 10);
@@ -127,8 +129,8 @@ void LaserPowerInterface::slotReadyRead()
   {
   auto [COMMAND_CODE,DATA_SIZE] = COMMAND_REQUEST::GetHeader(inputBuffer);
   WaitDataSize = DATA_SIZE + sizeof(COMMAND_REQUEST) + 2;
-  //qDebug() << " [" << InputBuffer.toHex() << " ]";
-  //qDebug() << "INPUT BUFFER SIZE: " << InputBuffer.size() << " WAIT: " << WaitDataSize;
+  //qDebug() << TAG << " [" << InputBuffer.toHex() << " ]";
+  //qDebug() << TAG << "INPUT BUFFER SIZE: " << InputBuffer.size() << " WAIT: " << WaitDataSize;
   
   if(DATA_SIZE == 0) Request.LoadData(inputBuffer);
   if(COMMAND_CODE == CODE_LASER_DATA) { LASER_CURRENT_PARAM.LoadData(inputBuffer); 
@@ -161,7 +163,7 @@ void LaserPowerInterface::slotError(QAbstractSocket::SocketError err)
 void LaserPowerInterface::slotConnected()
 {
 
-	qDebug() << QString("CONNECTED TO HOST - %1").arg(socketLaser->peerName());
+	qDebug() << TAG << QString("CONNECTED TO HOST - %1").arg(socketLaser->peerName());
 	this->SendRequestToUpControlStatus();
     this->SendRequestReset();
     timerGetLaserState.start(5000);
@@ -183,7 +185,7 @@ std::tuple<quint16,quint16> COMMAND_REQUEST::GetHeader(QByteArray array)
     quint16 ExecutionCode;
     quint16 DataSize;
     in >> HeaderCode >> ExecutionCode >> DataSize;
-    //qDebug() << "LASER: MESSAGE: " << HeaderCode << "SIZE :" << DataSize;
+    //qDebug() << TAG << "LASER: MESSAGE: " << HeaderCode << "SIZE :" << DataSize;
     return {HeaderCode,DataSize};
 }
 
@@ -193,8 +195,8 @@ void COMMAND_REQUEST::LoadData(QByteArray& Array)
                 in.setByteOrder(QDataStream::LittleEndian);
                 in >> *this;
     Array.remove(0,sizeof(COMMAND_REQUEST) + 2); //additional 2 bytes CRC at END
-    qDebug() << "COMMAND REQUEST:"<< COMMAND_CODE << " RESULT: " <<Qt::hex << EXECUTION_CODE;
-    //qDebug() << "LOAD DATA TO : " << typeid(this).name() << " REMOVE: " << sizeof(COMMAND_REQUEST) + 2;
+    qDebug() << TAG << "COMMAND REQUEST:"<< COMMAND_CODE << " RESULT: " <<Qt::hex << EXECUTION_CODE;
+    //qDebug() << TAG << "LOAD DATA TO : " << typeid(this).name() << " REMOVE: " << sizeof(COMMAND_REQUEST) + 2;
     LaserMessageCount++;
 }
 void LASER_MESSAGE::LoadData(QByteArray& Array)
@@ -209,31 +211,31 @@ void LASER_MESSAGE::LoadData(QByteArray& Array)
                 in >> CRC;
 
                 auto ControlCRC = GetCRC((unsigned char*)Array.data(),DataSize+8);
-                qDebug() << "CRC : "<< CRC << " CONTROL: " << ControlCRC;
+                qDebug() << TAG << "CRC : "<< CRC << " CONTROL: " << ControlCRC;
     Array.remove(0,sizeof(LASER_MESSAGE)); //additional 2 bytes CRC at END
 
-    //qDebug() << "LOAD DATA TO : " << typeid(this).name() << " REMOVE: " << sizeof(LASER_MESSAGE);
+    //qDebug() << TAG << "LOAD DATA TO : " << typeid(this).name() << " REMOVE: " << sizeof(LASER_MESSAGE);
     this->DATA.PrintStruct();
     LaserMessageCount++;
 }
 
 void LASER_PARAM_STRUCT::PrintStruct()
 {
-qDebug() << "======================";
-qDebug() << "LASER STATE:";
-//qDebug() << "TempMax   " << this->TempMax;
-//qDebug() << "TempMean  " << this->TempMean;
-//qDebug() << "TempMin   " << this->TempMin;
-//qDebug() << "Alarms1   "<<Qt::bin << this->Alarms1;
-//qDebug() << "Alarms2   "<<Qt::bin << this->Alarms2;
-//qDebug() << "Status2   "<<Qt::bin << this->Status2;
-//qDebug() << "Mod min temp " << this->ModuleMinTemp;
-//qDebug() << "Mod max temp " << this->ModuleMaxTemp;
-qDebug() << "STATUS1:   "<< Qt::bin << this->Status1;
+qDebug() << TAG << "======================";
+qDebug() << TAG << "LASER STATE:";
+//qDebug() << TAG << "TempMax   " << this->TempMax;
+//qDebug() << TAG << "TempMean  " << this->TempMean;
+//qDebug() << TAG << "TempMin   " << this->TempMin;
+//qDebug() << TAG << "Alarms1   "<<Qt::bin << this->Alarms1;
+//qDebug() << TAG << "Alarms2   "<<Qt::bin << this->Alarms2;
+//qDebug() << TAG << "Status2   "<<Qt::bin << this->Status2;
+//qDebug() << TAG << "Mod min temp " << this->ModuleMinTemp;
+//qDebug() << TAG << "Mod max temp " << this->ModuleMaxTemp;
+qDebug() << TAG << "STATUS1:   "<< Qt::bin << this->Status1;
 
 
 QString Status = "[ ";
-if(Status1&LASER_EMISSION_SLOW_ON) qDebug() << " EMISSION SLOW ON";
+if(Status1&LASER_EMISSION_SLOW_ON) qDebug() << TAG << " EMISSION SLOW ON";
 if(Status1&LASER_GUID_ON) Status = Status + " GUID ON |";
 if(Status1&LASER_LASER_READY_ON) Status = Status + " LASER READY |";
 if(Status1&LASER_ANALOG_ON) Status = Status + " ANALOG ON |";
@@ -245,8 +247,8 @@ if(Status1&LASER_ROBOT_SWITCH_ON) Status = Status + " ROBOT SWITCH ON |";
 if(Status1&LASER_EMISSION_SIGNAL) Status = Status + " EMISSION SIGNAL ON |";
 if(Status1&LASER_SHUTDOWN_STATE) Status = Status + " SHUTDOWN STATE |";
 if(Status1&LASER_STANDBY_STATE) Status = Status + " STANDBYSTATE";
-qDebug() << Status << " ]";
-qDebug() << "======================";
+qDebug() << TAG << Status << " ]";
+qDebug() << TAG << "======================";
 }
 
 //#define LASER_EMISSION_SLOW_ON     0x00000001

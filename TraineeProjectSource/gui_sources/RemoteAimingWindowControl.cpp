@@ -2,6 +2,7 @@
 #include "RemoteAimingWindowControl.h"
 #include "RemoteControlClass.h"
 
+#define TAG "[ REMOTE DISP ]" 
 RemoteAimingWindowControl::RemoteAimingWindowControl(QWidget *parent)
 	: AdjustableWidget(parent)
 {
@@ -31,7 +32,7 @@ RemoteAimingWindowControl::~RemoteAimingWindowControl()
 
 void RemoteAimingWindowControl::SlotSetActiveChannel()
 {
-	qDebug() << "Set direction";
+	qDebug() << TAG << "Set direction";
 	if(ui.butDirectErrorToAll->isChecked())
     this->ErrorPortHandleControl->SlotSetActiveChannel(0);	
 

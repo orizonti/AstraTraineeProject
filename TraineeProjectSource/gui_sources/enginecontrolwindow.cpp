@@ -1,5 +1,6 @@
 #include "CommonHeaders.h"
 #include "enginecontrolwindow.h"
+#define TAG "[ ENGCTRL WIND]" 
 
 EngineControlWindow::EngineControlWindow(QWidget *parent)
 	: AdjustableWidget(parent)
@@ -129,7 +130,7 @@ void EngineControlWindow::ConnectControlSignals(HandleControlInterface* Control)
 				{
 					int value = Slider->value();
 					Slider->setValue(value - step);
-					//qDebug() << "Move line - " << value;
+					//qInfo() << TAG << "Move line - " << value;
 					Line->setText(QString::number(value/200));
 				});
 
@@ -140,7 +141,7 @@ void EngineControlWindow::ConnectControlSignals(HandleControlInterface* Control)
 				connect(ui.ButEngineToNull1, &QPushButton::clicked, 
 				[=]()             //Set to NULL slider and thus set engine to NULL
 	            {
-					qDebug() << "Set tu null method";
+					qInfo() << TAG << "Set tu null method";
 					ui.SliderEngine1X->setValue(0);
 					ui.SliderEngine1Y->setValue(0);
 				    Control->MoveEngineToNull(NumberChannel);

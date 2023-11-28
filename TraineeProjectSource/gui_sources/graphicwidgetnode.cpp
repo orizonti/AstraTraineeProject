@@ -2,6 +2,7 @@
 #include "node.h"
 #include "CommonHeaders.h"
 #include "graphicwidgetnode.h"
+#define TAG "[ WIDGTES     ]" 
 int GraphicWidgetNode::CounterWidget = 0;
 
 GraphicWidgetNode::GraphicWidgetNode(QGraphicsScene* Scene, int X_POS, int Y_POS,QWidget* Widget)
@@ -60,7 +61,7 @@ bool GraphicWidgetNode::sceneEvent(QEvent *event)
    {
       this->NodePositionX = this->pos().x();
       this->NodePositionY = this->pos().y();
-      qDebug() << "POS WIDGET - " << NodePositionX << NodePositionY << " NUMBER: " << NumberWidget;
+      qInfo() << TAG << "POS WIDGET - " << NodePositionX << NodePositionY << " NUMBER: " << NumberWidget;
    }
 
 

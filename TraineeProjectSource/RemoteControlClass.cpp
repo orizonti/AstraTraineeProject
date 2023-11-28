@@ -2,6 +2,8 @@
 #include "RemoteControlClass.h"
 #include <qdebug.h>
 #include "RemoteAimingWindowControl.h"
+#include "LaserCommonInterface.h"
+#define TAG "[ REMOTE CTRL]" 
 
 RemoteAimingClass::RemoteAimingClass()
 {
@@ -58,10 +60,10 @@ void TCPServerEngine::StartLocalServer()
                this,   &TCPServerEngine::SlotNewConnection
        );
 
-    qDebug() << "START LOCAL SERVER AT PORT - " << Port;
+    qDebug() << TAG << "START LOCAL SERVER AT PORT - " << Port;
       if (!Server->listen(QHostAddress::Any,Port))
       {
-          qDebug() << "UNABLE TO START SERVER";
+          qDebug() << TAG << "UNABLE TO START SERVER";
           Server->close();
           return;
       }
@@ -93,7 +95,7 @@ void TCPServerEngine::SlotNewConnection()
                );
 
         //sendToClient(SocketToClient, QString(" connected ").toUtf8());
-        qDebug() << "Error port connected from - " << SocketToClient->peerAddress().toString();
+        qDebug() << TAG << "Error port connected from - " << SocketToClient->peerAddress().toString();
 }
 
 void TCPServerEngine::SlotReadData()
@@ -151,33 +153,33 @@ switch(ID_TASK)
     case camera_control_message:
     {
     auto Message =  reinterpret_cast< MessageStruct<COMMAND_ON_OFF>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
-    qDebug() << "REMOTE CAMERA CONTROL DONT WORK";
+    qDebug() << TAG << "REMOTE CAMERA CONTROL DONT WORK";
     }
     break;
     case engine_control_message:
     {
     auto Message =  reinterpret_cast< MessageStruct<COMMAND_ON_OFF>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
-    qDebug() << "REMOTE ENGINE CONTROL DONT WORK";
+    qDebug() << TAG << "REMOTE ENGINE CONTROL DONT WORK";
     }
     break;
     case marker_laser_message:
     {
     auto Message =  reinterpret_cast< MessageStruct<COMMAND_UMI_CONTROL>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
-         DeviceControl->TurnOnOffLaserPointer(Message->DATA.OnOff);
+         DeviceControl->TurnOnOffLaser(POINTER_LASER,Message->DATA.OnOff);
     }
     break;
     case laser_system_message:
     {
     auto Message =  reinterpret_cast< MessageStruct<COMMAND_LASER_CONTROL>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
-         DeviceControl->TurnOnOfLaserFire(1, Message->DATA.OnOff);
-         DeviceControl->TurnOnOfLaserFire(2, Message->DATA.OnOff);
-         DeviceControl->TurnOnOfLaserFire(3, Message->DATA.OnOff);
+         DeviceControl->TurnOnOffLaser(GUID_LASER1, Message->DATA.OnOff);
+         DeviceControl->TurnOnOffLaser(GUID_LASER2, Message->DATA.OnOff);
+         DeviceControl->TurnOnOffLaser(GUID_LASER3, Message->DATA.OnOff);
     }
     break;
     case calibration_message:
     {
     auto Message =  reinterpret_cast< MessageStruct<COMMAND_ON_OFF>*>(TCPServer.Data.data()); DataReceived = sizeof(Message);
-    qDebug() << "CALIBRATION DONT WORK";
+    qDebug() << TAG << "CALIBRATION DONT WORK";
     }
     break;
 }

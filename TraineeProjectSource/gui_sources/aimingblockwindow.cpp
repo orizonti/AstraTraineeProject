@@ -1,6 +1,7 @@
 
 #include "CommonHeaders.h"
 #include "aimingblockwindow.h"
+#define TAG "[ AIM  WINDOW ]" 
 
 AimingBlockWindow::AimingBlockWindow(QWidget *parent)
 	: AdjustableWidget(parent)

@@ -5,6 +5,7 @@
 QByteArray EngineInterfaceClass::CommonBuffer;
 KLPInterfaceClass* EngineInterfaceClass::KLPInterface;
 OutFcChannelFlags EngineInterfaceClass::EngineChannelNumber = ChannelFc3;
+#define TAG "[ ENGINE INTF ]" 
 
 void EngineInterfaceClass::PushCommandToChunk(QByteArray Command)
 {
@@ -54,7 +55,7 @@ void EngineInterfaceClass::SetCoord(QPair<double, double> Coord)
 	if (this->StateBlock == BlockDisable)
 		return;
 
-         //qDebug() << "Engine input coord -" << Coord.first*(180/M_PI)*60*60 << Coord.second*(180/M_PI)*60*60;
+         //qDebug() << TAG << "Engine input coord -" << Coord.first*(180/M_PI)*60*60 << Coord.second*(180/M_PI)*60*60;
 
 
 	    if(HorizontalAxisOn)
@@ -244,11 +245,11 @@ void operator>>(QDataStream &in, Status_EngineStruct &SendPocket)
 		>> SendPocket.EdgeMaxY
 		>> SendPocket.ABCDVersion;
 
-	//qDebug() << "Pos - " << SendPocket.PosAngleX<<  SendPocket.PosAngleY << endl;
-    //qDebug() << "Pos sec - " << SendPocket.PosAngleX*1000000.0/4.84<<  SendPocket.PosAngleY*1000000.0/4.84 << endl;
-	//qDebug() << "ability - " << bin << SendPocket.StateFlags;
-	//qDebug() << "Temp1 - " << SendPocket.TempSensor1 << endl;
-	//qDebug() << "Temp2 - " << SendPocket.TempSensor2 << endl;
+	//qDebug() << TAG << "Pos - " << SendPocket.PosAngleX<<  SendPocket.PosAngleY << endl;
+    //qDebug() << TAG << "Pos sec - " << SendPocket.PosAngleX*1000000.0/4.84<<  SendPocket.PosAngleY*1000000.0/4.84 << endl;
+	//qDebug() << TAG << "ability - " << bin << SendPocket.StateFlags;
+	//qDebug() << TAG << "Temp1 - " << SendPocket.TempSensor1 << endl;
+	//qDebug() << TAG << "Temp2 - " << SendPocket.TempSensor2 << endl;
 		/*<< "Pos ADC X - " << SendPocket.PosADC_X << endl
 		<< "Pos ADC Y - " << SendPocket.PosADC_Y << endl
 		<< "Min Max X " << SendPocket.EdgeMinX << SendPocket.EdgeMaxX << endl

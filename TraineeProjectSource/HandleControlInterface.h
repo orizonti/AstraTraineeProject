@@ -9,13 +9,11 @@ class HandleControlInterface: public QObject
 {
 	//Q_OBJECT
 	public :
-	virtual void TurnOnOffLaserPilot(int Channel, bool OnOff) = 0;
 	virtual void ResetAll() = 0;
 
-	virtual void TurnOnOfLaserFire(int Channel, bool OnOff) = 0;
+	virtual void TurnOnOffLaser(int Channel, bool OnOff) = 0;
 	virtual void TurnOnOffAllLasers(bool OnOff) = 0;
 
-	virtual void TurnOnOffLaserPointer(bool OnOff) = 0;
 
 	virtual void TurnOnOffChiller(bool OnOff) = 0;
 
@@ -30,9 +28,7 @@ class HandleControlInterface: public QObject
 	virtual void SetBlockState(typeblocksenum TypeBlock, int NumberChannel, stateblocksenum State) = 0;
 
 	virtual void SlotStartStopWork(bool StartStop) = 0;
-	virtual void SetLaserFireFrequency(int Channel, int Frequency) = 0;
 	virtual void SetPIDParam(double Common,double Rate, double Int, double diff) = 0;
-	virtual void SetCalmanParam(double Qnx, double Qex,double Qvex) = 0;
 	virtual QPair<double,double> MoveEnginesToStartPos(int Channel) = 0;
 	virtual void SetImageThresHold(int Thres,int Channel) = 0;
 
@@ -51,7 +47,6 @@ class HandleControlInterface: public QObject
 
     virtual void ChangeAimingType(TypeAiming Aiming,int Channel) = 0;
     virtual void TurnOnOffKalmanFilter(bool OnOff, int Channel) = 0;
-    virtual void GetPowerLaserState(int Channel) = 0;
 
 };
 

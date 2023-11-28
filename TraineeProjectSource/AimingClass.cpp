@@ -2,6 +2,7 @@
 #include "AimingClass.h"
 #include "SubstractPair.h"
 
+#define TAG "[   AIMING   ]" 
 
 DataAimingErrorStructure AimingClass::GetState()
 {
@@ -15,7 +16,7 @@ displayData.TypeBlock = this->TypeBlock;
   displayData.OutputPID = EnginePIDRegulator.GetCoord();
   displayData.BeginError = ErrorRecord.begin();
   displayData.EndError = CurrentRecord;
-  //qDebug() << "Current record - " << std::distance(ErrorRecord.begin(),CurrentRecord);
+  //qDebug() << TAG << "Current record - " << std::distance(ErrorRecord.begin(),CurrentRecord);
   CurrentRecord = ErrorRecord.begin();
 
 
@@ -108,29 +109,16 @@ void AimingClass::Reset()
 
 bool AimingClass::isAimingFaultStatistic()
 {
-   auto Error =  CurrentStatistic.DispersionCoordDistance;
-
-    if(Error > 3)
-    {
-        qDebug() << "AIMING STATISTIC FAULT ERROR DISPERSION" << Error;
-        return true;
-    }
-
-    return false;
+   auto Error =  CurrentStatistic.DispersionCoordDistance; if(Error > 3) { return true; }
+   return false;
 }
 bool AimingClass::isAimingFault()
 {
-    auto Error = GetAbsError();
-
-    if(Error > 10) return true;
-
+    auto Error = GetAbsError(); if(Error > 10) return true; 
     return false;
 }
 
-double AimingClass::GetAbsError()
-{
-    return std::hypot(LastErrorChannel.first, LastErrorChannel.second);
-}
+double AimingClass::GetAbsError() { return std::hypot(LastErrorChannel.first, LastErrorChannel.second); }
 
 void AimingClass::SetAimingSpeedRegim(TypeAiming Aiming)
 {
@@ -141,34 +129,23 @@ void AimingClass::SetAimingSpeedRegim(TypeAiming Aiming)
 }
 
 
-QPair<double, double> AimingClass::GetCoordDesiered()
-{
-return DesireRelCoord;
-}
-void AimingClass::MoveDesieredCoord(QPair<double, double> MoveCoord)
-{
-  DesireRelCoord = DesireRelCoord + MoveCoord;
-}
+QPair<double, double> AimingClass::GetCoordDesiered() { return DesireRelCoord; }
+
+void AimingClass::MoveDesieredCoord(QPair<double, double> MoveCoord) { DesireRelCoord = DesireRelCoord + MoveCoord; }
 void AimingClass::SetDesieredCoord(QPair<double, double> NewDesieredCoord)
 {
-	Substract<double> SubsPair;
-	NewDesieredCoord >> SubsPair;
-	  DesireRelCoord >> SubsPair >> LastErrorChannel;
-
-	  DesireRelCoord = NewDesieredCoord;
+    Substract<double> SubsPair;
+    NewDesieredCoord >> SubsPair;
+      DesireRelCoord >> SubsPair >> LastErrorChannel;
+    DesireRelCoord = NewDesieredCoord;
 	
 }
-
-
-AimingClass::~AimingClass()
-{
-}
+AimingClass::~AimingClass() { }
 
 ImageProcessingClass& operator>>(ImageProcessingClass& ImageProcessor, AimingClass& AimingBlock)
 {
     if(AimingBlock.StateBlock != BlockAtWork) return ImageProcessor;
     if(ImageProcessor.GetProcessor(AimingBlock.NumberChannel)->StateBlock != BlockAtWork) return ImageProcessor;
-
 
     if (ImageProcessor.GetProcessor(AimingBlock.NumberChannel)->FlagSpotFound)
 	{
@@ -178,8 +155,6 @@ ImageProcessingClass& operator>>(ImageProcessingClass& ImageProcessor, AimingCla
                     ImageProcessor.GetLastCoordChannel(4)  >> SubsPair >> AimingBlock;
 
 	}
-
-					
 return ImageProcessor;
 }
 
@@ -197,7 +172,6 @@ void AimingClass::SetCoord(QPair<double, double> Coord)
         std::chrono::time_point<std::chrono::high_resolution_clock> TimePoint2 = std::chrono::high_resolution_clock::now();
 
         auto StepPeriod = std::chrono::duration<double>((TimePoint2 - TimePoint)).count();
-        //qDebug() << "Aiming filter period - " << StepPeriod*1000;
 
         *CurrentRecord = LastErrorChannel; CurrentRecord++; if(CurrentRecord == ErrorRecord.end()) CurrentRecord = ErrorRecord.begin();
 
@@ -234,8 +208,10 @@ void AimingClass::LoadPIDParamFromFile()
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
-    qDebug() << "LOAD PID PARAMETERS FROM - " << file.fileName();
-    qDebug() << "=========================";
+    qDebug() << TAG << "LOAD PID PARAMETERS FROM - " << file.fileName();
+    qDebug() << TAG << "load pid parameters from - " << file.fileName();
+    qDebug() << TAG << "=========================";
+    qDebug() << TAG << "=========================DD";
 
     QTextStream in(&file);
     while (!in.atEnd())
@@ -285,6 +261,6 @@ void AimingClass::LoadPIDParamFromFile()
 
 void AimingClass::SlotFilterEnable(bool OnOff)
 {
-  qDebug() << "KALMAN FILTER ENABLED - " << OnOff;
+  qDebug() << TAG << "KALMAN FILTER ENABLED - " << OnOff;
   Filter.EnableFiltering(OnOff);
 }

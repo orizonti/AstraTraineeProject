@@ -1,5 +1,6 @@
 #include "CommonHeaders.h"
 #include "pidwindow.h"
+#define TAG "[ PID    WIND ]" 
 
 PIDWIndow::PIDWIndow(QWidget *parent)
 	: AdjustableWidget(parent)
@@ -65,7 +66,7 @@ void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
 					double rate_param = list_preference.at(0).toDouble();
 					double int_param = list_preference.at(1).toDouble();
 					double diff_param = list_preference.at(2).toDouble();
-					qDebug() << "SET PID PARAM - " << rate_param << int_param << diff_param;
+					qDebug() << TAG << "SET PID PARAM - " << rate_param << int_param << diff_param;
 
 				Control->SetPIDParam(Common, rate_param, int_param, diff_param);
 				
@@ -76,7 +77,7 @@ void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
 				[=]()
 			{
 					
-					qDebug() << "Load file PIDParams";
+					qDebug() << TAG << "Load file PIDParams";
 					QFile file("/home/broms/DEVELOPMENT/DATA/TrainerData/PIDParams.txt");
 					if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 						return;
@@ -86,7 +87,7 @@ void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
 					while (!in.atEnd()) 
 					{
 						QString line = in.readLine();
-						qDebug() << "Load - " << line;
+						qDebug() << TAG << "Load - " << line;
 						ui.listPIDPreference->addItem(line);
 					}
 			});

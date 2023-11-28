@@ -14,6 +14,7 @@
 #define ROI_HEIGHT 256
 #define ROI_WIDTH  1024
 //********************************************************************************************************************
+#define TAG "[   KAMERA   ]" 
 
 uchar* CameraInterfaceClass::ImageBufferFull = 0;
 uchar* CameraInterfaceClass::ImageBufferROI  = 0;   
@@ -60,7 +61,7 @@ CameraInterfaceClass::CameraInterfaceClass(KLPInterfaceClass* KLPPointer,QObject
 //********************************************************************************************************************
 CameraInterfaceClass::~CameraInterfaceClass(void)
 {
-	//qDebug() << "DESTRUCT CAMERA INTERFACE CLASS";
+	//qDebug() << TAG << "DESTRUCT CAMERA INTERFACE CLASS";
 
 	delete ImageBufferFull;
 	delete ImageBufferROI;
@@ -69,7 +70,7 @@ CameraInterfaceClass::~CameraInterfaceClass(void)
 	delete ImageBufferROI2;
 	delete ImageBufferFullROI2;
 
-	//qDebug() << "IMAGE BUFFER DELETED";
+	//qDebug() << TAG << "IMAGE BUFFER DELETED";
 
 }
 
@@ -133,10 +134,10 @@ ImageStruct CameraInterfaceClass::GetNewImage()
 bool CameraInterfaceClass::SetROI(ROI_Channels_Command ROI)
 {
 
-		qDebug() << "TRY to SET ROI 1 - " << POS_ROI.X1 << POS_ROI.Y1;
-		qDebug() << "TRY to SET ROI 2 - " << POS_ROI.X2 << POS_ROI.Y1;
-		qDebug() << "TRY to SET ROI 3 - " << POS_ROI.X3 << POS_ROI.Y1;
-		qDebug() << "TRY to SET ROI 4 - " << POS_ROI.X4 << POS_ROI.Y1;
+		qDebug() << TAG << "TRY to SET ROI 1 - " << POS_ROI.X1 << POS_ROI.Y1;
+		qDebug() << TAG << "TRY to SET ROI 2 - " << POS_ROI.X2 << POS_ROI.Y1;
+		qDebug() << TAG << "TRY to SET ROI 3 - " << POS_ROI.X3 << POS_ROI.Y1;
+		qDebug() << TAG << "TRY to SET ROI 4 - " << POS_ROI.X4 << POS_ROI.Y1;
 
 	if (this->POS_ROI.X1 > 2048 - 256 || this->POS_ROI.Y1 > 512 - 256)
 		return false;
@@ -155,7 +156,7 @@ bool CameraInterfaceClass::SetROI(ROI_Channels_Command ROI)
 	{
 	this->POS_ROI = ROI;
 
-	qDebug() << " ROI SET SUCCESS";
+	qDebug() << TAG << " ROI SET SUCCESS";
 	QByteArray Command;
 	QDataStream out(&Command, QIODevice::WriteOnly);
 
@@ -226,7 +227,7 @@ Control_Camera_Command::Control_Camera_Command()
 void Control_Camera_Command::SetCommand(quint8 Command)
 {
 	this->CommandAndSizeImage |= Command;
-	//qDebug() << "COMMAND - " << bin << this->CommandAndSizeImage;
+	//qDebug() << TAG << "COMMAND - " << bin << this->CommandAndSizeImage;
 }
 
 void Control_Camera_Command::SetReadControl(quint32 Command)
@@ -243,7 +244,7 @@ void Control_Camera_Command::SetSizeImage(quint32 Width, quint32 Height)
 	this->CommandAndSizeImage |= Width;
 	this->CommandAndSizeImage |= Height;
 
-	//qDebug() << "COMMAND AND IMAGE SIZE - " << bin << this->CommandAndSizeImage;
+	//qDebug() << TAG << "COMMAND AND IMAGE SIZE - " << bin << this->CommandAndSizeImage;
 
 
 }
@@ -350,11 +351,11 @@ void operator>>(QDataStream &in_data_stream, HEADER_ASM_STRUCT &HEADER)
 
 	//if (HEADER.Message_ID != 0)
 	//{
-	//	//    qDebug() << "=====================================================================================";
+	//	//    qDebug() << TAG << "=====================================================================================";
 	//	//    qDebug() << "FRAME MESSAGE - "<< hex << HEADER.Message_ID << HEADER.Device_ID << endl
 	//	//             << "LENGHT DATA   - " <<bin<< HEADER.Lenght << dec << HEADER.Lenght;
 
-	//	//    qDebug() << "=====================================================================================";
+	//	//    qDebug() << TAG << "=====================================================================================";
 	//}
 	HEADER.Lenght = HEADER.Lenght&HEADER.MaskForLenght;
 
@@ -387,14 +388,14 @@ void operator>>(QDataStream &in_data_stream, BITMAP_INFO_HEADER &HEADER)
 		>> HEADER.Reserv6
 		>> HEADER.Reserv7
 		>> HEADER.Reserv8;
-	//qDebug() << "period - " << Widget::time.restart();
+	//qDebug() << TAG << "period - " << Widget::time.restart();
 
-//	qDebug() << "=====================================================================================";
+//	qDebug() << TAG << "=====================================================================================";
 //	qDebug() << "WIDTH - "              << HEADER.Width << "HEIGHT - " << HEADER.Height << endl
 //	         << "FREQ       - "   << HEADER.FrameFrequency << endl
 //	         << "COMPRESSION    - " << HEADER.Compression;
 
-//	qDebug() << "=====================================================================================";
+//	qDebug() << TAG << "=====================================================================================";
 }
 
 
@@ -450,13 +451,13 @@ void operator>>(QDataStream &in_data_stream, CAMERA_PARAM_STRUCT &CAMERA_PARAM)
 		>> CAMERA_PARAM.ResolutionW
 		>> CAMERA_PARAM.ResolutionH
 		>> CAMERA_PARAM.Temperature;
-	//qDebug() << "CAMERA PARAM RESOLUTION - " << CAMERA_PARAM.ResolutionW << CAMERA_PARAM.ResolutionH <<"TEMPERATURE - " << CAMERA_PARAM.Temperature;
+	//qDebug() << TAG << "CAMERA PARAM RESOLUTION - " << CAMERA_PARAM.ResolutionW << CAMERA_PARAM.ResolutionH <<"TEMPERATURE - " << CAMERA_PARAM.Temperature;
 }
 
 
 void operator>>(QDataStream &in_data_stream, Status_CameraStruct &StatusPocket)
 {
-	qDebug() << "STATUS CAMERA ==============================================================";
+	qDebug() << TAG << "STATUS CAMERA ==============================================================";
 	in_data_stream >> StatusPocket.Status;
 	in_data_stream >> StatusPocket.RegimDevice;
 	in_data_stream >> StatusPocket.AvarageBackGround;
@@ -487,16 +488,16 @@ void operator>>(QDataStream &in_data_stream, Status_CameraStruct &StatusPocket)
 	         << "REGIM         - " << StatusPocket.RegimDevice;
 
 
-	qDebug() << "==============================================================";
+	qDebug() << TAG << "==============================================================";
 }
 
 void Status_CameraStruct::CheckStatus(quint8 Status)
 {
 	quint8 ModuleRegim = Status & 0x2;
-	qDebug() << "Camera Regim - " << ModuleRegim;
+	qDebug() << TAG << "Camera Regim - " << ModuleRegim;
 
 	quint8 Norm = (Status >> 4) & 0x1;
-	qDebug() << "Norm - " << Norm;
+	qDebug() << TAG << "Norm - " << Norm;
 
 }
 
@@ -504,7 +505,7 @@ void Status_CameraStruct::CheckCamearaParam(quint8 Param)
 {
 
 	quint8 AutoExpose = (Param >> 7) & 0x1;
-	qDebug() << "AutoExpose - " << AutoExpose;
+	qDebug() << TAG << "AutoExpose - " << AutoExpose;
 
 }
 
@@ -523,7 +524,7 @@ void Status_CameraStruct::CheckChannelState(quint32 FC1, quint32 FC2)
 	quint8 ErrorCounterCRC1 = (FC1 >> 12) & 0xF;
 	quint8 ErrorCounterCRC2 = (FC2 >> 12) & 0xF;
 
-	//qDebug() << "CHANNEL1 ERRORS FIND - " << ErrorFind1 << "CRC FIND - " << ErrorCRCFind1 << "COUNTER - " << ErrorCounter1 << "COUNTER CRC - " << ErrorCounterCRC1;
-	//qDebug() << "CHANNEL2 ERRORS FIND - " << ErrorFind2 << "CRC FIND - " << ErrorCRCFind2 << "COUNTER - " << ErrorCounter2 << "COUNTER CRC - " << ErrorCounterCRC2;
+	//qDebug() << TAG << "CHANNEL1 ERRORS FIND - " << ErrorFind1 << "CRC FIND - " << ErrorCRCFind1 << "COUNTER - " << ErrorCounter1 << "COUNTER CRC - " << ErrorCounterCRC1;
+	//qDebug() << TAG << "CHANNEL2 ERRORS FIND - " << ErrorFind2 << "CRC FIND - " << ErrorCRCFind2 << "COUNTER - " << ErrorCounter2 << "COUNTER CRC - " << ErrorCounterCRC2;
 
 }

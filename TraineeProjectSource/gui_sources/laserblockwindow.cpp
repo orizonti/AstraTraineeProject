@@ -2,6 +2,7 @@
 #include "CommonHeaders.h"
 #include "laserblockwindow.h"
 
+QString TAG = "[LASER   WIND]"; 
 LaserBlockWindow::LaserBlockWindow(QWidget *parent)
 	: AdjustableWidget(parent)
 {
@@ -25,10 +26,15 @@ void LaserBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
 	Buttons.append(ui.ButTurnToWorkLaser2);
 	Buttons.append(ui.ButTurnToWorkLaser3);
 
-	QPushButton* ButConnect;
-	QVector<QPushButton*>::Iterator ButtonIterator = Buttons.begin();
+	QVector<QPushButton*> ButtonsPower;
+	ButtonsPower.append(ui.ButTurnToWorkPower1);
+	ButtonsPower.append(ui.ButTurnToWorkPower2);
+	ButtonsPower.append(ui.ButTurnToWorkPower3);
 
-	for (int n_channel = 0; n_channel <= 2; n_channel++)
+	QPushButton* ButConnect;
+
+	QVector<QPushButton*>::Iterator ButtonIterator = Buttons.begin();
+	for (int n_channel = 0; n_channel <= 2; n_channel++) //POWER CHANNELS 1 2 3
 	{
 			ButConnect = *ButtonIterator;
 			ButtonIterator++;
@@ -36,15 +42,30 @@ void LaserBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
 			connect(ButConnect, &QPushButton::toggled,
 				[=]()
 			{
-					Control->TurnOnOffLaserPilot(n_channel + 1, ButConnect->isChecked());
+					Control->TurnOnOffLaser(n_channel + 11, ButConnect->isChecked());
 			});
 	}
+
+	ButtonIterator = ButtonsPower.begin();
+	for (int n_channel = 0; n_channel <= 2; n_channel++) //GUID CHANNELS 11 12 13
+	{
+			ButConnect = *ButtonIterator;
+			ButtonIterator++;
+
+			connect(ButConnect, &QPushButton::toggled,
+				[=]()
+			{
+				    qInfo() << TAG << "TURN  POWER BUTTON";
+					Control->TurnOnOffLaser(n_channel + 1, ButConnect->isChecked());
+			});
+	}
+
 
 
 	connect(ui.ButTurnToWorkPointer, &QPushButton::toggled,
 		[this, Control]()
 	{
-		Control->TurnOnOffLaserPointer(ui.ButTurnToWorkPointer->isChecked());
+		Control->TurnOnOffLaser(4, ui.ButTurnToWorkPointer->isChecked());
 	});
 
 	connect(ui.butStartAllLasers, &QPushButton::toggled,
@@ -55,27 +76,24 @@ void LaserBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
 }
 void LaserBlockWindow::DisplayState(stateblocksenum State,int NumberChannel)
 {
-
 	QPushButton* But = 0;
 
 	switch (NumberChannel)
 	{
-	case 1: But = ui.ButTurnToWorkLaser1; break;
-	case 2: But = ui.ButTurnToWorkLaser2; break;
-	case 3: But = ui.ButTurnToWorkLaser3; break;
+	case 1: But = ui.ButTurnToWorkPower1; break;
+	case 2: But = ui.ButTurnToWorkPower2; break;
+	case 3: But = ui.ButTurnToWorkPower3; break;
 	case 4: But = ui.ButTurnToWorkPointer; break;
+	case 11: But = ui.ButTurnToWorkLaser1; break;
+	case 12: But = ui.ButTurnToWorkLaser2; break;
+	case 13: But = ui.ButTurnToWorkLaser3; break;
 	}
 
 	if (But != 0)
 	{
 	But->blockSignals(true);
-
-	if (State == BlockDisable)
-		But->setChecked(false);
-	if (State == BlockAtWork)
-		But->setChecked(true);
-
-		
+	if (State == BlockDisable) But->setChecked(false);
+	if (State == BlockAtWork)  But->setChecked(true);
 	But->blockSignals(false);
 	}
 }

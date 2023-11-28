@@ -8,6 +8,7 @@
 
 #include "LaserCommonInterface.h"
 #include "LaserPowerCommands.h"
+#include <QTimer>
 
 
 class LaserPowerInterface : public LaserCommonInterface

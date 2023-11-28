@@ -1,6 +1,7 @@
 
 #include "CommonHeaders.h"
 #include "imageprocessingwindow.h"
+#define TAG "[ IMGPRC WIND ]" 
 
 ImageProcessingWindow::ImageProcessingWindow(QWidget *parent)
 	: AdjustableWidget(parent)

@@ -20,6 +20,7 @@ set(QT_SERIALPORT_LIB 1)
 set(QT_WIDGETS_LIB 1)
 set(QT_PRINTSUPPORT_LIB 1)
 
+#add_compile_options(-DQT_NO_WARNING_OUTPUT)
 message("MAIN PROJECT CONFIG")
 
 set(USER "broms")

@@ -1,5 +1,6 @@
 #include "CommonHeaders.h"
 #include "cameracontrolwindow.h"
+#define TAG "[ CAM  WINDOW ]" 
 
 CameraControlWindow::CameraControlWindow(QWidget *parent)
 	: AdjustableWidget(parent)
@@ -65,7 +66,7 @@ void CameraControlWindow::ConnectControlSignals(HandleControlInterface* Control)
 	ROI_Command.X3 = ui.SpinX3->value();
 	ROI_Command.X4 = ui.SpinX4->value();
 
-	qDebug() << "GET ROI IN LAMBDA";
+	qInfo() << TAG << "GET ROI IN LAMBDA";
 	Control->SetCameraROI(ROI_Command);
 	});
 }

@@ -1,6 +1,7 @@
 #include "CommonHeaders.h"
 #include "ChillSystemClass.h"
 
+#define TAG "[   CHILL    ]" 
 DataChillerStructure ChillSystemClass::GetState()
 {
 	// TODO: Implement Method

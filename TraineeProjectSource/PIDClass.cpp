@@ -1,6 +1,8 @@
 #include "CommonHeaders.h"
 #include "PIDClass.h"
 
+#define TAG "[ PID CONTROL ]" 
+
 PIDClass::PIDClass()
 {
 
@@ -79,7 +81,7 @@ void PIDClass::SetCoord(QPair<double, double> Coord)
 
 void PIDClass::SetPIDParam(PIDParamStruct Param)
 {
-    qDebug() << "SET PID PARAM - " << Param.RateParam << Param.IntParam << Param.DiffParam;
+    qDebug() << TAG << "SET PID PARAM - " << Param.RateParam << Param.IntParam << Param.DiffParam;
 	this->PIDParam = Param;
 	this->ResetPID();
 }

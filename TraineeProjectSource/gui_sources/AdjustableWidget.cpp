@@ -59,4 +59,4 @@ void AdjustableLabel::AdjustWindow()
   //  ChangeFontToWidget(Label,10);
 
   // for(QLabel* Label: Labels)
-  //    qDebug() << "LABEL: " << Label->styleSheet(); 
+  //    qInfo() << TAG << "LABEL: " << Label->styleSheet(); 

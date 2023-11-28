@@ -4,13 +4,14 @@
 #include <random>
 #include <math.h>
 
+#define TAG "[ SINUS GEN   ]" 
 
 SinusGeneratorClass::SinusGeneratorClass(QObject* Obj) : QObject(Obj)
 {
 	WindowControl = new WindowSinusSource;
 	QObject::connect(&this->TimerGenerateSinus, SIGNAL(timeout()), this, SLOT(SlotCalculateNewValue()));
 
-     qDebug() << "CREATE SINUS GENERATOR";
+     qDebug() << TAG << "CREATE SINUS GENERATOR";
 	 LastPos = QPair<double, double>(0, 0);
 	 CurrentPos = QPair<double, double>(0, 0);
      StepPos = QPair<double, double>(0, 0);
@@ -59,12 +60,12 @@ void SinusGeneratorClass::SlotSetAmplitude(double Ampl)
 
 void SinusGeneratorClass::SlotSetAmplitudeNoize(double Ampl)
 {
-    qDebug() << "Noize amplitude - " << Ampl;
+    qDebug() << TAG << "Noize amplitude - " << Ampl;
     this->AmplitudeNoize = Ampl;
 }
 void SinusGeneratorClass::SlotEnableChannel(bool Enable , int Channel)
 {
-    qDebug() << "Enable channel - " << Channel << Enable;
+    qDebug() << TAG << "Enable channel - " << Channel << Enable;
     if(Channel == 1) ENABLE_CHANNEL1 = Enable;
     if(Channel == 2) ENABLE_CHANNEL2 = Enable;
     if(Channel == 3) ENABLE_NOIZE = Enable;
