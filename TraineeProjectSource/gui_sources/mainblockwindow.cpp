@@ -36,9 +36,9 @@ void MainBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
 	{
 
 		if (ui.butStartMoveCircle->isChecked())
-		Control->SlotStartMoveByCircle(true);
+		Control->StartCircleMoving(true);
 		else
-		Control->SlotStartMoveByCircle(false);
+		Control->StartCircleMoving(false);
 	});
 
 	connect(ui.butResetAll, &QPushButton::clicked,
@@ -59,9 +59,9 @@ void MainBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
 		Control->SaveEnginePosToFile();
 	});
 
-	connect(ui.butRotateCalibration, &QPushButton::clicked, Control, &HandleControlInterface::StartSystemRotationCalibration,Qt::QueuedConnection);
+	connect(ui.butRotateCalibration, &QPushButton::clicked, Control, &HandleControlInterface::StartRotationCalibrationProcess,Qt::QueuedConnection);
 
-	connect(this, SIGNAL(SignalResetBlocks(bool)), Control, SLOT(SlotStartStopWork(bool)));
+	connect(this, SIGNAL(SignalResetBlocks(bool)), Control, SLOT(StartStopWork(bool)));
 
 	connect(ui.ButSetAdjustMode, &QPushButton::toggled,
 		[=]()
@@ -78,8 +78,8 @@ void MainBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
 	{
 
 		if (ui.ButSetPowerSupplyCommutator->isChecked())
-		Control->SetPowerSupplyOnCommutator(true);
+		Control->TurnOnOffPowerCommutator(true);
 		else
-		Control->SetPowerSupplyOnCommutator(false);
+		Control->TurnOnOffPowerCommutator(false);
 	});
 }

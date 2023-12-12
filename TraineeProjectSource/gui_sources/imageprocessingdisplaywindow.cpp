@@ -86,7 +86,7 @@ void ImageProcessingDisplayWindow::ConnectControlSignals(HandleControlInterface*
 				connect(ClickLabel, &LabelImage::SignalPressedPos, 
 				[=]()          
 	            {
-					Control->SlotSetAimingCoord(ClickLabel->X_Pressed, ClickLabel->Y_Pressed, n);
+					Control->SetAimingCoord(ClickLabel->X_Pressed, ClickLabel->Y_Pressed, n);
 				});
 	}
 

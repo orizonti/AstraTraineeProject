@@ -45,18 +45,18 @@ void EngineControlWindow::ConnectControlSignals(HandleControlInterface* Control)
 	[=]()             
 	{
 			if (ui.butTurnOffVertical->isChecked())
-			Control->TurnOffAxisEngine(true,1,NumberChannel);
+			Control->TurnOnOffAxisEngine(true,1,NumberChannel);
 			else
-			Control->TurnOffAxisEngine(false,1,NumberChannel);
+			Control->TurnOnOffAxisEngine(false,1,NumberChannel);
 	});
 
 	connect(ui.butTurnOffHorizontal, &QPushButton::toggled, 
 	[=]()            
 	{
 			if (ui.butTurnOffHorizontal->isChecked())
-			Control->TurnOffAxisEngine(true,2,NumberChannel);
+			Control->TurnOnOffAxisEngine(true,2,NumberChannel);
 			else
-			Control->TurnOffAxisEngine(false,2,NumberChannel);
+			Control->TurnOnOffAxisEngine(false,2,NumberChannel);
 	});
 				
 

@@ -1,6 +1,6 @@
 #include "CommonHeaders.h"
 #include "RemoteAimingWindowControl.h"
-#include "RemoteControlClass.h"
+#include "RemoteControlInterface.h"
 
 #define TAG "[ REMOTE DISP ]" 
 RemoteAimingWindowControl::RemoteAimingWindowControl(QWidget *parent)

@@ -211,16 +211,11 @@ class Control_Camera_Command
 public:
 	Control_Camera_Command();
 
-
-
-
 	void SetCommand(quint8 Command);
 	void SetReadControl(quint32 Command);
 	void SetSizeImage(quint32 Width, quint32 Height);
 
 	AsmHeader HEADER;
-
-
 	quint32 CommandAndSizeImage = 0;
 
 	quint16 TimeExposure = 0;
@@ -244,7 +239,6 @@ public:
 	////////////////////////////
 
 	quint32 ReadParamControl = 0;
-
 	quint32 ImagePositionLeftTop = 0;
 	quint8 reserve8;
 

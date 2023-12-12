@@ -102,10 +102,8 @@ friend void operator<<(QDataStream& out, StatusRequestCommutator& SendPocket);
 class Regim_CommutatorCommand
 {
 public:
-
 	Regim_CommutatorCommand()
 	{
-
 		FC_HEADER.DeviceID = 0x78;
 		FC_HEADER.MessageId = 0x06;
 		FC_HEADER.Length = 8 + 8;
@@ -118,20 +116,17 @@ public:
 	quint16 ChannelsSupply = 0xFFFF;
 	quint32 Reserv = 0;
 
-
-	void TurnOnOffSupply(bool OnOff)
+	void TurnOnOffSupplyAll(bool OnOff)
 	{
-		if (OnOff)
-		ChannelsSupply = 0xFFFF;
-
-		if (!OnOff)
-			ChannelsSupply = 0x00;
-
+		if ( OnOff) ChannelsSupply = 0xFFFF;
+		if (!OnOff) ChannelsSupply = 0x00;
 	}
 
-
-
-
+	void TurnOnOffSupplyEngine(bool OnOff, int Channel)
+	{
+		//if ( OnOff) ChannelsSupply = 0x00;
+		//if (!OnOff) ChannelsSupply = 0x00;
+	}
 	friend void operator<<(QDataStream& out, Regim_CommutatorCommand& SendPocket);
 };
 

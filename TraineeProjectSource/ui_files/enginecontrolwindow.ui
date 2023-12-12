@@ -126,7 +126,7 @@ border: 2px solid line black;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>:/MainControllerQClass/TrainerPictures/право1.png</normaloff>:/MainControllerQClass/TrainerPictures/право1.png</iconset>
+          <normaloff>:/MainControllerClass/TrainerPictures/право1.png</normaloff>:/MainControllerClass/TrainerPictures/право1.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -267,7 +267,7 @@ border: 2px solid line black;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>:/MainControllerQClass/TrainerPictures/право1.png</normaloff>:/MainControllerQClass/TrainerPictures/право1.png</iconset>
+          <normaloff>:/MainControllerClass/TrainerPictures/право1.png</normaloff>:/MainControllerClass/TrainerPictures/право1.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -477,7 +477,7 @@ border: 2px solid line black;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>:/MainControllerQClass/TrainerPictures/лево1.png</normaloff>:/MainControllerQClass/TrainerPictures/лево1.png</iconset>
+          <normaloff>:/MainControllerClass/TrainerPictures/лево1.png</normaloff>:/MainControllerClass/TrainerPictures/лево1.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -500,7 +500,7 @@ border: 2px solid line black;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>:/MainControllerQClass/TrainerPictures/лево1.png</normaloff>:/MainControllerQClass/TrainerPictures/лево1.png</iconset>
+          <normaloff>:/MainControllerClass/TrainerPictures/лево1.png</normaloff>:/MainControllerClass/TrainerPictures/лево1.png</iconset>
         </property>
         <property name="iconSize">
          <size>

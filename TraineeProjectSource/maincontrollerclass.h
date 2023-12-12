@@ -3,10 +3,10 @@
 #include "AimingClass.h"
 #include "LaserControlClass.h"
 #include "EngineControlClass.h"
-#include "mainwindowqclass.h"
+#include "mainwindowclass.h"
 #include "ImageProcessingClass.h"
 #include "HandleControlInterface.h"
-#include "RemoteControlClass.h"
+#include "RemoteControlInterface.h"
 #include "CameraInterfaceClass.h"
 #include "KLPInterfaceClass.h"
 #include "graphicswindow.h"
@@ -16,12 +16,12 @@
 #include <memory>
 #include "RemoteAimingWindowControl.h"
 
-#include "RemoteControlClass.h"
+#include "RemoteControlInterface.h"
 
 enum StateMainController {Init = 0,FindChannels,WorkMode};
 
 
-class MainControllerQClass;
+class MainControllerClass;
 class TestSignals :public QObject,public PassTwoCoordClass
 {
 Q_OBJECT
@@ -57,13 +57,13 @@ signals:
     void SignalNewDataAvailable();
 };
 
-class MainControllerQClass
+class MainControllerClass
 	: public HandleControlInterface
 {
 	Q_OBJECT
 public:
-	 MainControllerQClass(MainWindowQClass* Window, GraphicsWindow* Window2);
-	~MainControllerQClass();
+	 MainControllerClass(MainWindowClass* Window, GraphicsWindow* Window2);
+	~MainControllerClass();
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;
 	typeblocksenum TypeBlock = MainContoller;
 
@@ -99,12 +99,12 @@ public slots:
 
 
 public slots:
-	void SlotSetAimingCoord(int x, int y, int NumberChannel);
-	void SlotStartStopWork(bool StartStop);
+	void SetAimingCoord(int x, int y, int NumberChannel);
+	void StartStopWork(bool StartStop);
 	void SlotMoveByCircle();
-	void SlotStartMoveByCircle(bool OnOff) override;
+	void StartCircleMoving(bool OnOff) override;
 	void SetAdjustModeWithCrossHair(bool OnOff);
-	void StartSystemRotationCalibration();
+	void StartRotationCalibrationProcess();
 	void SlotFinishWork();
 
 public:
@@ -112,13 +112,14 @@ public:
 	void RotateEngineAxis(int Channel, double AngleDegree);
 	void MoveEngine(int Direction,double X_Pos,double Y_Pos, int Channel);
 	void MoveEngineToNull(int Channel);
-	void TurnOffAxisEngine(bool state,int axis, int channel);
+	void TurnOnOffAxisEngine(bool state,int axis, int channel);
 
 	void ResetAll();
-	void SetPowerSupplyOnCommutator(bool OnOff);
+	void TurnOnOffPowerCommutator(bool OnOff);
+	void TurnOnOffEngines(bool OnOff);
 
 	void SaveEnginePosToFile();
-	QPair<double,double> MoveEnginesToStartPos(int Channel);
+	QPair<double,double> MoveEngineToWorkPos(int Channel);
 
 	void SetPIDParam(double Common,double Rate, double Int, double diff);
 	void SetImageThresHold(int Thres, int Channel);
@@ -134,12 +135,13 @@ public:
      void SetCameraROI(ROI_Channels_Command ROI);
 	 void ChangeCalmanParam(double Qe, double Qn);
 	 void SetThresholdControlManual(bool OnOff);
+	 void TurnOnOffCamera(bool OnOff);
 //================================================================
 	void TurnOnOffLaser(int NumberLaser, bool OnOff);
 	void TurnOnOffAllLasers(bool OnOff);
 
 
-    void ChangeAimingType(TypeAiming Aiming,int Channel);
+    void SetAimingType(TypeAiming Aiming,int Channel);
 	void TurnOnOffKalmanFilter(bool OnOff, int Channel);
 
 signals:
@@ -149,6 +151,7 @@ signals:
 	void WorkFinished();
 private:
 	ImageProcessingClass &GetFreeImageProcessor();
+	void DisplayFullImage();
 	bool Initialization();
 	void Delay();
 private:
@@ -157,7 +160,7 @@ private:
 
 	QThread* MainThread;
 
-	MainWindowQClass*  WindowDisplay;
+	MainWindowClass*  WindowDisplay;
 	GraphicsWindow* GraphicsDisplay;
 
 	QVector<EngineControlClass*> EngineBlocks;
@@ -172,8 +175,8 @@ private:
 	std::shared_ptr<AimingClass>          AimingBlockPointer;
 	std::shared_ptr<LaserControlClass>    LaserControl;
 
-	std::shared_ptr<RemoteControlClass>   RemoteControl;
-	std::shared_ptr<RemoteAimingClass>   ErrorRecievePort;
+	std::shared_ptr<RemoteControlInterface>   RemoteControl;
+	std::shared_ptr<RemoteAimingInterface>   ErrorRecievePort;
 
 	std::shared_ptr<KLPInterfaceClass>    KLPInterface;
 	std::shared_ptr<ImageProcessingClass> ImageProcessor;

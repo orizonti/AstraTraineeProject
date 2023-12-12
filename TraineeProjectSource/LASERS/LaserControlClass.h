@@ -17,7 +17,7 @@ public:
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;
 
 
-	QVector<DataLaserStruct> GetLasersState();
+	DataLaserStruct GetLasersState();
 
 	LaserCommonInterface* LPilot1;
 	LaserCommonInterface* LPilot2;
@@ -31,6 +31,7 @@ public:
 	QTimer TimerToIterateLasers;
 	QVector<LaserCommonInterface*> Lasers;
 	quint8 LaserIterateCounter = 0;
+	DataLaserStruct LasersState;
 
 
 	public slots:

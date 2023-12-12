@@ -13,7 +13,7 @@
 
 
 
-#include "ui_mainwindowqclass.h"
+#include "ui_mainwindowclass.h"
 #include "HandleControlInterface.h"
 
 #include "graphicswindow.h"
@@ -34,18 +34,18 @@
 #include "AdjustableWidget.h"
 
 
-class MainWindowQClass : public QMainWindow
+class MainWindowClass : public QMainWindow
 {
 	Q_OBJECT 
 
 public:
-	MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *parent = 0);
-	~MainWindowQClass();
+	MainWindowClass(GraphicsWindow* GraphicsWidget,QWidget *parent = 0);
+	~MainWindowClass();
 
 public:
-	Ui::MainWindowQClass ui;
+	Ui::MainWindowClass ui;
 public:
-	friend void operator>>(const DataDeviceStructure& DataToDisplay,MainWindowQClass &MainWindow);
+	friend void operator>>(const DataDeviceStructure& DataToDisplay,MainWindowClass &MainWindow);
 	
 	QTimer TimerToCheckStateBlocks;
 

@@ -57,6 +57,7 @@ include_directories("/opt/nf_npkspp/ibpa.08072-01_mppd_driver/include/headers/")
 include_directories("/usr/local/include/opencv4")
 include_directories("./gui_sources")
 include_directories("./LASERS")
+include_directories("./REMOTE_CONTROL")
 include_directories(${PROJECT_SOURCE_DIR})
 
 include_directories("${LIBRARY_DIR}/COMMON_LIBRARRY/boost_1_68_0/boost_1_68_0")
@@ -81,7 +82,7 @@ add_executable (TraineeProjectExecutable
         "./ui_files/kalmanwindow.ui"
         "./ui_files/laserblockwindow.ui"
         "./ui_files/mainblockwindow.ui"
-        "./ui_files/mainwindowqclass.ui"
+        "./ui_files/mainwindowclass.ui"
         "./ui_files/PIDWIndow.ui"
         "./ui_files/PilotLaserWindow.ui"
         "./ui_files/windowsinussource.ui"
@@ -94,7 +95,7 @@ add_executable (TraineeProjectExecutable
         "./gui_sources/imageprocessingdisplaywindow.cpp"
         "./gui_sources/imageprocessingwindow.cpp"
         "./gui_sources/mainblockwindow.cpp"
-        "./gui_sources/mainwindowqclass.cpp"
+        "./gui_sources/mainwindowclass.cpp"
         "./gui_sources/kalmanwindow.cpp"
         "./gui_sources/laserblockwindow.cpp"
         "./gui_sources/enginecontrolwindow.cpp"
@@ -116,7 +117,6 @@ add_executable (TraineeProjectExecutable
         "DigitalClock.cpp"
         "EngineControlClass.cpp"
         "EngineInterfaceClass.cpp"
-        "RemoteControlClass.cpp"
         "ImageProcessingClass.cpp"
         "KLPInterfaceClass.cpp"
 
@@ -125,15 +125,19 @@ add_executable (TraineeProjectExecutable
         "./LASERS/LaserPilotInterface.cpp"
         "./LASERS/LaserPointerInterface.cpp"
         "./LASERS/LaserPowerInterface.cpp"
+
+        "./REMOTE_CONTROL/RemoteControlInterface.cpp"
+        "./REMOTE_CONTROL/RemoteControlProtocol.cpp"
+        "./REMOTE_CONTROL/UDPEngineInterface.cpp"
         
         "main.cpp"
-        "maincontrollerqclass.cpp"
+        "maincontrollerclass.cpp"
 
         "PassTwoCoordClass.cpp"
         "PIDClass.cpp"
         "qcustomplot.cpp"
         "SinusGeneratorClass.cpp"
-        "tcpclientengine.cpp"
+        #"tcpclientengine.cpp"
         "TransformCoordClass.cpp"
         "mppd_wrap.cpp"
         "qcustomplot.h"

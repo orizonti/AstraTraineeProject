@@ -63,9 +63,9 @@ void AimingBlockWindow::ConnectControlSignals(HandleControlInterface* Control)
                 {
                     switch (TypeAiming)
                     {
-                    case 1: Control->ChangeAimingType(AimingSlow, NumberChannel); break;
-                    case 2: Control->ChangeAimingType(AimingFast, NumberChannel); break;
-                    case 3: Control->ChangeAimingType(AimingTuning, NumberChannel); break;
+                    case 1: Control->SetAimingType(AimingSlow, NumberChannel); break;
+                    case 2: Control->SetAimingType(AimingFast, NumberChannel); break;
+                    case 3: Control->SetAimingType(AimingTuning, NumberChannel); break;
                     }
                 }
             });

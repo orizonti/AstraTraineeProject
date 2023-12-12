@@ -78,11 +78,9 @@ void LaserControlClass::SlotSwitchPilotBeam(int Channel, bool OnOff)
 }
 
 
-QVector<DataLaserStruct> LaserControlClass::GetLasersState()
+DataLaserStruct LaserControlClass::GetLasersState()
 {
-	QVector<DataLaserStruct> laserDataVector;
-	laserDataVector.push_back(this->LaserPointer->GetState());
-	return laserDataVector;	
+	return LasersState;	
 }
 
 

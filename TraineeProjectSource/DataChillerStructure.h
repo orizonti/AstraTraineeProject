@@ -5,7 +5,6 @@
 class DataChillerStructure : public DataDeviceStructure
 {
 public:
-    quint8  Temp1;
-    quint16 Presure1;
-    quint8  Humidity1;
+    float  Temp1;
+    float  Temp2;
 };

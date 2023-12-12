@@ -1,5 +1,5 @@
 #include "CommonHeaders.h"
-#include "mainwindowqclass.h"
+#include "mainwindowclass.h"
 #include <QAction>
 #include <QObject>
 #include <QGraphicsItem>
@@ -7,7 +7,7 @@
 #define TAG "[ MAIN   WIND ]" 
 
 
-MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
+MainWindowClass::MainWindowClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
@@ -73,8 +73,8 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 	QObject::connect(this, SIGNAL(SignalNewCoordsData(DataCoordStructure)),this,SLOT(DisplayCoordData(DataCoordStructure)));
 	QObject::connect(this, SIGNAL(SignalDispalyFullImage(QImage)),this,SLOT(DisplayFullImage(QImage)));
 
-	QObject::connect(ui.actionGuiSizeSmall, &QAction::triggered,this, &MainWindowQClass::SlotChangeInterfaceSize);
-	QObject::connect(ui.actionGuiSizeBig, &QAction::triggered,this, &MainWindowQClass::SlotChangeInterfaceSize);
+	QObject::connect(ui.actionGuiSizeSmall, &QAction::triggered,this, &MainWindowClass::SlotChangeInterfaceSize);
+	QObject::connect(ui.actionGuiSizeBig, &QAction::triggered,this, &MainWindowClass::SlotChangeInterfaceSize);
 	
 
 
@@ -105,11 +105,11 @@ MainWindowQClass::MainWindowQClass(GraphicsWindow* GraphicsWidget,QWidget *paren
 }
 
 
-MainWindowQClass::~MainWindowQClass()
+MainWindowClass::~MainWindowClass()
 {
 }
 
-void MainWindowQClass::DisplayImage(DataImageProcStructure Data)
+void MainWindowClass::DisplayImage(DataImageProcStructure Data)
 {
 		ImageGrayToDisplay = Data.Image;
 		ImageGrayToDisplay.detach();
@@ -138,12 +138,12 @@ void MainWindowQClass::DisplayImage(DataImageProcStructure Data)
 	this->ImageProcDisplay->DisplayState(Data.State, Data.NumberBlock);
 }
 
-void MainWindowQClass::DisplayCoordData(DataCoordStructure Data)
+void MainWindowClass::DisplayCoordData(DataCoordStructure Data)
 {
 	this->ShowImageDisplay->DisplayROIPos(Data.Coords, Data.CoordsROI);
 }
 
-const QString& MainWindowQClass::GetBlockState(stateblocksenum State)
+const QString& MainWindowClass::GetBlockState(stateblocksenum State)
 {
 	switch (State) {
 	default:
@@ -163,28 +163,28 @@ const QString& MainWindowQClass::GetBlockState(stateblocksenum State)
 	}
 }
 
-void MainWindowQClass::DisplayCameraData(DataCamerasStructure DataStructure)
+void MainWindowClass::DisplayCameraData(DataCamerasStructure DataStructure)
 {
 	this->CameraControlBlockDisplay->DisplayState(DataStructure.State);
 }
 
-void MainWindowQClass::DisplayWeatherData(DataWeatherStructure DataStructure)
+void MainWindowClass::DisplayWeatherData(DataWeatherStructure DataStructure)
 {
 
 }
 
-void MainWindowQClass::DisplayChillData(DataChillerStructure Data)
+void MainWindowClass::DisplayChillData(DataChillerStructure Data)
 {
 
 }
 
-void MainWindowQClass::DisplayLaserStateDisplay(DataLaserStruct Data)
+void MainWindowClass::DisplayLaserStateDisplay(DataLaserStruct Data)
 {
 	this->LaserControlDisplay->DisplayState(Data.State, Data.NumberBlock);
 }
 
 //����� ������ ������� ���������
-void MainWindowQClass::DisplayAimingData(DataAimingErrorStructure DataStructure)
+void MainWindowClass::DisplayAimingData(DataAimingErrorStructure DataStructure)
 {
 	if (DataStructure.NumberBlock == 1)
 	this->AimingBlockDisplay1->DisplayState(DataStructure.State,DataStructure.AimingState,DataStructure.PIDParam);
@@ -201,14 +201,14 @@ void MainWindowQClass::DisplayAimingData(DataAimingErrorStructure DataStructure)
 }
 
 //����� ������ ��������
-void MainWindowQClass::DisplayEngineData(DataEngineStructure DataStructure)
+void MainWindowClass::DisplayEngineData(DataEngineStructure DataStructure)
 {
 	this->EngineControlDisplay1->DisplayState(DataStructure.Engine1);
 	this->EngineControlDisplay2->DisplayState(DataStructure.Engine2);
 	this->EngineControlDisplay3->DisplayState(DataStructure.Engine3);
 }
 
-void MainWindowQClass::DisplayFullImage(QImage Image)
+void MainWindowClass::DisplayFullImage(QImage Image)
 {
 
  
@@ -217,7 +217,7 @@ void MainWindowQClass::DisplayFullImage(QImage Image)
 }
 
 
-void operator>>(const DataDeviceStructure& DataToDisplay, MainWindowQClass &MainWindow)
+void operator>>(const DataDeviceStructure& DataToDisplay, MainWindowClass &MainWindow)
 {
 
 	switch (DataToDisplay.TypeBlock){
@@ -262,7 +262,7 @@ void operator>>(const DataDeviceStructure& DataToDisplay, MainWindowQClass &Main
 
 
 
-void MainWindowQClass::ConnectControlSignals(HandleControlInterface* Control)
+void MainWindowClass::ConnectControlSignals(HandleControlInterface* Control)
 {
 	this->EngineControlDisplay1->ConnectControlSignals(Control);
 	this->EngineControlDisplay2->ConnectControlSignals(Control);
@@ -286,12 +286,12 @@ void MainWindowQClass::ConnectControlSignals(HandleControlInterface* Control)
 
 }
 
-void MainWindowQClass::SetWidgetToScene(QWidget* Wid)
+void MainWindowClass::SetWidgetToScene(QWidget* Wid)
 {
     
 }
 
-void MainWindowQClass::ConvertImage(QImage& GrayImage, QImage& ColorImage)
+void MainWindowClass::ConvertImage(QImage& GrayImage, QImage& ColorImage)
 {
 	uchar* R = 0;
 	uchar* G = 0;
@@ -321,7 +321,7 @@ void MainWindowQClass::ConvertImage(QImage& GrayImage, QImage& ColorImage)
 		}
 	}
 }
-void MainWindowQClass::closeEvent(QCloseEvent *event)
+void MainWindowClass::closeEvent(QCloseEvent *event)
 {
 qInfo() << TAG << "MAIN WINDOW CLOSED";
 this->SaveWidgetsPosition();
@@ -333,7 +333,7 @@ Scene->deleteLater();
 }
 
 
-void MainWindowQClass::SlotChangeInterfaceSize()
+void MainWindowClass::SlotChangeInterfaceSize()
 {
    QAction* Action = dynamic_cast<QAction*>(QObject::sender());
    if(Action->objectName() == "actionGuiSizeSmall") {SlotSetInterfaceSize(0);};
@@ -356,7 +356,7 @@ void MainWindowQClass::SlotChangeInterfaceSize()
 	//qInfo() << TAG << "===========================" ;
 }
 
-void MainWindowQClass::SetGuiFontSize(int GuiSize)
+void MainWindowClass::SetGuiFontSize(int GuiSize)
 {
 	int FontSize = 8; if(GuiSize == 1) FontSize = 12;
     QList<QGraphicsItem*> items = Scene->items();
@@ -374,16 +374,16 @@ void MainWindowQClass::SetGuiFontSize(int GuiSize)
 	}
 }
 
-void MainWindowQClass::SlotSetInterfaceSize(int GuiSize)
+void MainWindowClass::SlotSetInterfaceSize(int GuiSize)
 {
 	CurrentGuiSize = GuiSize;
     SetGuiFontSize(CurrentGuiSize);
     SetWidgetsPosition(CurrentGuiSize);
 
-    QTimer::singleShot(30,this,&MainWindowQClass::SlotUpdateScene);
+    QTimer::singleShot(30,this,&MainWindowClass::SlotUpdateScene);
 }
 
-void MainWindowQClass::SetWidgetsPosition(int group_number)
+void MainWindowClass::SetWidgetsPosition(int group_number)
 {
 
     QList<QGraphicsItem*> items = Scene->items();
@@ -397,7 +397,7 @@ void MainWindowQClass::SetWidgetsPosition(int group_number)
 }
 
 
-void MainWindowQClass::SaveWidgetsPosition()
+void MainWindowClass::SaveWidgetsPosition()
 {
 qInfo() << TAG << "    [  SAVE WIDGETS POSITION  ]";
 QString FileName = "/home/broms/TrainerData/WidgetsPosition.txt";
@@ -443,7 +443,7 @@ data.close();
 }
 
 
-void MainWindowQClass::LoadWidgetsPosition()
+void MainWindowClass::LoadWidgetsPosition()
 {
 
     qInfo() << TAG << "=====================================";
@@ -482,7 +482,7 @@ void MainWindowQClass::LoadWidgetsPosition()
     }
 }
 
-void MainWindowQClass::SlotUpdateScene()
+void MainWindowClass::SlotUpdateScene()
 {
     for(auto Node: ModuleWidgets)
 		Node->UpdateWidget();
@@ -491,23 +491,23 @@ void MainWindowQClass::SlotUpdateScene()
 	ui.graphicsView->repaint();
 }
 
-void MainWindowQClass::AddWidgetToDisplay(AdjustableWidget* widget)
+void MainWindowClass::AddWidgetToDisplay(AdjustableWidget* widget)
 {
     auto Position = WidgetsPositionList[CurrentGuiSize][this->ModuleWidgets.size()];
 	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second,widget));
 }
 
-void MainWindowQClass::AddWidgetToDisplay(AdjustableLabel* widget)
+void MainWindowClass::AddWidgetToDisplay(AdjustableLabel* widget)
 {
     auto Position = WidgetsPositionList[CurrentGuiSize][this->ModuleWidgets.size()];
 	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second,widget));
 }
 
-void MainWindowQClass::SaveWidgetsLinks()
+void MainWindowClass::SaveWidgetsLinks()
 {
 
 }
-void MainWindowQClass::LoadWidgetsLinks()
+void MainWindowClass::LoadWidgetsLinks()
 {
 
   qInfo() << TAG << "    <<<  LOAD WIDGET LINKS";

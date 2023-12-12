@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/MainControllerQClass">
+    <qresource prefix="/MainControllerClass">
         <file>TrainerPictures/ImageProcess.png</file>
         <file>TrainerPictures/Sinus.png</file>
         <file>TrainerPictures/Sinus2.png</file>

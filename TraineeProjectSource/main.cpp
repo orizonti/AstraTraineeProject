@@ -1,8 +1,8 @@
 #include "CommonHeaders.h"
-#include "maincontrollerqclass.h"
+#include "maincontrollerclass.h"
 #include <QtWidgets/QApplication>
 #include "graphicswindow.h"
-#include "mainwindowqclass.h"
+#include "mainwindowclass.h"
 #include "QProcess"
 #include <QByteArray>
 
@@ -53,12 +53,12 @@ int main(int argc, char *argv[])
 	qDebug() << TAG   << "CURRENT STREAM: " << print_thread_id();
 
 	GraphicsWindow* GraphicsDisplay = new GraphicsWindow;
-	MainWindowQClass* WindowDisplay = new MainWindowQClass(GraphicsDisplay);
+	MainWindowClass* WindowDisplay = new MainWindowClass(GraphicsDisplay);
 	GraphicsDisplay->setAttribute(Qt::WA_DeleteOnClose);
 
-	MainControllerQClass* MainController = new MainControllerQClass(WindowDisplay,GraphicsDisplay);
+	MainControllerClass* MainController = new MainControllerClass(WindowDisplay,GraphicsDisplay);
 
-	QObject::connect(WindowDisplay, &MainWindowQClass::SignalMainWindowClosed, MainController, &MainControllerQClass::SlotFinishWork);
+	QObject::connect(WindowDisplay, &MainWindowClass::SignalMainWindowClosed, MainController, &MainControllerClass::SlotFinishWork);
 
 
 

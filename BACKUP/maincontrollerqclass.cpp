@@ -1,14 +1,14 @@
 ﻿#include "CommonHeaders.h"
 
 #include "DataDeviceStructureCommon.h"
-#include "maincontrollerqclass.h"
+#include "maincontrollerclass.h"
 #include <functional>
 #include <SubstractPair.h>
-quint8* MainControllerQClass::ImageBufferFullROI = new quint8[512*2048];
+quint8* MainControllerClass::ImageBufferFullROI = new quint8[512*2048];
 #define TAG "[ MAIN CTRL   ]" 
 
 
-MainControllerQClass::MainControllerQClass(MainWindowQClass* Window, GraphicsWindow* Window2)										
+MainControllerClass::MainControllerClass(MainWindowClass* Window, GraphicsWindow* Window2)										
 {
     qDebug() << TAG << "TEST REMOTE STRING 222";	
 	QObject::connect(&this->timerCircle, SIGNAL(timeout()), this, SLOT(SlotMoveByCircle()));
@@ -20,11 +20,11 @@ MainControllerQClass::MainControllerQClass(MainWindowQClass* Window, GraphicsWin
 	Delay();
 
 	MainThread = new QThread;
-	//QObject::connect(this, &MainControllerQClass::WorkFinished, MainThread, &QThread::quit);
-	//QObject::connect(this, &MainControllerQClass::WorkFinished, MainThread, &QThread::deleteLater);
+	//QObject::connect(this, &MainControllerClass::WorkFinished, MainThread, &QThread::quit);
+	//QObject::connect(this, &MainControllerClass::WorkFinished, MainThread, &QThread::deleteLater);
 
-    //QObject::connect(this, &MainControllerQClass::WorkFinished, Window, &QWidget::deleteLater);
-    //QObject::connect(this, &MainControllerQClass::WorkFinished, Window2, &QWidget::deleteLater);
+    //QObject::connect(this, &MainControllerClass::WorkFinished, Window, &QWidget::deleteLater);
+    //QObject::connect(this, &MainControllerClass::WorkFinished, Window2, &QWidget::deleteLater);
 
 	this->moveToThread(MainThread);
 	this->timerInnerRotateCalibration.moveToThread(MainThread);
@@ -59,17 +59,17 @@ MainControllerQClass::MainControllerQClass(MainWindowQClass* Window, GraphicsWin
 	//======================= test code to delete ==============================
 	return;
 	//==========================================================================
-}	//END:��� MainControllerQClass
+}	//END:��� MainControllerClass
 
 
 
 
-MainControllerQClass::~MainControllerQClass()	//����������
+MainControllerClass::~MainControllerClass()	//����������
 {
 }
 
 
-void MainControllerQClass::SlotCheckDisplayDeviceModulesState()
+void MainControllerClass::SlotCheckDisplayDeviceModulesState()
 {
 
 
@@ -162,7 +162,7 @@ void MainControllerQClass::SlotCheckDisplayDeviceModulesState()
 
 
 
-bool MainControllerQClass::Initialization()
+bool MainControllerClass::Initialization()
 {
 	QString info_string;
 	QDebug  debug_out(&info_string);
@@ -195,7 +195,7 @@ bool MainControllerQClass::Initialization()
 
 	ChillSystem = std::shared_ptr<ChillSystemClass>(new ChillSystemClass);
 	
-	RemoteControl= std::shared_ptr<RemoteControlClass>(new RemoteControlClass(this));
+	RemoteControl= std::shared_ptr<RemoteControlInterface>(new RemoteControlInterface(this));
 
 	StateBlock = stateblocksenum::BlockAtInitializaiton;
 	
@@ -219,7 +219,7 @@ bool MainControllerQClass::Initialization()
 	AimingBlockPointer= std::shared_ptr<AimingClass>(new AimingClass);
 	SinusGenerator = std::shared_ptr<SinusGeneratorClass>(new SinusGeneratorClass);
 	LaserControl    = std::shared_ptr<LaserControlClass>(new LaserControlClass);
-	ErrorRecievePort= std::shared_ptr<RemoteAimingClass>(new RemoteAimingClass);
+	ErrorRecievePort= std::shared_ptr<RemoteAimingInterface>(new RemoteAimingInterface);
 
 
 	WindowDisplay->ConnectControlSignals((HandleControlInterface*)this);
@@ -268,7 +268,7 @@ bool MainControllerQClass::Initialization()
 	return true;
 }
 
-void MainControllerQClass::SetEngineCommandDelay(int DelayMks, int NumberChannel)
+void MainControllerClass::SetEngineCommandDelay(int DelayMks, int NumberChannel)
 {
 
     if(NumberChannel == 1) EngineControl1->EngineInterface->CommandDelayMks = DelayMks;
@@ -277,7 +277,7 @@ void MainControllerQClass::SetEngineCommandDelay(int DelayMks, int NumberChannel
 
 }
 
-void MainControllerQClass::RotateEngineAxis(int Channel, double AngleDegree) 
+void MainControllerClass::RotateEngineAxis(int Channel, double AngleDegree) 
 {
 	EngineControlClass* Engine = this->EngineControl1.get();
 				switch (Channel)
@@ -296,7 +296,7 @@ void MainControllerQClass::RotateEngineAxis(int Channel, double AngleDegree)
 
 }
 
-void MainControllerQClass::SlotStartStopWork(bool StartStop)
+void MainControllerClass::StartStopWork(bool StartStop)
 {
 	//qDebug() << TAG << "SLOT START STOP WORK";
 	if (!FLAG_INITIALIZATION_DONE)
@@ -312,11 +312,11 @@ void MainControllerQClass::SlotStartStopWork(bool StartStop)
 	AimingBlock2->StateBlock = BlockAtWork;
 	AimingBlock3->StateBlock = BlockAtWork;
 
-	//this->MoveEnginesToStartPos(1);
+	//this->MoveEngineToWorkPos(1);
 	//QThread::msleep(50);
-	//this->MoveEnginesToStartPos(2);
+	//this->MoveEngineToWorkPos(2);
 	//QThread::msleep(50);
-	//this->MoveEnginesToStartPos(3);
+	//this->MoveEngineToWorkPos(3);
 
 	emit SignalStartIterateLasers(true);
 	}
@@ -359,7 +359,7 @@ void MainControllerQClass::SlotStartStopWork(bool StartStop)
 
 }
 
-void MainControllerQClass::SlotFindSpot_MoveEngineToWorkPos()
+void MainControllerClass::SlotFindSpot_MoveEngineToWorkPos()
 {
 
 	if (this->StateBlock == BlockDisable) // SYSTEM OFF, STOP PROCESSAimingInFullImage
@@ -456,7 +456,7 @@ void MainControllerQClass::SlotFindSpot_MoveEngineToWorkPos()
 		}
 
 }
-QPair<double,double> MainControllerQClass::MoveEnginesToStartPos(int Channel)
+QPair<double,double> MainControllerClass::MoveEngineToWorkPos(int Channel)
 {
 	switch (Channel)
 	{
@@ -469,7 +469,7 @@ QPair<double,double> MainControllerQClass::MoveEnginesToStartPos(int Channel)
 }
 
 
-void MainControllerQClass::MoveEngineToNull(int Channel)
+void MainControllerClass::MoveEngineToNull(int Channel)
 {
 	EngineControlClass* Engine;
 				switch (Channel)
@@ -485,7 +485,7 @@ void MainControllerQClass::MoveEngineToNull(int Channel)
 		return;
 }
 
-void MainControllerQClass::MoveEngine(int Direction, double X_Pos,double Y_Pos, int Channel)
+void MainControllerClass::MoveEngine(int Direction, double X_Pos,double Y_Pos, int Channel)
 {
 	EngineControlClass* Engine = this->EngineControl1.get();
 				switch (Channel)
@@ -523,9 +523,9 @@ void MainControllerQClass::MoveEngine(int Direction, double X_Pos,double Y_Pos, 
 				Engine->SlotMoveOnStep(StepPosRad);
 }
 
-void MainControllerQClass::TurnOnOffAllLasers(bool OnOff) { emit SignalSwitchAllLasers(OnOff); }
+void MainControllerClass::TurnOnOffAllLasers(bool OnOff) { emit SignalSwitchAllLasers(OnOff); }
 
-void MainControllerQClass::ResetAll()
+void MainControllerClass::ResetAll()
 {
 	this->KLPInterface->ResetCommutator(); QThread::msleep(100);
 	this->EngineControl1->EngineInterface->ResetEngine(); QThread::msleep(100);
@@ -534,7 +534,7 @@ void MainControllerQClass::ResetAll()
 	this->KLPInterface->CardSoftReset();
 }
 
-void MainControllerQClass::SaveEnginePosToFile()
+void MainControllerClass::SaveEnginePosToFile()
 {
 	QString IniFile = "E:/ENGINE_POS.ini";
 	//qDebug() << TAG << "Save settings to - " << IniFile;
@@ -554,7 +554,7 @@ void MainControllerQClass::SaveEnginePosToFile()
 }
 
 
-void MainControllerQClass::SetPIDParam(double Common, double Rate, double Int, double diff)
+void MainControllerClass::SetPIDParam(double Common, double Rate, double Int, double diff)
 {
  AimingBlock1->AimingFastParam.Common = Common;
  AimingBlock1->AimingFastParam.RateParam = Rate;
@@ -577,7 +577,7 @@ void MainControllerQClass::SetPIDParam(double Common, double Rate, double Int, d
 }
 
 
-void MainControllerQClass::SetImageThresHold(int Thres,int Channel)
+void MainControllerClass::SetImageThresHold(int Thres,int Channel)
 {
 	if(Channel == 1) ImageProcessor->Proc1->Threshold = Thres;
 	if(Channel == 2) ImageProcessor->Proc2->Threshold = Thres;
@@ -585,7 +585,7 @@ void MainControllerQClass::SetImageThresHold(int Thres,int Channel)
 	if(Channel == 4) ImageProcessor->ProcToPointer->Threshold = Thres;
 }
 
-void MainControllerQClass::TurnOnOffLaser(int NumberLaser, bool OnOff)
+void MainControllerClass::TurnOnOffLaser(int NumberLaser, bool OnOff)
 {
 	if(LASER_GROUP(NumberLaser) == GUID_GROUP) this->LaserControl->SlotSwitchPilotBeam(NumberLaser, OnOff);
 	if(LASER_GROUP(NumberLaser) == POWER_GROUP) this->LaserControl->SlotSwitchPowerBeam(NumberLaser, OnOff);
@@ -605,27 +605,27 @@ void MainControllerQClass::TurnOnOffLaser(int NumberLaser, bool OnOff)
 }
 
 
-void MainControllerQClass::TurnOnOffChiller(bool OnOff)
+void MainControllerClass::TurnOnOffChiller(bool OnOff)
 {
 	this->ChillSystem->SlotTurnOnOff(OnOff);
 }
 
-void MainControllerQClass::SlotMoveByCircle()
+void MainControllerClass::SlotMoveByCircle()
 {
 	CounterCircle++;
 	double x = 50*std::sin(2*3.14*CounterCircle/360);
 	double y = 50*std::cos(2*3.14*CounterCircle/360);
-	this->SlotSetAimingCoord(x + 128, y + 128, 4);
+	this->SetAimingCoord(x + 128, y + 128, 4);
 
 	if (CounterCircle == 360) CounterCircle = 0;
 }
 
-void MainControllerQClass::SlotStartMoveByCircle(bool OnOff)
+void MainControllerClass::StartCircleMoving(bool OnOff)
 {
  if(OnOff) this->timerCircle.start(10); else this->timerCircle.stop();
 }
 
-void MainControllerQClass::SetBlockState(typeblocksenum TypeBlock, int NumberChannel, stateblocksenum State)
+void MainControllerClass::SetBlockState(typeblocksenum TypeBlock, int NumberChannel, stateblocksenum State)
 {
 	switch (TypeBlock)
 	{
@@ -643,7 +643,7 @@ void MainControllerQClass::SetBlockState(typeblocksenum TypeBlock, int NumberCha
 
 }
 
-void MainControllerQClass::SlotSetAimingCoord(int x, int y, int NumberChannel)
+void MainControllerClass::SetAimingCoord(int x, int y, int NumberChannel)
 {
 	auto PointerCoord = ImageProcessor->ProcToPointer->spot_coord_abs;
 	switch (NumberChannel)
@@ -682,14 +682,14 @@ void MainControllerQClass::SlotSetAimingCoord(int x, int y, int NumberChannel)
 	}
 }
 
-void MainControllerQClass::Delay()
+void MainControllerClass::Delay()
 {
     auto StartTimePoint = std::chrono::high_resolution_clock::now();
     QThread::usleep(100);
     auto NewTimePoint = std::chrono::high_resolution_clock::now();
 }
 
-void MainControllerQClass::SlotReciveErrorTest()
+void MainControllerClass::SlotReciveErrorTest()
 {
     auto Error = SinusAimingBlockTest.GetCoord();
     Error >> *AimingBlock1;                //Send new coord spot to aiming
@@ -697,7 +697,7 @@ void MainControllerQClass::SlotReciveErrorTest()
     Error >> *AimingBlock3;
 }
 
-void MainControllerQClass::SlotReceiveImage()
+void MainControllerClass::SlotReceiveImage()
 {
 	if (this->StateBlock == BlockDisable) return;
 	ImageStruct newImage = KLPInterface->CameraInterface->GetNewImage();
@@ -721,7 +721,7 @@ void MainControllerQClass::SlotReceiveImage()
     if(!AimingBlock3->isAimingFault()) EngineControl3->SavePosition();
 }
 
-void MainControllerQClass::SlotInnerRotateCalibration()
+void MainControllerClass::SlotInnerRotateCalibration()
 {
 
 	if (EngineControl1->RotationAxis.output_to_optimize_rotation.size() == TEST_DATA_COUT)
@@ -740,7 +740,7 @@ void MainControllerQClass::SlotInnerRotateCalibration()
 		CurrentPos1 >> EngineControl1->RotationAxis.MeasureFilter >> EngineControl1->RotationAxis;
 }
 
-void MainControllerQClass::StartSystemRotationCalibration()
+void MainControllerClass::StartRotationCalibrationProcess()
 {
 	EngineControl1->RotationAxis.Reset();
 	EngineControl2->RotationAxis.Reset();
@@ -752,7 +752,7 @@ void MainControllerQClass::StartSystemRotationCalibration()
 
 
 
-void MainControllerQClass::SlotReceiveErrorRemoteSensor()
+void MainControllerClass::SlotReceiveErrorRemoteSensor()
 {
     if(this->StateBlock == BlockDisable) return;
 
@@ -800,35 +800,39 @@ void MainControllerQClass::SlotReceiveErrorRemoteSensor()
 
 }
 	
-void MainControllerQClass::ChangeAimingType(TypeAiming Aiming,int Channel)
+void MainControllerClass::SetAimingType(TypeAiming Aiming,int Channel)
 {
 	if(Channel == 1) AimingBlock1->SetAimingSpeedRegim(Aiming);
 	if(Channel == 2) AimingBlock2->SetAimingSpeedRegim(Aiming);
 	if(Channel == 3) AimingBlock3->SetAimingSpeedRegim(Aiming);
 }
-void MainControllerQClass::ChangeCalmanParam(double Qe, double Qn) { }
+void MainControllerClass::ChangeCalmanParam(double Qe, double Qn) { }
 
-void MainControllerQClass::SetCameraParam(Control_Camera_Command Command)
+void MainControllerClass::SetCameraParam(Control_Camera_Command Command)
 {
  if(KLPInterface) KLPInterface->CameraInterface->SendCommand(Command);
 }
 
-void MainControllerQClass::SetCameraROI(ROI_Channels_Command ROI)
+void MainControllerClass::SetCameraROI(ROI_Channels_Command ROI)
 {
  if(KLPInterface) KLPInterface->CameraInterface->SetROI(ROI);
 }
 
-void MainControllerQClass::SetAdjustModeWithCrossHair(bool OnOff) { this->ShowAdjustCrosshair = OnOff; }
+void MainControllerClass::SetAdjustModeWithCrossHair(bool OnOff) { this->ShowAdjustCrosshair = OnOff; }
 
-void MainControllerQClass::SetPowerSupplyOnCommutator(bool OnOff)
+void MainControllerClass::TurnOnOffPowerCommutator(bool OnOff)
 {
 	Regim_CommutatorCommand CommutatorState;
 							CommutatorState.TurnOnOffSupply(OnOff);
 
 	KLPInterface->SetSateCommutator(CommutatorState);
 }
+void MainControllerClass::TurnOnOffEngines(bool OnOff)
+{
 
-void MainControllerQClass::SetThresholdControlManual(bool OnOff)
+}
+
+void MainControllerClass::SetThresholdControlManual(bool OnOff)
 {
 	this->ImageProcessor->Proc1->FlagThresholdAutoControl = !OnOff;
 	this->ImageProcessor->Proc2->FlagThresholdAutoControl = !OnOff;
@@ -836,7 +840,7 @@ void MainControllerQClass::SetThresholdControlManual(bool OnOff)
 	this->ImageProcessor->ProcToPointer->FlagThresholdAutoControl = !OnOff;
 }
 
-void MainControllerQClass::SetFrameFilterProcentage(int Procentage)
+void MainControllerClass::SetFrameFilterProcentage(int Procentage)
 {
 	this->ImageProcessor->Proc1->FrameFilterProcentage = Procentage/100.0;
 	this->ImageProcessor->Proc2->FrameFilterProcentage = Procentage/100.0;
@@ -845,7 +849,7 @@ void MainControllerQClass::SetFrameFilterProcentage(int Procentage)
 }
 
 
-void MainControllerQClass::TurnOffAxisEngine(bool state,int axis, int channel)
+void MainControllerClass::TurnOnOffAxisEngine(bool state,int axis, int channel)
 {
 	QVector<EngineInterfaceClass*> Channels;
 	Channels.append(EngineControl1->EngineInterface); Channels.append(EngineControl2->EngineInterface); Channels.append(EngineControl3->EngineInterface);
@@ -853,7 +857,7 @@ void MainControllerQClass::TurnOffAxisEngine(bool state,int axis, int channel)
 	if (axis == 2) Channels[channel-1]->HorizontalAxisOn = state;
 }
 
-void MainControllerQClass::LoadPreference()
+void MainControllerClass::LoadPreference()
 {
   qDebug() << TAG << "================================================";
   qDebug() << TAG << "[ MAIN CONTROLLER LOAD PREFERENCE ]";
@@ -916,7 +920,7 @@ void MainControllerQClass::LoadPreference()
   qDebug() << TAG << "================================================";
 }
 
-void MainControllerQClass::SlotFinishWork()
+void MainControllerClass::SlotFinishWork()
 {
     qDebug() << TAG << "MAIN WINDOW CLOSED START TO FINISH WORK";
     EngineControl1->EngineInterface->SetToNull();
@@ -937,7 +941,7 @@ void MainControllerQClass::SlotFinishWork()
     qDebug() << TAG << "MAIN CONTROLLER STOPPED";
 }
 
-void MainControllerQClass::TurnOnOffKalmanFilter(bool OnOff, int Channel)
+void MainControllerClass::TurnOnOffKalmanFilter(bool OnOff, int Channel)
 {
  switch (Channel)
  {
