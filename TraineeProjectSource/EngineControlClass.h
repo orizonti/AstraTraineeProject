@@ -7,6 +7,7 @@
 #include "KLPInterfaceClass.h"
 #include "AimingClass.h"
 #include "RotateOperationContainer.h"
+#include <QSettings>
 
 
 
@@ -60,6 +61,8 @@ class EngineControlClass :public QObject,public PassTwoCoordClass
 {
     Q_OBJECT
 public:
+	int EngineNumber = 0;
+	static int EngineCount;
 
 	typeblocksenum TypeBlock = typeblocksenum::EngineControlBlock;
 	stateblocksenum StateBlock = stateblocksenum::BlockDisable;
@@ -76,6 +79,7 @@ public:
     void SavePosition();
     void ResetToLastSavePosition();
     bool isEngineFault();
+	void LoadSettings(QSettings& Settings);
 
 
 	EngineInterfaceClass* EngineInterface;
@@ -87,8 +91,6 @@ public:
 	RotateOperationContainer RotationAxis;
 	RotateOperationContainer RotationAxisInverse;
 
-	int EngineNumber = 0;
-	static int EngineCount;
 
 
 private:

@@ -1,6 +1,7 @@
 #ifndef MAINWINDOWQCLASS_H
 #define MAINWINDOWQCLASS_H
 //#include "ImageStruct.h"
+#include "ChillerWindowDisplay.h"
 #include "DataDeviceStructureCommon.h"
 #include "DataAimingErrorStructure.h"
 #include "DataCamerasStructure.h"
@@ -18,7 +19,7 @@
 
 #include "graphicswindow.h"
 
-#include "pidwindow.h"
+#include "pid_control_window.h"
 #include "engineblockwindow.h"
 #include "camerawindow.h"
 #include "aimingblockwindow.h"
@@ -72,7 +73,7 @@ private:
 	AimingBlockWindow* AimingBlockDisplay1         ;
 	AimingBlockWindow* AimingBlockDisplay2         ;
 	AimingBlockWindow* AimingBlockDisplay3         ;
-	PIDWIndow* PIDControl;
+	PIDWindow* PIDControl;
 	KalmanWindow* KalmanControl;
 
 	QLabel* LabelImage;
@@ -89,6 +90,7 @@ private:
 
 	CameraWindow* CameraControlBlockDisplay;
 	CameraControlWindow* CameraControlParamDisplay;
+	ChillerWindowDisplay* ChillerWindow;
 
 	QGraphicsScene* Scene;
 protected:
@@ -117,6 +119,7 @@ public slots:
 
 	void DisplayImage(DataImageProcStructure Data);
 	void DisplayCoordData(DataCoordStructure Data);
+	void DisplayRemoteCommand(QStringList& LogCommands);
 
 
 	void DisplayWeatherData(DataWeatherStructure Data);
@@ -132,6 +135,7 @@ public slots:
 
 signals:
 
+    void SignalNewCommandsLog(QStringList& Log);
 	void SignalNewControlData(DataDeviceStructure Data);
 	void SignalNewImage(DataImageProcStructure Data);
 	void SignalNewCameraData(DataCamerasStructure Data);

@@ -59,15 +59,17 @@ class KLP_PACKETS_GROUP
   QString operator()(KLP_PACKET_TYPES type) {int n = static_cast<int>(type); if(n > 4) return "NONE"; return GROUP_MAP[n]; };
   std::map<int,QString> GROUP_MAP = {{-1, "UNDEF"}, {0,"REQ" },{1,"ACK" },{2, "REPL"},{3, "STATE"}};
 };
-class KLP_CMD_GROUP
+class KLP_CMD_GROUP_LIST
 {
   public:
-  KLP_CMD_GROUP() {};
   static bool isValid(int n_type) {return (n_type == CMD_UNDEFINED || n_type == CMD_STATE  || n_type == CMD_AIMING || (n_type >= 10 && n_type <= 14));}
   QString operator()(int n_type) {if(n_type > 50) return "NONE"; return GROUP_MAP[n_type]; };
-  QString operator()(KLP_CMD_TYPES type) {int n = static_cast<int>(type); if(n > 8) return "NONE"; return GROUP_MAP[n]; };
-  std::map<int,QString> GROUP_MAP = {{-1, "UNDEF"},{0, "STATE"},{10, "CAM"},{11, "ENG"},{12, "POINT"},{13, "PILOT"},{14, "POWER"}, {50,"AIM" }};
+  QString operator()(KLP_CMD_TYPES type) {int n = static_cast<int>(type); if(n > 14 && n !=50) return "NONE"; return GROUP_MAP[n]; };
+  std::map<int,QString> GROUP_MAP = {{-1, "UNDEFINED"},{0, "GET_STATE"},
+                                     {10, "CAMERA"   },{11, "ENGINES" },
+                                     {12, "POINTER_LASER"},{13, "PILOT_LASER"},{14, "POWER_LASER"}, {50,"AIMIMIG" }};
 };
+extern KLP_CMD_GROUP_LIST KLP_CMD_GROUP;
 
 struct STATE_STRUCT
 {
@@ -102,12 +104,18 @@ struct ChannelsState {uint8_t Channel1: 1 = 0; uint8_t Channel2: 1 = 0; uint8_t 
 
 struct COMMAND_CAMERA_CONTROL{ uint8_t OnOff = 0; };
 struct COMMAND_ENGINE_CONTROL{ uint8_t OnOff = 0; };
-struct COMMAND_AIMING_COORD{ float X = 0; float Y = 0; };
-struct COMMAND_POINT_LASER { uint8_t OnOff = 0; };
-struct COMMAND_GUID_LASER{ uint8_t OnOff = 0;};
-struct COMMAND_POWER_LASER{ uint8_t OnOff = 0; uint8_t Channel = 0; uint16_t WorkTime = 0;};
+struct COMMAND_GUID_LASER    { uint8_t OnOff = 0; };
+struct COMMAND_POINT_LASER   { uint8_t OnOff = 0; };
+struct COMMAND_AIMING_COORD  { float X = 0; float Y = 0; };
+struct COMMAND_POWER_LASER   { uint8_t OnOff = 0; uint8_t Channel = 0; uint16_t WorkTime = 0;};
 
-  //struct DIOD_CONTROL { uint8_t DIOD1 :1; uint8_t DIOD2 :1; uint8_t DIOD3 :1; } DiodOnOff;
+template<typename T>  
+QString CommandToString(T& Command) { return QString("VAL: %1").arg((uint8_t)Command.OnOff); };
+
+template<> QString CommandToString(COMMAND_AIMING_COORD& Command);
+template<> QString CommandToString(COMMAND_POWER_LASER& Command);
+
+//struct DIOD_CONTROL { uint8_t DIOD1 :1; uint8_t DIOD2 :1; uint8_t DIOD3 :1; } DiodOnOff;
 class MESSAGE_HEADER
 {
   public:

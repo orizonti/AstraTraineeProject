@@ -76,6 +76,7 @@ add_executable (TraineeProjectExecutable
         "./ui_files/engineblockwindow.ui"
         "./ui_files/enginecontrolwindow.ui"
         "./ui_files/RemoteAimingWindowControl.ui"
+        "./ui_files/RemoteCommandDisplay.ui"
         "./ui_files/graphicswindow.ui"
         "./ui_files/imageprocessingdisplaywindow.ui"
         "./ui_files/imageprocessingwindow.ui"
@@ -83,9 +84,10 @@ add_executable (TraineeProjectExecutable
         "./ui_files/laserblockwindow.ui"
         "./ui_files/mainblockwindow.ui"
         "./ui_files/mainwindowclass.ui"
-        "./ui_files/PIDWIndow.ui"
+        "./ui_files/pid_control_window.ui"
         "./ui_files/PilotLaserWindow.ui"
         "./ui_files/windowsinussource.ui"
+        "./ui_files/ChillerWindowDisplay.ui"
 
         "./gui_sources/aimingblockwindow.cpp"
         "./gui_sources/engineblockwindow.cpp"
@@ -100,25 +102,26 @@ add_executable (TraineeProjectExecutable
         "./gui_sources/laserblockwindow.cpp"
         "./gui_sources/enginecontrolwindow.cpp"
         "./gui_sources/graphicwidgetnode.cpp"
-        "./gui_sources/pidwindow.cpp"
+        "./gui_sources/pid_control_window.cpp"
         "./gui_sources/PilotLaserWindow.cpp"
         "./gui_sources/windowsinussource.cpp"
         "./gui_sources/AdjustableWidget.cpp"
         "./gui_sources/RemoteAimingWindowControl.cpp"
+        "./gui_sources/RemoteWindowControl.cpp"
         "./gui_sources/labelimage.cpp"
         "./gui_sources/link_line.cpp"
         "./gui_sources/node.cpp"
+        "./gui_sources/ChillerWindowDisplay.cpp"
 
-        #"ui_PIDWindow.h"
         "main.cpp"
         "AimingClass.cpp"
         "CameraInterfaceClass.cpp"
-        "ChillSystemClass.cpp"
         "DigitalClock.cpp"
         "EngineControlClass.cpp"
         "EngineInterfaceClass.cpp"
         "ImageProcessingClass.cpp"
         "KLPInterfaceClass.cpp"
+        "chillerinterface.cpp"
 
         "./LASERS/LaserControlClass.cpp"
         "./LASERS/LaserCommonInterface.cpp"
@@ -137,7 +140,6 @@ add_executable (TraineeProjectExecutable
         "PIDClass.cpp"
         "qcustomplot.cpp"
         "SinusGeneratorClass.cpp"
-        #"tcpclientengine.cpp"
         "TransformCoordClass.cpp"
         "mppd_wrap.cpp"
         "qcustomplot.h"
@@ -159,86 +161,10 @@ target_link_libraries(TraineeProjectExecutable "${PROJECT_BINARY_DIR}/rotate_opt
 target_link_libraries(TraineeProjectExecutable "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libtorch_cpu.so")
 target_link_libraries(TraineeProjectExecutable "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libtorch.so")
 target_link_libraries(TraineeProjectExecutable "${LIBRARY_DIR}/NN_LIBRARY/LIBTORCH/libtorch/lib/libc10.so")
+include_directories("./DataTypes")
 #=========================================================
 
+#include_directories("/home/broms/DEVELOPMENT/PROJECTS/ASTRA_PROJECT/AstraTraineeProject/build/TraineeProjectSource/TraineeProjectExecutable_autogen/include/")
 
-#set(Qt5Core_DIR "${CMAKE_PREFIX_PATH}/Qt5Core")
-#set(Qt5Gui_DIR "${CMAKE_PREFIX_PATH}/Qt5Gui")
-#set(Qt5Network "${CMAKE_PREFIX_PATH}/Qt5Network")
-#set(Qt5PrintSupport "${CMAKE_PREFIX_PATH}/Qt5PrintSupport")
-#set(Qt5SerialPort "${CMAKE_PREFIX_PATH}/Qt5SerialPort")
-#set(Qt5Widgets "${CMAKE_PREFIX_PATH}/Qt5Widgets")
-#set(Qt5 "${CMAKE_PREFIX_PATH}/Qt5")
-
-#set(QtIncludeCore "${CMAKE_PREFIX_PATH}/include/QtCore")
-#set(QtIncludeGui "${CMAKE_PREFIX_PATH}/include/QtGui")
-#set(QtIncludeWidgets "${CMAKE_PREFIX_PATH}/include/QtWidgets")
-#set(QtIncludeNetwork "${CMAKE_PREFIX_PATH}/include/QtNetwork")
-#set(QtIncludeSerialPort "${CMAKE_PREFIX_PATH}/include/QtSerialPort")
-#set(QtIncludeConcurrent "${CMAKE_PREFIX_PATH}/include/QtConcurrent")
-
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeSerialPort}/QSerialPort)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/qobject.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/qdebug.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/qtimer.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QTime)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/qthread.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/qbytearray.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/qdatastream.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QTimer)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QString)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QList)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QPair)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeNetwork}/QTcpSocket)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeNetwork}/QHostAddress)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeNetwork}/QTcpServer)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeGui}/qimage.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeGui}/qpixmap.h)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QWidget)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QLCDNumber)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QGraphicsProxyWidget)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QGraphicsScene)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QWidget)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QSpinBox)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QDoubleSpinBox)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QLabel)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QGraphicsItem)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QGraphicsScene)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeWidgets}/QtWidgets)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeGui}/QPainterPath)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QSettings)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QFile)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QMutex)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QWaitCondition)
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QQueue)
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeConcurrent}/QtConcurrent)
-#
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${QtIncludeCore}/QtMath)
-#target_precompile_headers(TestCmakeProject PRIVATE ${IncludeBoost}/boost/crc.hpp)
-#target_precompile_headers(TestCmakeProject PRIVATE qcustomplot.h)
-#
-#set(IncludeMath "/home/${USER}/COMMON_DIR/LIBRARY/MATH_LIBRARY")
-#
-#target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/Eigen)
-#target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/Dense)
-#target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/src/Core/Matrix.h)
-#target_precompile_headers(TestCmakeProject PRIVATE ${IncludeMath}/Eigen/src/Core/Matrix.h)
-#
-##target_precompile_headers(TestCmakeProject PRIVATE ${IncludeTorch}/torch/torch.h)
-#
-##target_precompile_headers(TestCmakeProject PRIVATE iostream.h)
-##target_precompile_headers(TestCmakeProject PRIVATE string.h)
-##target_precompile_headers(TestCmakeProject PRIVATE vector.h)
-##target_precompile_headers(TestCmakeProject PRIVATE math.h)
-##target_precompile_headers(TestCmakeProject PRIVATE chrono.h)
 
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.

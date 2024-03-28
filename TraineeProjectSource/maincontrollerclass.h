@@ -1,5 +1,5 @@
 #pragma once
-#include "ChillSystemClass.h"
+#include "chillerinterface.h"
 #include "AimingClass.h"
 #include "LaserControlClass.h"
 #include "EngineControlClass.h"
@@ -125,7 +125,7 @@ public:
 	void SetImageThresHold(int Thres, int Channel);
 	void SetFrameFilterProcentage(int Procentage);
 
-	void TurnOnOffChiller(bool OnOff);
+	void SetCommandChiller(CommandChillerStructure Command);
 	void LoadPreference();
 
 
@@ -166,7 +166,7 @@ private:
 	QVector<EngineControlClass*> EngineBlocks;
 	QVector<AimingClass*>        AimingBlocks;
 
-	std::shared_ptr<ChillSystemClass> ChillSystem;
+	std::shared_ptr<ChillerInterface> ChillSystem;
 
 
 	std::shared_ptr<AimingClass>          AimingBlock1;
@@ -176,7 +176,6 @@ private:
 	std::shared_ptr<LaserControlClass>    LaserControl;
 
 	std::shared_ptr<RemoteControlInterface>   RemoteControl;
-	std::shared_ptr<RemoteAimingInterface>   ErrorRecievePort;
 
 	std::shared_ptr<KLPInterfaceClass>    KLPInterface;
 	std::shared_ptr<ImageProcessingClass> ImageProcessor;

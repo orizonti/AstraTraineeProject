@@ -2,6 +2,7 @@
 #include "typeblocksenum.h"
 #include "stateblocksenum.h"
 #include "ImageProcessingClass.h"
+#include "DataChillerStructure.h"
 #include <QObject>
 
 
@@ -18,7 +19,7 @@ class HandleControlInterface: public QObject
 	virtual void TurnOnOffLaser(int Channel, bool OnOff) = 0;
 	virtual void TurnOnOffAllLasers(bool OnOff) = 0;
 	virtual void TurnOnOffEngines(bool OnOff) = 0;
-	virtual void TurnOnOffChiller(bool OnOff) = 0;
+	virtual void SetCommandChiller(CommandChillerStructure Command) = 0;
     //=======================================================================
 	//ENGINE CONTROL
 	virtual void MoveEngine(int Direction,double X_Pos,double Y_Pos, int Channel) = 0;

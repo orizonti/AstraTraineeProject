@@ -68,7 +68,6 @@ AimingClass::AimingClass()
 	CurrentRecord = ErrorRecord.begin();
 
 
-	this->LoadPIDParamFromFile();
 	//==================================================================
 
 	EnginePIDRegulator.SetPIDParam(AimingSlowParam);
@@ -201,10 +200,18 @@ void AimingClass::SetCoord(QPair<double, double> Coord)
     }
 }
 
-void AimingClass::LoadPIDParamFromFile()
+
+void AimingClass::SlotFilterEnable(bool OnOff)
+{
+  qDebug() << TAG << "KALMAN FILTER ENABLED - " << OnOff;
+  Filter.EnableFiltering(OnOff);
+}
+
+
+void AimingClass::LoadPIDParam(QString SettingsFile)
 {
 
-    QFile file("/home/broms/TrainerData/PIDParams.txt");
+    QFile file(SettingsFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
@@ -259,8 +266,27 @@ void AimingClass::LoadPIDParamFromFile()
     file.close();
 }
 
-void AimingClass::SlotFilterEnable(bool OnOff)
+void AimingClass::LoadSettings(QSettings& Settings)
 {
-  qDebug() << TAG << "KALMAN FILTER ENABLED - " << OnOff;
-  Filter.EnableFiltering(OnOff);
+  Settings.beginGroup("PATHS");
+    auto PIDParamFile = Settings.value("PID_PARAM").toString();
+    auto BeamPosFile = Settings.value("AIMING_BEAM_POS").toString();
+  Settings.endGroup();
+
+  QSettings BeamPosSettings(BeamPosFile);
+  BeamPosSettings.beginGroup("BEAMS");
+  int BEAM_X_POS = BeamPosSettings.value(QString("X%1").arg(NumberChannel)).toInt();
+  int BEAM_Y_POS = BeamPosSettings.value(QString("Y%1").arg(NumberChannel)).toInt();
+  int XPointerPos = BeamPosSettings.value("XPointer").toInt();
+  int YPointerPos = BeamPosSettings.value("XPointer").toInt();
+
+  BeamPosSettings.endGroup();
+
+  auto PointerCenteredCoord = QPair<double,double>(XPointerPos,YPointerPos);
+  
+  this->BeamCenteredPosition = QPair<int, int>(BEAM_X_POS,BEAM_Y_POS);
+  this->DesireAbsCoord = this->BeamCenteredPosition;
+  this->DesireRelCoord = this->BeamCenteredPosition - PointerCenteredCoord;
+
+  this->LoadPIDParam(PIDParamFile);
 }

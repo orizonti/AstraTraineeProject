@@ -258,11 +258,8 @@ void EngineControlClass::SlotMoveWithAcceleration(QPair<double, double> AccelVec
 	StepPeriod = std::chrono::duration<double>((TimePoint - TimeFromLastCommand)).count();
 	TimeFromLastCommand = TimePoint;
 
-
 	VelVector.first += AccelVector.first*StepPeriod;
 	VelVector.second += AccelVector.second*StepPeriod;
-
-	
 	//qDebug() << TAG << "CONVERT ACCELERATION - " <<AccelVector.first << VelVector.first <<"STEP_PERIOD - " << StepPeriod;
 
 	QPair<double, double> StepVector(VelVector.first*StepPeriod, VelVector.second*StepPeriod); // CALCULATION PROLONGATION STEP TO MOVE ENGINE
@@ -272,12 +269,19 @@ void EngineControlClass::SlotMoveWithAcceleration(QPair<double, double> AccelVec
 
 void operator>>(AimingClass& Sender, EngineControlClass& Reciever)
 {
-	if (Sender.StateBlock == BlockAtWork)
-	{
-
-		if (Reciever.StateBlock == BlockAtWork)
-			Reciever.SlotMoveWithVelocity(Sender.GetCoord());
-	}
-
+ if (  Sender.StateBlock == BlockAtWork) return;
+ if (Reciever.StateBlock == BlockAtWork) Reciever.SlotMoveWithVelocity(Sender.GetCoord());
 }
 
+
+void EngineControlClass::LoadSettings(QSettings& Settings)
+{
+
+  Settings.beginGroup("PATHS");
+    auto RotateParam = Settings.value(QString("ROTATE_PARAM_%1").arg(EngineNumber)).toString();
+  Settings.endGroup();
+	
+  this->RotationAxis.LoadRotationFromFile(RotateParam);
+  this->RotateAxisInverse = this->RotateAxis.Inverse();
+  this->RotationAxisInverse = this->RotationAxis; this->RotationAxisInverse.Inverse();
+}

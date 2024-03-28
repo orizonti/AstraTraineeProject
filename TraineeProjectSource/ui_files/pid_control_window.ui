@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PIDWIndow</class>
- <widget class="QWidget" name="PIDWIndow">
+ <class>pid_control_window</class>
+ <widget class="QWidget" name="pid_control_window">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>291</width>
-    <height>313</height>
+    <width>339</width>
+    <height>358</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>PIDWIndow</string>
+   <string>PIDWindow</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget
@@ -56,6 +56,7 @@ border: 2px solid line black;
      </property>
      <property name="font">
       <font>
+       <family>Sans Serif</family>
        <pointsize>14</pointsize>
        <italic>false</italic>
        <bold>false</bold>
@@ -147,6 +148,7 @@ QPushButton:pressed
      </property>
      <property name="font">
       <font>
+       <family>Sans Serif</family>
        <pointsize>14</pointsize>
        <italic>false</italic>
        <bold>false</bold>
@@ -174,7 +176,7 @@ border: 2px solid line black;
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QListWidget" name="listPIDPreference">
+    <widget class="QListWidget" name="PIDPreference">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -183,6 +185,7 @@ border: 2px solid line black;
      </property>
      <property name="font">
       <font>
+       <family>Sans Serif</family>
        <pointsize>14</pointsize>
        <italic>false</italic>
        <bold>false</bold>

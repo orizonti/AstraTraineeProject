@@ -5,8 +5,8 @@
 #include "ui_windowsinussource.h"
 #include "graphicwidgetnode.h"
 #include "SinusGeneratorClass.h"
-#include "QSpinBox";
-#include "QDoubleSpinBox";
+#include "QSpinBox"
+#include "QDoubleSpinBox"
 #include "AdjustableWidget.h"
 
 class WindowSinusSource : public AdjustableWidget

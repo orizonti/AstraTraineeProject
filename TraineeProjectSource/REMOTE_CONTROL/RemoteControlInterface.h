@@ -14,10 +14,12 @@
 #include "DataCamerasStructure.h"
 #include "RemoteControlProtocol.h"
 #include "UDPEngineInterface.h"
+#include <QStringList>
 
 enum error_port_work_modes { aiming_mode = 1, registration_mode = 2};
 enum error_port_direction  { direct_to_all = 0, direct_to_channel1 = 1, direct_to_channel2 = 2, direct_to_channel3 = 3 };
 class RemoteAimingWindowControl;
+class RemoteWindowControl;
 
 class RemoteAimingHandleInterface
 {
@@ -66,13 +68,18 @@ class RemoteControlInterface : public QObject
 	Q_OBJECT
 	public: 
 	RemoteControlInterface(HandleControlInterface* Interface, QObject* parent = 0);
+	~RemoteControlInterface();
+
 	RemoteAimingInterface AimingPort;
     MessageStruct<STATE_STRUCT> DEVICE_STATE;
+
+	RemoteWindowControl* DisplayRemoteCommand = 0; 
 
 	private:
 	QTimer timerSendState; 
 
 	void SendExecutionReply(int Result);
+
 
     UDPEngineInterface* UDPInterface;
 	HandleControlInterface* DeviceControl;
@@ -87,4 +94,6 @@ class RemoteControlInterface : public QObject
     public slots:
 	void SlotPerformRemoteCommand(KLP_CMD_TYPES CMD_TYPE);
 	void SlotSendStateToRemote();
+	signals:
+	void SignalNewRemoteCommand(QString command);
 };

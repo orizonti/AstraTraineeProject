@@ -17,6 +17,7 @@ public:
     UDPEngineInterface(QString Address, QString Remote, int REMOTE_PORT, int LOCAL_PORT);
     void initSocket(QString Address);
     void SendCommand(const QByteArray& Command);
+	QString PrintCommand(KLP_CMD_TYPES CMD_TYPE);
 
     template<typename T> void SendConfirmation(MessageStruct<T> Message);
     template<typename T> int ProcessMessage(MessageStruct<T> Message);

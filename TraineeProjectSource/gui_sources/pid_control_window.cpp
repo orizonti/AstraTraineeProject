@@ -1,8 +1,8 @@
 #include "CommonHeaders.h"
-#include "pidwindow.h"
+#include "pid_control_window.h"
 #define TAG "[ PID    WIND ]" 
 
-PIDWIndow::PIDWIndow(QWidget *parent)
+PIDWindow::PIDWindow(QWidget *parent)
 	: AdjustableWidget(parent)
 {
 	ui.setupUi(this);
@@ -11,21 +11,21 @@ PIDWIndow::PIDWIndow(QWidget *parent)
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 		return;
 
-	ui.listPIDPreference->clear();
+    //ui.PIDPreference->clear();
 	QTextStream in(&file);
 	while (!in.atEnd()) 
 	{
 		QString line = in.readLine();
-		ui.listPIDPreference->addItem(line);
+        //ui.PIDPreference->addItem(line);
 	}
 	file.close();
 }
 
-PIDWIndow::~PIDWIndow()
+PIDWindow::~PIDWindow()
 {
 
 }
-void PIDWIndow::DisplayState(stateblocksenum State)
+void PIDWindow::DisplayState(stateblocksenum State)
 {
 	ui.checkWorkBlock->blockSignals(true);
 	if (State == BlockDisable)
@@ -37,7 +37,7 @@ void PIDWIndow::DisplayState(stateblocksenum State)
 	ui.checkWorkBlock->blockSignals(false);
 }
 
-void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
+void PIDWindow::ConnectControlSignals(HandleControlInterface* Control)
 {
 	
 			connect(ui.checkWorkBlock, &QCheckBox::stateChanged,
@@ -60,7 +60,7 @@ void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
 			connect(ui.ButSetPIDParam, &QPushButton::clicked,
 				[=]()
 			{
-					QString preference = ui.listPIDPreference->currentItem()->text();
+                    QString preference = ui.PIDPreference->currentItem()->text();
 					QStringList list_preference = preference.split(" ");
 					double Common = 1;
 					double rate_param = list_preference.at(0).toDouble();
@@ -82,13 +82,13 @@ void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
 					if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 						return;
 
-				    ui.listPIDPreference->clear();
+                    ui.PIDPreference->clear();
 					QTextStream in(&file);
 					while (!in.atEnd()) 
 					{
 						QString line = in.readLine();
 						qDebug() << TAG << "Load - " << line;
-						ui.listPIDPreference->addItem(line);
+                        ui.PIDPreference->addItem(line);
 					}
 			});
 
@@ -96,6 +96,6 @@ void PIDWIndow::ConnectControlSignals(HandleControlInterface* Control)
 }
 
 
-void PIDWIndow::SetInitialState(double Rate, double Diff, double Int)
+void PIDWindow::SetInitialState(double Rate, double Diff, double Int)
 {
 }

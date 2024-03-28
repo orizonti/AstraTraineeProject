@@ -83,7 +83,7 @@ void LaserPowerInterface::SendRequestGetLaserParam()
 }
 void LaserPowerInterface::SendRequestGetChillerParam()
 {
-	 auto Command = GET_PARAM_COMMAND(CODE_CHILLER_DATA);
+	 auto Command = GET_PARAM_COMMAND(CODE_ChillerState);
      Command.CRC = GetCRC((unsigned char*)&Command,Command.DATA_SIZE +8);
      QByteArray ArrayCommand((const char*)&Command,Command.DATA_SIZE + 10);
      //qDebug() << TAG << "GET CHILLER PARAM: " << ArrayCommand.toHex();

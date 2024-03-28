@@ -1,5 +1,9 @@
 #include "RemoteControlProtocol.h"
 
+KLP_CMD_GROUP_LIST KLP_CMD_GROUP;
+template<> QString CommandToString(COMMAND_AIMING_COORD& Command) { return QString("COORD TO: %1 %2").arg(Command.X).arg(Command.Y); };
+template<> QString CommandToString(COMMAND_POWER_LASER& Command) { return QString("POWER LASER TO: %1 %2 %3").arg(Command.OnOff).arg(Command.Channel).arg(Command.WorkTime); };
+
 void operator>>(QDataStream& stream, MESSAGE_HEADER& Header)
 {
      stream >> Header.HEADER; stream >> Header.MESSAGE_ID; stream >> Header.MESSAGE_TYPE; stream >> Header.CMD_TYPE; stream >> Header.DATA_SIZE; 

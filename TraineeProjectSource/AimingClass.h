@@ -7,6 +7,7 @@
 #include "TransformCoordClass.h"
 #include "PIDClass.h"
 #include "KalmanFilterClass.h"
+#include <QSettings>
 
 
 template <class T>
@@ -62,7 +63,9 @@ public:
 	void SetDesieredCoord(QPair<double, double> Coord);
     void MoveDesieredCoord(QPair<double, double> MoveCoord);
 
-    void LoadPIDParamFromFile();
+    void LoadPIDParam(QString SettingsFile);
+	void LoadSettings(QSettings& Settings);
+
     void SlotFilterEnable(bool OnOff);
     std::vector<PIDParamStruct> PID_Param_Table;
 

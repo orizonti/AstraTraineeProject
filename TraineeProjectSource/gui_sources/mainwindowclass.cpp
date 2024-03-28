@@ -26,7 +26,7 @@ MainWindowClass::MainWindowClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
 	 AimingBlockDisplay2->NumberChannel = 2;
 	 AimingBlockDisplay3->NumberChannel = 3;
 
-	 PIDControl = new PIDWIndow;
+	 PIDControl = new PIDWindow;
 	 KalmanControl = new KalmanWindow;
 
 	 EngineControlDisplay1 = new EngineControlWindow;
@@ -46,6 +46,7 @@ MainWindowClass::MainWindowClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
 
 	 CameraControlBlockDisplay = new CameraWindow;
 	 CameraControlParamDisplay = new CameraControlWindow;
+	 ChillerWindow = new ChillerWindowDisplay;
 	
 	qRegisterMetaType<DataImageProcStructure>("DataImageProcStructure");
 	qRegisterMetaType<DataDeviceStructure>("DataDeviceStructure");
@@ -59,11 +60,12 @@ MainWindowClass::MainWindowClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
 	qRegisterMetaType<QVector<QPair<double,double>>>("MassCoord");
 
 
+	QObject::connect(this, SIGNAL(SignalNewWeatherData(DataWeatherStructure)),   this, SLOT(DisplayWeatherData(DataWeatherStructure)));
+	QObject::connect(this, SIGNAL(SignalNewChillData(DataChillerStructure)), this, SLOT(DisplayChillData(DataChillerStructure)));
+
 	QObject::connect(this, SIGNAL(SignalLaserStateDisplay(DataLaserStruct)), this, SLOT(DisplayLaserStateDisplay(DataLaserStruct)));
 	QObject::connect(this, SIGNAL(SignalNewImage(DataImageProcStructure)),       this, SLOT(DisplayImage(DataImageProcStructure)));
-	QObject::connect(this, SIGNAL(SignalNewWeatherData(DataTemperatureStructure)),   this, SLOT(DisplayWeatherData(DataTemperatureStructure)));
 	QObject::connect(this, SIGNAL(SignalNewCameraData(DataCamerasStructure)),    this, SLOT(DisplayCameraData(DataCamerasStructure)));
-	QObject::connect(this, SIGNAL(SignalNewChillData(DataTemperatureStructure)), this, SLOT(DisplayChillData(DataTemperatureStructure)));
 
 	QObject::connect(this, SIGNAL(SignalNewEngineData(DataEngineStructure)), this, SLOT(DisplayEngineData(DataEngineStructure)));
 
@@ -96,6 +98,7 @@ MainWindowClass::MainWindowClass(GraphicsWindow* GraphicsWidget,QWidget *parent)
     this->AddWidgetToDisplay(GraphicsDisplay); this->AddWidgetToDisplay(LaserControlDisplay); this->AddWidgetToDisplay(CameraControlBlockDisplay);
 
     this->AddWidgetToDisplay(CameraControlParamDisplay);
+    this->AddWidgetToDisplay(ChillerWindow);
 
 	LoadWidgetsLinks();
 
@@ -173,9 +176,13 @@ void MainWindowClass::DisplayWeatherData(DataWeatherStructure DataStructure)
 
 }
 
+void MainWindowClass::DisplayRemoteCommand(QStringList& LogCommands)
+{
+}
+
 void MainWindowClass::DisplayChillData(DataChillerStructure Data)
 {
-
+  this->ChillerWindow->SlotDisplayChillerData(Data);
 }
 
 void MainWindowClass::DisplayLaserStateDisplay(DataLaserStruct Data)
@@ -183,7 +190,6 @@ void MainWindowClass::DisplayLaserStateDisplay(DataLaserStruct Data)
 	this->LaserControlDisplay->DisplayState(Data.State, Data.NumberBlock);
 }
 
-//����� ������ ������� ���������
 void MainWindowClass::DisplayAimingData(DataAimingErrorStructure DataStructure)
 {
 	if (DataStructure.NumberBlock == 1)
@@ -200,7 +206,6 @@ void MainWindowClass::DisplayAimingData(DataAimingErrorStructure DataStructure)
 
 }
 
-//����� ������ ��������
 void MainWindowClass::DisplayEngineData(DataEngineStructure DataStructure)
 {
 	this->EngineControlDisplay1->DisplayState(DataStructure.Engine1);
@@ -210,9 +215,6 @@ void MainWindowClass::DisplayEngineData(DataEngineStructure DataStructure)
 
 void MainWindowClass::DisplayFullImage(QImage Image)
 {
-
- 
-
 	this->LabelImage->setPixmap(QPixmap::fromImage(Image));
 }
 
@@ -281,7 +283,9 @@ void MainWindowClass::ConnectControlSignals(HandleControlInterface* Control)
 	this->MainBlockDisplay->ConnectControlSignals(Control);
 
 	this->ImageProcDisplay->ConnectControlSignals(Control);
-	PIDControl->ConnectControlSignals(Control);
+	this->PIDControl->ConnectControlSignals(Control);
+	this->ChillerWindow->ConnectControlSignals(Control);
+
 	//KalmanControl->ConnectControlSignals(Control);
 
 }
@@ -494,13 +498,13 @@ void MainWindowClass::SlotUpdateScene()
 void MainWindowClass::AddWidgetToDisplay(AdjustableWidget* widget)
 {
     auto Position = WidgetsPositionList[CurrentGuiSize][this->ModuleWidgets.size()];
-	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second,widget));
+	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second+40,widget));
 }
 
 void MainWindowClass::AddWidgetToDisplay(AdjustableLabel* widget)
 {
     auto Position = WidgetsPositionList[CurrentGuiSize][this->ModuleWidgets.size()];
-	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second,widget));
+	this->ModuleWidgets.append(new GraphicWidgetNode(Scene, Position.first, Position.second+40,widget));
 }
 
 void MainWindowClass::SaveWidgetsLinks()

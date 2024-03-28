@@ -44,12 +44,9 @@ int main(int argc, char *argv[])
 {
     //QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     #define TAG "[ MAIN FUNC   ]" 
-    qInstallMessageHandler(myMessageOutput);
+    //qInstallMessageHandler(myMessageOutput);
 	QApplication a(argc, argv);
-	{
-		int block;
-		int block2;
-	}
+
 	qDebug() << TAG   << "CURRENT STREAM: " << print_thread_id();
 
 	GraphicsWindow* GraphicsDisplay = new GraphicsWindow;
@@ -65,11 +62,8 @@ int main(int argc, char *argv[])
 	WindowDisplay->show();
 	WindowDisplay->move(10,10);
 
-
 	//GraphicsDisplay->show();
 	//GraphicsDisplay->move(WindowDisplay->x()-GraphicsDisplay->size().width(), WindowDisplay->y());
-
-
 
 	return a.exec();
 }

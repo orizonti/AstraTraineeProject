@@ -9,10 +9,8 @@ UDPEngineInterface::UDPEngineInterface(QString Address, QString Remote, int REMO
    this->LOC_PORT = LOCAL_PORT;
    this->REM_PORT = REMOTE_PORT;
 
-   initSocket(Address);
-
-   m_notifier = new QSocketNotifier(fileno(stdin), QSocketNotifier::Read, this);
-   connect(m_notifier, SIGNAL(activated(int)), this, SLOT(readCommand()));
+   //initSocket(Address);
+   initSocket("Any");
 }
 
 void UDPEngineInterface::initSocket(QString Address)
@@ -24,9 +22,9 @@ void UDPEngineInterface::initSocket(QString Address)
      else 
      CommandSocket->bind(QHostAddress(Address),7575);
 
-     connect(CommandSocket, &QUdpSocket::readyRead, this, &UDPEngineInterface::readUDP);
 
      qDebug() << "UDP BIND: " << Address << "PORT : " << 7575 << " REMOTE: " << RemoteAddress;
+     connect(CommandSocket, &QUdpSocket::readyRead, this, &UDPEngineInterface::readUDP);
 }
 
 
@@ -48,21 +46,23 @@ template<typename T>
 int UDPEngineInterface::ProcessMessage(MessageStruct<T> Message)
 {
    SendConfirmation(Message);
-   //if(KLP_CMD_GROUP::isValid(Message.HEADER.CMD_TYPE)) emit SignalNewMessage(static_cast<KLP_CMD_TYPES>(Message.HEADER.CMD_TYPE));
-   if(KLP_CMD_GROUP::isValid(Message.HEADER.CMD_TYPE)) qDebug() << "PROCESS VALID CMD: " << KLP_CMD_GROUP()(Message.HEADER.CMD_TYPE);
+   if(KLP_CMD_GROUP_LIST::isValid(Message.HEADER.CMD_TYPE)) emit SignalNewMessage(static_cast<KLP_CMD_TYPES>(Message.HEADER.CMD_TYPE));
+   if(KLP_CMD_GROUP_LIST::isValid(Message.HEADER.CMD_TYPE)) qDebug() << "PROCESS VALID CMD: " << KLP_CMD_GROUP(Message.HEADER.CMD_TYPE);
    return Message.GetSize();
 }
 
 void UDPEngineInterface::readUDP()
 {
 
-while (CommandSocket->hasPendingDatagrams())
-{
+//while (CommandSocket->hasPendingDatagrams())
+//{
+//   QNetworkDatagram datagram = CommandSocket->receiveDatagram();
+//   InputBuffer.append(datagram.data());
+//}
+
    QNetworkDatagram datagram = CommandSocket->receiveDatagram();
    InputBuffer.append(datagram.data());
-}
-
-qDebug() << "MESSAGE REC: " << InputBuffer.toHex();
+   qDebug() << "MESSAGE REC: " << InputBuffer.toHex();
 
 QDataStream in_stream_header(&InputBuffer, QIODevice::ReadWrite); in_stream_header.setByteOrder((QDataStream::LittleEndian));
 QDataStream in_stream(&InputBuffer, QIODevice::ReadWrite); in_stream.setByteOrder(QDataStream::LittleEndian);
@@ -76,7 +76,7 @@ MESSAGE_HEADER HEADER;
     in_stream_header >> HEADER; if(!HEADER.isValid()) {return;};
     
     int BytesProc = 0; 
-    qDebug() << "MESSAGE TYPE: " <<HEADER.CMD_TYPE << KLP_CMD_GROUP()(HEADER.CMD_TYPE)  << "ID: " << HEADER.MESSAGE_ID;
+    qDebug() << "MESSAGE TYPE: " <<HEADER.CMD_TYPE << KLP_CMD_GROUP(HEADER.CMD_TYPE)  << "ID: " << HEADER.MESSAGE_ID;
     
     if (HEADER.CMD_TYPE == CMD_CAMERA)    {in_stream >> CameraControl;     BytesProc = ProcessMessage(CameraControl);  }; 
     if (HEADER.CMD_TYPE == CMD_ENGINES)   {in_stream >> EngineControl;     BytesProc = ProcessMessage(EngineControl);  }; 
@@ -90,4 +90,14 @@ MESSAGE_HEADER HEADER;
   }
      
   InputBuffer.remove(0,InputBuffer.size() - BytesAvailable);
+}
+
+QString UDPEngineInterface::PrintCommand(KLP_CMD_TYPES CMD_TYPE)
+{
+    if (CMD_TYPE == CMD_CAMERA)    return CommandToString(CameraControl.DATA);
+    if (CMD_TYPE == CMD_ENGINES)   return CommandToString(EngineControl.DATA);
+    if (CMD_TYPE == CMD_POINTLASER)return CommandToString(LaserPointerCmd.DATA);
+    if (CMD_TYPE == CMD_PILOTLASER)return CommandToString(LaserGuidCmd.DATA);
+    if (CMD_TYPE == CMD_POWERLASER)return CommandToString(LaserPowerCmd.DATA);
+    if (CMD_TYPE == CMD_AIMING)    return CommandToString(AimingControl.DATA);
 }

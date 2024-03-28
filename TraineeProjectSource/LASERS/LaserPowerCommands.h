@@ -54,7 +54,7 @@ friend void operator>>(QDataStream& in_stream, COMMAND_REQUEST& Head) {in_stream
 };
 #define CODE_ACCESS_LEVEL 2080
 #define CODE_LASER_DATA 2001
-#define CODE_CHILLER_DATA 2031
+#define CODE_ChillerState 2031
 #define CODE_POWERSUPPLY 2500 //quint16
 #define CODE_SET_CURRENT 2501 //quint16
 #define CODE_SET_POWER 2502 //quint32

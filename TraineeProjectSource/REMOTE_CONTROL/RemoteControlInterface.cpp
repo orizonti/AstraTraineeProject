@@ -1,11 +1,13 @@
 #include "CommonHeaders.h"
 #include "RemoteControlInterface.h"
 #include <qdebug.h>
-#include "RemoteAimingWindowControl.h"
 #include "LaserCommonInterface.h"
 #include "RemoteControlProtocol.h"
 #include "UDPEngineInterface.h"
 #define TAG "[ REMOTE CTRL]" 
+
+#include "RemoteAimingWindowControl.h"
+#include "RemoteWindowControl.h"
 
 RemoteAimingInterface::RemoteAimingInterface()
 {
@@ -42,9 +44,23 @@ void RemoteAimingInterface::SlotSetMode(int Mode) { work_mode = (error_port_work
 RemoteControlInterface::RemoteControlInterface(HandleControlInterface* Interface, QObject* parent) : QObject(parent)
 {
 DeviceControl = Interface;
-UDPInterface = new UDPEngineInterface("127.0.0.1","192.168.1.41",7575,7575);
+UDPInterface = new UDPEngineInterface("192.168.1.104","172.27.76.53",7575,7575);
+DisplayRemoteCommand = new RemoteWindowControl;
+
 QObject::connect(&timerSendState,SIGNAL(timeout()),this,SLOT(SlotSendStateToRemote()));
-timerSendState.start(2000);
+QObject::connect(this,SIGNAL(SignalNewRemoteCommand(QString)),DisplayRemoteCommand,SLOT(SlotPrintRemoteCommand(QString)));
+QObject::connect(UDPInterface,SIGNAL(SignalNewMessage(KLP_CMD_TYPES)),this,SLOT(SlotPerformRemoteCommand(KLP_CMD_TYPES)));
+
+//timerSendState.start(2000);
+
+}
+
+RemoteControlInterface::~RemoteControlInterface()
+{
+qDebug() << "DELETE REMOTE INTERFACE";
+delete UDPInterface;
+DisplayRemoteCommand->close();
+delete DisplayRemoteCommand;
 }
 
 void RemoteControlInterface::SendExecutionReply(int Result)
@@ -54,8 +70,10 @@ void RemoteControlInterface::SendExecutionReply(int Result)
                        UDPInterface->SendCommand(Message.toByteArray());
 }
 
+
 void RemoteControlInterface::SlotPerformRemoteCommand(KLP_CMD_TYPES CMD_TYPE)
 {
+   emit SignalNewRemoteCommand(QString("GET: ") + KLP_CMD_GROUP(CMD_TYPE) + " " + UDPInterface->PrintCommand(CMD_TYPE));
    switch(CMD_TYPE)
    {
        case CMD_CAMERA:
@@ -152,6 +170,6 @@ void operator>>(const DataWeatherStructure& WeatherData, RemoteControlInterface&
 void operator>>(const DataChillerStructure& ChillerData, RemoteControlInterface& RemoteControl)
 {
    RemoteControl.DEVICE_STATE.DATA.Chiller = 1; 
-   RemoteControl.DEVICE_STATE.DATA.ChillerTemp1 = ChillerData.Temp1; 
-   RemoteControl.DEVICE_STATE.DATA.ChillerTemp2 = ChillerData.Temp2; 
+   RemoteControl.DEVICE_STATE.DATA.ChillerTemp1 = ChillerData.TEMP_CHILL1; 
+   RemoteControl.DEVICE_STATE.DATA.ChillerTemp2 = ChillerData.TEMP_CHILL2; 
 }

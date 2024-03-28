@@ -44,7 +44,7 @@ MainControllerClass::MainControllerClass(MainWindowClass* Window, GraphicsWindow
 	CameraCommand.SetCommand(COMM_AUTOEXPOSE_ON);
 
 	SetCameraParam(CameraCommand);
-    //QObject::connect(&ErrorRecievePort->TCPServer, SIGNAL(DataReceived()), this, SLOT(SlotReceiveErrorRemoteSensor()));
+    //QObject::connect(&AimingPort->TCPServer, SIGNAL(DataReceived()), this, SLOT(SlotReceiveErrorRemoteSensor()));
 
     QObject::connect(&SinusAimingBlockTest,SIGNAL(SignalNewDataAvailable()),this,SLOT(SlotReciveErrorTest()));
     SinusAimingBlockTest.SetRelativeOutput(false); SinusAimingBlockTest.SlotSetFrequency(2);
@@ -102,6 +102,7 @@ void MainControllerClass::SlotCheckDisplayDeviceModulesState()
 	LaserControl->LaserPointer->GetState() >> *WindowDisplay;  //
 
 	KLPInterface->CameraInterface->GetState() >> *WindowDisplay;
+	ChillSystem->GetState() >> *WindowDisplay;
     //======================================================
 	EnginesData >> *RemoteControl;
 	LaserControl->GetLasersState() >> *RemoteControl;
@@ -182,9 +183,8 @@ bool MainControllerClass::Initialization()
 	this->ImageProcessor->Proc3->FlagThresholdAutoControl = false;
 	
 
-	ChillSystem = std::shared_ptr<ChillSystemClass>(new ChillSystemClass);
+	ChillSystem = std::shared_ptr<ChillerInterface>(new ChillerInterface);
 	
-	RemoteControl= std::shared_ptr<RemoteControlInterface>(new RemoteControlInterface(this));
 
 	StateBlock = stateblocksenum::BlockAtInitializaiton;
 	
@@ -208,7 +208,7 @@ bool MainControllerClass::Initialization()
 	AimingBlockPointer= std::shared_ptr<AimingClass>(new AimingClass);
 	SinusGenerator = std::shared_ptr<SinusGeneratorClass>(new SinusGeneratorClass);
 	LaserControl    = std::shared_ptr<LaserControlClass>(new LaserControlClass);
-	ErrorRecievePort= std::shared_ptr<RemoteAimingInterface>(new RemoteAimingInterface);
+	RemoteControl= std::shared_ptr<RemoteControlInterface>(new RemoteControlInterface(this));
 
 
 	WindowDisplay->ConnectControlSignals((HandleControlInterface*)this);
@@ -238,11 +238,11 @@ bool MainControllerClass::Initialization()
 
 	SinusGenerator->SetLink(&AimingBlock3->AimingPort);
 
-	 WindowDisplay->AddWidgetToDisplay(SinusGenerator->WindowControl);
-	 WindowDisplay->AddWidgetToDisplay(SinusAimingBlockTest.WindowControl);
+	WindowDisplay->AddWidgetToDisplay(SinusGenerator->WindowControl);
+	WindowDisplay->AddWidgetToDisplay(SinusAimingBlockTest.WindowControl);
 
-	 WindowDisplay->AddWidgetToDisplay(ErrorRecievePort->ErrorPortWindowControl);
-
+	WindowDisplay->AddWidgetToDisplay((AdjustableWidget*)RemoteControl->DisplayRemoteCommand);
+	WindowDisplay->AddWidgetToDisplay(RemoteControl->AimingPort.ErrorPortWindowControl);
 
     qDebug() << TAG << "END INIT";
 
@@ -587,9 +587,11 @@ void MainControllerClass::TurnOnOffLaser(int NumberLaser, bool OnOff)
 }
 
 
-void MainControllerClass::TurnOnOffChiller(bool OnOff)
+void MainControllerClass::SetCommandChiller(CommandChillerStructure Command)
 {
-	this->ChillSystem->SlotTurnOnOff(OnOff);
+	this->ChillSystem->ResetComPort(Command.PORT);  //REST PORT IF PORT DIFFERENCES
+	this->ChillSystem->SlotSetWorkTemperature(Command.WORK_TEMP);
+	this->ChillSystem->SlotTurnOnOff(Command.ON_OFF);
 }
 
 void MainControllerClass::SlotMoveByCircle()
@@ -744,26 +746,27 @@ void MainControllerClass::SlotReceiveErrorRemoteSensor()
 
 	QPair<double, double> Error;
 	QPair<double, double> NewDesireCoord;
+	auto& AimingPort = RemoteControl->AimingPort;
 
-	*ErrorRecievePort >> Error;
-	if(ErrorRecievePort->isValid())
+	AimingPort >> Error;
+	if(AimingPort.isValid())
 	{
 			auto PointerCoord = ImageProcessor->ProcToPointer->spot_coord_abs;
-			if (ErrorRecievePort->error_direction == 1 || ErrorRecievePort->error_direction == 0)
+			if (AimingPort.error_direction == 1 || AimingPort.error_direction == 0)
 			{
 				qDebug() << TAG << "Remote error to channel 1";
 				NewDesireCoord =  ImageProcessor->Proc1->spot_coord_abs - PointerCoord - Error;
 				AimingBlock1->SetDesieredCoord(NewDesireCoord);
 			}
 
-			if (ErrorRecievePort->error_direction == 2 || ErrorRecievePort->error_direction == 0)
+			if (AimingPort.error_direction == 2 || AimingPort.error_direction == 0)
 			{
 				qDebug() << TAG << "Remote error to channel 2";
 				NewDesireCoord =  ImageProcessor->Proc2->spot_coord_abs - PointerCoord - Error;
 				AimingBlock2->SetDesieredCoord(NewDesireCoord);
 			}
 
-			if (ErrorRecievePort->error_direction == 3 || ErrorRecievePort->error_direction == 0)
+			if (AimingPort.error_direction == 3 || AimingPort.error_direction == 0)
 			{
 				qDebug() << TAG << "Remote error to channel 3";
 				NewDesireCoord =  ImageProcessor->Proc3->spot_coord_abs - PointerCoord - Error;
@@ -774,13 +777,13 @@ void MainControllerClass::SlotReceiveErrorRemoteSensor()
 
 
 	//=======================================================================================================================================
-	if (ErrorRecievePort->error_direction == 1 && !ErrorRecievePort->isValid())
+	if (AimingPort.error_direction == 1 && !AimingPort.isValid())
 	{
-		AimingBlock1->SetDesieredCoord(ErrorRecievePort->RemoteToBaseTransform.MeasureFilter.DataFilter.WaitInputCoord + AimingBlock1->BeamCenteredPosition);
+		AimingBlock1->SetDesieredCoord(AimingPort.RemoteToBaseTransform.MeasureFilter.DataFilter.WaitInputCoord + AimingBlock1->BeamCenteredPosition);
 
 		auto abs_coord = ImageProcessor->Proc1->spot_coord_abs;
-				abs_coord >> ErrorRecievePort->RemoteToBaseTransform.MeasureFilter >> ErrorRecievePort->RemoteToBaseTransform;
-					Error >> ErrorRecievePort->RemoteToBaseTransform.MeasureFilter >> ErrorRecievePort->RemoteToBaseTransform;
+				abs_coord >> AimingPort.RemoteToBaseTransform.MeasureFilter >> AimingPort.RemoteToBaseTransform;
+					Error >> AimingPort.RemoteToBaseTransform.MeasureFilter >> AimingPort.RemoteToBaseTransform;
 	}
 
 
@@ -847,42 +850,23 @@ void MainControllerClass::LoadPreference()
 {
   qDebug() << TAG << "================================================";
   qDebug() << TAG << "[ MAIN CONTROLLER LOAD PREFERENCE ]";
-  QString RotateParamPath1;
-  QString RotateParamPath2; 
-  QString RotateParamPath3; 
-  	QString IniFile = "/home/broms/DEVELOPMENT/DATA/TrainerData/TrainerPaths.ini";
-  	QSettings Settings(IniFile, QSettings::IniFormat);
+
+  QSettings Settings("/home/broms/DEVELOPMENT/DATA/TrainerData/TrainerSetting.ini", QSettings::IniFormat);
+  EngineControl1->LoadSettings(Settings);
+  EngineControl2->LoadSettings(Settings);
+  EngineControl3->LoadSettings(Settings);
+  AimingBlock1->LoadSettings(Settings);
+  AimingBlock2->LoadSettings(Settings);
+  AimingBlock3->LoadSettings(Settings);
   
-  	Settings.beginGroup("PATHS");
-  			RotateParamPath1 = Settings.value("ROTATE_PARAM_1").toString();
-  			RotateParamPath2 = Settings.value("ROTATE_PARAM_2").toString();
-  			RotateParamPath3 = Settings.value("ROTATE_PARAM_3").toString();
-  
-  	Settings.endGroup();
-  	qDebug() << TAG << "LOAD SETTINGS - " << RotateParamPath1;
-  	qDebug() << TAG << "LOAD SETTINGS - " << RotateParamPath2;
-  	qDebug() << TAG << "LOAD SETTINGS - " << RotateParamPath3;
-  
-  
-  EngineControl1->RotationAxis.LoadRotationFromFile(RotateParamPath1);
-  EngineControl2->RotationAxis.LoadRotationFromFile(RotateParamPath2);
-  EngineControl3->RotationAxis.LoadRotationFromFile(RotateParamPath3);
-  
-  EngineControl1->RotateAxisInverse = EngineControl1->RotateAxis.Inverse();
-  EngineControl2->RotateAxisInverse = EngineControl2->RotateAxis.Inverse();
-  EngineControl3->RotateAxisInverse = EngineControl3->RotateAxis.Inverse();
-  
-  EngineControl1->RotationAxisInverse = EngineControl1->RotationAxis; EngineControl1->RotationAxisInverse.Inverse();
-  EngineControl2->RotationAxisInverse = EngineControl2->RotationAxis; EngineControl2->RotationAxisInverse.Inverse();
-  EngineControl3->RotationAxisInverse = EngineControl3->RotationAxis; EngineControl3->RotationAxisInverse.Inverse();
-  
+
   AimingBlock1->PixToRadian.Scale = EngineControl1->RotationAxis.system_transform_scale;
   AimingBlock2->PixToRadian.Scale = EngineControl1->RotationAxis.system_transform_scale;
   AimingBlock3->PixToRadian.Scale = EngineControl1->RotationAxis.system_transform_scale;
   
-  AimingBlock1->RadianToPix.Scale = EngineControl1->RotationAxis.system_transform_scale;
-  AimingBlock2->RadianToPix.Scale = EngineControl1->RotationAxis.system_transform_scale;
-  AimingBlock3->RadianToPix.Scale = EngineControl1->RotationAxis.system_transform_scale;
+  AimingBlock1->RadianToPix.Scale = AimingBlock1->PixToRadian.Scale;
+  AimingBlock2->RadianToPix.Scale = AimingBlock2->PixToRadian.Scale;
+  AimingBlock3->RadianToPix.Scale = AimingBlock3->PixToRadian.Scale;
   
   //int x_center = 1024; int y_center = 220;
   int x1 = 701; int x2 = 1016; int x3 = 1315;
@@ -900,6 +884,7 @@ void MainControllerClass::LoadPreference()
   AimingBlock1->DesireRelCoord = AimingBlock1->BeamCenteredPosition - PointerCenteredCoord;
   AimingBlock2->DesireRelCoord = AimingBlock2->BeamCenteredPosition - PointerCenteredCoord;
   AimingBlock3->DesireRelCoord = AimingBlock3->BeamCenteredPosition - PointerCenteredCoord;
+
   qDebug() << TAG << "DESIRE RELATIVE " << AimingBlock1->DesireRelCoord << " CHANNEL - " << 1;
   qDebug() << TAG << "DESIRE RELATIVE " << AimingBlock2->DesireRelCoord << " CHANNEL - " << 2;
   qDebug() << TAG << "DESIRE RELATIVE " << AimingBlock3->DesireRelCoord << " CHANNEL - " << 3;
